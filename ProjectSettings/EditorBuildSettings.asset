@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ARDKExamples/PongHLAPI/PongHLAPIDemo.unity
-    guid: 0e529a9004cd44c9cb9b872753e5ee13
+    path: Assets/Scenes/LocalisationTest/Prototype.unity
+    guid: 07f49bdb2dd035f47912fb2f8409490b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5e668f8ab45c4054c83d51f0268749e0,
       type: 2}

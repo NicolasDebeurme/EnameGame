@@ -42,7 +42,7 @@ namespace Niantic.ARDK.Extensions
     }
 
     [SerializeField]
-    private Renderer _occludee;
+    public Renderer _occludee;
 
     private void Awake()
     {
