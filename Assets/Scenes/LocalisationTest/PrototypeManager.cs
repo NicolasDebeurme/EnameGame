@@ -81,15 +81,6 @@ public class PrototypeManager : MonoBehaviour
         _imageDetectionManager.AddImage(imageFromPath);
     }
 
-    public byte[] ImageToByteArray(System.Drawing.Image imageIn)
-    {
-        using (var ms = new MemoryStream())
-        {
-            imageIn.Save(ms, imageIn.RawFormat);
-            return ms.ToArray();
-        }
-    }
-
     private void OnAnchorsAdded(AnchorsArgs args)
     {
         foreach (var anchor in args.Anchors)
