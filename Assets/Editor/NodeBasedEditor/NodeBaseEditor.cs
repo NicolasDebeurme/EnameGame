@@ -24,22 +24,8 @@ public class NodeBasedEditor : EditorWindow
 
     private string treeName = "DefaultTree";
 
-    public enum Rôles
-    {
-        None,
-        Abbé,
-        Hakim
-    }
-    public enum Place
-    {
-        None,
-        Pump,
-        Church
-    }
-
     //dropDownButton
     GenericMenu menu = new GenericMenu();
-    private string _textSelected;
     private NodeEditorData[] _availableTrees;
     //
 
@@ -73,8 +59,8 @@ public class NodeBasedEditor : EditorWindow
         outPointStyle.active.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right on.png") as Texture2D;
         outPointStyle.border = new RectOffset(4, 4, 12, 12);
 
-        LoadTreesFromAssets();
 
+        LoadTreesFromAssets();
 
         foreach (var tree in _availableTrees)
         {
@@ -105,14 +91,6 @@ public class NodeBasedEditor : EditorWindow
 
         if (EditorGUILayout.DropdownButton( new GUIContent(treeName), FocusType.Keyboard))
         {
-            void handleItemClicked(object parameter)
-            {
-                NodeEditorData data = (NodeEditorData)parameter;
-                
-                    treeName = data.name;
-                    OnLoad(data.storyTree);    
-            }
-
             foreach (var item in _availableTrees)
             {
                 menu.AddItem(new GUIContent(item.name), false, handleItemClicked, item);
@@ -143,8 +121,16 @@ public class NodeBasedEditor : EditorWindow
         EditorGUILayout.EndVertical();
 
         if (GUI.changed) Repaint();
+        LoadTreesFromAssets();
     }
 
+    private void handleItemClicked(object parameter)
+    {
+        var data = parameter as NodeEditorData;
+
+        treeName = data.name;
+        OnLoad(data.storyTree);
+    }
     private void DrawConnections()
     {
         if (connections != null)
@@ -408,8 +394,10 @@ public class NodeBasedEditor : EditorWindow
         {
             nodePosition = new Vector2(window.position.center.x+300*depth, window.position.center.y+300*(siblingCount));
         }
+
+
         Node newNode = new Node(nodePosition, 200, 200, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode);
-        newNode.content.LoadContent(treeNode.data._place,treeNode.data._role,treeNode.data._question);
+        newNode.content.LoadContent(treeNode.data.place,treeNode.data.dialogueText,treeNode.data.textToBeChose,treeNode.data.visibilitys);
         nodes.Add(newNode);
 
         if(nodes.Count > 1) // notRootNode
@@ -417,7 +405,6 @@ public class NodeBasedEditor : EditorWindow
             selectedInPoint = newNode.inPoint;
             CreateConnection();
         }
-
 
         int counter = 0;
         foreach(var child in treeNode.children)
@@ -431,7 +418,7 @@ public class NodeBasedEditor : EditorWindow
 
     private NTree<NodeInfo> SaveTree(NTree<NodeInfo> treeNode , Node actualNode)
     {
-            List<Connection> nodeConnections = new List<Connection>();
+        List<Connection> nodeConnections = new List<Connection>();
         if (connections != null)
                 foreach(var connection in connections)
                 {
@@ -449,7 +436,7 @@ public class NodeBasedEditor : EditorWindow
                     {
                         if(connection.inPoint == node.inPoint)
                         {
-                            NTree<NodeInfo> Nnode = treeNode.AddChild(new NodeInfo(node.content.question, (int)node.content.role, (int)node.content.placeName));
+                            NTree<NodeInfo> Nnode = treeNode.AddChild(new NodeInfo(node.content.question, node.content.placeName,node.content.textToBeChose,node.content.visibilitys));
                             SaveTree(Nnode, node);
                         }
                     }
@@ -463,16 +450,27 @@ public class NodeBasedEditor : EditorWindow
 
     private void OnSave()
     {
-        NodeEditorData oui = CreateInstance<NodeEditorData>();
+        bool isNew = false;
+
         if (nodes != null && treeName.Length > 0 )
-        { 
+        {
+            NodeEditorData oui = AssetDatabase.LoadAssetAtPath<NodeEditorData>("Assets/Resources/StoryTree/" + treeName + ".asset")  ;
 
-            NTree <NodeInfo> treeRoot= new NTree<NodeInfo>(new NodeInfo(nodes[0].content.question, (int)nodes[0].content.role, (int)nodes[0].content.placeName));
+            if(oui == null)
+            {
+                isNew = true;
+                oui = CreateInstance<NodeEditorData>();
+            }    
+
+            NTree <NodeInfo> treeRoot= new NTree<NodeInfo>(new NodeInfo(nodes[0].content.question, nodes[0].content.placeName, nodes[0].content.textToBeChose, nodes[0].content.visibilitys));
+
             oui.storyTree = SaveTree(treeRoot, nodes[0]);
-            oui.test++;
 
-            AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/"+treeName+".asset");
+            if(isNew)
+                AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/"+treeName+".asset");
+
             AssetDatabase.SaveAssets();
+
             LoadTreesFromAssets();
         }
     }
@@ -504,13 +502,8 @@ public class NodeBasedEditor : EditorWindow
     }
     public void LoadTreesFromAssets()
     {
+        _availableTrees = null;
         _availableTrees = UnityEngine.Resources.LoadAll<NodeEditorData>("StoryTree");
-
-        foreach(var tree in _availableTrees)
-        {
-            Debug.Log(tree.storyTree);
-            Debug.Log(tree.test);
-        }
     }
 
 }
