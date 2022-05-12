@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using static Enums;
 using static NodeBasedEditor;
 
 public class NodeContent
@@ -16,9 +17,10 @@ public class NodeContent
     public Node node;
 
     //data
-    public Place placeName;
-    public Rôles role;
+    public Places placeName;
+    public string textToBeChose;
     public string question;
+    public Visibility visibilitys;
 
     public NodeContent(Node node, GUIStyle boxStyle, Rect boxRect)
     {
@@ -33,6 +35,8 @@ public class NodeContent
     }
     public void Draw()
     {
+        var serializedObject = new SerializedObject(visibilitys);
+
         GUI.Box(node.rect, title, boxStyle);
 
         FieldsRect.x = node.rect.x + 10;
@@ -41,12 +45,21 @@ public class NodeContent
 
         EditorGUI.PrefixLabel(FieldsRect, new GUIContent("Place name:"));
         FieldsRect.y = FieldsRect.y + 20;
-        placeName = (Place)EditorGUI.EnumPopup(FieldsRect, placeName);
+        placeName = (Places)EditorGUI.EnumPopup(FieldsRect, placeName);
 
         FieldsRect.y = FieldsRect.y + 25;
-        EditorGUI.PrefixLabel(FieldsRect, new GUIContent("As to answer:"));
+        EditorGUI.PrefixLabel(FieldsRect, new GUIContent("Text to be chose:"));
         FieldsRect.y = FieldsRect.y + 20;
-        role = (Rôles)EditorGUI.EnumPopup(FieldsRect,role);
+        textToBeChose = EditorGUI.TextArea(FieldsRect, textToBeChose);
+
+        FieldsRect.y = FieldsRect.y + 25;
+        EditorGUI.PrefixLabel(FieldsRect, new GUIContent("Visibility:"));
+        FieldsRect.y = FieldsRect.y + 20;
+        
+        var property = serializedObject.FindProperty("Decide");
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(property, true);
+        serializedObject.ApplyModifiedProperties();
 
         FieldsRect.y = FieldsRect.y + 25;
         EditorGUI.PrefixLabel(FieldsRect, new GUIContent("Question:"));
@@ -55,11 +68,12 @@ public class NodeContent
         question = EditorGUI.TextArea(FieldsRect, question);
     }
 
-    public void LoadContent(int placeName,int role,string question)
+    public void LoadContent(Places placeName,string question, string textToBeChose,Visibility visibilitys)
     {
-        this.placeName = (Place)placeName;
-        this.role= (Rôles)role;
+        this.placeName = placeName;
         this.question = question;
+        this.textToBeChose= textToBeChose;
+        this.visibilitys = visibilitys;
     }
 
 }

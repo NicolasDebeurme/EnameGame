@@ -1,24 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
+using static Enums;
 
 public class NodeInfo
 {
-    public string _question;
-    public int _role;
-    public int _place;
+    public string textToBeChose = "Enter the text";
+    public Visibility visibilitys;
+    public string dialogueText;
+    public Places place;
 
-    public NodeInfo(string question, int role, int place)
+    public List<NodeInfo> choiceList;
+    public NodeInfo(string dialogueText, Places place, string textToBeChose, Visibility vivibilitys)
     {
-        _question = question;
-        _role = role;
-        _place = place;
+        this.dialogueText = dialogueText;
+        this.place = place;
+        this.textToBeChose = textToBeChose;
+        this.visibilitys = vivibilitys;
     }
 
-    public void Print()
-    {
-        Debug.Log(_question + "- Role:" + _role + "- Place:" + _place);
-    }
 }
