@@ -18,26 +18,30 @@ public class GPS : MonoBehaviour
     public Image ImageBoussole;
     public Point YourPosition;
     public Point pointB;
-    //public Point Allemagne;
-    //public Point Sauvegarde;
+    public Point[] Places;
+
     public float AnglePlayerTarget;
 
     public void Start()
     {
-
         StartCoroutine(Position());
     }
 
     public void Update()
     {
-        if (GameManager.instance.isGPSenable)
+        if (GameManager.instance.isGPSEnable)
         {
-            WAY.SetActive(true);
+            //WAY.SetActive(true);
             UpdateCompass();
         }
         else
         {
-            WAY.SetActive(false);
+            //WAY.SetActive(false);
+        }
+
+        if (GameManager.instance.actualPlace!=0)
+        {
+            pointB = Places[GameManager.instance.actualPlace - 1];
         }
 
     }
@@ -45,6 +49,8 @@ public class GPS : MonoBehaviour
 
     IEnumerator Position()
     {
+        InvokeRepeating("UpdateGPSData", 0.5f, 1f); // FOR PC ________________________________________
+
         Input.compass.enabled = true;
         Debug.LogFormat("Start");
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
@@ -94,6 +100,9 @@ public class GPS : MonoBehaviour
             InvokeRepeating("UpdateGPSData", 0.5f, 1f);
         }
 
+
+
+
         // Stops the location service if there is no need to query location updates continuously.
         //Input.location.Stop();
         //yield return new WaitForSeconds(5);
@@ -101,6 +110,8 @@ public class GPS : MonoBehaviour
 
     public void UpdateGPSData()
     {
+        isReachThePosition(); // plus bas sur tel
+
         if (Input.location.status == LocationServiceStatus.Running)
         {
             //position.text = "Location: " + Input.location.lastData.latitude.ToString() + " " + Input.location.lastData.longitude.ToString() + " " + Input.location.lastData.altitude.ToString() + " " + Input.location.lastData.horizontalAccuracy.ToString() + " " + Input.location.lastData.timestamp.ToString();
@@ -124,7 +135,6 @@ public class GPS : MonoBehaviour
         DistanceAproximation.text = "DistanceAproximation: " + YourPosition.DistanceAproximation(YourPosition, pointB, Input.location.lastData.horizontalAccuracy, Input.location.lastData.verticalAccuracy);
 
 
-        isReachThePosition();
 
 
     }
@@ -153,7 +163,7 @@ public class GPS : MonoBehaviour
         if (YourPosition.Distance(YourPosition, pointB) < MinimumDistanceReachPoint)
         {
             GameManager.instance.have_reached_position = true;
-            WAY.SetActive(false);
+            //WAY.SetActive(false);
 
         }
     }

@@ -7,6 +7,7 @@ public class SelectPlace : MonoBehaviour
 {
 
     //public Button[] Places;
+    public GameObject SelctPlaceUI;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class SelectPlace : MonoBehaviour
     public void OnClickSelectPlace(int number_place)
     {
         GameManager.instance.actualPlace = number_place;
-        gameObject.SetActive(false);
+        //SelctPlaceUI.SetActive(false);
     }
 
 }
