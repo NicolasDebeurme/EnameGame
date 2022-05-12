@@ -581,6 +581,10 @@ struct Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93  : public RuntimeObject
 	double ___X_0;
 	// System.Double Point::Y
 	double ___Y_1;
+	// UnityEngine.UI.Image Point::picture
+	Image_tBC1D03F63BF71132E9A5E472B8742F172A011E7E* ___picture_2;
+	// System.String Point::infos
+	String_t* ___infos_3;
 };
 
 // System.String

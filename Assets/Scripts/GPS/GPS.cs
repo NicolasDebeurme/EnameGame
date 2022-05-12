@@ -7,6 +7,8 @@ using System;
 
 public class GPS : MonoBehaviour
 {
+    public GameObject WAY;
+    public float MinimumDistanceReachPoint = 20;
     public TextMeshProUGUI[] positions;
     public TextMeshProUGUI Distance;
     public TextMeshProUGUI DistanceAproximation;
@@ -22,12 +24,21 @@ public class GPS : MonoBehaviour
 
     public void Start()
     {
+
         StartCoroutine(Position());
     }
 
     public void Update()
     {
-        UpdateCompass();
+        if (GameManager.instance.isGPSenable)
+        {
+            WAY.SetActive(true);
+            UpdateCompass();
+        }
+        else
+        {
+            WAY.SetActive(false);
+        }
 
     }
 
@@ -111,6 +122,11 @@ public class GPS : MonoBehaviour
         //Debug.Log(pointA.Distance(pointA, pointB));
         Distance.text ="Distance: " + YourPosition.Distance(YourPosition, pointB);
         DistanceAproximation.text = "DistanceAproximation: " + YourPosition.DistanceAproximation(YourPosition, pointB, Input.location.lastData.horizontalAccuracy, Input.location.lastData.verticalAccuracy);
+
+
+        isReachThePosition();
+
+
     }
 
     public void UpdateCompass()
@@ -130,12 +146,16 @@ public class GPS : MonoBehaviour
         ImageBoussole.gameObject.transform.rotation = Quaternion.Euler(0, 0, (+Input.compass.magneticHeading + AnglePlayerTarget));
         //Debug.LogFormat((new Vector2((float)(pointB.X - YourPosition.X), (float)(pointB.Y - YourPosition.Y))).ToString());
         //Debug.LogFormat("Compass: " + Input.compass.magneticHeading + "  Target: " + AnglePlayerTarget);
-   
+    }
 
-    
+    public void isReachThePosition()
+    {
+        if (YourPosition.Distance(YourPosition, pointB) < MinimumDistanceReachPoint)
+        {
+            GameManager.instance.have_reached_position = true;
+            WAY.SetActive(false);
 
-
-
+        }
     }
 
 

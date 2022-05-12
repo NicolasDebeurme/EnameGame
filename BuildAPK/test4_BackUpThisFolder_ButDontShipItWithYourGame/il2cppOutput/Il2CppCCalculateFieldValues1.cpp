@@ -4325,6 +4325,10 @@ struct Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93  : public RuntimeObject
 	double ___X_0;
 	// System.Double Point::Y
 	double ___Y_1;
+	// UnityEngine.UI.Image Point::picture
+	Image_tBC1D03F63BF71132E9A5E472B8742F172A011E7E* ___picture_2;
+	// System.String Point::infos
+	String_t* ___infos_3;
 };
 
 // System.Security.Cryptography.X509Certificates.PublicKey
@@ -28284,9 +28288,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4926[9] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4927[3] = 
 {
 	static_cast<int32_t>(offsetof(GPStestPC_t21A132A3B277C06F4CFE79F2CE1728152CD61FAA, ___pointA_4)),static_cast<int32_t>(offsetof(GPStestPC_t21A132A3B277C06F4CFE79F2CE1728152CD61FAA, ___pointB_5)),static_cast<int32_t>(offsetof(GPStestPC_t21A132A3B277C06F4CFE79F2CE1728152CD61FAA, ___distance_6)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4928[2] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4928[4] = 
 {
-	static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___X_0)),static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___Y_1)),};
+	static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___X_0)),static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___Y_1)),static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___picture_2)),static_cast<int32_t>(offsetof(Point_t4F128496D336DF7AA8817608D59E72CEF8DBFB93, ___infos_3)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4929[3] = 
 {
 	static_cast<int32_t>(offsetof(U3CWaitAndPrintU3Ed__4_t8F8FB81EAAC148C8D6A9F6B0555D2A1ACB8D468C, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CWaitAndPrintU3Ed__4_t8F8FB81EAAC148C8D6A9F6B0555D2A1ACB8D468C, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CWaitAndPrintU3Ed__4_t8F8FB81EAAC148C8D6A9F6B0555D2A1ACB8D468C, ___U3CU3E4__this_2)),};
