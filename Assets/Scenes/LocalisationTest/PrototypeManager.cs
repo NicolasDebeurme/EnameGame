@@ -18,11 +18,6 @@ using UnityEngine.UI;
 
 public class PrototypeManager : MonoBehaviour
 {
-    // Prefab to spawn on top of detected images.
-    [SerializeField]
-    private GameObject _sphere = null;
-
-
     [Header("Image detection managers")]
     [SerializeField]
     private ARImageDetectionManager _imageDetectionManager;
@@ -33,10 +28,15 @@ public class PrototypeManager : MonoBehaviour
     [SerializeField]
     private ARDepthInterpolationAdapter _depthInterpolationManager;
 
-    [Header("Images to manually add")]
+    [Header("Prefabs")]
     [SerializeField]
-    private TextAsset _imagePath;
+    private GameObject[] _prefabs;
 
+    [Header("StoryTree")]
+    [SerializeField]
+    private NodeEditorData _data;
+
+    static Dictionary<string, GameObject> _imagePrefabs = new Dictionary<string, GameObject>();
 
     private Dictionary<Guid, GameObject> _detectedImages = new Dictionary<Guid, GameObject>();
     private void Start()
@@ -46,9 +46,18 @@ public class PrototypeManager : MonoBehaviour
         _imageDetectionManager.EnableFeatures();
         _depthManager.EnableFeatures();
 
-        SetupCodeImageDetectionManager();
+        InitPrefabDictionnary();
     }
 
+   
+
+    void InitPrefabDictionnary()
+    {
+        foreach(var prefabs in _prefabs)
+        {
+            _imagePrefabs.Add(prefabs.name, prefabs);
+        }
+    }
     private void SetupSession(AnyARSessionInitializedArgs arg)
     {
         // Add listeners to all relevant ARSession events.
@@ -57,28 +66,6 @@ public class PrototypeManager : MonoBehaviour
         session.AnchorsAdded += OnAnchorsAdded;
         session.AnchorsUpdated += OnAnchorsUpdated;
         session.AnchorsRemoved += OnAnchorsRemoved;
-    }
-
-    private void SetupCodeImageDetectionManager()
-    {
-        // For the sake of this example, we're loading the specified asset into a temporary file.
-        // In a real application, this could be a file downloaded from the internet and written to
-        // the device, or a user selected file.
-        var tempFilePath = Path.Combine(Application.temporaryCachePath, "filePathImage.jpg");
-
-
-        File.WriteAllBytes(tempFilePath, _imagePath.bytes);
-
-        // Create an ARReferenceImage from the local file path.
-        var imageFromPath =
-          ARReferenceImageFactory.Create
-          (
-            "filePathImage",
-            tempFilePath,
-            0.25f
-          );
-
-        _imageDetectionManager.AddImage(imageFromPath);
     }
 
     private void OnAnchorsAdded(AnchorsArgs args)
@@ -91,13 +78,20 @@ public class PrototypeManager : MonoBehaviour
             var imageAnchor = (IARImageAnchor)anchor;
             var imageName = imageAnchor.ReferenceImage.Name;
 
-            var newPlane = Instantiate(_sphere);
-            newPlane.name = "Image-" + imageName;
-            _detectedImages[anchor.Identifier] = newPlane;
+            GameObject prefabToSpawn = null;
+
+            _imagePrefabs.TryGetValue(imageName, out prefabToSpawn);
+
+            if (prefabToSpawn == null)
+                return;
+
+            var spawnedPrefab = Instantiate(prefabToSpawn);
+            spawnedPrefab.name = "Image-" + imageName;
+            _detectedImages[anchor.Identifier] = spawnedPrefab;
 
             _depthInterpolationManager._occludee = _detectedImages[anchor.Identifier].GetComponent<Renderer>();
 
-            UpdatePlaneTransform(imageAnchor);
+            UpdatePrefabTransform(imageAnchor);
         }
     }
 
@@ -109,7 +103,7 @@ public class PrototypeManager : MonoBehaviour
                 continue;
 
             var imageAnchor = anchor as IARImageAnchor;
-            UpdatePlaneTransform(imageAnchor);
+            UpdatePrefabTransform(imageAnchor);
         }
     }
 
@@ -125,7 +119,7 @@ public class PrototypeManager : MonoBehaviour
         }
     }
 
-    private void UpdatePlaneTransform(IARImageAnchor imageAnchor)
+    private void UpdatePrefabTransform(IARImageAnchor imageAnchor)
     {
         var identifier = imageAnchor.Identifier;
 

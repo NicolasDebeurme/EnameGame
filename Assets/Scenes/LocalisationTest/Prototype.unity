@@ -332,7 +332,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manageUsingUnityLifecycle: 0
-  _images: []
+  _images:
+  - _imageAsBytes: {fileID: 4900000, guid: 23826e2e3d92b487daf5df490d97997f, type: 3}
+    _name: Yeti
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 9ccaef1f1d2894eb2a334e4c53c0c358, type: 3}
+    _name: Logo
+    _physicalWidth: 0.25
 --- !u!4 &488493119
 Transform:
   m_ObjectHideFlags: 0
@@ -346,7 +352,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &633816299
 GameObject:
@@ -442,7 +448,7 @@ RectTransform:
   m_Children:
   - {fileID: 382259220}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -541,7 +547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1208046807
 GameObject:
@@ -608,7 +614,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1585227631
 GameObject:
@@ -639,11 +645,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef0a6205681e4e41b2b50a554f9da4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sphere: {fileID: 7665134381675350154, guid: fbab3422901b4694aac1bbb0e6161a40, type: 3}
   _imageDetectionManager: {fileID: 488493118}
   _depthManager: {fileID: 1648162754}
   _depthInterpolationManager: {fileID: 1648162752}
-  _imagePath: {fileID: 4900000, guid: 23826e2e3d92b487daf5df490d97997f, type: 3}
+  _prefabs:
+  - {fileID: 4616288715046868233, guid: 88cc5376fa3e48a4287bbbd3228349e8, type: 3}
+  - {fileID: 7665134381675350154, guid: fbab3422901b4694aac1bbb0e6161a40, type: 3}
+  _data: {fileID: 0}
 --- !u!4 &1585227634
 Transform:
   m_ObjectHideFlags: 0
@@ -657,7 +665,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1648162749
 PrefabInstance:
