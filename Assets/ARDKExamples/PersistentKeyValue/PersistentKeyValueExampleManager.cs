@@ -124,10 +124,10 @@ namespace Niantic.ARDKExamples
         // destroyed if the scene is unloaded.
         return;
       }
-
+      /*
       if (args.Key != "Color")
         throw new Exception("Received an update for a key other than Color");
-
+      */
       _serverBlob.gameObject.SetActive(true);
 
       using (var stream = args.CreateValueReader())
