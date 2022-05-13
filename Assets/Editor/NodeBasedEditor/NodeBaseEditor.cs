@@ -407,13 +407,16 @@ public class NodeBasedEditor : EditorWindow
         }
 
         int counter = 0;
-        foreach(var child in treeNode.children)
+        if(treeNode.children != null)
         {
-            selectedOutPoint = newNode.outPoints[counter];
-            LoadTree(child, depth + 1,counter+siblingCount);
-            counter++;
+            foreach (var child in treeNode.children)
+            {
+                selectedOutPoint = newNode.outPoints[counter];
+                LoadTree(child, depth + 1, counter + siblingCount);
+                counter++;
+            }
         }
-        
+
     }
 
     private NTree<NodeInfo> SaveTree(NTree<NodeInfo> treeNode , Node actualNode)
@@ -494,7 +497,7 @@ public class NodeBasedEditor : EditorWindow
         nodes = null;
         connections = null;
 
-        if(treeToLoad != null)
+        if(treeToLoad.data != null)
             LoadTree(treeToLoad, 0, 0);
 
         selectedInPoint = null;

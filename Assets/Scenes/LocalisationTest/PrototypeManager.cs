@@ -32,10 +32,6 @@ public class PrototypeManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _prefabs;
 
-    [Header("StoryTree")]
-    [SerializeField]
-    private NodeEditorData _data;
-
     static Dictionary<string, GameObject> _imagePrefabs = new Dictionary<string, GameObject>();
 
     private Dictionary<Guid, GameObject> _detectedImages = new Dictionary<Guid, GameObject>();
@@ -47,6 +43,8 @@ public class PrototypeManager : MonoBehaviour
         _depthManager.EnableFeatures();
 
         InitPrefabDictionnary();
+
+        
     }
 
    
@@ -130,16 +128,6 @@ public class PrototypeManager : MonoBehaviour
         localScale.x = 1;
         localScale.z = 1;
         _detectedImages[identifier].transform.localScale = localScale;
-    }
-
-    void SpawnStoryTree<NodeInfo>(NTree<NodeInfo> tree)
-    {
-        if(tree != null)
-        {
-            GameObject go = new GameObject();
-            Instantiate(go);
-            go.AddComponent(NodeInfo,tree.data);
-        }
     }
 
 }

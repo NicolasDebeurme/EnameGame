@@ -5,34 +5,20 @@ using UnityEditor;
 using UnityEngine;
 using static Enums;
 
-
-
 [Serializable]
-public class RoleClass
+public class Visibility 
 {
-    [SerializeField]
-    private Roles roleName;
-    public virtual Rect DrawRoles(Rect rect) {
-        rect.y +=  20;
-        roleName = (Roles)EditorGUI.EnumPopup(rect, roleName) ; 
-        return rect;
-    }
-}
+    public List<VisibilityRoleClass> Decide;
+    public List<VisibilityRoleClass> See ;
+    public List<VisibilityRoleClass> Blind ;
 
-[Serializable]
-public class Visibility : ScriptableObject
-{
-    public List<RoleClass> Decide = new List<RoleClass>();
-    public List<RoleClass> See = new List<RoleClass>();
-    public List<RoleClass> Blind = new List<RoleClass>();
-
-    private void OnEnable()
+    public Visibility()
     {
-        Decide = new List<RoleClass>();
-        See = new List<RoleClass>();
-        Blind = new List<RoleClass>();
+        Decide = new List<VisibilityRoleClass>();
+        See = new List<VisibilityRoleClass>();
+        Blind = new List<VisibilityRoleClass>();
     }
-    public Rect DrawVisibilityItem(Rect rect, List<RoleClass> visibilityList, string visibilityName )
+    public Rect DrawVisibilityItem(Rect rect, List<VisibilityRoleClass> visibilityList, string visibilityName )
     {
         rect.y += 25;
         Rect minusButtonSize = new Rect(rect.x + rect.width - 20, rect.y, 15, 15);
@@ -52,7 +38,7 @@ public class Visibility : ScriptableObject
 
         rect.y += 20;
         if (GUI.Button(rect,"Add "+visibilityName))
-            visibilityList.Add(new RoleClass());
+            visibilityList.Add(new VisibilityRoleClass());
 
         return rect;
     }

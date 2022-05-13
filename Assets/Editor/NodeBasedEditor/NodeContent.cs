@@ -34,7 +34,7 @@ public class NodeContent
         textStyle = new GUIStyle();
         textStyle.border = new RectOffset(12, 12, 12, 12);
 
-        visibilitys = ScriptableObject.CreateInstance<Visibility>();
+        visibilitys = new Visibility();
     }
     public float Draw()
     {

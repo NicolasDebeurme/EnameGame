@@ -7,19 +7,21 @@ using UnityEngine;
 public class NTree<T>
 {
     public T data;
-    public LinkedList<NTree<T>> children;
+    public List<NTree<T>> children;
 
 
     public NTree(T data)
     {
         this.data = data;
-        children = new LinkedList<NTree<T>>();
     }
 
     public NTree<T> AddChild(T data)
     {
-        children.AddFirst(new NTree<T>(data));
-        return children.First.Value;
+        if(children == null)
+            children = new List<NTree<T>>();
+
+        children.Add(new NTree<T>(data));
+        return children[0];
     }
 
     public NTree<T> GetChild(int i)
