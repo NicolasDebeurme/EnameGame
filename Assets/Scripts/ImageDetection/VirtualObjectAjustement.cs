@@ -35,7 +35,7 @@ public class VirtualObjectAjustement : MonoBehaviour
         Positions = new float[3];
         Rotations = new float[3];
 
-        SetupSliderValue();
+        //SetupSliderValue();
     }
 
     void Update()
@@ -46,9 +46,15 @@ public class VirtualObjectAjustement : MonoBehaviour
         //Debug.Log("rot:" + Rotations[0] + " " + Rotations[1] + " " + Rotations[2]);
     }
 
-    public float ChangeSliderValue(float value, float intervale)
+    public float ChangeTextValueFrom01ToInfini(float value, float intervale)
     {
-        return -intervale / 2 + intervale * value;
+        Debug.Log(value+ " " + (float)(-intervale / 2 + (float)intervale * (float)value));
+        return (float)(-intervale  / 2 + (float)intervale * (float)value);
+    }
+    public float ChangeSliderValueFromInfiniTo01(float value, float intervale)
+    {
+        Debug.LogFormat((0.5f + 0.5f / intervale / 2 * value).ToString());
+        return  (0.5f +0.5f/intervale/2*value) ;
     }
 
     public void SetupSliderValue()
@@ -73,20 +79,20 @@ public class VirtualObjectAjustement : MonoBehaviour
         for (int i = 0; i < SlidersPosition.Length; i++)
         {
             value = SlidersPosition[i].value ;
-            SlidersTextPosition[i].text = ChangeSliderValue(value, intervalePosition).ToString();
-            Positions[i] = ChangeSliderValue(value, intervalePosition);
+            SlidersTextPosition[i].text = ChangeTextValueFrom01ToInfini(value, intervalePosition).ToString();
+            Positions[i] = ChangeTextValueFrom01ToInfini(value, intervalePosition);
         }
 
         value = SlidersScale.value;
-        SlidersTextScale.text = ChangeSliderValue(value, intervaleScale).ToString();
-        Scale= ChangeSliderValue(value, intervaleScale);
+        SlidersTextScale.text = ChangeTextValueFrom01ToInfini(value, intervaleScale).ToString();
+        Scale= ChangeTextValueFrom01ToInfini(value, intervaleScale);
 
 
         for (int i = 0; i < SlidersRotation.Length; i++)
         {
             value =  SlidersRotation[i].value;
-            SliderTextRotation[i].text = ChangeSliderValue(value, intervaleRotation).ToString();
-            Rotations[i] = ChangeSliderValue(value, intervaleRotation);
+            SliderTextRotation[i].text = ChangeTextValueFrom01ToInfini(value, intervaleRotation).ToString();
+            Rotations[i] = ChangeTextValueFrom01ToInfini(value, intervaleRotation);
         }
     }
 

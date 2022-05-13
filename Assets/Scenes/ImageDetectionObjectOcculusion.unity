@@ -5255,6 +5255,9 @@ GameObject:
   - component: {fileID: 3442372619623873873}
   - component: {fileID: 4719601640838141451}
   - component: {fileID: 2362140479400424966}
+  - component: {fileID: 4719601640838141454}
+  - component: {fileID: 4719601640838141453}
+  - component: {fileID: 4719601640838141452}
   m_Layer: 0
   m_Name: ARSceneCamera
   m_TagString: MainCamera
@@ -5306,6 +5309,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 3363422157363194619}
+--- !u!114 &4719601640838141452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378742778256128119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80198c6deee0a4c5c9096accbcac4119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manageUsingUnityLifecycle: 1
+  _arCamera: {fileID: 3363422157363194619}
+  _keyFrameFrequency: 20
+  _interpolation: 2
+  _interpolationPreference: 0.9
+  _occlusionMode: 2
+  _textureFilterMode: 0
+--- !u!114 &4719601640838141453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378742778256128119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37099b8137a84eb8b60b463785dd9d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manageUsingUnityLifecycle: 1
+  _arCamera: {fileID: 3363422157363194619}
+  _keyFrameFrequency: 20
+  _depthSuppressionChannels: []
+  _interpolation: 2
+  _interpolationPreference: 0.9
+--- !u!114 &4719601640838141454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378742778256128119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd672b3e02db49ab85146648ba1651e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mode: 0
+  _occludee: {fileID: 0}
 --- !u!4 &5400245468761936124
 Transform:
   m_ObjectHideFlags: 0

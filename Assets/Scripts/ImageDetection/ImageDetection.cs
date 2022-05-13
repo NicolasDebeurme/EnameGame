@@ -58,11 +58,24 @@ namespace Niantic.ARDKExamples
         private void Start()
         {
             ARSessionFactory.SessionInitialized += SetupSession;
-
+            StartCoroutine(InitialisationSliderAjustement());// Start initialisation Slider Ajustement 
         }
 
-        
-  
+        IEnumerator InitialisationSliderAjustement()
+        {
+            yield return new WaitForSeconds(0.1f);
+            VirtualObjectAjustement.instance.SlidersPosition[0].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Position[0], VirtualObjectAjustement.instance.intervalePosition);
+            VirtualObjectAjustement.instance.SlidersPosition[1].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Position[1], VirtualObjectAjustement.instance.intervalePosition);
+            VirtualObjectAjustement.instance.SlidersPosition[2].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Position[2], VirtualObjectAjustement.instance.intervalePosition);
+
+            VirtualObjectAjustement.instance.SlidersScale.value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Scale, VirtualObjectAjustement.instance.intervaleScale) ;
+
+            VirtualObjectAjustement.instance.SlidersRotation[0].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Rotation[0], VirtualObjectAjustement.instance.intervaleRotation);
+            VirtualObjectAjustement.instance.SlidersRotation[1].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Rotation[1], VirtualObjectAjustement.instance.intervaleRotation);
+            VirtualObjectAjustement.instance.SlidersRotation[2].value = VirtualObjectAjustement.instance.ChangeSliderValueFromInfiniTo01(_plane3.Rotation[2], VirtualObjectAjustement.instance.intervaleRotation);
+        }
+
+
         private void SetupSession(AnyARSessionInitializedArgs arg)
         {
             // Add listeners to all relevant ARSession events.
@@ -128,7 +141,7 @@ namespace Niantic.ARDKExamples
 
         private void UpdatePlaneTransform(IARImageAnchor imageAnchor)
         {
-            Debug.LogFormat("UpdatePosition");
+            //Debug.LogFormat("UpdatePosition");
             var identifier = imageAnchor.Identifier;
 
             //Debug.LogFormat(VirtualObjectAjustement.instance.Positions[0].ToString() +" "+ VirtualObjectAjustement.instance.Positions[1].ToString() + " " + VirtualObjectAjustement.instance.Positions[2].ToString());
@@ -141,17 +154,17 @@ namespace Niantic.ARDKExamples
             }*/
             if (imageAnchor.ReferenceImage.Name == "crowd")
             {
-                _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition() + new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2])   +     _plane3.Position;
-                _detectedImages[identifier].transform.rotation = imageAnchor.Transform.ToRotation() * Quaternion.Euler(VirtualObjectAjustement.instance.Rotations[0], VirtualObjectAjustement.instance.Rotations[1], VirtualObjectAjustement.instance.Rotations[2])   * Quaternion.Euler(_plane3.Rotation.x, _plane3.Rotation.y, _plane3.Rotation.z);
+                _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition() + new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2])   ;
+                _detectedImages[identifier].transform.rotation = imageAnchor.Transform.ToRotation() * Quaternion.Euler(VirtualObjectAjustement.instance.Rotations[0], VirtualObjectAjustement.instance.Rotations[1], VirtualObjectAjustement.instance.Rotations[2])  ;
                 var localScale = _detectedImages[identifier].transform.localScale;
                 localScale.x = imageAnchor.ReferenceImage.PhysicalSize.x;
                 localScale.z = imageAnchor.ReferenceImage.PhysicalSize.y;
                 //_detectedImages[identifier].transform.localScale = localScale;
-                _detectedImages[identifier].transform.localScale = new Vector3(VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale)  + new Vector3(_plane3.Scale, _plane3.Scale, _plane3.Scale);  //my code
+                _detectedImages[identifier].transform.localScale = new Vector3(VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale) ;  //my code
             }
             else
             {
-                Debug.LogFormat("not crowd in Update");
+                //Debug.LogFormat("not crowd in Update");
             }
             /*
             _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition() + new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2]);
