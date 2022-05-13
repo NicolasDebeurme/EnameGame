@@ -13,7 +13,7 @@ public class TreeSpawner : MonoBehaviour
     {
         LoadTreesFromAssets();
 
-        if (_availableTrees[0].storyTree != null)
+        if (_availableTrees[0]?.storyTree != null)
             SpawnStoryTree(_availableTrees[0].storyTree, null, _availableTrees[0].name+" - Root");
     }
     void SpawnStoryTree(NTree<NodeInfo> tree, GameObject parent, string name)

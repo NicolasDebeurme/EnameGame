@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static Enums;
@@ -55,9 +56,9 @@ public class NodeContent
         FieldsRect.y = FieldsRect.y + 20;
         textToBeChose = EditorGUI.TextField(FieldsRect, textToBeChose);
 
-        FieldsRect = visibilitys.DrawVisibilityItem(FieldsRect,visibilitys.Decide,"Decide");
-        FieldsRect = visibilitys.DrawVisibilityItem(FieldsRect, visibilitys.See, "See");
-        FieldsRect = visibilitys.DrawVisibilityItem(FieldsRect, visibilitys.Blind, "Blind");
+        FieldsRect = DrawVisibilityItem(FieldsRect,visibilitys.Decide,"Decide");
+        FieldsRect = DrawVisibilityItem(FieldsRect, visibilitys.See, "See");
+        FieldsRect = DrawVisibilityItem(FieldsRect, visibilitys.Blind, "Blind");
 
         FieldsRect.y = FieldsRect.y + 25;
         EditorGUI.PrefixLabel(FieldsRect, new GUIContent("Question:"));
@@ -69,6 +70,7 @@ public class NodeContent
         return BoxRectHeight;
     }
 
+
     public void LoadContent(Places placeName,string question, string textToBeChose,Visibility visibilitys)
     {
         this.placeName = placeName;
@@ -77,4 +79,35 @@ public class NodeContent
         this.visibilitys = visibilitys;
     }
 
+    public Rect DrawVisibilityItem(Rect rect, List<VisibilityRoleClass> visibilityList, string visibilityName)
+    {
+        rect.y += 25;
+        Rect minusButtonSize = new Rect(rect.x + rect.width - 20, rect.y, 15, 15);
+
+        EditorGUI.PrefixLabel(rect, new GUIContent(visibilityName + ":"));
+
+        if (GUI.Button(minusButtonSize, "-"))
+        {
+            if (visibilityList.Count > 0)
+                visibilityList.RemoveAt(visibilityList.Count - 1);
+        }
+
+        foreach (var instance in visibilityList)
+        {
+            rect = DrawRoles(rect,instance.roleName);
+        }
+
+        rect.y += 20;
+        if (GUI.Button(rect, "Add " + visibilityName))
+            visibilityList.Add(new VisibilityRoleClass());
+
+        return rect;
+    }
+
+    public virtual Rect DrawRoles(Rect rect,Roles roleName)
+    {
+        rect.y += 20;
+        roleName = (Roles)EditorGUI.EnumPopup(rect, roleName);
+        return rect;
+    }
 }

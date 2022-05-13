@@ -333,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manageUsingUnityLifecycle: 0
   _images:
-  - _imageAsBytes: {fileID: 4900000, guid: 23826e2e3d92b487daf5df490d97997f, type: 3}
+  - _imageAsBytes: {fileID: 4900000, guid: 4bab2675600807841b1d1ef13e55d2cc, type: 3}
     _name: Yeti
     _physicalWidth: 0.25
   - _imageAsBytes: {fileID: 4900000, guid: 9ccaef1f1d2894eb2a334e4c53c0c358, type: 3}
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585227631}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aef0a6205681e4e41b2b50a554f9da4a, type: 3}
   m_Name: 
@@ -652,6 +652,8 @@ MonoBehaviour:
   _prefabs:
   - {fileID: 4616288715046868233, guid: 88cc5376fa3e48a4287bbbd3228349e8, type: 3}
   - {fileID: 7665134381675350154, guid: fbab3422901b4694aac1bbb0e6161a40, type: 3}
+  - {fileID: 3135119317189574283, guid: 6e03fe1c1e345ce46bfe9454b7e6fd4c, type: 3}
+  _image: {fileID: 2800000, guid: 126750483e95ea8489e959a10a991005, type: 3}
 --- !u!4 &1585227634
 Transform:
   m_ObjectHideFlags: 0
@@ -674,7 +676,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585227631}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b85fe69d18ddcee48997b61996171bf4, type: 3}
   m_Name: 

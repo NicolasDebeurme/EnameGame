@@ -14,22 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyTree:
     data:
-      textToBeChose: zerzer
+      textToBeChose: 
       visibilitys:
         Decide: []
         See: []
         Blind: []
-      dialogueText: 1
-      place: 1
-      choiceList:
-      - textToBeChose: 
-        visibilitys:
-          Decide: []
-          See: []
-          Blind: []
-        dialogueText: 2
-        place: 0
-        choiceList: []
+      dialogueText: 
+      place: 0
+      choiceList: []
     children:
     - data:
         textToBeChose: 
@@ -37,7 +29,7 @@ MonoBehaviour:
           Decide: []
           See: []
           Blind: []
-        dialogueText: 2
+        dialogueText: 
         place: 0
         choiceList: []
       children:

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
+
 public class NodeInfoMonoBehaviour : MonoBehaviour
 {
     public string textToBeChose = "Enter the text";
