@@ -43,38 +43,26 @@ namespace Niantic.ARDKExamples
         [SerializeField]
         private GameObject _plane = null;
 
-        [Header("Image detection managers")]
+        [SerializeField]
+        private GameObject _plane2 = null;
+
+        [SerializeField]
+        private VirtualObject _plane3 = null;
+
         [SerializeField]
         private ARImageDetectionManager _inspectorImageDetectionManager;
 
-
-
-
-        private IARReferenceImage _yetiImage;
-
         private Dictionary<Guid, GameObject> _detectedImages = new Dictionary<Guid, GameObject>();
 
-        private bool _yetiImageInImageSet = true;
-
+        private Transform offset = null; //my code
         private void Start()
         {
             ARSessionFactory.SessionInitialized += SetupSession;
 
-
-
-            UpdateButtonText();
         }
 
-        private static string BoolText(bool currentCondition)
-        {
-            return currentCondition ? "Disable" : "Enable";
-        }
-
-        private void UpdateButtonText()
-        {
- 
-        }
-
+        
+  
         private void SetupSession(AnyARSessionInitializedArgs arg)
         {
             // Add listeners to all relevant ARSession events.
@@ -84,24 +72,7 @@ namespace Niantic.ARDKExamples
             session.AnchorsUpdated += OnAnchorsUpdated;
             session.AnchorsRemoved += OnAnchorsRemoved;
         }
- 
-        private void ToggleInspectorImageManager()
-        {
-            // Disable the manager, or enable it and disable the other one.
-            if (_inspectorImageDetectionManager.AreFeaturesEnabled)
-            {
-                _inspectorImageDetectionManager.DisableFeatures();
-            }
-            else
-            {
-                
-                _inspectorImageDetectionManager.EnableFeatures();
-            }
-
-            UpdateButtonText();
-        }
-
-
+      
         private void OnAnchorsAdded(AnchorsArgs args)
         {
             foreach (var anchor in args.Anchors)
@@ -112,29 +83,24 @@ namespace Niantic.ARDKExamples
                 var imageAnchor = (IARImageAnchor)anchor;
                 var imageName = imageAnchor.ReferenceImage.Name;
 
-                var newPlane = Instantiate(_plane);
-                newPlane.name = "Image-" + imageName;
-                SetPlaneColor(newPlane, imageName);
-                _detectedImages[anchor.Identifier] = newPlane;
-
-                UpdatePlaneTransform(imageAnchor);
+                GameObject newPlane = null;
+                if (imageName == "crowd")
+                {
+                    newPlane = Instantiate(_plane3.Object);
+                    newPlane.name = "Image-" + imageName;
+                    _detectedImages[anchor.Identifier] = newPlane;
+                    UpdatePlaneTransform(imageAnchor);
+                }
+                else
+                {
+                    newPlane = Instantiate(_plane);
+                    newPlane.name = "Image-" + imageName;
+                    _detectedImages[anchor.Identifier] = newPlane;
+                    UpdatePlaneTransform(imageAnchor);
+                }
             }
         }
 
-        static Dictionary<string, Color> _imageColors = new Dictionary<string, Color>
-    {
-      { "byteBufferImage", Color.red },
-      { "filePathImage", Color.green },
-      { "crowd", Color.blue },
-    };
-
-        private void SetPlaneColor(GameObject plane, string imageName)
-        {
-            var renderer = plane.GetComponentInChildren<MeshRenderer>();
-            Color planeColor = Color.black;
-            _imageColors.TryGetValue(imageName, out planeColor);
-            renderer.material.color = planeColor;
-        }
 
         private void OnAnchorsUpdated(AnchorsArgs args)
         {
@@ -162,15 +128,40 @@ namespace Niantic.ARDKExamples
 
         private void UpdatePlaneTransform(IARImageAnchor imageAnchor)
         {
+            Debug.LogFormat("UpdatePosition");
             var identifier = imageAnchor.Identifier;
 
-            _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition();
-            _detectedImages[identifier].transform.rotation = imageAnchor.Transform.ToRotation();
-
+            //Debug.LogFormat(VirtualObjectAjustement.instance.Positions[0].ToString() +" "+ VirtualObjectAjustement.instance.Positions[1].ToString() + " " + VirtualObjectAjustement.instance.Positions[2].ToString());
+            //offset.position = new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2]);
+            //offset.rotation = Quaternion.Euler(VirtualObjectAjustement.instance.Rotations[0], VirtualObjectAjustement.instance.Rotations[1], VirtualObjectAjustement.instance.Rotations[2]);
+            /*
+            if (_detectedImages[identifier].name =="crowd")
+            {
+                offset = _plane2.transform;
+            }*/
+            if (imageAnchor.ReferenceImage.Name == "crowd")
+            {
+                _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition() + new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2])   +     _plane3.Position;
+                _detectedImages[identifier].transform.rotation = imageAnchor.Transform.ToRotation() * Quaternion.Euler(VirtualObjectAjustement.instance.Rotations[0], VirtualObjectAjustement.instance.Rotations[1], VirtualObjectAjustement.instance.Rotations[2])   * Quaternion.Euler(_plane3.Rotation.x, _plane3.Rotation.y, _plane3.Rotation.z);
+                var localScale = _detectedImages[identifier].transform.localScale;
+                localScale.x = imageAnchor.ReferenceImage.PhysicalSize.x;
+                localScale.z = imageAnchor.ReferenceImage.PhysicalSize.y;
+                //_detectedImages[identifier].transform.localScale = localScale;
+                _detectedImages[identifier].transform.localScale = new Vector3(VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale)  + new Vector3(_plane3.Scale, _plane3.Scale, _plane3.Scale);  //my code
+            }
+            else
+            {
+                Debug.LogFormat("not crowd in Update");
+            }
+            /*
+            _detectedImages[identifier].transform.position = imageAnchor.Transform.ToPosition() + new Vector3(VirtualObjectAjustement.instance.Positions[0], VirtualObjectAjustement.instance.Positions[1], VirtualObjectAjustement.instance.Positions[2]);
+            _detectedImages[identifier].transform.rotation = imageAnchor.Transform.ToRotation() * Quaternion.Euler(VirtualObjectAjustement.instance.Rotations[0], VirtualObjectAjustement.instance.Rotations[1], VirtualObjectAjustement.instance.Rotations[2]); ;
             var localScale = _detectedImages[identifier].transform.localScale;
             localScale.x = imageAnchor.ReferenceImage.PhysicalSize.x;
             localScale.z = imageAnchor.ReferenceImage.PhysicalSize.y;
-            _detectedImages[identifier].transform.localScale = localScale;
+            //_detectedImages[identifier].transform.localScale = localScale;
+            _detectedImages[identifier].transform.localScale = new Vector3(VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale, VirtualObjectAjustement.instance.Scale);  //my code
+             */
         }
     }
 }

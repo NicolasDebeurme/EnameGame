@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ARDKExamples/ImageDetection/ImageDetection.unity
-    guid: bc41ff5c278cd4dedae835cda53c1001
+    path: Assets/Scenes/ImageDetectionObjectOcculusion.unity
+    guid: b6616d8e45d5b584c92914417a68657e
   m_configObjects: {}

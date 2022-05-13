@@ -33,7 +33,7 @@ namespace Niantic.ARDKExamples.Helpers
 
     private readonly List<Text> _logEntries = new List<Text>();
 
-    private static ScrollingLog _instance;
+    public static ScrollingLog _instance;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ namespace Niantic.ARDKExamples.Helpers
       LogHistory.spacing = LogEntryFontSize / 2f;
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
       _instance = null;
 
@@ -88,4 +88,6 @@ namespace Niantic.ARDKExamples.Helpers
       _instance._logEntries.Clear();
     }
   }
+
+  
 }
