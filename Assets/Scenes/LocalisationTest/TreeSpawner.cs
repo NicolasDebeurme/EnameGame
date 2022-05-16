@@ -7,16 +7,16 @@ public class TreeSpawner : MonoBehaviour
 
 
     [Header("StoryTree")]
-    private NodeEditorData[] _availableTrees;
+    private Serialized_Tree[] _availableTrees;
 
-    private void Start()
+    [ContextMenu("Instantiate Tree")]
+    public void Start()
     {
         LoadTreesFromAssets();
-
-        if (_availableTrees[0]?.storyTree != null)
-            SpawnStoryTree(_availableTrees[0].storyTree, null, _availableTrees[0].name+" - Root");
+        if (_availableTrees[0]?.root != null)
+            SpawnStoryTree(_availableTrees[0].root, null, _availableTrees[0].name+" - Root");
     }
-    void SpawnStoryTree(NTree<NodeInfo> tree, GameObject parent, string name)
+    public void SpawnStoryTree(NTree<StoryTreeNodeInfo> tree, GameObject parent, string name)
     {
         if (tree != null)
         {
@@ -24,11 +24,10 @@ public class TreeSpawner : MonoBehaviour
             NodeInfoMonoBehaviour newNodeInfo = go.AddComponent<NodeInfoMonoBehaviour>();
             newNodeInfo.LoadData(tree.data);
 
-            if (tree.children.Count > 0)
+            if (tree.children?.Count > 0)
             {
                 foreach (var child in tree.children)
                 {
-                    tree.data.choiceList.Add(child.data);
                     SpawnStoryTree(child, go, tree.children.IndexOf(child).ToString());
                 }
             }
@@ -43,6 +42,6 @@ public class TreeSpawner : MonoBehaviour
     public void LoadTreesFromAssets()
     {
         _availableTrees = null;
-        _availableTrees = Resources.LoadAll<NodeEditorData>("StoryTree");
+        _availableTrees = Resources.LoadAll<Serialized_Tree>("StoryTree");
     }
 }

@@ -11,7 +11,7 @@ public class NodeInfoMonoBehaviour : MonoBehaviour
     public string dialogueText;
     public Places place;
 
-    public void LoadData(NodeInfo data)
+    public void LoadData(StoryTreeNodeInfo data)
     {
         this.dialogueText = data.dialogueText;
         this.place = data.place;

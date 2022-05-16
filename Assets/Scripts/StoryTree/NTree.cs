@@ -2,25 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
 public class NTree<T>
 {
     public T data;
     public List<NTree<T>> children;
 
-
-    public NTree(T data)
-    {
-        this.data = data;
-    }
-
-    public NTree<T> AddChild(T data)
+    public NTree<T> AddChild()
     {
         if(children == null)
             children = new List<NTree<T>>();
 
-        children.Add(new NTree<T>(data));
+        children.Add(new NTree<T>());
         return children[0];
     }
 
@@ -39,4 +31,7 @@ public class NTree<T>
         foreach(NTree<T> child in node.children)
             Traverse(child, visitor);
     }
+
+
+
 }

@@ -47,15 +47,13 @@ public class PrototypeManager : MonoBehaviour
         _depthManager.EnableFeatures();
 
         InitPrefabDictionnary();  
+        SetupCodeImageDetectionManager();
     }
 
     private void SetupCodeImageDetectionManager()
     {
-        // For the sake of this example, we're loading the specified asset into a temporary file.
-        // In a real application, this could be a file downloaded from the internet and written to
-        // the device, or a user selected file.
-
-        var tempFilePath = Path.Combine(Application.temporaryCachePath, "ImageTest.jpg");
+        Debug.Log(_image.name);
+        var tempFilePath = Path.Combine(Application.temporaryCachePath, _image.name+".jpg");
         byte[] byteImage = ImageConversion.EncodeToJPG(_image);
 
         File.WriteAllBytes(tempFilePath, byteImage);
@@ -64,7 +62,7 @@ public class PrototypeManager : MonoBehaviour
         var imageFromPath =
           ARReferenceImageFactory.Create
           (
-            "ImageTest",
+            _image.name,
             tempFilePath,
             0.25f
           );

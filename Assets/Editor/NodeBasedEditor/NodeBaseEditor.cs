@@ -26,7 +26,7 @@ public class NodeBasedEditor : EditorWindow
 
     //dropDownButton
     GenericMenu menu = new GenericMenu();
-    private NodeEditorData[] _availableTrees;
+    private Serialized_Tree[] _availableTrees;
     //
 
     [MenuItem("Window/Node Based Editor")]
@@ -64,9 +64,9 @@ public class NodeBasedEditor : EditorWindow
 
         foreach (var tree in _availableTrees)
         {
-            if (tree.name == treeName && tree.storyTree != null)
+            if (tree.name == treeName && tree != null)
             {
-                OnLoad(tree.storyTree);
+                OnLoad(tree);
             }
         }
     }
@@ -126,10 +126,10 @@ public class NodeBasedEditor : EditorWindow
 
     private void handleItemClicked(object parameter)
     {
-        var data = parameter as NodeEditorData;
+        var data = parameter as Serialized_Tree;
 
         treeName = data.name;
-        OnLoad(data.storyTree);
+        OnLoad(data);
     }
     private void DrawConnections()
     {
@@ -381,7 +381,7 @@ public class NodeBasedEditor : EditorWindow
         Handles.EndGUI();
     }
 
-    private void LoadTree(NTree<NodeInfo> treeNode, int depth, int siblingCount)
+    private void LoadTree(NTree<StoryTreeNodeInfo> treeNode, int depth, int siblingCount)
     {
         NodeBasedEditor window = GetWindow<NodeBasedEditor>();
         Vector2 nodePosition= window.position.center;
@@ -419,7 +419,7 @@ public class NodeBasedEditor : EditorWindow
 
     }
 
-    private NTree<NodeInfo> SaveTree(NTree<NodeInfo> treeNode , Node actualNode)
+    private NTree<StoryTreeNodeInfo> SaveTree(NTree<StoryTreeNodeInfo> treeNode , Node actualNode)
     {
         List<Connection> nodeConnections = new List<Connection>();
         if (connections != null)
@@ -439,7 +439,8 @@ public class NodeBasedEditor : EditorWindow
                     {
                         if(connection.inPoint == node.inPoint)
                         {
-                            NTree<NodeInfo> Nnode = treeNode.AddChild(new NodeInfo(node.content.question, node.content.placeName,node.content.textToBeChose,node.content.visibilitys));
+                            NTree<StoryTreeNodeInfo> Nnode = treeNode.AddChild();
+                            Nnode.data = new StoryTreeNodeInfo(node.content.question, node.content.placeName, node.content.textToBeChose, node.content.visibilitys);
                             SaveTree(Nnode, node);
                         }
                     }
@@ -457,17 +458,18 @@ public class NodeBasedEditor : EditorWindow
 
         if (nodes != null && treeName.Length > 0 )
         {
-            NodeEditorData oui = AssetDatabase.LoadAssetAtPath<NodeEditorData>("Assets/Resources/StoryTree/" + treeName + ".asset")  ;
+            Serialized_Tree oui = AssetDatabase.LoadAssetAtPath<Serialized_Tree>("Assets/Resources/StoryTree/" + treeName + ".asset")  ;
 
             if(oui == null)
             {
                 isNew = true;
-                oui = CreateInstance<NodeEditorData>();
+                oui = CreateInstance<Serialized_Tree>();
             }    
 
-            NTree <NodeInfo> treeRoot= new NTree<NodeInfo>(new NodeInfo(nodes[0].content.question, nodes[0].content.placeName, nodes[0].content.textToBeChose, nodes[0].content.visibilitys));
-
-            oui.storyTree = SaveTree(treeRoot, nodes[0]);
+            NTree <StoryTreeNodeInfo> treeRoot= new NTree<StoryTreeNodeInfo>();
+            treeRoot.data = new StoryTreeNodeInfo(nodes[0].content.question, nodes[0].content.placeName, nodes[0].content.textToBeChose, nodes[0].content.visibilitys);
+            oui.root = treeRoot;
+            SaveTree(treeRoot, nodes[0]);
 
             if(isNew)
                 AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/"+treeName+".asset");
@@ -489,16 +491,19 @@ public class NodeBasedEditor : EditorWindow
         AssetDatabase.DeleteAsset("Assets/Resources/StoryTree/" + treeName + ".asset");
         treeName = _availableTrees[0].name;
 
-        if (_availableTrees[0].storyTree != null)
-            OnLoad(_availableTrees[0].storyTree);
+        if (_availableTrees[0].root.data != null)
+            OnLoad(_availableTrees[0]);
     }
-    private void OnLoad(NTree<NodeInfo> treeToLoad)
+    private void OnLoad(Serialized_Tree treeToLoad)
     {
         nodes = null;
         connections = null;
 
-        if(treeToLoad.data != null)
-            LoadTree(treeToLoad, 0, 0);
+        if(treeToLoad.root.data != null)
+        {
+            LoadTree(treeToLoad.root, 0, 0); 
+        }
+            
 
         selectedInPoint = null;
         selectedOutPoint = null;
@@ -506,7 +511,7 @@ public class NodeBasedEditor : EditorWindow
     public void LoadTreesFromAssets()
     {
         _availableTrees = null;
-        _availableTrees = UnityEngine.Resources.LoadAll<NodeEditorData>("StoryTree");
+        _availableTrees = UnityEngine.Resources.LoadAll<Serialized_Tree>("StoryTree");
     }
 
 }
