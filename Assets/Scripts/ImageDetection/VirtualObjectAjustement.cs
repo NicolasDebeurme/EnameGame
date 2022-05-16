@@ -8,19 +8,19 @@ public class VirtualObjectAjustement : MonoBehaviour
 {
     public  static VirtualObjectAjustement instance;
 
-    [Header("Position")]
+    [Header("\nPosition")]
     public float intervalePosition;
     public Slider[] SlidersPosition;
     public TextMeshProUGUI[] SlidersTextPosition;
     public float[] Positions;
 
-    [Header("Scale")]
+    [Header("\nScale")]
     public float intervaleScale;
     public Slider SlidersScale;
     public TextMeshProUGUI SlidersTextScale;
     public float Scale;
 
-    [Header("Rotation")]
+    [Header("\nRotation")]
     public float intervaleRotation;
     public Slider[] SlidersRotation;
     public TextMeshProUGUI[] SliderTextRotation;
@@ -48,13 +48,13 @@ public class VirtualObjectAjustement : MonoBehaviour
 
     public float ChangeTextValueFrom01ToInfini(float value, float intervale)
     {
-        Debug.Log(value+ " " + (float)(-intervale / 2 + (float)intervale * (float)value));
+        //Debug.Log(value+ " " + (float)(-intervale / 2 + (float)intervale * (float)value));
         return (float)(-intervale  / 2 + (float)intervale * (float)value);
     }
     public float ChangeSliderValueFromInfiniTo01(float value, float intervale)
     {
-        Debug.LogFormat((0.5f + 0.5f / intervale / 2 * value).ToString());
-        return  (0.5f +0.5f/intervale/2*value) ;
+        //Debug.LogFormat((0.5f + 0.5f / intervale / 2 * value).ToString());
+        return  (0.5f +(0.5f/(intervale/2))*value) ;
     }
 
     public void SetupSliderValue()

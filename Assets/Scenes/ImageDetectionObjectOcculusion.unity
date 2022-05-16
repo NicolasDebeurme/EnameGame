@@ -482,8 +482,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4800415, y: -4.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 26.6, y: -4.7}
+  m_SizeDelta: {x: 313.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374955945
 MonoBehaviour:
@@ -1139,8 +1139,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.48, y: -5.4}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 25.1, y: -5.4}
+  m_SizeDelta: {x: 285.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651793113
 MonoBehaviour:
@@ -1718,14 +1718,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdc65a48807eb64ca7fdebf678395e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plane: {fileID: 1405100059131706, guid: e74e134ee718b4fa6826f648e5278b60, type: 3}
-  _plane2: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
-  _plane3:
-    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+  _inspectorImageDetectionManager: {fileID: 892998126}
+  _plane1:
+    Object: {fileID: 6285456505950415841, guid: fbe9d0a75b056a540a0fc28c862ae1b9, type: 3}
+    Position: {x: 0.1, y: 0.1, z: 0}
+    Scale: 0.1
+    Rotation: {x: 0, y: 0, z: 0}
+  _plane2:
+    Object: {fileID: 6285456505950415841, guid: 8d5638b5e2560e3408e5db4a8a492a45, type: 3}
     Position: {x: 0.2, y: 0.2, z: 0}
     Scale: 0.1
+    Rotation: {x: 0, y: 0, z: 0}
+  _plane3:
+    Object: {fileID: 6285456505950415841, guid: 0025b3dcbcd19514ea60e555328077e5, type: 3}
+    Position: {x: 0.3, y: 0.3, z: 0}
+    Scale: 0.1
     Rotation: {x: 45, y: 45, z: 45}
-  _inspectorImageDetectionManager: {fileID: 892998126}
+  _panneau:
+    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Scale: 0
+    Rotation: {x: 0, y: 0, z: 0}
+  _qrcode:
+    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Scale: 0
+    Rotation: {x: 0, y: 0, z: 0}
+  _tombechrist:
+    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Scale: 0
+    Rotation: {x: 0, y: 0, z: 0}
+  _tombeSemiChrist:
+    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Scale: 0
+    Rotation: {x: 0, y: 0, z: 0}
+  _visageChrist:
+    Object: {fileID: 651355020256696501, guid: f8f65409810184b49b5b8d9c0add7421, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Scale: 0
+    Rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &884101971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,6 +1828,30 @@ MonoBehaviour:
   _images:
   - _imageAsBytes: {fileID: 4900000, guid: aa9443d3e82b6438fa43df9a780d31a9, type: 3}
     _name: crowd
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 9ccaef1f1d2894eb2a334e4c53c0c358, type: 3}
+    _name: logo
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 23826e2e3d92b487daf5df490d97997f, type: 3}
+    _name: yeti
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 5d37f37e95a59fe499c315581f2d85d0, type: 3}
+    _name: secretlab
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 38ee4289ea8f91c48ba74a3a592a5a44, type: 3}
+    _name: panneau
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 987d35d3a99073a4ca3c84774f927f0b, type: 3}
+    _name: qrcode
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: fbc52d274f488fc419d55e87bd38bffa, type: 3}
+    _name: tombechrist
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 2fda424cbb4658242a80d3700a15e416, type: 3}
+    _name: tombeSemiChrist
+    _physicalWidth: 0.25
+  - _imageAsBytes: {fileID: 4900000, guid: 2a2f8d9895e2bbb4b86d7dc04c638d3e, type: 3}
+    _name: visageChrist
     _physicalWidth: 0.25
 --- !u!4 &892998127
 Transform:
@@ -2104,8 +2161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4800415, y: -3.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 30.3, y: -3.9}
+  m_SizeDelta: {x: 295.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034619152
 MonoBehaviour:
@@ -2374,8 +2431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.48, y: -1.89}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 37.1, y: -1.89}
+  m_SizeDelta: {x: 303.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130306685
 MonoBehaviour:
@@ -4113,8 +4170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4800415, y: -6.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 42.1, y: -6.3}
+  m_SizeDelta: {x: 326.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768104654
 MonoBehaviour:
@@ -4645,8 +4702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4800415, y: -12.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 48.2, y: -12.3}
+  m_SizeDelta: {x: 334.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1955691148
 MonoBehaviour:
@@ -5061,8 +5118,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.4800415, y: -1.6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 41.6, y: -1.6}
+  m_SizeDelta: {x: 317.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130059377
 MonoBehaviour:

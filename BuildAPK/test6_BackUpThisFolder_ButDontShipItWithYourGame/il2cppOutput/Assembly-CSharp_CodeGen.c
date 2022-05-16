@@ -142,151 +142,187 @@ extern void SelectPlace_Update_m8C1482262DF00CB12146601554186C38B1F10C1C (void);
 extern void SelectPlace_OnClickSelectPlace_m234E704643B4A32A902B3C94A004F38549313F63 (void);
 // 0x00000041 System.Void SelectPlace::.ctor()
 extern void SelectPlace__ctor_m2238E441CC2DC70FF43D9172B5B8C9027D7E0CD3 (void);
-// 0x00000042 System.Void Niantic.ARDKExamples.ImageDetection::Start()
+// 0x00000042 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::Start()
+extern void ImageDetectionExampleManager_Start_mFA66F3167A9547B8D1B8EE7C82CF0D139901FB63 (void);
+// 0x00000043 System.String Niantic.ARDKExamples.ImageDetectionExampleManager::BoolText(System.Boolean)
+extern void ImageDetectionExampleManager_BoolText_m6535C67D7B81ED4921C999D4AD762F2C98D789DD (void);
+// 0x00000044 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::UpdateButtonText()
+extern void ImageDetectionExampleManager_UpdateButtonText_m9128F24CD2B9E5D3FA4313B24B87E6EDC9537A95 (void);
+// 0x00000045 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::SetupSession(Niantic.ARDK.AR.ARSessionEventArgs.AnyARSessionInitializedArgs)
+extern void ImageDetectionExampleManager_SetupSession_m0E1F7CD4D1EF1E861B793163F23590EB76E6A1A0 (void);
+// 0x00000046 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::SetupCodeImageDetectionManager()
+extern void ImageDetectionExampleManager_SetupCodeImageDetectionManager_m7F329287A8C775E4C103172CD6E6148B84AEA7D8 (void);
+// 0x00000047 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::ToggleYetiImage()
+extern void ImageDetectionExampleManager_ToggleYetiImage_m754FA4E356472CF3335411615A9F67A1DFA3D034 (void);
+// 0x00000048 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::ToggleInspectorImageManager()
+extern void ImageDetectionExampleManager_ToggleInspectorImageManager_mCA047B664856B9C1BDE908CB5D62893BE4E7EE76 (void);
+// 0x00000049 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::ToggleCodeImageManager()
+extern void ImageDetectionExampleManager_ToggleCodeImageManager_m584597DE4FAC4E0CC7307928E1512551D51C736E (void);
+// 0x0000004A System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::OnAnchorsAdded(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+extern void ImageDetectionExampleManager_OnAnchorsAdded_mD77C1E61A6980292CA52F2A9BD981EAD47A24293 (void);
+// 0x0000004B System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::SetPlaneColor(UnityEngine.GameObject,System.String)
+extern void ImageDetectionExampleManager_SetPlaneColor_m68A4557D9EEEDFC569C70D38BA285CC892F80B82 (void);
+// 0x0000004C System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::OnAnchorsUpdated(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+extern void ImageDetectionExampleManager_OnAnchorsUpdated_mF01F2387BAA34093C00A56B4C0AD162781456309 (void);
+// 0x0000004D System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::OnAnchorsRemoved(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+extern void ImageDetectionExampleManager_OnAnchorsRemoved_m8D3613D2A86B6402EC0B9CB200DDB3E8CC522BC9 (void);
+// 0x0000004E System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::UpdatePlaneTransform(Niantic.ARDK.AR.Anchors.IARImageAnchor)
+extern void ImageDetectionExampleManager_UpdatePlaneTransform_m9E34189766F019DA05EC791E9EE054C2F0FA63AC (void);
+// 0x0000004F System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::.ctor()
+extern void ImageDetectionExampleManager__ctor_mC617CE2CA079F717762EF812FA14C043C964E83E (void);
+// 0x00000050 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager::.cctor()
+extern void ImageDetectionExampleManager__cctor_m0C4E3A1AC9F6A7D096DA932AAFCFB27F19A4E66D (void);
+// 0x00000051 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager/<>c::.cctor()
+extern void U3CU3Ec__cctor_m70A913A23A223F127DD374AB27B26D7C5C9BC035 (void);
+// 0x00000052 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager/<>c::.ctor()
+extern void U3CU3Ec__ctor_m8914EE533EBA4120D3C1FC186BD41887FAD3428D (void);
+// 0x00000053 System.Void Niantic.ARDKExamples.ImageDetectionExampleManager/<>c::<SetupSession>b__19_0(Niantic.ARDK.AR.ARSessionEventArgs.ARSessionFailedArgs)
+extern void U3CU3Ec_U3CSetupSessionU3Eb__19_0_m17E81FD4BA0AA784F20162E0DB3F56C33F841064 (void);
+// 0x00000054 System.Void Niantic.ARDKExamples.ImageDetection::Start()
 extern void ImageDetection_Start_mAAF2A6E0B1A7FA90E30229FF887AEA8F07381EC9 (void);
-// 0x00000043 System.Collections.IEnumerator Niantic.ARDKExamples.ImageDetection::InitialisationSliderAjustement()
-extern void ImageDetection_InitialisationSliderAjustement_m54B7BB1A71122172EA058401C9818B3F41882AA8 (void);
-// 0x00000044 System.Void Niantic.ARDKExamples.ImageDetection::SetupSession(Niantic.ARDK.AR.ARSessionEventArgs.AnyARSessionInitializedArgs)
+// 0x00000055 System.Collections.IEnumerator Niantic.ARDKExamples.ImageDetection::InitialisationSliderAjustement(VirtualObject)
+extern void ImageDetection_InitialisationSliderAjustement_mBE8B0166CE263F7B6CAD677AB41B32AB60E26A3A (void);
+// 0x00000056 System.Void Niantic.ARDKExamples.ImageDetection::SetupSession(Niantic.ARDK.AR.ARSessionEventArgs.AnyARSessionInitializedArgs)
 extern void ImageDetection_SetupSession_mC4688D5788459D782FCEE22A16F87BF0C665F273 (void);
-// 0x00000045 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsAdded(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+// 0x00000057 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsAdded(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
 extern void ImageDetection_OnAnchorsAdded_m43A69CCE324D7A56F43B7363CDFEB1F6604D329B (void);
-// 0x00000046 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsUpdated(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+// 0x00000058 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsUpdated(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
 extern void ImageDetection_OnAnchorsUpdated_m9649291DA2F95213F7580FD069DF19BF45AB341A (void);
-// 0x00000047 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsRemoved(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
+// 0x00000059 System.Void Niantic.ARDKExamples.ImageDetection::OnAnchorsRemoved(Niantic.ARDK.AR.ARSessionEventArgs.AnchorsArgs)
 extern void ImageDetection_OnAnchorsRemoved_mEC6CF604AF1879CF70515CB39CDD1D4847D88394 (void);
-// 0x00000048 System.Void Niantic.ARDKExamples.ImageDetection::UpdatePlaneTransform(Niantic.ARDK.AR.Anchors.IARImageAnchor)
+// 0x0000005A System.Void Niantic.ARDKExamples.ImageDetection::UpdatePlaneTransform(Niantic.ARDK.AR.Anchors.IARImageAnchor)
 extern void ImageDetection_UpdatePlaneTransform_m04C0DB424B15528FBD5895654E8A424C57E433DC (void);
-// 0x00000049 System.Void Niantic.ARDKExamples.ImageDetection::.ctor()
+// 0x0000005B System.Void Niantic.ARDKExamples.ImageDetection::.ctor()
 extern void ImageDetection__ctor_m5E1793345DF79131999A6F111804D2D75E062DB2 (void);
-// 0x0000004A System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::.ctor(System.Int32)
-extern void U3CInitialisationSliderAjustementU3Ed__7__ctor_mDB761DC53E26424E9DC9F0592426FA24AD79E418 (void);
-// 0x0000004B System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::System.IDisposable.Dispose()
-extern void U3CInitialisationSliderAjustementU3Ed__7_System_IDisposable_Dispose_m83D335A30D331BDF6B59395A0781CB9E77D3A247 (void);
-// 0x0000004C System.Boolean Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::MoveNext()
-extern void U3CInitialisationSliderAjustementU3Ed__7_MoveNext_mE70FDC1F5B8841BCE06004A6605FBF48FC4115F1 (void);
-// 0x0000004D System.Object Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
-extern void U3CInitialisationSliderAjustementU3Ed__7_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mEFEF235AB63DE5E37A62F77C1B52822F60E615CA (void);
-// 0x0000004E System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::System.Collections.IEnumerator.Reset()
-extern void U3CInitialisationSliderAjustementU3Ed__7_System_Collections_IEnumerator_Reset_m4CDADFE87C9DEA4FA7F47006E997642E79ED2891 (void);
-// 0x0000004F System.Object Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__7::System.Collections.IEnumerator.get_Current()
-extern void U3CInitialisationSliderAjustementU3Ed__7_System_Collections_IEnumerator_get_Current_m12338A285BCD36F422F2CF28CD378521C19B79B5 (void);
-// 0x00000050 System.Void Niantic.ARDKExamples.ImageDetection/<>c::.cctor()
+// 0x0000005C System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::.ctor(System.Int32)
+extern void U3CInitialisationSliderAjustementU3Ed__12__ctor_m4346E06ABE2962E7C2D19B23C80FBC0484210FFE (void);
+// 0x0000005D System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::System.IDisposable.Dispose()
+extern void U3CInitialisationSliderAjustementU3Ed__12_System_IDisposable_Dispose_mEA35FF44653F0ACF6336EDE2377B51E317FEE6A1 (void);
+// 0x0000005E System.Boolean Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::MoveNext()
+extern void U3CInitialisationSliderAjustementU3Ed__12_MoveNext_m07821D31A88936E94B7869050919A866F2649994 (void);
+// 0x0000005F System.Object Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+extern void U3CInitialisationSliderAjustementU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mFCB51EAE9203F6CA147918C99DAB7F08EC6FFFC3 (void);
+// 0x00000060 System.Void Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::System.Collections.IEnumerator.Reset()
+extern void U3CInitialisationSliderAjustementU3Ed__12_System_Collections_IEnumerator_Reset_m2E096F5B4D10A4FCA71949ADFC5F58059F6F9F81 (void);
+// 0x00000061 System.Object Niantic.ARDKExamples.ImageDetection/<InitialisationSliderAjustement>d__12::System.Collections.IEnumerator.get_Current()
+extern void U3CInitialisationSliderAjustementU3Ed__12_System_Collections_IEnumerator_get_Current_m7E47E0AB390CFEE44843DEB0BD572962AE370781 (void);
+// 0x00000062 System.Void Niantic.ARDKExamples.ImageDetection/<>c::.cctor()
 extern void U3CU3Ec__cctor_mEEAC930A8F82A1E280E7BC7A118AD8CCFB089FF4 (void);
-// 0x00000051 System.Void Niantic.ARDKExamples.ImageDetection/<>c::.ctor()
+// 0x00000063 System.Void Niantic.ARDKExamples.ImageDetection/<>c::.ctor()
 extern void U3CU3Ec__ctor_m78E939DDE0195825390F2A661D2FFE1EAF5BAA62 (void);
-// 0x00000052 System.Void Niantic.ARDKExamples.ImageDetection/<>c::<SetupSession>b__8_0(Niantic.ARDK.AR.ARSessionEventArgs.ARSessionFailedArgs)
-extern void U3CU3Ec_U3CSetupSessionU3Eb__8_0_m4F80D539E6D366FF6A631FE4252DBCD6C42B8211 (void);
-// 0x00000053 System.Void Niantic.ARDKExamples.NetworkObject::Awake()
+// 0x00000064 System.Void Niantic.ARDKExamples.ImageDetection/<>c::<SetupSession>b__13_0(Niantic.ARDK.AR.ARSessionEventArgs.ARSessionFailedArgs)
+extern void U3CU3Ec_U3CSetupSessionU3Eb__13_0_mB696E37AC1CE1B487463C169BA3A0FA33C6B7004 (void);
+// 0x00000065 System.Void Niantic.ARDKExamples.NetworkObject::Awake()
 extern void NetworkObject_Awake_mEE466E21DF9215BA09B92D50D9508BB764B6458C (void);
-// 0x00000054 System.Void Niantic.ARDKExamples.NetworkObject::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
+// 0x00000066 System.Void Niantic.ARDKExamples.NetworkObject::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
 extern void NetworkObject_OnNetworkingInitialized_mDC39973C92F37AC78C4D1977F0811D6381BA380B (void);
-// 0x00000055 System.Void Niantic.ARDKExamples.NetworkObject::OnDestroy()
+// 0x00000067 System.Void Niantic.ARDKExamples.NetworkObject::OnDestroy()
 extern void NetworkObject_OnDestroy_mDBF5FE218A79D7A24CD25BA50DACE40814DE17AC (void);
-// 0x00000056 System.Void Niantic.ARDKExamples.NetworkObject::Update()
+// 0x00000068 System.Void Niantic.ARDKExamples.NetworkObject::Update()
 extern void NetworkObject_Update_m06B6ECE1DE4C161DADEB6D46DB18822ABA9656B6 (void);
-// 0x00000057 System.Void Niantic.ARDKExamples.NetworkObject::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
+// 0x00000069 System.Void Niantic.ARDKExamples.NetworkObject::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
 extern void NetworkObject_OnConnect_m037B57C1E590C5C0DD298E59FE532DF9DC5DA032 (void);
-// 0x00000058 System.Void Niantic.ARDKExamples.NetworkObject::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
+// 0x0000006A System.Void Niantic.ARDKExamples.NetworkObject::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
 extern void NetworkObject_OnDisconnect_m995F7B0098C4BB2910D7F4525AA41091B16B1301 (void);
-// 0x00000059 System.Void Niantic.ARDKExamples.NetworkObject::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
+// 0x0000006B System.Void Niantic.ARDKExamples.NetworkObject::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
 extern void NetworkObject_OnConnectionFailed_m7AFF1A50AC0D7CD4FD28ED96FBE40D7AD3E72ADB (void);
-// 0x0000005A System.Void Niantic.ARDKExamples.NetworkObject::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
+// 0x0000006C System.Void Niantic.ARDKExamples.NetworkObject::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
 extern void NetworkObject_OnKeyValueUpdated_m214BF34708C15FEC3F01DDEA740702D6D50AF4F1 (void);
-// 0x0000005B System.Void Niantic.ARDKExamples.NetworkObject::.ctor()
+// 0x0000006D System.Void Niantic.ARDKExamples.NetworkObject::.ctor()
 extern void NetworkObject__ctor_m20FF0C54306A462E6E5226A4DC1FB2B87CE23DAB (void);
-// 0x0000005C System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::Awake()
+// 0x0000006E System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::Awake()
 extern void PersistentKeyValueChoice_Awake_mBAB5480475209CA49FC21FCDAD6F01799C9664B0 (void);
-// 0x0000005D System.Collections.IEnumerator Niantic.ARDKExamples.PersistentKeyValueChoice::WaitForReset(System.Single)
+// 0x0000006F System.Collections.IEnumerator Niantic.ARDKExamples.PersistentKeyValueChoice::WaitForReset(System.Single)
 extern void PersistentKeyValueChoice_WaitForReset_m7157A5A7AB21E6198BF1CDDFAD0E045C303B8D1A (void);
-// 0x0000005E System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
+// 0x00000070 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
 extern void PersistentKeyValueChoice_OnNetworkingInitialized_m0357C75FD87B37D46F8B5FB21E877C593846AD85 (void);
-// 0x0000005F System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnDestroy()
+// 0x00000071 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnDestroy()
 extern void PersistentKeyValueChoice_OnDestroy_m00A1CC42D234BC92F0E1E2B46D9DEA37FEAF264A (void);
-// 0x00000060 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedButton1()
+// 0x00000072 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedButton1()
 extern void PersistentKeyValueChoice_OnClickedButton1_m0132C07C26DAD6466D3484142D6A6F4E4A844224 (void);
-// 0x00000061 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedButton2()
+// 0x00000073 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedButton2()
 extern void PersistentKeyValueChoice_OnClickedButton2_m7ED2EE5EBA314A8568301E6FDC71749D5099406F (void);
-// 0x00000062 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedReset()
+// 0x00000074 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnClickedReset()
 extern void PersistentKeyValueChoice_OnClickedReset_m076FD8608983E63117D99D8BBBFFD2C29CCEA672 (void);
-// 0x00000063 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
+// 0x00000075 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
 extern void PersistentKeyValueChoice_OnConnect_m450E1B011272599BC25D87005A02C9006D191638 (void);
-// 0x00000064 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
+// 0x00000076 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
 extern void PersistentKeyValueChoice_OnDisconnect_m4858B62952A973D8F58A0884D5629747A683C9F8 (void);
-// 0x00000065 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
+// 0x00000077 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
 extern void PersistentKeyValueChoice_OnConnectionFailed_m1AEF7BEF2D3E3EDC874BD1FE374A89DCCB2B6B93 (void);
-// 0x00000066 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
+// 0x00000078 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
 extern void PersistentKeyValueChoice_OnKeyValueUpdated_m06C752D78209AEA2B10891E2A976B0DA0DC9215B (void);
-// 0x00000067 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::.ctor()
+// 0x00000079 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice::.ctor()
 extern void PersistentKeyValueChoice__ctor_m989F9EACADB676A606B02EE32F084B09659E6C0A (void);
-// 0x00000068 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::.ctor(System.Int32)
+// 0x0000007A System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::.ctor(System.Int32)
 extern void U3CWaitForResetU3Ed__11__ctor_mD06DD2EEE8C791ED3D15F0265FC0279F09769FF9 (void);
-// 0x00000069 System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.IDisposable.Dispose()
+// 0x0000007B System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.IDisposable.Dispose()
 extern void U3CWaitForResetU3Ed__11_System_IDisposable_Dispose_m04D5EE72A0E80DEC2169ADBED080A40DB191CF19 (void);
-// 0x0000006A System.Boolean Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::MoveNext()
+// 0x0000007C System.Boolean Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::MoveNext()
 extern void U3CWaitForResetU3Ed__11_MoveNext_m446BABBE46F3EDE955F69A417BCD0788D255A458 (void);
-// 0x0000006B System.Object Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+// 0x0000007D System.Object Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
 extern void U3CWaitForResetU3Ed__11_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m7FAADA31FA24C31CC2EFC8CA60F21572099DA0DC (void);
-// 0x0000006C System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.IEnumerator.Reset()
+// 0x0000007E System.Void Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.IEnumerator.Reset()
 extern void U3CWaitForResetU3Ed__11_System_Collections_IEnumerator_Reset_m1AF7C10B6528B054435851D997593C6AE262EED7 (void);
-// 0x0000006D System.Object Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.IEnumerator.get_Current()
+// 0x0000007F System.Object Niantic.ARDKExamples.PersistentKeyValueChoice/<WaitForReset>d__11::System.Collections.IEnumerator.get_Current()
 extern void U3CWaitForResetU3Ed__11_System_Collections_IEnumerator_get_Current_m3E245C35D4644A53F3D7DEC9D40D5404D96DA57F (void);
-// 0x0000006E System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::Awake()
+// 0x00000080 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::Awake()
 extern void PersistentKeyValueExampleManagerVisualDimension_Awake_mFECE499113870708E32E61025E4AA183E0CF52A1 (void);
-// 0x0000006F System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
+// 0x00000081 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
 extern void PersistentKeyValueExampleManagerVisualDimension_OnNetworkingInitialized_m9AD420B3A19024110582BC1222B8E5CB250E2BCD (void);
-// 0x00000070 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnDestroy()
+// 0x00000082 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnDestroy()
 extern void PersistentKeyValueExampleManagerVisualDimension_OnDestroy_m11B37E40135C18C6C8BA1FDF2BE46612FFDE21B0 (void);
-// 0x00000071 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::Update()
+// 0x00000083 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::Update()
 extern void PersistentKeyValueExampleManagerVisualDimension_Update_m358A58BEE062EEFA23C0BFEC0AABF5C896F58B91 (void);
-// 0x00000072 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
+// 0x00000084 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
 extern void PersistentKeyValueExampleManagerVisualDimension_OnConnect_m26941BB70B1955E9024979874478213BD2720697 (void);
-// 0x00000073 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
+// 0x00000085 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
 extern void PersistentKeyValueExampleManagerVisualDimension_OnDisconnect_m5C9C885596AFDC25B525D3980B5132C2D183A5B5 (void);
-// 0x00000074 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
+// 0x00000086 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
 extern void PersistentKeyValueExampleManagerVisualDimension_OnConnectionFailed_m18332D59C39531DE5A6F82541E4A0E5A548E4EEA (void);
-// 0x00000075 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
+// 0x00000087 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
 extern void PersistentKeyValueExampleManagerVisualDimension_OnKeyValueUpdated_mB7FDB5B88DD09CA473C1984D01711DDDFE2E7DB4 (void);
-// 0x00000076 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::.ctor()
+// 0x00000088 System.Void Niantic.ARDKExamples.PersistentKeyValueExampleManagerVisualDimension::.ctor()
 extern void PersistentKeyValueExampleManagerVisualDimension__ctor_m869AFC8DCD88187D8F96BBE39A9DD0C40935A31C (void);
-// 0x00000077 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::Awake()
+// 0x00000089 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::Awake()
 extern void PersistentKeyValueTree_Awake_mDAFF743A65636A1361580E3283E62F4A04E49500 (void);
-// 0x00000078 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::Update()
+// 0x0000008A System.Void Niantic.ARDKExamples.PersistentKeyValueTree::Update()
 extern void PersistentKeyValueTree_Update_m065C05D6E6660E015AB3369552CBB4A30A0C488C (void);
-// 0x00000079 System.Collections.IEnumerator Niantic.ARDKExamples.PersistentKeyValueTree::WaitForReset(System.Single)
+// 0x0000008B System.Collections.IEnumerator Niantic.ARDKExamples.PersistentKeyValueTree::WaitForReset(System.Single)
 extern void PersistentKeyValueTree_WaitForReset_m119100A0E0B401D706852AAF1252E320A49A05FB (void);
-// 0x0000007A System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
+// 0x0000008C System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnNetworkingInitialized(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.AnyMultipeerNetworkingInitializedArgs)
 extern void PersistentKeyValueTree_OnNetworkingInitialized_mDD3E1540A3A5F8B7DB74B094E1CE4294FB541C20 (void);
-// 0x0000007B System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnDestroy()
+// 0x0000008D System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnDestroy()
 extern void PersistentKeyValueTree_OnDestroy_mFEE6C546BC8ECB269190C6BA848E85A3FC1A660A (void);
-// 0x0000007C System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedButton1()
+// 0x0000008E System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedButton1()
 extern void PersistentKeyValueTree_OnClickedButton1_m221A75CD852799BBB1DF6AEE6D02AF91AC13CAE6 (void);
-// 0x0000007D System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedButton2()
+// 0x0000008F System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedButton2()
 extern void PersistentKeyValueTree_OnClickedButton2_mF3476F622DAE55686D02CDFC55DA837E0DF9DCFC (void);
-// 0x0000007E System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedReset()
+// 0x00000090 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnClickedReset()
 extern void PersistentKeyValueTree_OnClickedReset_m559EAC12928EC216B1C774048AA7E34BC2DEE8D4 (void);
-// 0x0000007F System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
+// 0x00000091 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnConnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectedArgs)
 extern void PersistentKeyValueTree_OnConnect_m5AB242003854032CA253797AAED780DF98F54807 (void);
-// 0x00000080 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
+// 0x00000092 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnDisconnect(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.DisconnectedArgs)
 extern void PersistentKeyValueTree_OnDisconnect_m57EDBA26734E5712F25B5ECB690F42DEEBB9C637 (void);
-// 0x00000081 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
+// 0x00000093 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnConnectionFailed(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.ConnectionFailedArgs)
 extern void PersistentKeyValueTree_OnConnectionFailed_m3F35F6290F6EF4D973E69D06E83306C85FEFF33C (void);
-// 0x00000082 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
+// 0x00000094 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::OnKeyValueUpdated(Niantic.ARDK.Networking.MultipeerNetworkingEventArgs.PersistentKeyValueUpdatedArgs)
 extern void PersistentKeyValueTree_OnKeyValueUpdated_mF580012CD0675CCB0727362C02E866E59C988881 (void);
-// 0x00000083 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::.ctor()
+// 0x00000095 System.Void Niantic.ARDKExamples.PersistentKeyValueTree::.ctor()
 extern void PersistentKeyValueTree__ctor_m633450DDC5FC06F3385CC6B2988DA44CFD2BF79C (void);
-// 0x00000084 System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::.ctor(System.Int32)
+// 0x00000096 System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::.ctor(System.Int32)
 extern void U3CWaitForResetU3Ed__14__ctor_m8D0D52A838D937D652A27540A49533E6E580D826 (void);
-// 0x00000085 System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.IDisposable.Dispose()
+// 0x00000097 System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.IDisposable.Dispose()
 extern void U3CWaitForResetU3Ed__14_System_IDisposable_Dispose_m6B797FE0A4C98F1B5F51FB2EB69A0CCFFAD6BD82 (void);
-// 0x00000086 System.Boolean Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::MoveNext()
+// 0x00000098 System.Boolean Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::MoveNext()
 extern void U3CWaitForResetU3Ed__14_MoveNext_m3C3FAB916AD9748BF8F801DD338072FD80C6D1B2 (void);
-// 0x00000087 System.Object Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+// 0x00000099 System.Object Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
 extern void U3CWaitForResetU3Ed__14_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m91265EEC2033762F2BAF4995EA911600E9DBC76A (void);
-// 0x00000088 System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.IEnumerator.Reset()
+// 0x0000009A System.Void Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.IEnumerator.Reset()
 extern void U3CWaitForResetU3Ed__14_System_Collections_IEnumerator_Reset_m914952990D0F71DDC09E6AFE90756D6FE2A4EDAE (void);
-// 0x00000089 System.Object Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.IEnumerator.get_Current()
+// 0x0000009B System.Object Niantic.ARDKExamples.PersistentKeyValueTree/<WaitForReset>d__14::System.Collections.IEnumerator.get_Current()
 extern void U3CWaitForResetU3Ed__14_System_Collections_IEnumerator_get_Current_m53DDD0A57B53B6BE79EDC20C1274552894FE060D (void);
-static Il2CppMethodPointer s_methodPointers[137] = 
+static Il2CppMethodPointer s_methodPointers[155] = 
 {
 	GameManager_Start_m87A71D65F3171A58DBDDBFB03832ADA65643D0E2,
 	GameManager_Update_m7F29D8E933B8D21D2E67507979C0F12ACF87BB41,
@@ -353,23 +389,41 @@ static Il2CppMethodPointer s_methodPointers[137] =
 	SelectPlace_Update_m8C1482262DF00CB12146601554186C38B1F10C1C,
 	SelectPlace_OnClickSelectPlace_m234E704643B4A32A902B3C94A004F38549313F63,
 	SelectPlace__ctor_m2238E441CC2DC70FF43D9172B5B8C9027D7E0CD3,
+	ImageDetectionExampleManager_Start_mFA66F3167A9547B8D1B8EE7C82CF0D139901FB63,
+	ImageDetectionExampleManager_BoolText_m6535C67D7B81ED4921C999D4AD762F2C98D789DD,
+	ImageDetectionExampleManager_UpdateButtonText_m9128F24CD2B9E5D3FA4313B24B87E6EDC9537A95,
+	ImageDetectionExampleManager_SetupSession_m0E1F7CD4D1EF1E861B793163F23590EB76E6A1A0,
+	ImageDetectionExampleManager_SetupCodeImageDetectionManager_m7F329287A8C775E4C103172CD6E6148B84AEA7D8,
+	ImageDetectionExampleManager_ToggleYetiImage_m754FA4E356472CF3335411615A9F67A1DFA3D034,
+	ImageDetectionExampleManager_ToggleInspectorImageManager_mCA047B664856B9C1BDE908CB5D62893BE4E7EE76,
+	ImageDetectionExampleManager_ToggleCodeImageManager_m584597DE4FAC4E0CC7307928E1512551D51C736E,
+	ImageDetectionExampleManager_OnAnchorsAdded_mD77C1E61A6980292CA52F2A9BD981EAD47A24293,
+	ImageDetectionExampleManager_SetPlaneColor_m68A4557D9EEEDFC569C70D38BA285CC892F80B82,
+	ImageDetectionExampleManager_OnAnchorsUpdated_mF01F2387BAA34093C00A56B4C0AD162781456309,
+	ImageDetectionExampleManager_OnAnchorsRemoved_m8D3613D2A86B6402EC0B9CB200DDB3E8CC522BC9,
+	ImageDetectionExampleManager_UpdatePlaneTransform_m9E34189766F019DA05EC791E9EE054C2F0FA63AC,
+	ImageDetectionExampleManager__ctor_mC617CE2CA079F717762EF812FA14C043C964E83E,
+	ImageDetectionExampleManager__cctor_m0C4E3A1AC9F6A7D096DA932AAFCFB27F19A4E66D,
+	U3CU3Ec__cctor_m70A913A23A223F127DD374AB27B26D7C5C9BC035,
+	U3CU3Ec__ctor_m8914EE533EBA4120D3C1FC186BD41887FAD3428D,
+	U3CU3Ec_U3CSetupSessionU3Eb__19_0_m17E81FD4BA0AA784F20162E0DB3F56C33F841064,
 	ImageDetection_Start_mAAF2A6E0B1A7FA90E30229FF887AEA8F07381EC9,
-	ImageDetection_InitialisationSliderAjustement_m54B7BB1A71122172EA058401C9818B3F41882AA8,
+	ImageDetection_InitialisationSliderAjustement_mBE8B0166CE263F7B6CAD677AB41B32AB60E26A3A,
 	ImageDetection_SetupSession_mC4688D5788459D782FCEE22A16F87BF0C665F273,
 	ImageDetection_OnAnchorsAdded_m43A69CCE324D7A56F43B7363CDFEB1F6604D329B,
 	ImageDetection_OnAnchorsUpdated_m9649291DA2F95213F7580FD069DF19BF45AB341A,
 	ImageDetection_OnAnchorsRemoved_mEC6CF604AF1879CF70515CB39CDD1D4847D88394,
 	ImageDetection_UpdatePlaneTransform_m04C0DB424B15528FBD5895654E8A424C57E433DC,
 	ImageDetection__ctor_m5E1793345DF79131999A6F111804D2D75E062DB2,
-	U3CInitialisationSliderAjustementU3Ed__7__ctor_mDB761DC53E26424E9DC9F0592426FA24AD79E418,
-	U3CInitialisationSliderAjustementU3Ed__7_System_IDisposable_Dispose_m83D335A30D331BDF6B59395A0781CB9E77D3A247,
-	U3CInitialisationSliderAjustementU3Ed__7_MoveNext_mE70FDC1F5B8841BCE06004A6605FBF48FC4115F1,
-	U3CInitialisationSliderAjustementU3Ed__7_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mEFEF235AB63DE5E37A62F77C1B52822F60E615CA,
-	U3CInitialisationSliderAjustementU3Ed__7_System_Collections_IEnumerator_Reset_m4CDADFE87C9DEA4FA7F47006E997642E79ED2891,
-	U3CInitialisationSliderAjustementU3Ed__7_System_Collections_IEnumerator_get_Current_m12338A285BCD36F422F2CF28CD378521C19B79B5,
+	U3CInitialisationSliderAjustementU3Ed__12__ctor_m4346E06ABE2962E7C2D19B23C80FBC0484210FFE,
+	U3CInitialisationSliderAjustementU3Ed__12_System_IDisposable_Dispose_mEA35FF44653F0ACF6336EDE2377B51E317FEE6A1,
+	U3CInitialisationSliderAjustementU3Ed__12_MoveNext_m07821D31A88936E94B7869050919A866F2649994,
+	U3CInitialisationSliderAjustementU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mFCB51EAE9203F6CA147918C99DAB7F08EC6FFFC3,
+	U3CInitialisationSliderAjustementU3Ed__12_System_Collections_IEnumerator_Reset_m2E096F5B4D10A4FCA71949ADFC5F58059F6F9F81,
+	U3CInitialisationSliderAjustementU3Ed__12_System_Collections_IEnumerator_get_Current_m7E47E0AB390CFEE44843DEB0BD572962AE370781,
 	U3CU3Ec__cctor_mEEAC930A8F82A1E280E7BC7A118AD8CCFB089FF4,
 	U3CU3Ec__ctor_m78E939DDE0195825390F2A661D2FFE1EAF5BAA62,
-	U3CU3Ec_U3CSetupSessionU3Eb__8_0_m4F80D539E6D366FF6A631FE4252DBCD6C42B8211,
+	U3CU3Ec_U3CSetupSessionU3Eb__13_0_mB696E37AC1CE1B487463C169BA3A0FA33C6B7004,
 	NetworkObject_Awake_mEE466E21DF9215BA09B92D50D9508BB764B6458C,
 	NetworkObject_OnNetworkingInitialized_mDC39973C92F37AC78C4D1977F0811D6381BA380B,
 	NetworkObject_OnDestroy_mDBF5FE218A79D7A24CD25BA50DACE40814DE17AC,
@@ -426,7 +480,7 @@ static Il2CppMethodPointer s_methodPointers[137] =
 	U3CWaitForResetU3Ed__14_System_Collections_IEnumerator_Reset_m914952990D0F71DDC09E6AFE90756D6FE2A4EDAE,
 	U3CWaitForResetU3Ed__14_System_Collections_IEnumerator_get_Current_m53DDD0A57B53B6BE79EDC20C1274552894FE060D,
 };
-static const int32_t s_InvokerIndices[137] = 
+static const int32_t s_InvokerIndices[155] = 
 {
 	4976,
 	4976,
@@ -494,7 +548,25 @@ static const int32_t s_InvokerIndices[137] =
 	3997,
 	4976,
 	4976,
-	4865,
+	7220,
+	4976,
+	3924,
+	4976,
+	4976,
+	4976,
+	4976,
+	3919,
+	2298,
+	3919,
+	3919,
+	4027,
+	4976,
+	7546,
+	7546,
+	4976,
+	3913,
+	4976,
+	3533,
 	3924,
 	3919,
 	3919,
@@ -570,7 +642,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	137,
+	155,
 	s_methodPointers,
 	0,
 	NULL,
