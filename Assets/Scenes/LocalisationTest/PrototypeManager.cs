@@ -32,9 +32,6 @@ public class PrototypeManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _prefabs;
 
-    [Header("Image")]
-    [SerializeField]
-    private Texture2D _image;
 
     static Dictionary<string, GameObject> _imagePrefabs = new Dictionary<string, GameObject>();
 
@@ -46,29 +43,9 @@ public class PrototypeManager : MonoBehaviour
         _imageDetectionManager.EnableFeatures();
         _depthManager.EnableFeatures();
 
-        InitPrefabDictionnary();  
-        SetupCodeImageDetectionManager();
+        InitPrefabDictionnary();
     }
 
-    private void SetupCodeImageDetectionManager()
-    {
-        Debug.Log(_image.name);
-        var tempFilePath = Path.Combine(Application.temporaryCachePath, _image.name+".jpg");
-        byte[] byteImage = ImageConversion.EncodeToJPG(_image);
-
-        File.WriteAllBytes(tempFilePath, byteImage);
-
-        // Create an ARReferenceImage from the local file path.
-        var imageFromPath =
-          ARReferenceImageFactory.Create
-          (
-            _image.name,
-            tempFilePath,
-            0.25f
-          );
-
-        _imageDetectionManager.AddImage(imageFromPath);
-    }
 
     void InitPrefabDictionnary()
     {

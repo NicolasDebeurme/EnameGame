@@ -579,7 +579,10 @@ namespace Niantic.ARDK.VirtualStudio.AR
         if (meshData == null)
           _meshDataParser.ParseMesh(_SerializableARMeshData.EmptyMesh());
         else if (worldConfig.IsMeshingEnabled)
-          _meshDataParser.ParseMesh(meshData);
+                {
+                    _meshDataParser.ParseMesh(meshData);
+                    Debug.Log("test");
+                }
       }
     }
 
