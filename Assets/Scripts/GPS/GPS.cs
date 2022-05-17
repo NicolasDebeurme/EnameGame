@@ -29,7 +29,7 @@ public class GPS : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.instance.isGPSEnable)
+        if (GameManager.instance.actualState == ActualState.GO_TO_PLACE)
         {
             //WAY.SetActive(true);
             UpdateCompass();
@@ -135,8 +135,6 @@ public class GPS : MonoBehaviour
         DistanceAproximation.text = "DistanceAproximation: " + YourPosition.DistanceAproximation(YourPosition, pointB, Input.location.lastData.horizontalAccuracy, Input.location.lastData.verticalAccuracy);
 
 
-
-
     }
 
     public void UpdateCompass()
@@ -162,10 +160,16 @@ public class GPS : MonoBehaviour
     {
         if (YourPosition.Distance(YourPosition, pointB) < MinimumDistanceReachPoint)
         {
-            GameManager.instance.have_reached_position = true;
+            //GameManager.instance.have_reached_position = true;
+            GameManager.instance.actualState = ActualState.AR;
             //WAY.SetActive(false);
 
         }
+    }
+
+    public void OnClickGlitch()
+    {
+        GameManager.instance.actualState = ActualState.AR;
     }
 
 

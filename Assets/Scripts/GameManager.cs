@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActualState
+{
+    NONE,
+    SELECT_PLACE,
+    GO_TO_PLACE,
+    SCAN_PLACE,
+    AR
+}
+
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int actualPlace = 0;
-    public bool isGPSEnable = false;
-    public bool have_reached_position = false;
-    public bool scan = false;
+    public ActualState actualState;
+
+    public int actualPlace = -1;
+    
 
     public GameObject SelectPlace;
     public GameObject Way;
@@ -17,28 +28,37 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        SelectPlace.SetActive(true);
-        Way.SetActive(false);
-        Scan.SetActive(false);
+        actualState = ActualState.SELECT_PLACE;
+
+        
     }
 
     void Update()
     {
-        if (actualPlace != 0 )
+        if (actualState == ActualState.SELECT_PLACE)
         {
-            isGPSEnable = true;
+            SelectPlace.SetActive(true);
+            Way.SetActive(false);
+            Scan.SetActive(false);
+        }
+
+        if (actualState == ActualState.GO_TO_PLACE)
+        {
             SelectPlace.SetActive(false);
             Way.SetActive(true);
-
+            Scan.SetActive(false);
         }
 
-        if (have_reached_position)
+        if (actualState == ActualState.AR)
         {
-            isGPSEnable = false;
+            SelectPlace.SetActive(false);
             Way.SetActive(false);
             Scan.SetActive(true);
-            scan = true;
         }
+    }
 
+    public void OnClickNextPlace()
+    {
+        GameManager.instance.actualState = ActualState.SELECT_PLACE;
     }
 }

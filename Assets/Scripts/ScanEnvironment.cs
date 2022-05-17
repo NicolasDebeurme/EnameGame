@@ -13,9 +13,6 @@ public class ScanEnvironment : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.scan)
-        {
-            //ScanEnviromentUI.SetActive(true);
-        }
+       
     }
 }
