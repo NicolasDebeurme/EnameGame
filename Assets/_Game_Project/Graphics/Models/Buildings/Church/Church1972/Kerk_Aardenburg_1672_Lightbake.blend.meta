@@ -1,20 +1,204 @@
 fileFormatVersion: 2
 guid: 3832e6de3119f1a4497b62b4a5588d65
 ModelImporter:
-  serializedVersion: 21202
+  serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_Hardstone
+    second: {fileID: 2100000, guid: eeb24e8fb7a697b41b5996d5701f7567, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_Hardstone_Lines
+    second: {fileID: 2100000, guid: c2757c3202dc6954193b151d45569acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_Hardstone_Lines_Chalked
+    second: {fileID: 2100000, guid: 9c51cc14dd8451f4a85ad19523d08681, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_Wall
+    second: {fileID: 2100000, guid: 9845a0251f7deaa4f877c1823818c68f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chalked_Wall
+    second: {fileID: 2100000, guid: 9f59da15ff63478448fd79db32e491f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chalked_Wall_Large
+    second: {fileID: 2100000, guid: 7ff74957cc5ebf0499bf88c833cf23eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chalked_Wall_Medium
+    second: {fileID: 2100000, guid: d5e768fadf56c22489bcf79edb156686, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Floor
+    second: {fileID: 2100000, guid: f6f000a163f343343b1c73c6e5e937c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Front_Door
+    second: {fileID: 2100000, guid: af97c2e42cc2b9e46be48e0ab1fd7f87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Front_Door_Frame
+    second: {fileID: 2100000, guid: c8f73ef27f077e44ba1e4abd41a8c5a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Main_Front_Door
+    second: {fileID: 2100000, guid: 2b2f7b055d41259439d1e922d72589cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Side_Door
+    second: {fileID: 2100000, guid: c11c5504e04c4cd429e5f813d1601917, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Church_Side_Door_Frame
+    second: {fileID: 2100000, guid: 22b0fba7a69f4a34f9123ec3274aa220, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Copper_Bell
+    second: {fileID: 2100000, guid: 73088cc609335614e94a82673478c551, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark_Iron
+    second: {fileID: 2100000, guid: 7a21b4185cb9e134589574368a6a37b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass
+    second: {fileID: 2100000, guid: c5bc035c724581b4ca1de357d3fe2669, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Klavier_Orgel
+    second: {fileID: 2100000, guid: e4f66b6ba9819014f867122fd334a54d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KnoppenKapiteel_Plaster
+    second: {fileID: 2100000, guid: 2ea8e9abe5bc0814dba0569103a69861, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orgel
+    second: {fileID: 2100000, guid: 4c1b7b6c33f2f9046b73d3420d90148c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orgel_Pipes
+    second: {fileID: 2100000, guid: a8eb8c68de3f6c14d96888078e228769, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ossenbloed_Rood
+    second: {fileID: 2100000, guid: 2a0e80675d7ba764da665c24fd71c73d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painted_Plaster
+    second: {fileID: 2100000, guid: e4ba9e4389aa00042a95283ffb3eb5ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plaster_Muur
+    second: {fileID: 2100000, guid: 56f0cb775648c2d4e8701213134f8d37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Roofpans
+    second: {fileID: 2100000, guid: a45947f52f1e5cb4d8fea0973adfffaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rough_Brick
+    second: {fileID: 2100000, guid: ec7973f4223e1c348b74311ff9878360, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rough_Brick_Large
+    second: {fileID: 2100000, guid: c72803197d96e1745b289f79171250d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shingle
+    second: {fileID: 2100000, guid: 7697d0562acd489408ff8fc187d0ca73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windhaan
+    second: {fileID: 2100000, guid: f27f923a7f35fff4a9ca315a8860074c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows_Church
+    second: {fileID: 2100000, guid: 016d9b5ae18b2d24e866da79485d7d09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows_Houses
+    second: {fileID: 2100000, guid: ac589abda9d5bc44bac1541bd4bd4e68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood3_Green
+    second: {fileID: 2100000, guid: 92fd5d7ae513ce74a9ff33d96483d2f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood3_White
+    second: {fileID: 2100000, guid: 0c441cbffa0f96947a17ec4f80cd0c86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Inside2
+    second: {fileID: 2100000, guid: 574f41f5bfdd08c4384d58f72ceb3051, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Planks_Clean
+    second: {fileID: 2100000, guid: 93977eef5bb2c6a45bf3c6f013bce297, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Planks_Indoor
+    second: {fileID: 2100000, guid: 0955a6208c6170e4b96b6ac7ca5e51a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Worn
+    second: {fileID: 2100000, guid: 45583b9d06742d74c84a12b6b04e3a77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Zinc
+    second: {fileID: 2100000, guid: 55d87a235ec8d4b428f68185cde537eb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -44,7 +228,6 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -56,7 +239,6 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
