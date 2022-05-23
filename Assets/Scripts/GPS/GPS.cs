@@ -141,7 +141,7 @@ public class GPS : MonoBehaviour
     {
         Boussole.text = "Angle from North: "  + Input.compass.magneticHeading.ToString();
 
-        Vector2 v1 = new Vector2((float)(pointB.X - YourPosition.X), (float)(pointB.Y - YourPosition.Y));
+        Vector2 v1 = new Vector2((float)(pointB.Y - YourPosition.Y), (float)(pointB.X - YourPosition.X));
         Vector2 v2 = new Vector2(0, 1);
         float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
         AnglePlayerTarget =  - Vector2.Angle(v1, v2) * sign;
@@ -160,9 +160,7 @@ public class GPS : MonoBehaviour
     {
         if (YourPosition.Distance(YourPosition, pointB) < MinimumDistanceReachPoint)
         {
-            //GameManager.instance.have_reached_position = true;
             GameManager.instance.actualState = ActualState.AR;
-            //WAY.SetActive(false);
 
         }
     }

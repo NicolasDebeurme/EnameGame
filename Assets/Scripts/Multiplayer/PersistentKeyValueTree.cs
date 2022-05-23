@@ -16,6 +16,7 @@ using UnityEngine.UI;
 using System.Linq;
 using Random = UnityEngine.Random;
 using System.Collections;
+using Unity.VisualScripting;
 
 namespace Niantic.ARDKExamples
 {
@@ -31,19 +32,16 @@ namespace Niantic.ARDKExamples
     ///      to all converge to the last written color.
     public class PersistentKeyValueTree : MonoBehaviour
     {
-        private static PersistentKeyValueTree instance;
+        public static PersistentKeyValueTree instance;
         public Button JoinButton;
         public TextMeshProUGUI textDialogueText;
-        public Button Button1;
-        public Button Button2;
+        public Button[] ButtonsChoice;
         public Button Reset;
         public TMP_Dropdown RolesSelection;
         public Role YourRole;
 
         public Node Node;
         private Node MemoryNode;
-        //public ChoiceClass1 choice;
-        //public ChoiceClass1 MemoryChoice;
 
 
 
@@ -55,12 +53,13 @@ namespace Niantic.ARDKExamples
         private void Awake()
         {
             MultipeerNetworkingFactory.NetworkingInitialized += OnNetworkingInitialized;
-            //MemoryChoice = choice;
             MemoryNode = Node;
             instance = this;
             JoinButton.gameObject.SetActive(false);
-            Button1.gameObject.SetActive(false);
-            Button2.gameObject.SetActive(false);
+            foreach (Button Buttonchoice in ButtonsChoice)
+            {
+                Buttonchoice.gameObject.SetActive(false);
+            }
             Reset.gameObject.SetActive(false);
         }
 
@@ -75,11 +74,7 @@ namespace Niantic.ARDKExamples
                 JoinButton.gameObject.SetActive(false);
             }
         }
-        IEnumerator WaitForReset(float sec)
-        {
-            yield return new WaitForSeconds(sec);
-            OnClickedReset();
-        }
+        
 
         private void OnNetworkingInitialized(AnyMultipeerNetworkingInitializedArgs args)
         {
@@ -103,40 +98,32 @@ namespace Niantic.ARDKExamples
 
         // Tapping the screen after starting the session will change the local blob color and send
         // a message to the server to store that color as the latest
-        public void OnClickedButton1()
+        public void OnClickedButton1(int buttonNumber)
         {
             if (_networking == null || !_networking.IsConnected || PlatformAgnosticInput.touchCount <= 0)
                 return;
 
-            //if (!choice.visibilitys.Decide.Contains(YourRole))
-              //  return;
             if (!Node.visibilitys.Decide.Contains(YourRole))
                 return;
 
             _stream.Position = 0;
             _stream.SetLength(0);
             using (var binarySerializer = new BinarySerializer(_stream))
-                Int16Serializer.Instance.Serialize(binarySerializer, 1);
+                Int16Serializer.Instance.Serialize(binarySerializer, (short)buttonNumber);
             var value = _stream.ToArray();
             Debug.LogFormat("Send : " + 1);
-            _networking.StorePersistentKeyValue("State", value);
+            _networking.StorePersistentKeyValue("Choice", value);
+
+            
+           // GameManager.instance.actualState = ActualState.SELECT_PLACE;
         }
-        public void OnClickedButton2()
+        
+        IEnumerator WaitBeforeChangeState()
         {
-            if (_networking == null || !_networking.IsConnected || PlatformAgnosticInput.touchCount <= 0)
-                return;
-
-            if (!Node.visibilitys.Decide.Contains(YourRole))
-                return;
-
-            _stream.Position = 0;
-            _stream.SetLength(0);
-            using (var binarySerializer = new BinarySerializer(_stream))
-                Int16Serializer.Instance.Serialize(binarySerializer, 2);
-            var value = _stream.ToArray();
-            Debug.LogFormat("Send : " + 2);
-            _networking.StorePersistentKeyValue("State", value);
+            yield return new WaitForSeconds(5);
+            GameManager.instance.actualState = ActualState.SELECT_PLACE;
         }
+
         public void OnClickedReset()
         {
             Debug.Log("StartReset");
@@ -149,10 +136,10 @@ namespace Niantic.ARDKExamples
             _stream.Position = 0;
             _stream.SetLength(0);
             using (var binarySerializer = new BinarySerializer(_stream))
-                Int16Serializer.Instance.Serialize(binarySerializer, 3);
+                Int16Serializer.Instance.Serialize(binarySerializer, 0);
             var value = _stream.ToArray();
             Debug.LogFormat("Send : " + "Reset");
-            _networking.StorePersistentKeyValue("State", value);
+            _networking.StorePersistentKeyValue("Reset", value);
 
 
 
@@ -163,13 +150,17 @@ namespace Niantic.ARDKExamples
         {
             YourRole = (Role)RolesSelection.value;
             RolesSelection.gameObject.SetActive(false);
-            Button1.gameObject.SetActive(true);
-            Button2.gameObject.SetActive(true);
+            GameManager.instance.actualState = ActualState.SELECT_PLACE;
+            foreach (Button Buttonchoice in ButtonsChoice)
+            {
+                Buttonchoice.gameObject.SetActive(true);
+            }
             Reset.gameObject.SetActive(true);
-            //StartCoroutine(WaitForReset(2));
             textDialogueText.text = Node.DialogueText;
-            Button1.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button1Text;
-            Button2.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button2Text;
+            for (int i = 0; i < ButtonsChoice.Length && i< Node.NodesArray.Length; i++)
+            {
+                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
+            }
         }
 
         private void OnDisconnect(DisconnectedArgs args)
@@ -186,92 +177,91 @@ namespace Niantic.ARDKExamples
 
         private void OnKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
         {
-            /*
-            if (_serverBlob == null)
+            if (args.Key == "Choice")
             {
-                // Null check required because callback may be received while GameObjects are being
-                // destroyed if the scene is unloaded.
-                return;
-            }
-            /*
-            if (args.Key != "Color")
-                throw new Exception("Received an update for a key other than Color");
-            if (args.Key != "ColorName")
-                throw new Exception("Received an update for a key other than ColorNAME");
-            */
-            //_serverBlob.gameObject.SetActive(true);
-            if (args.Key == "State")
-            {
+                StartCoroutine(WaitBeforeChangeState());
+
                 using (var stream = args.CreateValueReader())
                 {
                     using (var binaryDeserializer = new BinaryDeserializer(stream))
                     {
                         var number = Int16Serializer.Instance.Deserialize(binaryDeserializer);
 
-                        if (number == 1)
+                        Debug.Log(number);
+                        if (Node.NodesArray[number-1] != null )
                         {
-                            if (Node.Choice1 != null )
-                            {
-                                Node = Node.Choice1;
-                            }
-                            else
-                            {
-                                Debug.LogFormat("Node null");
-                            }
-                            
-                            Node.isActiveChoice = true;
-                            if (Node.visibilitys.Decide.Contains(YourRole) || Node.visibilitys.See.Contains(YourRole))
-                            {
-                                textDialogueText.text = Node.DialogueText;
-                                Button1.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button1Text;
-                                Button2.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button2Text;
-                            }
-                            else
-                            {
-                                textDialogueText.text = "Wait";
-                                Button1.GetComponentInChildren<TextMeshProUGUI>().text = "Wait";
-                                Button2.GetComponentInChildren<TextMeshProUGUI>().text = "Wait";
-                            }
-                            Debug.LogFormat("Receive : " + 1);
+                            Node = Node.NodesArray[number - 1].Choice;
                         }
-                        if (number == 2)
+                        else
                         {
-                            if (Node.Choice2 != null)
+                            Debug.LogFormat("Node null");
+                        }
+                        if (Node.visibilitys.Decide.Contains(YourRole) || Node.visibilitys.See.Contains(YourRole))
+                        {
+                            textDialogueText.text = Node.DialogueText;
+                            for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
                             {
-                                Node = Node.Choice2;
+                                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
                             }
-                            else
+                        }
+                        else
+                        {
+                            textDialogueText.text = "Wait";
+                            for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
                             {
-                                Debug.LogFormat("Node null");
+                                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = "Wait";
                             }
-                            Node.isActiveChoice = true;
-                            if (Node.visibilitys.Decide.Contains(YourRole) || Node.visibilitys.See.Contains(YourRole))
+                        }
+                        Debug.LogFormat("Receive : " + number);
+
+
+
+
+
+
+
+                        if (number == 0)
+                        {
+
+                            Node = MemoryNode;
+                            textDialogueText.text = Node.DialogueText;
+                            for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
                             {
-                                textDialogueText.text = Node.DialogueText;
-                                Button1.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button1Text;
-                                Button2.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button2Text;
+                                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
                             }
-                            else
-                            {
-                                textDialogueText.text = "Wait";
-                                Button1.GetComponentInChildren<TextMeshProUGUI>().text = "Wait";
-                                Button2.GetComponentInChildren<TextMeshProUGUI>().text = "Wait";
-                            }
-                            Debug.LogFormat("Receive : " + 2);
+                            Debug.LogFormat("Receive : " + "Reset");
                         }
 
-                        if (number == 3)
+                    }
+                }
+            }
+
+            if (args.Key == "Reset")
+            {
+                using (var stream = args.CreateValueReader())
+                {
+                    using (var binaryDeserializer = new BinaryDeserializer(stream))
+                    {
+                        var number = Int16Serializer.Instance.Deserialize(binaryDeserializer);
+                        if (number == 0)
                         {
 
                             //choice = MemoryChoice;
                             Node = MemoryNode;
                             textDialogueText.text = Node.DialogueText;
-                            Button1.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button1Text;
-                            Button2.GetComponentInChildren<TextMeshProUGUI>().text = Node.Button2Text;
+                            for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
+                            {
+                                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
+                            }
                             Debug.LogFormat("Receive : " + "Reset");
                         }
 
+
+
+
+
                     }
+
                 }
             }
 

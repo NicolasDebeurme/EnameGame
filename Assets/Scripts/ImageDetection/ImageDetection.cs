@@ -39,10 +39,15 @@ namespace Niantic.ARDKExamples
     public class ImageDetection :
       MonoBehaviour
     {
+        public static ImageDetection instance;
+
         [SerializeField]
         private ARImageDetectionManager _inspectorImageDetectionManager;
 
         // Prefab to spawn on top of detected images.
+        [SerializeField]
+        private VirtualObject Crowd;
+
         [SerializeField]
         private VirtualObject _plane1;
 
@@ -74,11 +79,12 @@ namespace Niantic.ARDKExamples
         private Transform offset = null; //my code
 
 
-
+        public GameObject newPlane = null;
 
 
         private void Start()
         {
+            instance = this;
             ARSessionFactory.SessionInitialized += SetupSession;
 
 
@@ -123,12 +129,11 @@ namespace Niantic.ARDKExamples
                 var imageName = imageAnchor.ReferenceImage.Name;
                 Debug.Log(imageName);
 
-                GameObject newPlane =null;
-
+                newPlane =null;
                 if (imageName == "crowd")
                 {
-                    StartCoroutine(InitialisationSliderAjustement(_plane1));// Start initialisation Slider Ajustement 
-                    newPlane = Instantiate(_plane1.Object);
+                    StartCoroutine(InitialisationSliderAjustement(Crowd));// Start initialisation Slider Ajustement 
+                    newPlane = Instantiate(Crowd.Object);
                 }
                 else if (imageName == "logo")
                 {

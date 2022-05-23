@@ -371,7 +371,7 @@ RectTransform:
   m_GameObject: {fileID: 1230155860876018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0416667, y: 1.0416667, z: 1.0416667}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224891271004742348}
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114095756203740602}
   m_HandleRect: {fileID: 224621068995425124}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -23,7 +23,6 @@ public class SelectPlace : MonoBehaviour
     {
         GameManager.instance.actualPlace = number_place;
         GameManager.instance.actualState = ActualState.GO_TO_PLACE;
-        //SelctPlaceUI.SetActive(false);
     }
 
 }
