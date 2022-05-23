@@ -11,7 +11,10 @@ public class Action1 : Action
         if (ImageDetection.instance.newPlane != null)
         {
             ImageDetection.instance.newPlane.GetComponent<Animator>().SetInteger("choice", 1);
-
+        }
+        else
+        {
+            Debug.Log("Action1Null");
         }
     }
 
