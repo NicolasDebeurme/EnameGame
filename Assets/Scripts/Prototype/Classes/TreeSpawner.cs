@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TreeSpawner : MonoBehaviour
 {
-
-
-    [Header("StoryTree")]
     private Serialized_Tree[] _availableTrees;
 
     [ContextMenu("Instantiate Tree")]

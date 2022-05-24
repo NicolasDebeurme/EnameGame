@@ -18,4 +18,5 @@ public class Enums : MonoBehaviour
         Pump,
         Church
     }
+
 }
