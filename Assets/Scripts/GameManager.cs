@@ -28,13 +28,22 @@ public class GameManager : MonoBehaviour
     public GameObject Scan;
     public GameObject Tree;
 
+
+
     void Start()
     {
         instance = this;
-        actualState = ActualState.CONNEXION;  
+        actualState = ActualState.CONNEXION;
+        ChangeState();
     }
 
     void Update()
+    {
+        
+
+    }
+
+    public void ChangeState()
     {
         if (actualState == ActualState.CONNEXION)
         {
@@ -76,16 +85,22 @@ public class GameManager : MonoBehaviour
             Scan.SetActive(true);
             Tree.SetActive(true);
         }
-
     }
+
 
     public void OnClickNextPlace()
     {
         GameManager.instance.actualState = ActualState.TREE;
+        ChangeState();
     }
     public void OnClickSelectPlace(int number_place)
     {
         GameManager.instance.actualPlace = number_place;
         GameManager.instance.actualState = ActualState.GO_TO_PLACE;
+        ChangeState();
     }
+
+
+  
+
 }

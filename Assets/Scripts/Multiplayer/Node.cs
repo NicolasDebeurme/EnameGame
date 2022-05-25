@@ -14,12 +14,6 @@ public class Node: MonoBehaviour
     public Visibility visibilitys;
     public string DialogueText;
 
-    //public string Button1Text;
-    //public Node Choice1;
-
-    //public string Button2Text;
-    //public Node Choice2;
-
     public Nodes[] NodesArray;
 
     private bool doOnce = true;
@@ -37,7 +31,7 @@ public class Node: MonoBehaviour
 
     public void Update()
     {
-        IsActiveChoiceUpdate();
+        //IsActiveChoiceUpdate();  PersistentKeyValueTree L193
     }
 
 
@@ -79,7 +73,7 @@ public class Node: MonoBehaviour
         {
             doOnce = true;
         }
-        if (isActiveChoice)  //Update
+        if (isActiveChoice)  //Update Dont Work L 40
         {
             if (action != null)
             {
@@ -90,8 +84,13 @@ public class Node: MonoBehaviour
                 //Debug.Log("actionUpdateNull");
             }
         }
-
     }
+
+
+
+
+
+
 
 
 

@@ -10,5 +10,4 @@ using UnityEngine;
 
     public abstract void OnUpdate();
 
-
 }

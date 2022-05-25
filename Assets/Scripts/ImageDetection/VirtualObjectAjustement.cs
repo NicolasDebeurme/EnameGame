@@ -35,25 +35,20 @@ public class VirtualObjectAjustement : MonoBehaviour
         Positions = new float[3];
         Rotations = new float[3];
 
-        //SetupSliderValue();
     }
 
     void Update()
     {
         TextSlidersUpdate();
-        //Debug.Log("pos:" + Positions[0] + " " + Positions[1] + " " + Positions[2]);
-        //Debug.Log("scale:" + Scale);
-        //Debug.Log("rot:" + Rotations[0] + " " + Rotations[1] + " " + Rotations[2]);
+
     }
 
     public float ChangeTextValueFrom01ToInfini(float value, float intervale)
     {
-        //Debug.Log(value+ " " + (float)(-intervale / 2 + (float)intervale * (float)value));
         return (float)(-intervale  / 2 + (float)intervale * (float)value);
     }
     public float ChangeSliderValueFromInfiniTo01(float value, float intervale)
     {
-        //Debug.LogFormat((0.5f + 0.5f / intervale / 2 * value).ToString());
         return  (0.5f +(0.5f/(intervale/2))*value) ;
     }
 
@@ -67,7 +62,7 @@ public class VirtualObjectAjustement : MonoBehaviour
         {
             SlidersRotation[i].value = 0.5f;
         }
-        SlidersScale.value = 0.5f; // pour avoir 1 mettre  : (1 + intervaleScale / 2) / intervaleScale;
+        SlidersScale.value = 0.5f; 
 
 
     }

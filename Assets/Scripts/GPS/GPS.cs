@@ -7,7 +7,6 @@ using System;
 
 public class GPS : MonoBehaviour
 {
-    public GameObject WAY;
     public float MinimumDistanceReachPoint = 20;
     public TextMeshProUGUI[] positions;
     public TextMeshProUGUI Distance;
@@ -31,25 +30,15 @@ public class GPS : MonoBehaviour
     {
         if (GameManager.instance.actualState == ActualState.GO_TO_PLACE)
         {
-            //WAY.SetActive(true);
             UpdateCompass();
-        }
-        else
-        {
-            //WAY.SetActive(false);
-        }
-
-        if (GameManager.instance.actualPlace!=0)
-        {
             pointB = Places[GameManager.instance.actualPlace - 1];
         }
-
     }
 
 
     IEnumerator Position()
     {
-        InvokeRepeating("UpdateGPSData", 0.5f, 1f); // FOR PC ________________________________________
+        InvokeRepeating(nameof(UpdateGPSData), 0.5f, 1f); // FOR PC ________________________________________
 
         Input.compass.enabled = true;
         Debug.LogFormat("Start");
@@ -97,20 +86,20 @@ public class GPS : MonoBehaviour
         else
         {
             // If the connection succeeded, this retrieves the device's current location and displays it in the Console window.
-            InvokeRepeating("UpdateGPSData", 0.5f, 1f);
+            InvokeRepeating(nameof(UpdateGPSData), 0.5f, 1f);
         }
 
 
 
-
+        Debug.LogFormat("Unable to determine device location");
         // Stops the location service if there is no need to query location updates continuously.
-        //Input.location.Stop();
+        Input.location.Stop();
         //yield return new WaitForSeconds(5);
     }
 
     public void UpdateGPSData()
     {
-        isReachThePosition(); // plus bas sur tel
+        IsReachThePosition(); 
 
         if (Input.location.status == LocationServiceStatus.Running)
         {
@@ -127,10 +116,8 @@ public class GPS : MonoBehaviour
 
             YourPosition.X = Input.location.lastData.latitude;
             YourPosition.Y = Input.location.lastData.longitude;
-            //Debug.LogFormat("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
         }
 
-        //Debug.Log(pointA.Distance(pointA, pointB));
         Distance.text ="Distance: " + YourPosition.Distance(YourPosition, pointB);
         DistanceAproximation.text = "DistanceAproximation: " + YourPosition.DistanceAproximation(YourPosition, pointB, Input.location.lastData.horizontalAccuracy, Input.location.lastData.verticalAccuracy);
 
@@ -156,11 +143,12 @@ public class GPS : MonoBehaviour
         //Debug.LogFormat("Compass: " + Input.compass.magneticHeading + "  Target: " + AnglePlayerTarget);
     }
 
-    public void isReachThePosition()
+    public void IsReachThePosition()
     {
         if (YourPosition.Distance(YourPosition, pointB) < MinimumDistanceReachPoint)
         {
             GameManager.instance.actualState = ActualState.AR;
+            GameManager.instance.ChangeState();
 
         }
     }
@@ -168,6 +156,7 @@ public class GPS : MonoBehaviour
     public void OnClickGlitch()
     {
         GameManager.instance.actualState = ActualState.AR;
+        GameManager.instance.ChangeState();
     }
 
 

@@ -13,15 +13,11 @@ public class Point
 
     public double Distance(Point A, Point B)
     {
-       // Debug.LogFormat(A.X.ToString() + " " + B.X.ToString());
-        //Debug.LogFormat(A.Y.ToString() + " " + B.Y.ToString());
-
         return Math.Sqrt(Math.Pow(A.X - B.X, 2)+ Math.Pow(A.Y - B.Y, 2)) * Math.Pow(10,5);//en metre
     }
 
     public bool isInCircle(Point A, Point B, float distance)
     {
-        //Debug.Log(Mathf.Pow(distance, 2) + " " + (Mathf.Pow(A.X - B.X, 2) + Mathf.Pow(A.Y - B.Y, 2)));
         if (Mathf.Pow(distance, 2)  <=   Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2))
         {
             return false;

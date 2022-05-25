@@ -115,23 +115,21 @@ namespace Niantic.ARDKExamples
             _networking.StorePersistentKeyValue("Choice", value);
 
             
-           // GameManager.instance.actualState = ActualState.SELECT_PLACE;
         }
         
         IEnumerator WaitBeforeChangeState()
         {
             yield return new WaitForSeconds(5);
             GameManager.instance.actualState = ActualState.SELECT_PLACE;
+            GameManager.instance.ChangeState();
         }
 
         public void OnClickedReset()
         {
-            Debug.Log("StartReset");
 
             if (_networking == null || !_networking.IsConnected) //   || PlatformAgnosticInput.touchCount <= 0
                 return;
 
-            Debug.Log("Reset");
 
             _stream.Position = 0;
             _stream.SetLength(0);
@@ -151,6 +149,7 @@ namespace Niantic.ARDKExamples
             YourRole = (Role)RolesSelection.value;
             RolesSelection.gameObject.SetActive(false);
             GameManager.instance.actualState = ActualState.SELECT_PLACE;
+            GameManager.instance.ChangeState();
             foreach (Button Buttonchoice in ButtonsChoice)
             {
                 Buttonchoice.gameObject.SetActive(true);
@@ -191,6 +190,7 @@ namespace Niantic.ARDKExamples
                         if (Node.NodesArray[number-1] != null )
                         {
                             Node = Node.NodesArray[number - 1].Choice;
+                            Node.IsActiveChoiceUpdate();
                         }
                         else
                         {
@@ -220,17 +220,7 @@ namespace Niantic.ARDKExamples
 
 
 
-                        if (number == 0)
-                        {
-
-                            Node = MemoryNode;
-                            textDialogueText.text = Node.DialogueText;
-                            for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
-                            {
-                                ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
-                            }
-                            Debug.LogFormat("Receive : " + "Reset");
-                        }
+                        
 
                     }
                 }
@@ -251,6 +241,7 @@ namespace Niantic.ARDKExamples
                             textDialogueText.text = Node.DialogueText;
                             for (int i = 0; i < ButtonsChoice.Length && i < Node.NodesArray.Length; i++)
                             {
+                                ButtonsChoice[i].gameObject.SetActive(true);
                                 ButtonsChoice[i].GetComponentInChildren<TextMeshProUGUI>().text = Node.NodesArray[i].ButtonText;
                             }
                             Debug.LogFormat("Receive : " + "Reset");
