@@ -16,12 +16,7 @@ public abstract class State
         yield break;
     }
 
-    public virtual void UpdateUI()
+    public virtual void NextState()
     {
-        return;
-    }
-    public virtual IEnumerator NextState()
-    {
-        yield break;
     }
 }

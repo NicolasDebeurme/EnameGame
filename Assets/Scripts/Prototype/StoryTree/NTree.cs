@@ -13,7 +13,7 @@ public class NTree<T>
             children = new List<NTree<T>>();
 
         children.Add(new NTree<T>());
-        return children[0];
+        return children[^1];
     }
 
     public NTree<T> GetChild(int i)

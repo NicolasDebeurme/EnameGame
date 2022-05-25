@@ -29,6 +29,7 @@ public class Serialized_Tree: ScriptableObject, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
+        Debug.Log("Serialize");
         //unity is about to read the serializedNodes field's contents. lets make sure
         //we write out the correct data into that field "just in time".
         serializedNodes.Clear();
@@ -60,6 +61,7 @@ public class Serialized_Tree: ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
+        Debug.Log("Unserialize");
         //Unity has just written new data into the serializedNodes field.
         //let's populate our actual runtime data with those new values.
 

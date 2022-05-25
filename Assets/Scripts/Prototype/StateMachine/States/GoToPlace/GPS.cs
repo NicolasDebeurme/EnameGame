@@ -121,7 +121,7 @@ public class GPS : MonoBehaviour
     {
         if (_yourPosition.Distance(_yourPosition, _pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
         {
-            StartCoroutine(_senderState.NextState());
+            _senderState.NextState();
         }
     }
 

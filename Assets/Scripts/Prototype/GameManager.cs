@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
 
     //Network
+    [HideInInspector]
+    public bool isSessionCreated = false;
     public RuntimeEnvironment runtimeEnv;
     public InputField SessionIDField;
 
@@ -123,6 +125,7 @@ public class GameManager : MonoBehaviour
         Debug.LogFormat("Networking joined, peerID: {0}, isHot: {1}", args.Self, args.IsHost);
 
         _self = args.Self;
+        isSessionCreated = true;
     }
 
     private void OnPeerStateReceived(PeerStateReceivedArgs args)
@@ -221,9 +224,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    public void OnStart()
+    public void OnContinue()
     {
-        StartCoroutine(GameStateSystem._instance.GetState().NextState());
+        GameStateSystem._instance.GetState().NextState();
     }
 
     public void GameInitialized()

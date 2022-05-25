@@ -38,7 +38,7 @@ public abstract class ViewManager<Ti> : MonoBehaviour where Ti : ViewManager<Ti>
 		return null;
 	}
 
-	public static void Show<T>(bool remember = true) where T : View
+	public static T Show<T>(bool remember = true) where T : View
 	{
 		for (int i = 0; i < s_instance._views.Length; i++)
 		{
@@ -57,8 +57,11 @@ public abstract class ViewManager<Ti> : MonoBehaviour where Ti : ViewManager<Ti>
 				s_instance._views[i].Show();
 
 				s_instance._currentView = s_instance._views[i];
+
+				return s_instance._views[i] as T;
 			}
 		}
+		return null;
 	}
 
 	public static void Show(View view, bool remember = true)

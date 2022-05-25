@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class Begin : State
 {
+    MainMenuView beginView;
     public Begin(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
 
     public override IEnumerator Start()
     {
-        UIManager.Show<MainMenuView>();
+        beginView =UIManager.Show<MainMenuView>();
 
-        yield return new WaitForSeconds(2f);
+        yield break ;
 
+        
+    }
+
+    public override void NextState()
+    {
+        GameStateSystem._playerRole = beginView.playerRole;
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
 }

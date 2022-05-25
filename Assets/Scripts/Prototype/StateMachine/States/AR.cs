@@ -10,12 +10,19 @@ public class AR : State
 
     public override IEnumerator Start()
     {
-        GameManager._instance.CreateAndRunSharedAR();
-        yield break;
-    }
-    public override void UpdateUI()
-    {
         UIManager.Show<ARView>();
 
+        if(!GameManager._instance.isSessionCreated)
+            GameManager._instance.CreateAndRunSharedAR();
+
+        yield break;
+    }
+
+    public override void NextState()
+    {
+        if(GameStateSystem.ActualNode.children?.Count > 0)
+            GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
+        else
+            GameStateSystem.SetState(new End(GameStateSystem));
     }
 }

@@ -79,10 +79,10 @@ public class NodeContent
         this.visibilitys = visibilitys;
     }
 
-    public Rect DrawVisibilityItem(Rect rect, List<VisibilityRoleClass> visibilityList, string visibilityName)
+    public Rect DrawVisibilityItem(Rect rect, List<Roles> visibilityList, string visibilityName)
     {
         rect.y += 25;
-        Rect minusButtonSize = new Rect(rect.x + rect.width - 20, rect.y, 15, 15);
+        Rect minusButtonSize = new(rect.x + rect.width - 20, rect.y, 15, 15);
 
         EditorGUI.PrefixLabel(rect, new GUIContent(visibilityName + ":"));
 
@@ -92,22 +92,23 @@ public class NodeContent
                 visibilityList.RemoveAt(visibilityList.Count - 1);
         }
 
-        foreach (var instance in visibilityList)
+        foreach (var role in visibilityList.ToArray())
         {
-            rect = DrawRoles(rect,instance.roleName);
+            (rect, visibilityList[visibilityList.IndexOf(role)]) = DrawRoles(rect, role);
+
         }
 
         rect.y += 20;
         if (GUI.Button(rect, "Add " + visibilityName))
-            visibilityList.Add(new VisibilityRoleClass());
+            visibilityList.Add(Roles.None);
 
         return rect;
     }
 
-    public virtual Rect DrawRoles(Rect rect,Roles roleName)
+    public (Rect,Roles) DrawRoles(Rect rect,Roles roleName)
     {
         rect.y += 20;
         roleName = (Roles)EditorGUI.EnumPopup(rect, roleName);
-        return rect;
+        return (rect,roleName);
     }
 }

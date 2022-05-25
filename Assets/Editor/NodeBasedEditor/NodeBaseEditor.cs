@@ -101,22 +101,29 @@ public class NodeBasedEditor : EditorWindow
 
         EditorGUILayout.BeginVertical();
         EditorGUILayout.BeginHorizontal();
+
         if (GUILayout.Button("SAVE"))
         {
             OnSave();
         }
+
         if (GUILayout.Button("RESET"))
         {
             OnReset();
         }
+
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal();
-                treeName = EditorGUILayout.TextField("Tree name:",treeName);
-                EditorGUILayout.Space();
+
+        treeName = EditorGUILayout.TextField("Tree name:",treeName);
+
+        EditorGUILayout.Space();
+
         if (GUILayout.Button("DELETE TREE"))
         {
             OnDeleteTree();
         }
+
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndVertical();
 
@@ -474,6 +481,8 @@ public class NodeBasedEditor : EditorWindow
             if(isNew)
                 AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/"+treeName+".asset");
 
+            oui.OnBeforeSerialize();
+
             AssetDatabase.SaveAssets();
 
             LoadTreesFromAssets();
@@ -501,6 +510,7 @@ public class NodeBasedEditor : EditorWindow
 
         if(treeToLoad.root.data != null)
         {
+            treeToLoad.OnAfterDeserialize();
             LoadTree(treeToLoad.root, 0, 0); 
         }
             

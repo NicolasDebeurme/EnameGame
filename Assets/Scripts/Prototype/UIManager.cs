@@ -37,19 +37,13 @@ public class UIManager : ViewManager<UIManager>
 			_views[Array.IndexOf(_gameViews, gameView)] = gameView;
 		}
 
-		_actualGameState.OnGameStateChange += UpdateView;
-
 		for (int i = 0; i < _views.Length; i++)
 		{
-			_views.Initialize();
+            _views[i].Initialize();
 
 			_views[i].Hide();
 		}
 
-	}
-	private void UpdateView(State newGameState)
-	{
-		newGameState.UpdateUI();
 	}
 	#endregion
 
