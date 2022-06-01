@@ -113,7 +113,6 @@ namespace Niantic.ARDKExamples.WayspotAnchors
 
         IEnumerator DisplayPosition()
         {
-            Debug.Log(_camera.transform.position);
             yield return new WaitForSeconds(2);
             StartCoroutine(DisplayPosition());
         }
