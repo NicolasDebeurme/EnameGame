@@ -41,7 +41,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
         private readonly Dictionary<Guid, GameObject> _wayspotAnchorGameObjects =
           new Dictionary<Guid, GameObject>();
 
-        public Matrix4x4 pos;
+        private  Matrix4x4 pos;
 
         private void Awake()
         {
