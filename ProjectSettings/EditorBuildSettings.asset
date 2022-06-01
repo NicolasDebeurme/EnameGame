@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/ARDKExamples/WayspotAnchors/WayspotAnchorsHakim.unity
+    guid: 5da3a211285e6c642ad86026687bdebe
   m_configObjects: {}

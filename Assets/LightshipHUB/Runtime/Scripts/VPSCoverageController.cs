@@ -10,24 +10,28 @@ using Niantic.ARDK.Configuration;
 using Niantic.ARDK.LocationService;
 using Niantic.ARDK.VirtualStudio.VpsCoverage;
 using Niantic.ARDK.VPSCoverage;
+using TMPro;
 
 namespace Niantic.ARDK.Templates 
 {
     public class VPSCoverageController : MonoBehaviour
     {
         public RuntimeEnvironment CoverageClientRuntime = RuntimeEnvironment.LiveDevice;
-        [HideInInspector]
+        //[HideInInspector]
         public VpsCoverageResponses MockResponses;
         [Tooltip("GPS used in Editor")]
         // Default is the Ferry Building in San Francisco
         public LatLng SpoofLocation = new LatLng(37.79531921750984, -122.39360429639748);
-        [Range(0,500)] 
+        [Range(0,5000000)] 
         public int QueryRadius = 250;
         [HideInInspector]
         public RawImage TargetImage;
         
         private ICoverageClient _coverageClient;
         private ILocationService _locationService;
+
+        public TextMeshProUGUI DebugText;
+
 
         void Awake()
         {
@@ -67,12 +71,15 @@ namespace Niantic.ARDK.Templates
 
         private void OnLocationUpdated(LocationUpdatedArgs args)
         {
+            DebugText.text += "Update";
+
             _locationService.LocationUpdated -= OnLocationUpdated;
             _coverageClient.RequestCoverageAreas(args.LocationInfo, QueryRadius, ProcessAreasResult);
         }
 
         private void ProcessAreasResult(CoverageAreasResult result)
         {
+            DebugText.text += "ProcessArea";
             var allTargets = new List<string>();
             if (result.Status != ResponseStatus.Success)
                 return;
@@ -86,6 +93,8 @@ namespace Niantic.ARDK.Templates
 
         private void ProcessTargetsResult(LocalizationTargetsResult result)
         {
+            DebugText.text += "ProcessTarget";
+
             if (result.Status != ResponseStatus.Success)
                 return;
             foreach (var target in result.ActivationTargets)

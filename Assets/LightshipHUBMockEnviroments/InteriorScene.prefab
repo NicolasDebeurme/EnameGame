@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4042764071439902}
   - component: {fileID: 9005716377913968672}
-  - component: {fileID: 8758277031745997480}
   m_Layer: 8
   m_Name: InteriorScene
   m_TagString: EditorOnly
@@ -45,19 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356a576ce733a4b21bee15f55b9f0741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8758277031745997480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830470639293720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625e74a826a37408988fbb393e564cf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MeshScene: {fileID: 0}
 --- !u!1 &321351848176014966
 GameObject:
   m_ObjectHideFlags: 0

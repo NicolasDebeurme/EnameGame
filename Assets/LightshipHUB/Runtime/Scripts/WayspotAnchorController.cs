@@ -30,6 +30,7 @@ namespace Niantic.ARDK.Templates
         private readonly Dictionary<Guid, GameObject> _wayspotAnchorGameObjects =
         new Dictionary<Guid, GameObject>();
 
+
         private void Awake()
         {
             StatusLog.text = "Initializing Session.";
