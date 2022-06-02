@@ -131,7 +131,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
         return;
       }
 
-      var payloads = WayspotAnchorDataUtility.LoadLocalPayloads();
+      var payloads = WayspotAnchorDataUtility.LoadLocalPayloads(true); //pas utilisé
       if (payloads.Length > 0)
       {
         var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payloads);

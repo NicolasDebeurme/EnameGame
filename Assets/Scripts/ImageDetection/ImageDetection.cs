@@ -36,8 +36,7 @@ namespace Niantic.ARDKExamples
     //
     // See the "Detecting Images" page in the User Manual for further information on how to optimally
     // detect images and use image anchors.
-    public class ImageDetection :
-      MonoBehaviour
+    public class ImageDetection : MonoBehaviour
     {
         public static ImageDetection instance;
 

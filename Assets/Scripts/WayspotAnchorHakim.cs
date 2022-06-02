@@ -43,6 +43,9 @@ namespace Niantic.ARDKExamples.WayspotAnchors
 
         private  Matrix4x4 pos;
 
+        public bool isBuildPhone;
+
+
         private void Awake()
         {
             // This is necessary for setting the user id associated with the current user. 
@@ -66,8 +69,6 @@ namespace Niantic.ARDKExamples.WayspotAnchors
         private void OnEnable()
         {
             ARSessionFactory.SessionInitialized += HandleSessionInitialized;
-            StartCoroutine(DisplayPosition());
-
         }
 
         private void Update()
@@ -111,11 +112,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
         }
 
 
-        IEnumerator DisplayPosition()
-        {
-            yield return new WaitForSeconds(2);
-            StartCoroutine(DisplayPosition());
-        }
+      
 
         /// Saves all of the existing wayspot anchors
         public void SaveWayspotAnchors()
@@ -132,6 +129,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
             }
 
             _statusLog.text = "Saved Wayspot Anchors.";
+            Debug.Log("Saved Wayspot Anchors.");
         }
 
         /// Loads all of the saved wayspot anchors
@@ -143,12 +141,13 @@ namespace Niantic.ARDKExamples.WayspotAnchors
                 return;
             }
 
-            var payloads = WayspotAnchorDataUtility.LoadLocalPayloads();
+            var payloads = WayspotAnchorDataUtility.LoadLocalPayloads(isBuildPhone);
             if (payloads.Length > 0)
             {
                 var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payloads);
                 CreateAnchorGameObjects(wayspotAnchors);
                 _statusLog.text = "Loaded Wayspot Anchors.";
+                Debug.Log("Loaded Wayspot Anchors.");
             }
             else
             {
@@ -231,6 +230,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
             // CreateAnchorGameObjects(wayspotAnchors);
 
             _statusLog.text = "Anchor placed.";
+            Debug.Log("Anchor Placed");
         }
 
         private WayspotAnchorService CreateWayspotAnchorService()
@@ -255,6 +255,7 @@ namespace Niantic.ARDKExamples.WayspotAnchors
                 wayspotAnchor.TrackingStateUpdated += HandleWayspotAnchorTrackingUpdated;
                 var id = wayspotAnchor.ID;
                 var anchor = Instantiate(_anchorPrefab);
+                anchor.tag = "Anchor";
                 anchor.SetActive(false);
                 anchor.name = $"Anchor {id}";
                 _wayspotAnchorGameObjects.Add(id, anchor);

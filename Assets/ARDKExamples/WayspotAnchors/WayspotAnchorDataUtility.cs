@@ -36,40 +36,48 @@ namespace Niantic.ARDKExamples.WayspotAnchors
       CopyText(wayspotAnchorsJson);
     }
 
-        public static WayspotAnchorPayload[] LoadLocalPayloads()
+        public static WayspotAnchorPayload[] LoadLocalPayloads(bool isBuildPhone)
         {
-            var payloads = new List<WayspotAnchorPayload>();
-            var json = "{\"Payloads\":[\"ChUIrMaU78aE3vn /ARDh8Z2zqeT1hRUYwO6r+t4CKkUKFQi25Y/jsdbFoo4BEIeftLiM/tSvTBInCg8N026+PxXA9Lk/HZi8ikASFA2a3VA2FYbaYD4dBzqNtCWBwHk/HQAAgD8=\"]}";
-            var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
-            foreach (var wayspotAnchorPayload in wayspotAnchorsData.Payloads)
+            if (isBuildPhone)
             {
-                var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
-                payloads.Add(payload);
-                Debug.Log(payload);
+                Debug.Log("Android");
+                var payloads = new List<WayspotAnchorPayload>();
+                var json = "{\"Payloads\":[\"ChUIrMaU78aE3vn /ARDh8Z2zqeT1hRUYwO6r+t4CKkUKFQi25Y/jsdbFoo4BEIeftLiM/tSvTBInCg8N026+PxXA9Lk/HZi8ikASFA2a3VA2FYbaYD4dBzqNtCWBwHk/HQAAgD8=\"]}";
+                var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
+                foreach (var wayspotAnchorPayload in wayspotAnchorsData.Payloads)
+                {
+                    var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
+                    payloads.Add(payload);
+                    Debug.Log(payload);
+                }
+
+                return payloads.ToArray();
+            }
+            else
+            {
+                Debug.Log("PC Unity Editor");
+                if (PlayerPrefs.HasKey(DataKey))
+                {
+                    var payloads = new List<WayspotAnchorPayload>();
+                    var json = PlayerPrefs.GetString(DataKey);
+                    var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
+                    foreach (var wayspotAnchorPayload in wayspotAnchorsData.Payloads)
+                    {
+                        var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
+                        payloads.Add(payload);
+                        Debug.Log(payload);
+                    }
+                    return payloads.ToArray();
+                }
+                else
+                {
+                    return Array.Empty<WayspotAnchorPayload>();
+                }
+
             }
 
-            return payloads.ToArray();
-        
-            /*
-      if (PlayerPrefs.HasKey(DataKey))
-      {
-        var payloads = new List<WayspotAnchorPayload>();
-        var json = PlayerPrefs.GetString(DataKey);
-        var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
-        foreach (var wayspotAnchorPayload in wayspotAnchorsData.Payloads)
-        {
-          var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
-          payloads.Add(payload);
-          Debug.Log(payload);
+
         }
-        
-        return payloads.ToArray();
-      }
-      else
-      {
-        return Array.Empty<WayspotAnchorPayload>();
-      }*/
-    }
 
 
     

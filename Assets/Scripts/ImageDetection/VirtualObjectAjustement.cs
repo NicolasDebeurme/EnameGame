@@ -7,6 +7,7 @@ using Niantic.ARDKExamples.Helpers;
 public class VirtualObjectAjustement : MonoBehaviour
 {
     public  static VirtualObjectAjustement instance;
+    public VirtualObject Object;
 
     [Header("\nPosition")]
     public float intervalePosition;
@@ -26,8 +27,8 @@ public class VirtualObjectAjustement : MonoBehaviour
     public TextMeshProUGUI[] SliderTextRotation;
     public float[] Rotations;
 
-
-
+    private bool doOneTime=true;
+    
     void Start()
     {
         instance = this;
@@ -35,12 +36,13 @@ public class VirtualObjectAjustement : MonoBehaviour
         Positions = new float[3];
         Rotations = new float[3];
 
+
     }
 
     void Update()
     {
         TextSlidersUpdate();
-
+        UpdatePlaneTransform();
     }
 
     public float ChangeTextValueFrom01ToInfini(float value, float intervale)
@@ -91,7 +93,46 @@ public class VirtualObjectAjustement : MonoBehaviour
         }
     }
 
-    
+    IEnumerator InitialisationSliderAjustement(VirtualObject plane)
+    {
+        yield return new WaitForSeconds(0.1f);
+        SlidersPosition[0].value = ChangeSliderValueFromInfiniTo01(plane.Position[0], intervalePosition);
+        SlidersPosition[1].value = ChangeSliderValueFromInfiniTo01(plane.Position[1],intervalePosition);
+        SlidersPosition[2].value = ChangeSliderValueFromInfiniTo01(plane.Position[2], intervalePosition);
 
+        SlidersScale.value = ChangeSliderValueFromInfiniTo01(plane.Scale, instance.intervaleScale);
+
+        SlidersRotation[0].value = ChangeSliderValueFromInfiniTo01(plane.Rotation[0], instance.intervaleRotation);
+        SlidersRotation[1].value = ChangeSliderValueFromInfiniTo01(plane.Rotation[1], instance.intervaleRotation);
+        SlidersRotation[2].value = ChangeSliderValueFromInfiniTo01(plane.Rotation[2], intervaleRotation);
+    }
+
+    public void UpdatePlaneTransform()
+    {
+        GameObject Anchor = GameObject.FindWithTag("Anchor");
+        if (Anchor!=null && Anchor.transform.GetChild(0).gameObject!= null )
+        {
+            GameObject Prefab = Anchor.transform.GetChild(0).gameObject;
+            if (doOneTime)
+            {
+                Object.Object = Prefab;
+                StartCoroutine(InitialisationSliderAjustement(Object));
+                doOneTime = false;
+            }
+
+            Vector3 offsetPosition = new Vector3(Positions[0], Positions[1], Positions[2]);
+            Quaternion offsetRotation = Quaternion.Euler(Rotations[0], Rotations[1], Rotations[2]);
+            Vector3 offsetScale = new Vector3(Scale, Scale, Scale);  //my code;
+
+
+            Prefab.transform.position = Anchor.transform.position + offsetPosition;
+            Prefab.transform.rotation = Anchor.transform.rotation * offsetRotation;
+            Prefab.transform.localScale = offsetScale;
+
+        }
+        
+
+
+    }
 
 }
