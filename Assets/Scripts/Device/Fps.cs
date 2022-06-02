@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fps : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Fps : MonoBehaviour
     private float frequency = 1.0f;
     private string fps;
 
-    public Text Text;
+    public TextMeshProUGUI TextFps;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class Fps : MonoBehaviour
             // Display it
 
             fps = string.Format("FPS: {0}", Mathf.RoundToInt(frameCount / timeSpan));
-            Text.text = fps;
+            TextFps.text = fps;
         }
     }
 
