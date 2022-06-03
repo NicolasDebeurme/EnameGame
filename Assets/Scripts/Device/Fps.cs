@@ -6,7 +6,6 @@ using TMPro;
 public class Fps : MonoBehaviour
 {
 
-    private int FramesPerSec;
     private float frequency = 1.0f;
     private string fps;
 
