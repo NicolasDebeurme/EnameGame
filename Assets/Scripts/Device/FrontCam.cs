@@ -2,20 +2,144 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.IO;
+using TMPro;
+using Niantic.ARDKExamples;
 
 public class FrontCam : MonoBehaviour
 {
+    public static FrontCam instance;
+
     private bool camAvailable;
-    private WebCamTexture backCam;
+    private WebCamTexture frontCam;
     private Texture defaultBackground;
 
-    public RawImage background;
+    public RawImage imageFrontCam;
     public AspectRatioFitter fit;
 
-    // Use this for initialization
+
+    string[] files = null;
+    public GameObject picture;
+    public Button buttonTakePicture;
+    public Button buttonDeletePicture;
+
+
+
     private void Start()
     {
-        defaultBackground = background.texture;
+        instance = this;
+        SetupFrontCam();
+        imageFrontCam.gameObject.SetActive(true);
+        buttonTakePicture.gameObject.SetActive(true);
+        buttonDeletePicture.gameObject.SetActive(false);
+        picture.gameObject.SetActive(false);
+
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        //TakePicture();
+    }
+
+
+    public void TakePicture()
+    {
+        StartCoroutine(SavePicture());
+        /*
+        imageFrontCam.gameObject.SetActive(false);
+        buttonTakePicture.gameObject.SetActive(false);
+        buttonDeletePicture.gameObject.SetActive(true);
+        picture.gameObject.SetActive(true);*/   
+        /*
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                Debug.Log("press");
+
+                StartCoroutine(SavePicture());
+            }
+        }*/
+
+    }
+
+
+    IEnumerator SavePicture()
+    {
+        
+
+        ScreenCapture.CaptureScreenshot("somepicture.png");
+        Debug.Log("save");
+
+        yield return new WaitForSeconds(2);
+        CheckForExistingImageAndLoad();
+    }
+
+
+
+    public void CheckForExistingImageAndLoad()
+    {
+        files = Directory.GetFiles(Application.persistentDataPath + "/", "*.png");
+        if (files.Length>0)
+        {
+            Debug.Log("pictureExist");
+            GetPictureAndShowIt();
+        }
+    }
+
+    Texture2D GetScreenshotImage(string filePath)
+    {
+        Texture2D texture = null;
+        byte[] fileBytes;
+        if (File.Exists(filePath))
+        {
+            Debug.Log("tryRead");
+            fileBytes = File.ReadAllBytes(filePath);
+            Debug.Log(fileBytes);
+            PersistentKeyValueImage.instance.fileBytesPicture = fileBytes;
+            PersistentKeyValueImage.instance.OnSendImage();
+
+            texture = new Texture2D(2, 2, TextureFormat.RGB24, false);
+            texture.LoadImage(fileBytes);
+            Debug.Log("SucessRead");
+        }
+        return texture;
+    }
+
+    public void GetPictureAndShowIt()
+    {
+        string pathToFile = files[0];
+        Texture2D texture = GetScreenshotImage(pathToFile);
+        /*
+        Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
+                        new Vector2(0.5f, 0.5f));
+        picture.GetComponent<Image>().sprite = sp;
+
+        */
+        imageFrontCam.gameObject.SetActive(false);
+        buttonTakePicture.gameObject.SetActive(false);
+        buttonDeletePicture.gameObject.SetActive(true);
+        picture.gameObject.SetActive(true);
+        
+        Debug.Log("done");
+
+    }
+
+    public void OnClickDeletePicture()
+    {
+        imageFrontCam.gameObject.SetActive(true);
+        buttonTakePicture.gameObject.SetActive(true);
+        buttonDeletePicture.gameObject.SetActive(false);
+        picture.gameObject.SetActive(false);
+        PersistentKeyValueImage.instance.doOnce = true;
+    }
+    
+
+    public void SetupFrontCam()
+    {
+        defaultBackground = imageFrontCam.texture;
         WebCamDevice[] devices = WebCamTexture.devices;
 
         if (devices.Length == 0)
@@ -28,37 +152,30 @@ public class FrontCam : MonoBehaviour
         {
             if (devices[i].isFrontFacing)
             {
-                backCam = new WebCamTexture(devices[i].name, Screen.width, Screen.height);
+                frontCam = new WebCamTexture(devices[i].name, Screen.width, Screen.height);
             }
         }
-        if (backCam == null)
+        if (frontCam == null)
         {
             print("Camera not found");
             return;
         }
-        backCam.Play();
-        background.texture = backCam;
+        frontCam.Play();
+        imageFrontCam.texture = frontCam;
 
-        camAvailable = true;
 
-    }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!camAvailable)
-            return;
-
-        float ratio = (float)backCam.width / (float)backCam.height;
+        float ratio = (float)frontCam.width / (float)frontCam.height;
         fit.aspectRatio = ratio;
 
-        float scaleY = backCam.videoVerticallyMirrored ? -1f : 1f;
+        //float scaleY = frontCam.videoVerticallyMirrored ? -1f : 1f;
+        float scaleY = -1;
         //background.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
-        background.rectTransform.localScale = new Vector3(1f * ratio, scaleY * ratio, 1f * ratio);
+        imageFrontCam.rectTransform.localScale = new Vector3(1f * ratio, scaleY * ratio, 1f * ratio);
 
 
-        int orient = -backCam.videoRotationAngle;
-        background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+        int orient = -frontCam.videoRotationAngle;
+        imageFrontCam.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
     }
 
 

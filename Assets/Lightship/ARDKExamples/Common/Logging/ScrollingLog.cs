@@ -49,7 +49,7 @@ namespace Niantic.ARDKExamples.Helpers
       LogHistory.spacing = LogEntryFontSize / 2f;
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
       _instance = null;
 

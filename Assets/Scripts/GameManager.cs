@@ -6,6 +6,7 @@ public enum ActualState
 {
     NONE,
     CONNEXION,
+    PICTURE,
     SELECT_PLACE,
     GO_TO_PLACE,
     SCAN_PLACE,
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int actualPlace = -1;
 
     public GameObject Connexion;
+    public GameObject Picture;
     public GameObject SelectPlace;
     public GameObject Way;
     public GameObject Scan;
@@ -48,6 +50,16 @@ public class GameManager : MonoBehaviour
         if (actualState == ActualState.CONNEXION)
         {
             Connexion.SetActive(true);
+            Picture.SetActive(false);
+            SelectPlace.SetActive(false);
+            Way.SetActive(false);
+            Scan.SetActive(false);
+            Tree.SetActive(false);
+        }
+        if (actualState == ActualState.PICTURE)
+        {
+            Connexion.SetActive(true);
+            Picture.SetActive(true);
             SelectPlace.SetActive(false);
             Way.SetActive(false);
             Scan.SetActive(false);
@@ -56,6 +68,7 @@ public class GameManager : MonoBehaviour
         if (actualState == ActualState.SELECT_PLACE)
         {
             Connexion.SetActive(false);
+            Picture.SetActive(false);
             SelectPlace.SetActive(true);
             Way.SetActive(false);
             Scan.SetActive(false);
@@ -64,6 +77,7 @@ public class GameManager : MonoBehaviour
         if (actualState == ActualState.GO_TO_PLACE)
         {
             Connexion.SetActive(false);
+            Picture.SetActive(false);
             SelectPlace.SetActive(false);
             Way.SetActive(true);
             Scan.SetActive(false);
@@ -72,6 +86,7 @@ public class GameManager : MonoBehaviour
         if (actualState == ActualState.AR)
         {
             Connexion.SetActive(false);
+            Picture.SetActive(false);
             SelectPlace.SetActive(false);
             Way.SetActive(false);
             Scan.SetActive(true);
@@ -80,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (actualState == ActualState.TREE)
         {
             Connexion.SetActive(false);
+            Picture.SetActive(false);
             SelectPlace.SetActive(false);
             Way.SetActive(false);
             Scan.SetActive(true);
@@ -100,7 +116,11 @@ public class GameManager : MonoBehaviour
         ChangeState();
     }
 
+    public void OnClickNextPicture()
+    {
+        GameManager.instance.actualState = ActualState.SELECT_PLACE;
+        ChangeState();
+    }
 
-  
 
 }

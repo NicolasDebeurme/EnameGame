@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class Picture : MonoBehaviour
 {
    
@@ -58,6 +58,6 @@ public class Picture : MonoBehaviour
         });
 
         Debug.Log("Permission result: " + permission);
-    }*/
+    }
 
-}
+}*/
