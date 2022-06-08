@@ -20,11 +20,13 @@ public class FrontCam : MonoBehaviour
 
 
     string[] files = null;
-    public GameObject picture;
+    public GameObject pictures;
     public Button buttonTakePicture;
     public Button buttonDeletePicture;
 
+    [Space]
 
+    public Image[] FilterImages;
 
     private void Start()
     {
@@ -33,7 +35,13 @@ public class FrontCam : MonoBehaviour
         imageFrontCam.gameObject.SetActive(true);
         buttonTakePicture.gameObject.SetActive(true);
         buttonDeletePicture.gameObject.SetActive(false);
-        picture.gameObject.SetActive(false);
+        pictures.gameObject.SetActive(false);
+
+        foreach (Image image in FilterImages)
+        {
+            image.gameObject.SetActive(false);
+        }
+        FilterImages[(int)PersistentKeyValueTree.instance.YourRole -1 ].gameObject.SetActive(true);
 
     }
 
@@ -121,7 +129,7 @@ public class FrontCam : MonoBehaviour
         imageFrontCam.gameObject.SetActive(false);
         buttonTakePicture.gameObject.SetActive(false);
         buttonDeletePicture.gameObject.SetActive(true);
-        picture.gameObject.SetActive(true);
+        pictures.gameObject.SetActive(true);
         
         Debug.Log("done");
 
@@ -132,7 +140,7 @@ public class FrontCam : MonoBehaviour
         imageFrontCam.gameObject.SetActive(true);
         buttonTakePicture.gameObject.SetActive(true);
         buttonDeletePicture.gameObject.SetActive(false);
-        picture.gameObject.SetActive(false);
+        pictures.gameObject.SetActive(false);
         PersistentKeyValueImage.instance.doOnce = true;
     }
     
@@ -178,5 +186,9 @@ public class FrontCam : MonoBehaviour
         imageFrontCam.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
     }
 
+    public void OnDisable()
+    {
+        frontCam.Stop();
+    }
 
 }
