@@ -1,3 +1,4 @@
+using Niantic.ARDKExamples;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
         instance = this;
         actualState = ActualState.CONNEXION;
         ChangeState();
@@ -42,7 +44,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-
     }
 
     public void ChangeState()

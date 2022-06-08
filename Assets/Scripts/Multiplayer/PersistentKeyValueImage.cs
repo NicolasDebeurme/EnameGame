@@ -55,7 +55,6 @@ namespace Niantic.ARDKExamples
         //public byte[] fileBytesChild;
 
 
-
         // Main interaction point for the low-level networking API.
         private IMultipeerNetworking _networking;
 
@@ -70,7 +69,7 @@ namespace Niantic.ARDKExamples
 
         public void Update()
         {
-            
+
         }
         
 
@@ -110,7 +109,7 @@ namespace Niantic.ARDKExamples
                 ByteArraySerializer.Instance.Serialize(binarySerializer, fileBytesPicture );
             var value = _stream.ToArray();
             Debug.LogFormat("Send : Picture");
-            _networking.StorePersistentKeyValue("Picture" + PersistentKeyValueTree.instance.YourRole, value);
+            _networking.StorePersistentKeyValue("Picture" + PersistentKeyValueTree.instance.YourRole.ToString(), value);//+ PersistentKeyValueTree.instance.YourRole.ToString()
             //_networking.BroadcastData(0, value, TransportType.UnreliableOrdered, true);
         }
 
@@ -122,6 +121,7 @@ namespace Niantic.ARDKExamples
 
         private void OnConnect(ConnectedArgs args)
         {
+
 
         }
 
@@ -159,27 +159,28 @@ namespace Niantic.ARDKExamples
                     texture = new Texture2D(2, 2, TextureFormat.RGB24, false);
                     texture.LoadImage(pictureArray);
 
-                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
-                    new Vector2(0.5f, 0.5f));
+                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),new Vector2(0.5f, 0.5f));
 
-                    if (args.Key == "Picture" + Role.Monk)
+                    Debug.Log("Normalement ca passe");
+                    if (args.Key == "Picture" + Role.Monk.ToString())
                     {
-                        ImageMonk.GetComponent<Image>().sprite = sp;
+                        ImageMonk.sprite = sp;
                     }
-                    if (args.Key == "Picture" + Role.Alchemist)
+                    if (args.Key == "Picture" + Role.Alchemist.ToString())
                     {
-                        ImageAlchemist.GetComponent<Image>().sprite = sp;
+                        ImageAlchemist.sprite = sp;
                     }
-                    if (args.Key == "Picture" + Role.Adult)
+                    if (args.Key == "Picture" + Role.Adult.ToString())
                     {
-                        ImageAdult.GetComponent<Image>().sprite = sp;
+                        ImageAdult.sprite = sp;
                     }
-                    if(args.Key == "Picture" + Role.Child)
+                    if(args.Key == "Picture" + Role.Child.ToString())
                     {
-                        ImageChild.GetComponent<Image>().sprite = sp;
+                        ImageChild.sprite = sp;
                     }
                 }
             }
+
             
         }
     }

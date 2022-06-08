@@ -149,7 +149,7 @@ namespace Niantic.ARDKExamples
         {
             YourRole = (Role)RolesSelection.value;
             RolesSelection.gameObject.SetActive(false);
-            GameManager.instance.actualState = ActualState.SELECT_PLACE;
+            GameManager.instance.actualState = ActualState.PICTURE;
             GameManager.instance.ChangeState();
             foreach (Button Buttonchoice in ButtonsChoice)
             {

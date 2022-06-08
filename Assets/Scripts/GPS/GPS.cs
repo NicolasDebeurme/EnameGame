@@ -23,7 +23,7 @@ public class GPS : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(Position());
+        //StartCoroutine(Position());
     }
 
     public void Update()
@@ -38,7 +38,7 @@ public class GPS : MonoBehaviour
 
     IEnumerator Position()
     {
-        InvokeRepeating(nameof(UpdateGPSData), 0.5f, 1f); // FOR PC ________________________________________
+        //InvokeRepeating(nameof(UpdateGPSData), 0.5f, 1f); // FOR PC ________________________________________
 
         Input.compass.enabled = true;
         Debug.LogFormat("Start");
