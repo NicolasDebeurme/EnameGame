@@ -21,35 +21,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
 
-
+    private GameInfo _gameInfo = null;
     //Network
-    [HideInInspector]
-    public bool isSessionCreated = false;
     public RuntimeEnvironment runtimeEnv;
-    public InputField SessionIDField;
-
-    private IARNetworking _arNetworking = null;
-    private IMultipeerNetworking _networking = null;
-    private IARSession _session = null;
-    //
 
     //ARSession
     private IPeer _self;
+
+    private Dictionary<Guid, Roles> players;
     //
 
     //GamePlay
     private GameStateSystem _actualGameState = null;
 
     public event OnGameInitilizedDelegate OnGameInitialized;
-    public delegate void OnGameInitilizedDelegate();
+    public delegate void OnGameInitilizedDelegate(GameInfo ARNetworkingSession);
     //
 
-    //Prefab
-    [SerializeField]
-    private GameObject prefabToSpawn;
 
-    private GameObject _prefabSpawned = null;
-    //
 
     //GPS
     [Header("GPS")]
@@ -63,56 +52,26 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
-    private void Start()
-    {
-        UIManager.Instance.SetUIEvents();
-        GameInitialized();
-    }
-
-    private void Update()
-    {
-
-    }
 #endregion
 
     #region Networking
-    public void CreateAndRunSharedAR()
+
+    public void StopSharedAR()
     {
-        _arNetworking = ARNetworkingFactory.Create(runtimeEnv);
-        _networking = _arNetworking.Networking;
+        _gameInfo._session.Dispose();
+        _gameInfo._networking.Dispose();
 
-        _session = _arNetworking.ARSession;
+        _gameInfo._arNetworking.Dispose();
 
-
-        var worldTrackingConfig = ARWorldTrackingConfigurationFactory.Create();
-        worldTrackingConfig.WorldAlignment = WorldAlignment.Gravity;
-        worldTrackingConfig.IsAutoFocusEnabled = true;
-
-        worldTrackingConfig.IsSharedExperienceEnabled = true;
-
-        _session.Run(worldTrackingConfig);
-        _session.Ran += OnSessionRan;
-        _session.Deinitialized += OnSessionDeinitialized;
-
-
-        var sessionID = SessionIDField.text;
-
-        var sessionIdAsBytes = Encoding.UTF8.GetBytes(sessionID);
-
-        _networking.Join(sessionIdAsBytes);
-
-        _networking.Connected += OnNetworkedConnected;
-        _networking.PeerDataReceived += OnPeerDataReceived;
-
-        _arNetworking.PeerStateReceived += OnPeerStateReceived;
+        _gameInfo = null;
     }
 
     private void OnSessionDeinitialized(ARSessionDeinitializedArgs args)
     {
-        Destroy(_prefabSpawned?.gameObject);
+        Debug.Log("stopped");
 
         _self = null;
-        _session = null;
+        _gameInfo._session.Dispose();
     }
 
     private void OnSessionRan(ARSessionRanArgs args)
@@ -122,36 +81,22 @@ public class GameManager : MonoBehaviour
 
     private void OnNetworkedConnected(ConnectedArgs args)
     {
-        Debug.LogFormat("Networking joined, peerID: {0}, isHot: {1}", args.Self, args.IsHost);
-
-        _self = args.Self;
-        isSessionCreated = true;
+        Debug.LogFormat("Networking joined, peerID: {0}, isHost: {1}", args.Self, args.IsHost);
     }
-
-    private void OnPeerStateReceived(PeerStateReceivedArgs args)
-    {
-        if( args.State ==PeerState.Stable && _prefabSpawned == null)
-        {
-            SpawnPrefab();
-        }
-
-        if (args.State == PeerState.Stable && _prefabSpawned != null && args.Peer != _self && _self == _networking.Host)
-        {
-            byte[] pos_rot_data = SerializePositionAndRotation(_prefabSpawned.transform.position, _prefabSpawned.transform.eulerAngles);
-
-            SendToASinglePeer(_networking, args.Peer, pos_rot_data);
-        }
-        Debug.LogFormat("Peer {0} us at state:{1}", args.Peer, args.State);
-    }
-
     #endregion
 
     #region Messaging + prefabManagment
 
     //Sending messages
-    void SendToASinglePeer(IMultipeerNetworking networking, IPeer peer, byte[] data)
+    public static void SendToASinglePeer(IMultipeerNetworking networking, IPeer peer, byte[] data)
     {
         networking.SendDataToPeer(tag: 0, data: data, peer: peer, transportType: TransportType.UnreliableUnordered);
+    }
+
+    public static void BroadCastToSession(IMultipeerNetworking networking, uint tag ,byte[] data, bool sendToSelf)
+    {
+        // SendToSelf: true indicates that this message will be sent to the local peer as well
+        networking.BroadcastData(tag: tag, data: data, transportType: TransportType.UnreliableOrdered, sendToSelf: sendToSelf);
     }
 
     private static byte[] SerializePositionAndRotation(Vector3 position, Vector3 rotation)
@@ -167,19 +112,34 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public static void BroadCastChoice(int childCount)
+    {
+        Debug.Log("ChoiceBrodacasted");
+        MemoryStream stream = new MemoryStream();
+
+        BinarySerializer serializer = new BinarySerializer(stream);
+
+        serializer.Serialize(childCount);
+
+        BroadCastToSession(_instance._gameInfo._networking, 1, stream.ToArray(), false);
+    }
 
     //Receiving messages
     // Every time a message is received, this will be called
 
+    // Tags: 0 -> NOTHING
+    //       1 -> StateInfo
     void OnPeerDataReceived(PeerDataReceivedArgs args)
     {
-        if(_prefabSpawned != null)
+        if(args.Tag == 1)
         {
             var stream = args.CreateDataReader();
+            BinaryDeserializer deserializer = new BinaryDeserializer(stream);
 
-            Vector3[] pos_rot_data = DeserializePositionAndRotation(stream);
+            var indexOfChild = (int)deserializer.Deserialize();
 
-            UpdatePrefabPos(pos_rot_data[0], pos_rot_data[1]);
+            GameStateSystem.SetNextActualNode(indexOfChild);
+            GameStateSystem._instance.GetState().NextState();
         }
     }
     private static Vector3[] DeserializePositionAndRotation(MemoryStream stream)
@@ -194,51 +154,75 @@ public class GameManager : MonoBehaviour
             }
     }
 
-    //Manage prefab
-
-
-    private void SpawnPrefab()
-    {
-        Debug.Log("spawned");
-
-        float angleFromNorth = Input.compass.magneticHeading;
-        transform.rotation = Quaternion.Euler(0, angleFromNorth > 180 ? -(angleFromNorth - 180) : Mathf.Abs(angleFromNorth - 180), 0);
-
-        _prefabSpawned = Instantiate(prefabToSpawn);
-        _prefabSpawned.transform.parent = transform;
-
-        if (_self == _networking.Host)
-        {
-            _prefabSpawned.transform.position = new Vector3(1, 0, 0);
-        }
-    }
-    private void UpdatePrefabPos(Vector3 position , Vector3 rotation)
-    {
-        Debug.Log("updated");
-
-        _prefabSpawned.transform.position = position;
-        _prefabSpawned.transform.eulerAngles = rotation;
-
-    }
-
     #endregion
-
 
     public void OnContinue()
     {
         GameStateSystem._instance.GetState().NextState();
     }
 
-    public void GameInitialized()
+    public void GameInitialized(GameInfo ARNetworkingSession)
     {
-        _actualGameState = gameObject.AddComponent<GameStateSystem>();
-        _actualGameState.OnGameStateChange += NewGameState;
+        _gameInfo = ARNetworkingSession;
 
-        if (OnGameInitialized != null)
-            OnGameInitialized();
+        UIManager.Instance.SetUIEvents();
+
+        _actualGameState = gameObject.AddComponent<GameStateSystem>();
+
+        ARNetworkingSession._session.Ran += OnSessionRan;
+        ARNetworkingSession._session.Deinitialized += OnSessionDeinitialized;
+
+        ARNetworkingSession._networking.Connected += OnNetworkedConnected;
+        ARNetworkingSession._networking.PeerDataReceived += OnPeerDataReceived;
+
+        ARNetworkingSession._networking.PersistentKeyValueUpdated += OnPersistentKeyValueUpdated;
+
+        _self = ARNetworkingSession._networking.Self;
+
+        if(_self == ARNetworkingSession._networking.Host)
+        {
+            players = new()
+            {
+                {ARNetworkingSession._networking.Self.Identifier, Roles.None }
+            };
+            SetPlayersDictionnary();
+        }
+
+
+        OnGameInitialized?.Invoke(ARNetworkingSession);
     }
-    private void NewGameState(State newGameState)
+
+    //KeyValuePair
+    void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
     {
-        new NotImplementedException();
+        // Copy the value of the stored KV into local variables
+        byte[] value = args.CopyValue();
+        string key = args.Key;
+
+        // Log some information about the key-value
+        Debug.LogFormat
+        (
+          "Got a Persistet Key-Value. Key: {0}, Length: {1}",
+          key,
+          value.Length
+        );
+
+        switch(key)
+        {
+            case ("Players"):
+                players = value.Deserialize<Dictionary<Guid, Roles>>();
+                players.TryAdd(_gameInfo._networking.Self.Identifier, Roles.None);
+                SetPlayersDictionnary();
+                break;
+        }
     }
+    void SetPlayersDictionnary()
+    {
+        string key = "Players";
+        byte[] value = players.Serialize();
+
+        // Stores the above data as a key-value pair on the server
+        _gameInfo._networking.StorePersistentKeyValue(key, value);
+    }
+    //
 }

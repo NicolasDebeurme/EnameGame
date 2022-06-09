@@ -33,14 +33,19 @@ public class MakeAChoice : State
                 btn.onClick.AddListener(() => ButtonClicked(child));
             }
         }
+        else
+        {
+            _view.Question.text = "Waiting for other player ..";
+        }
 
         yield break;
     }
     private void ButtonClicked(NTree<StoryTreeNodeInfo> child)
     {
+        GameManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child));
+
         GameStateSystem.ActualNode = child;
 
-        ResetButtons();
         NextState();
     }
 
@@ -55,6 +60,9 @@ public class MakeAChoice : State
 
     public override void NextState()
     {
+        ResetButtons();
+        GameStateSystem._gameInfo._session.Pause();
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
+
 }

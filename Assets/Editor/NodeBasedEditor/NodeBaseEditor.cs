@@ -479,9 +479,12 @@ public class NodeBasedEditor : EditorWindow
             SaveTree(treeRoot, nodes[0]);
 
             if(isNew)
-                AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/"+treeName+".asset");
+            {
+                AssetDatabase.CreateAsset(oui, "Assets/Resources/StoryTree/" + treeName + ".asset");
+            }
 
             oui.OnBeforeSerialize();
+            EditorUtility.SetDirty(oui);
 
             AssetDatabase.SaveAssets();
 
@@ -508,9 +511,11 @@ public class NodeBasedEditor : EditorWindow
         nodes = null;
         connections = null;
 
-        if(treeToLoad.root.data != null)
+        treeToLoad.OnBeforeSerialize();
+        treeToLoad.OnAfterDeserialize();
+
+        if (treeToLoad.root.data != null)
         {
-            treeToLoad.OnAfterDeserialize();
             LoadTree(treeToLoad.root, 0, 0); 
         }
             

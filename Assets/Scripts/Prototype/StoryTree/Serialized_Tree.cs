@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
@@ -29,7 +30,6 @@ public class Serialized_Tree: ScriptableObject, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        Debug.Log("Serialize");
         //unity is about to read the serializedNodes field's contents. lets make sure
         //we write out the correct data into that field "just in time".
         serializedNodes.Clear();
@@ -61,27 +61,37 @@ public class Serialized_Tree: ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        Debug.Log("Unserialize");
         //Unity has just written new data into the serializedNodes field.
         //let's populate our actual runtime data with those new values.
 
         if (serializedNodes.Count > 0)
-            root = ReadNodeFromSerializedNodes(0);
-        else
-            root = new NTree<StoryTreeNodeInfo>();
+        {
+            ReadNodeFromSerializedNodes(0,out root);
+        }
     }
 
-    NTree<StoryTreeNodeInfo> ReadNodeFromSerializedNodes(int index)
+    int ReadNodeFromSerializedNodes(int index, out NTree<StoryTreeNodeInfo> node )
     {
         var serializedNode = serializedNodes[index];
-        var children = new List<NTree<StoryTreeNodeInfo>>();
-        for (int i = 0; i != serializedNode.childCount; i++)
-            children.Add(ReadNodeFromSerializedNodes(serializedNode.indexOfFirstChild + i));
 
-        return new NTree<StoryTreeNodeInfo>()
+        var children = new List<NTree<StoryTreeNodeInfo>>();
+
+        NTree<StoryTreeNodeInfo> newNode = 
+        new NTree<StoryTreeNodeInfo>()
         {
             data = serializedNode.data,
-            children = children
+            children = serializedNode.childCount > 0 ? children : null
         };
+
+
+        // The tree needs to be read in depth-first, since that's how we wrote it out.
+        for (int i = 0; i != serializedNode.childCount; i++)
+        {
+            NTree<StoryTreeNodeInfo> childNode;
+            index = ReadNodeFromSerializedNodes(++index, out childNode);
+            newNode.children.Add(childNode);
+        }
+        node = newNode;
+        return index;       
     }
 }

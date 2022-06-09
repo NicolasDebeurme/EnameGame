@@ -83,7 +83,7 @@ public class PrototypeManager : MonoBehaviour
 
             var spawnedPrefab = Instantiate(prefabToSpawn);
             spawnedPrefab.name = "Image-" + imageName;
-            _depthInterpolationManager._occludee = spawnedPrefab.GetComponent<Renderer>();
+            _depthInterpolationManager.TrackOccludee(spawnedPrefab.GetComponent<Renderer>());
 
             _detectedImages[anchor.Identifier] = spawnedPrefab;
 

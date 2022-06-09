@@ -1,3 +1,4 @@
+using Niantic.ARDK.AR;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public abstract class StateMachine : MonoBehaviour
     public delegate void OnGameStateChangeDelegate(State state);
 
     protected State State;
+
 
     public void SetState(State state)
     {
@@ -23,4 +25,5 @@ public abstract class StateMachine : MonoBehaviour
     {
         return State;
     }
+
 }

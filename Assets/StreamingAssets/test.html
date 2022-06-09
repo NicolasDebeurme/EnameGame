@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a map on a webpage</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+
+<script>
+function addTargetToMap(data)
+{
+    const targetName =  data.features[0].geometry.properties.location_target_identifier;
+
+    map.addSource(targetName, {
+        'type': 'geojson',
+        'data': data
+        });
+
+    // Add a circle layer
+    map.addLayer({
+        'id': targetName,
+        'type': 'circle',
+        'source': targetName,
+        'paint': {
+        'circle-color': '#4264fb',
+        'circle-radius': 8,
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#ffffff'
+        }
+    });
+}
+
+function centerMap()
+{
+  map.jumpTo({
+	center: coord2,
+    zoom : 9
+	});
+}
+
+function updateMapCoord(coord1,coord2)
+{
+  map.jumpTo({
+	center: coord2,
+    zoom : 9
+	});
+  
+	data = 
+		{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": coord1
+			},
+		};
+	
+
+	if(map.getSource('player') == undefined)
+	{
+
+    map.loadImage(
+      'https://img.icons8.com/fluency/344/gps-device.png',
+      (error, image) => {
+        if (error) throw error;
+
+        map.addImage('arw', image);
+
+        map.addSource('player', {
+            'type': 'geojson',
+            'data': data
+          });
+          
+        map.addLayer({
+            'id': 'direction',
+            'type': 'symbol',
+            'source': 'player',
+            'layout': {
+            'icon-image': 'arw', // reference the image
+            'icon-size': 0.09
+            }
+        });
+
+      }
+    );
+
+    map.loadImage(
+      'https://img.icons8.com/carbon-copy/72/forward.png',
+      (error, image) => {
+        if (error) throw error;
+
+        map.addImage('comp', image);
+
+        map.addLayer({
+            'id': 'compass',
+            'type': 'symbol',
+            'source': 'player',
+            'layout': {
+              'icon-image': 'comp', // reference the image
+              'icon-offset': [75,0],
+              'icon-size': 0.5
+            }
+        });
+      }
+    );
+    
+	}
+	else
+	{
+		map.getSource('player').setData(data);
+	}
+    
+  //Set way
+  direction.setOrigin(coord1);
+  direction.setDestination(coord2);
+}
+
+function updateMapCompass(bearing)
+{
+  map.rotateTo(bearing);
+}
+</script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.0/mapbox-gl-directions.css' rel='stylesheet' />
+<div id="map"></div>
+<script>
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = 'pk.eyJ1Ijoibmljby0yNyIsImEiOiJjbDN3dHdlaTgxNGoyM2RucHE0MTI2MWowIn0.GGF_1OkHSF6mYWPgMYO--g';
+
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+style: 'mapbox://styles/mapbox/streets-v11', // style URL
+center: [-74.5, 40], // starting position [lng, lat]
+zoom: 6 // starting zoom
+});
+
+const style = [{
+'id': 'directions-route-line-alt',
+  'type': 'line',
+  'source': 'directions',
+  'layout': {
+    'line-cap': 'round',
+    'line-join': 'round'
+  },
+  'paint': {
+    'line-color': '#bbb',
+    'line-width': 4
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'LineString'],
+    ['in', 'route', 'alternate']
+  ]
+}, {
+  'id': 'directions-route-line-casing',
+  'type': 'line',
+  'source': 'directions',
+  'layout': {
+    'line-cap': 'round',
+    'line-join': 'round'
+  },
+  'paint': {
+    'line-color': '#2d5f99',
+    'line-width': 12
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'LineString'],
+    ['in', 'route', 'selected']
+  ]
+}, {
+  'id': 'directions-route-line',
+  'type': 'line',
+  'source': 'directions',
+  'layout': {
+    'line-cap': 'butt',
+    'line-join': 'round'
+  },
+  'paint': {
+    'line-color': {
+      'property': 'congestion',
+      'type': 'categorical',
+      'default': '#4882c5',
+      'stops': [
+        ['unknown', '#4882c5'],
+        ['low', '#4882c5'],
+        ['moderate', '#f09a46'],
+        ['heavy', '#e34341'],
+        ['severe', '#8b2342']
+      ]
+    },
+    'line-width': 7
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'LineString'],
+    ['in', 'route', 'selected']
+  ]
+}, {
+  'id': 'directions-hover-point-casing',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 8,
+    'circle-color': '#fff'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'id', 'hover']
+  ]
+}, {
+  'id': 'directions-hover-point',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 6,
+    'circle-color': '#3bb2d0'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'id', 'hover']
+  ]
+}, {
+  'id': 'directions-waypoint-point-casing',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 8,
+    'circle-color': '#fff'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'id', 'waypoint']
+  ]
+}, {
+  'id': 'directions-waypoint-point',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 6,
+    'circle-color': '#8a8bc9'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'id', 'waypoint']
+  ]
+}, 
+{
+  'id': 'directions-origin-point',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 18,
+    'circle-color': '#3bb2d0'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'marker-symbol', 'T']
+  ]
+}, 
+{
+  'id': 'directions-origin-label',
+  'type': 'symbol',
+  'source': 'directions',
+  'layout': {
+    'text-field': 'T',
+    'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+    'text-size': 12
+  },
+  'paint': {
+    'text-color': '#fff'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'marker-symbol', 'T']
+  ]
+}, {
+  'id': 'directions-destination-point',
+  'type': 'circle',
+  'source': 'directions',
+  'paint': {
+    'circle-radius': 10,
+    'circle-color': '#8a8bc9'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'marker-symbol', 'B']
+  ]
+}, {
+  'id': 'directions-destination-label',
+  'type': 'symbol',
+  'source': 'directions',
+  'layout': {
+    'text-field': 'B',
+    'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+    'text-size': 10
+  },
+  'paint': {
+    'text-color': '#fff'
+  },
+  'filter': [
+    'all',
+    ['in', '$type', 'Point'],
+    ['in', 'marker-symbol', 'B']
+  ]
+}];
+
+const direction =new MapboxDirections({
+    styles : style,
+    interactive:false,
+    controls:{ inputs: false, instructions: false },
+    accessToken: mapboxgl.accessToken,
+    unit: 'metric',
+    profile: 'mapbox/walking'
+}); 
+
+map.addControl(
+  direction
+);
+
+map.on('load', () => {
+  updateMapCoord([11,11],[10,10]);
+});
+
+
+// map.on('render', () => {
+//         console.log('testons');
+//         updateMap([11.1,11.1],[10,10]);
+//         Unity.call('test');
+// });
+
+</script>
+</body>
+</html>

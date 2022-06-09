@@ -6,23 +6,28 @@ using UnityEngine.Android;
 
 public class GoToPlace : State
 {
-    private GPS _gps = null;
+    private GoToPlaceView _view;
+
     public GoToPlace(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
 
     public override IEnumerator Start()
     {
-        UIManager.Show<GoToPlaceView>();
-        _gps = GameStateSystem.gameObject.AddComponent<GPS>();
+        _view = UIManager.Show<GoToPlaceView>();
+
+        GameStateSystem.locationService = GameStateSystem.gameObject.AddComponent<LocationService>();
+        GameStateSystem._gameInfo._session.Ran += GameStateSystem.locationService.OnSessionStarted;
+
+        _view.OnSpoofValueChange += GameStateSystem.locationService.SpoofValueChange;
+
         yield break;
     }
 
     public override void NextState()
     {
-        _gps.Destroy();
+        GameStateSystem.locationService.Destroy();
         GameStateSystem.SetState(new AR(GameStateSystem));
     }
-
 
 }

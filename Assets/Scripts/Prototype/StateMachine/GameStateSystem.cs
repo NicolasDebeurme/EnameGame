@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using static Enums;
+using Niantic.ARDK.LocationService;
 
 public class GameStateSystem : StateMachine
 {
@@ -12,7 +13,7 @@ public class GameStateSystem : StateMachine
 
 
     //Tree
-    private Serialized_Tree[] _availableTrees;
+    public Serialized_Tree[] _availableTrees;
 
     public NTree<StoryTreeNodeInfo> ActualNode;
     //
@@ -20,6 +21,12 @@ public class GameStateSystem : StateMachine
     //GamePlay
     [NonSerialized]
     public Roles _playerRole;
+
+    [NonSerialized]
+    public LocationService locationService;
+
+    [NonSerialized]
+    public GameInfo _gameInfo;
     //
     private void Awake()
     {
@@ -32,7 +39,7 @@ public class GameStateSystem : StateMachine
         if (_availableTrees?[0]?.root != null)
             ActualNode=_availableTrees[0].root;
 
-        SetState(new Begin(this));
+        SetState(new Lobby(this));
     }
 
     //Tree Managment
@@ -41,10 +48,14 @@ public class GameStateSystem : StateMachine
         _availableTrees = null;
         _availableTrees = Resources.LoadAll<Serialized_Tree>("StoryTree");
     }
+
+    public static void SetNextActualNode(int indexOfChild)
+    {
+        _instance.ActualNode = _instance.ActualNode.GetChild(indexOfChild);
+    }
     //
 
     //Choice State
-    private List<Button> _choiceButtons;
 
     //
 }

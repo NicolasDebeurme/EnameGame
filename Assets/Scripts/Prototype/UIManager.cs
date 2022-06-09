@@ -26,7 +26,7 @@ public class UIManager : ViewManager<UIManager>
 	}
 
 	#region private Methodes
-	private void GameInitialized()
+	private void GameInitialized(GameInfo test)
 	{
 		_actualGameState = GameStateSystem._instance;
 
