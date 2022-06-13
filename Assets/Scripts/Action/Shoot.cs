@@ -7,13 +7,15 @@ public class Shoot : MonoBehaviour
 {
     public Camera Camera;
     public GameObject Boat;
+    public GameObject Gun;
 
     public GameObject PrefabObjectImpact;
     public Transform ContenaireObjectImpact;
+    public Transform BoatUnderWaterPosition;
 
     private float ShootDistance = 10f;
     public int numberBullet = 5;
-
+    private bool hasTouch = false;
     [Header("UI")]
     public Image Reticule;
     public Button ShootButton;
@@ -26,11 +28,15 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        
+        if (hasTouch)
+        {
+            Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
+        }
     }
 
     public void OnClickShoot()
     {
+        Gun.GetComponent<Animator>().SetTrigger("shoot");
         if (numberBullet>=1)
         {
             RaycastHit hit;
@@ -46,6 +52,7 @@ public class Shoot : MonoBehaviour
                 if (hit.transform.gameObject == Boat)
                 {
                     Debug.Log("Touch The Boat ");
+                    hasTouch = true;
                 }
 
 

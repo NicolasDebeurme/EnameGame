@@ -14,6 +14,10 @@ public class PortalManager : MonoBehaviour
 	void Start()
 	{
 		SponzaMaterials = Sponza.GetComponent<Renderer>().sharedMaterials;
+        if (MainCamera== null )
+        {
+			MainCamera = Camera.main.gameObject;
+        }
 	}
 
 	// Update is called once per frame
@@ -21,6 +25,7 @@ public class PortalManager : MonoBehaviour
 	{
 
 		Vector3 camPositionInPortalSpace = transform.InverseTransformPoint(MainCamera.transform.position);
+		Debug.Log(camPositionInPortalSpace);
 
 		if (camPositionInPortalSpace.y < .3f)
 		{

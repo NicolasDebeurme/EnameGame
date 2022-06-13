@@ -42,8 +42,10 @@ namespace Niantic.ARDKExamples.WayspotAnchors
             {
                 Debug.Log("Android");
                 var payloads = new List<WayspotAnchorPayload>();
-                var json = "{\"Payloads\":[\"ChUIrMaU78aE3vn /ARDh8Z2zqeT1hRUYwO6r+t4CKkUKFQi25Y/jsdbFoo4BEIeftLiM/tSvTBInCg8N026+PxXA9Lk/HZi8ikASFA2a3VA2FYbaYD4dBzqNtCWBwHk/HQAAgD8=\"]}";
-                var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
+                var json = "{\"Payloads\":[\"ChUI6ZPv4Kquyt9iEN6y4rvax / b + jgEYluyPqaIBKkUKFQjdm + iQguCvpBkQt +/ ZwtjYvv6sARInCg8N9F0NPxUdKow / HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR + kc / HQAAgD8 = \"]}";
+
+            //var json = "{\"Payloads\":[\"ChUIrMaU78aE3vn /ARDh8Z2zqeT1hRUYwO6r+t4CKkUKFQi25Y/jsdbFoo4BEIeftLiM/tSvTBInCg8N026+PxXA9Lk/HZi8ikASFA2a3VA2FYbaYD4dBzqNtCWBwHk/HQAAgD8=\"]}";
+            var wayspotAnchorsData = JsonUtility.FromJson<WayspotAnchorsData>(json);
                 foreach (var wayspotAnchorPayload in wayspotAnchorsData.Payloads)
                 {
                     var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
