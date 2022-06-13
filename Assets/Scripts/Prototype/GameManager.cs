@@ -26,18 +26,24 @@ public class GameManager : MonoBehaviour
     public RuntimeEnvironment runtimeEnv;
 
     //ARSession
-    private IPeer _self;
+    public static IPeer _self;
 
-    private Dictionary<Guid, Roles> players;
+    public static Dictionary<Guid, Roles> players;
     //
 
     //GamePlay
     private GameStateSystem _actualGameState = null;
 
-    public event OnGameInitilizedDelegate OnGameInitialized;
-    public delegate void OnGameInitilizedDelegate(GameInfo ARNetworkingSession);
+    public UI_Inventory uiInventory;
     //
 
+    //Events
+    public event OnGameInitilizedDelegate OnGameInitialized;
+    public delegate void OnGameInitilizedDelegate(GameInfo ARNetworkingSession);
+
+    public event PlayerDictionnaryUpdatedDelegate PlayerDictionnaryUpdated;
+    public delegate void PlayerDictionnaryUpdatedDelegate(Dictionary<Guid, Roles> players);
+    //
 
 
     //GPS
@@ -50,19 +56,29 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
     }
 
-#endregion
+    private void Start()
+    {
+
+        UIManager.Instance.SetUIEvents();
+        _actualGameState = gameObject.AddComponent<GameStateSystem>();
+    }
+
+    #endregion
 
     #region Networking
 
     public void StopSharedAR()
     {
-        _gameInfo._session.Dispose();
+
         _gameInfo._networking.Dispose();
+        _gameInfo._session.Dispose();
 
         _gameInfo._arNetworking.Dispose();
 
+        _self = null;
         _gameInfo = null;
     }
 
@@ -70,8 +86,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("stopped");
 
-        _self = null;
-        _gameInfo._session.Dispose();
+        StopSharedAR();
     }
 
     private void OnSessionRan(ARSessionRanArgs args)
@@ -82,7 +97,43 @@ public class GameManager : MonoBehaviour
     private void OnNetworkedConnected(ConnectedArgs args)
     {
         Debug.LogFormat("Networking joined, peerID: {0}, isHost: {1}", args.Self, args.IsHost);
+
+        _self = args.Self;
+
+        if (args.IsHost)
+        {
+            players = new()
+            {
+                {args.Self.Identifier, Roles.None }
+            };
+            SetPlayersDictionnary();
+        }
+
+
+        OnGameInitialized?.Invoke(_gameInfo);
     }
+
+    private void OnPeerAdded(PeerAddedArgs args)
+    {   
+        if(_self == _gameInfo._networking.Host)
+        {
+            Debug.LogFormat("Peer joined: {0}", args.Peer.Identifier);
+            players.Add(args.Peer.Identifier, Roles.None);
+            SetPlayersDictionnary();
+        }
+    }
+    private void OnPeerRemoved(PeerRemovedArgs args)
+    {
+        if (_self == _gameInfo._networking.Host)
+        {
+            if (players.ContainsKey(args.Peer.Identifier))
+            {
+                players.Remove(args.Peer.Identifier);
+                SetPlayersDictionnary();
+            }
+        }
+    }
+
     #endregion
 
     #region Messaging + prefabManagment
@@ -123,24 +174,43 @@ public class GameManager : MonoBehaviour
 
         BroadCastToSession(_instance._gameInfo._networking, 1, stream.ToArray(), false);
     }
+    public static void BroadCastNextState()
+    {
+        Debug.Log("NextState");
+
+        BroadCastToSession(_instance._gameInfo._networking, 2, new byte[0], false);
+    }
 
     //Receiving messages
     // Every time a message is received, this will be called
 
     // Tags: 0 -> NOTHING
-    //       1 -> StateInfo
+    //       1 -> ChoiceInfo
+    //       2 -> BeginGame
     void OnPeerDataReceived(PeerDataReceivedArgs args)
     {
-        if(args.Tag == 1)
+        var stream = args.CreateDataReader();
+        BinaryDeserializer deserializer = new BinaryDeserializer(stream);
+
+        switch (args.Tag)
         {
-            var stream = args.CreateDataReader();
-            BinaryDeserializer deserializer = new BinaryDeserializer(stream);
+            case (1):
+                var indexOfChild = (int)deserializer.Deserialize();
 
-            var indexOfChild = (int)deserializer.Deserialize();
+                GameStateSystem.SetNextActualNode(indexOfChild);
+                GameStateSystem._instance.GetState().NextState();
+                break;
 
-            GameStateSystem.SetNextActualNode(indexOfChild);
-            GameStateSystem._instance.GetState().NextState();
+            case (2):
+                GameStateSystem._instance.GetState().NextState();
+                break;
+
+            default:
+
+                break;
+
         }
+
     }
     private static Vector3[] DeserializePositionAndRotation(MemoryStream stream)
     {
@@ -165,35 +235,21 @@ public class GameManager : MonoBehaviour
     {
         _gameInfo = ARNetworkingSession;
 
-        UIManager.Instance.SetUIEvents();
-
-        _actualGameState = gameObject.AddComponent<GameStateSystem>();
-
         ARNetworkingSession._session.Ran += OnSessionRan;
         ARNetworkingSession._session.Deinitialized += OnSessionDeinitialized;
 
+        ARNetworkingSession._networking.PeerAdded += OnPeerAdded;
+        ARNetworkingSession._networking.PeerRemoved += OnPeerRemoved;
         ARNetworkingSession._networking.Connected += OnNetworkedConnected;
         ARNetworkingSession._networking.PeerDataReceived += OnPeerDataReceived;
 
         ARNetworkingSession._networking.PersistentKeyValueUpdated += OnPersistentKeyValueUpdated;
 
-        _self = ARNetworkingSession._networking.Self;
-
-        if(_self == ARNetworkingSession._networking.Host)
-        {
-            players = new()
-            {
-                {ARNetworkingSession._networking.Self.Identifier, Roles.None }
-            };
-            SetPlayersDictionnary();
-        }
-
-
-        OnGameInitialized?.Invoke(ARNetworkingSession);
+        
     }
 
     //KeyValuePair
-    void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
+    private void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
     {
         // Copy the value of the stored KV into local variables
         byte[] value = args.CopyValue();
@@ -211,18 +267,20 @@ public class GameManager : MonoBehaviour
         {
             case ("Players"):
                 players = value.Deserialize<Dictionary<Guid, Roles>>();
-                players.TryAdd(_gameInfo._networking.Self.Identifier, Roles.None);
-                SetPlayersDictionnary();
+                PlayerDictionnaryUpdated?.Invoke(players);
                 break;
         }
     }
-    void SetPlayersDictionnary()
+    public static void SetPlayersDictionnary()
     {
         string key = "Players";
         byte[] value = players.Serialize();
 
         // Stores the above data as a key-value pair on the server
-        _gameInfo._networking.StorePersistentKeyValue(key, value);
+        _instance._gameInfo._networking.StorePersistentKeyValue(key, value);
+
+        _instance.PlayerDictionnaryUpdated?.Invoke(players);
     }
     //
+
 }

@@ -11,8 +11,6 @@ public class UIManager : ViewManager<UIManager>
 	[Header("Views")]
 	[SerializeField]
 	private View[] _gameViews;
-
-	private GameStateSystem _actualGameState;
 	//
 	protected override void Awake()
 	{
@@ -26,9 +24,8 @@ public class UIManager : ViewManager<UIManager>
 	}
 
 	#region private Methodes
-	private void GameInitialized(GameInfo test)
+	private void GameInitialized()
 	{
-		_actualGameState = GameStateSystem._instance;
 
 		_views = new View[_gameViews.Length];
 
@@ -43,14 +40,13 @@ public class UIManager : ViewManager<UIManager>
 
 			_views[i].Hide();
 		}
-
 	}
 	#endregion
 
 	#region public static Methodes
 	public void SetUIEvents()
     {
-		GameManager._instance.OnGameInitialized += s_instance.GameInitialized;
+        s_instance.GameInitialized();
     }
 	#endregion
 }

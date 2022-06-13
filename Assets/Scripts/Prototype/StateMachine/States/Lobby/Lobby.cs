@@ -30,6 +30,7 @@ public class Lobby : State
 
     public override void NextState()
     {
+        GameManager.BroadCastNextState();
         GameStateSystem._playerRole = _view.playerRole;
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
@@ -60,28 +61,29 @@ public class Lobby : State
 
         _networking.Join(sessionIdAsBytes);
 
-        GameManager._instance.GameInitialized(GameStateSystem._gameInfo);
+        GameManager._instance.OnGameInitialized += UpdateLobby;
+        GameManager._instance.PlayerDictionnaryUpdated += OnPlayerDictionnaryUpdated;
 
-        GameManager._instance.OnGameInitialized += WaitAndUpdateLobby;
+        GameManager._instance.GameInitialized(GameStateSystem._gameInfo); 
     }
-
 
     private void OnLobbyButtonPressed(LobbyButton buttonType)
     {
         switch(buttonType)
         {
             case (LobbyButton.Join):
-                if (GameStateSystem._gameInfo._session == null)
+                if (GameStateSystem._gameInfo == null)
                     CreateAndRunSharedAR();
                 break;
 
             case (LobbyButton.Create):
-                if (GameStateSystem._gameInfo._session == null)
+                if (GameStateSystem._gameInfo == null)
                     CreateAndRunSharedAR();
                 break;
 
             case(LobbyButton.Leave):
                 GameManager._instance.StopSharedAR();
+                _view.PlayerRoleChange -= OnRoleChange;
                 break;
 
             default:
@@ -90,8 +92,27 @@ public class Lobby : State
         }
     }
 
-    private void WaitAndUpdateLobby(GameInfo gameInfo)
+    private void UpdateLobby(GameInfo gameInfo)
     {
+        GameManager._instance.OnGameInitialized -= UpdateLobby;
 
+        _view.PlayerRoleChange += OnRoleChange;
+    }
+
+    private void OnRoleChange(Roles newRole)
+    {
+        var netwotking = GameStateSystem._gameInfo._networking;
+
+        GameManager.players[netwotking.Self.Identifier] = newRole;
+        GameManager.SetPlayersDictionnary();
+
+        if (newRole != 0 && netwotking.Self == netwotking.Host)
+            _view._startButton.interactable = true;
+        else
+            _view._startButton.interactable = false;
+    }
+    private void OnPlayerDictionnaryUpdated(Dictionary<Guid, Roles> players)
+    {
+        _view.UpdateUI(players);
     }
 }

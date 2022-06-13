@@ -10,7 +10,7 @@ public class LobbyView : View
 {
     //Private
     [SerializeField]
-    private TextMeshProUGUI[] players;
+    private TextMeshProUGUI[] playersUI;
 
     [SerializeField]
     private GameObject inLobby;
@@ -19,8 +19,9 @@ public class LobbyView : View
 
     [SerializeField]
     private TMP_Dropdown _dropDownBtn;
+
     [SerializeField]
-    private Button _startButton;
+    public Button _startButton;
 
     [HideInInspector]
     public Roles playerRole = Roles.None;
@@ -31,6 +32,9 @@ public class LobbyView : View
     //Events
     public event OnLobbyButtonPressedDelegate LobbyButtonPressed;
     public delegate void OnLobbyButtonPressedDelegate(LobbyButton buttonType);
+
+    public event PlayerRoleChangeDelegate PlayerRoleChange;
+    public delegate void PlayerRoleChangeDelegate(Roles playerRole);
 
 
     public override void Initialize()
@@ -50,20 +54,8 @@ public class LobbyView : View
     {
         playerRole = (Roles)role;
 
-        if(role != 0)
-            _startButton.interactable = true;
-        else
-            _startButton.interactable = false;
-    }
+        PlayerRoleChange?.Invoke(playerRole);
 
-    public void OnPlayerConnected(int index)
-    {
-        players[index].text = "Player " + index.ToString() + " connected !";
-    }
-
-    public void OnPlayerDisconnected(int index)
-    {
-        players[index].text = "Waiting for players ...";
     }
 
     public void OnLobbyButton(int buttonType)
@@ -71,6 +63,20 @@ public class LobbyView : View
         LobbyButtonPressed?.Invoke((LobbyButton)buttonType);
 
         ChangeLobbyState();
+    }
+    public void UpdateUI(Dictionary<Guid, Roles> players)
+    {
+        int count = 0;
+        foreach (var player in players)
+        {
+            playersUI[count].text = player.Key + " is " + player.Value.ToString();
+                count++;
+        }
+
+        for(int i= count; i<playersUI.Length; i++)
+        {
+            playersUI[i].text = "Waiting for players ...";
+        }
     }
     #endregion
 
@@ -88,7 +94,6 @@ public class LobbyView : View
             inLobby.SetActive(true);
         }
     }
-
     #endregion
 }
 

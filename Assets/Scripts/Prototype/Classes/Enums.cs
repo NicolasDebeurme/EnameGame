@@ -27,7 +27,6 @@ public class Enums : MonoBehaviour
         Pos
     }
 
-    [Serializable]
     public enum LobbyButton
     {
         Join,
@@ -35,4 +34,9 @@ public class Enums : MonoBehaviour
         Leave
     }
 
+    public enum ItemType
+    {
+        Pistol,
+        Jar
+    }
 }

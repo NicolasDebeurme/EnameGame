@@ -14,7 +14,6 @@ using TMPro;
 public class WaySpotService : MonoBehaviour
 {
     private string LocalSaveKey = "my_wayspots";
-    public TextMeshProUGUI LocalizationStatus;
     
 
     private WayspotAnchorService wayspotAnchorService;
@@ -22,10 +21,13 @@ public class WaySpotService : MonoBehaviour
     private Dictionary<Guid,GameObject> anchors = new Dictionary<Guid, GameObject>();
 
     //ToSet
-    public GameObject prefab;
     public IARSession session;
+    public GameObject prefab;
     public ILocationService locationService;
-
+    public TextMeshProUGUI LocalizationStatus;
+    public int actualLevel;
+    //Event
+    public EventHandler ScreenTap;
     public void OnSessionStarted(ARSessionRanArgs args)
     {
         Debug.Log("WS Sessionstarted Event");
@@ -34,6 +36,14 @@ public class WaySpotService : MonoBehaviour
         wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
     }
 
+    public void Init(IARSession session, GameObject prefab, ILocationService locationService, TextMeshProUGUI LocalizationStatus, int level)
+    {
+        this.session = session;
+        this.prefab = prefab;
+        this.locationService = locationService;
+        this.LocalizationStatus = LocalizationStatus;
+        actualLevel = level;
+    }
     public void Update()
     {
         LocalizationStatus.text = wayspotAnchorService != null ? wayspotAnchorService.LocalizationState.ToString() : "NoWayspotService";
@@ -75,7 +85,8 @@ public class WaySpotService : MonoBehaviour
             );
 
         if (hitTestResults.Count <= 0) return;
-        Debug.Log("pass");
+
+        ScreenTap?.Invoke(this, EventArgs.Empty); // TapPassEvent
 
         Matrix4x4 poseMatrix = hitTestResults[0].WorldTransform;
 
@@ -108,7 +119,6 @@ public class WaySpotService : MonoBehaviour
     {
         var anchor = anchors[args.ID].transform;
 
-        Debug.Log(args.Position);
         anchor.rotation = args.Rotation;
         anchor.position = args.Position;
         anchor.gameObject.SetActive(true);

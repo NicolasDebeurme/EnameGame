@@ -26,8 +26,12 @@ public class GameStateSystem : StateMachine
     public LocationService locationService;
 
     [NonSerialized]
-    public GameInfo _gameInfo;
+    public int level=0;
+
     //
+
+    [NonSerialized]
+    public GameInfo _gameInfo;
     private void Awake()
     {
         _instance = this;
