@@ -24,6 +24,9 @@ public class NodeContent
     public string question;
     public Visibility visibilitys;
 
+    public string action;
+    static Dictionary<string, MonoScript> m_ScriptCache;
+
     public NodeContent(Node node, GUIStyle boxStyle, Rect boxRect)
     {
         this.node = node;
@@ -36,6 +39,17 @@ public class NodeContent
         textStyle.border = new RectOffset(12, 12, 12, 12);
 
         visibilitys = new Visibility();
+
+        m_ScriptCache = new Dictionary<string, MonoScript>();
+        var scripts = Resources.FindObjectsOfTypeAll<MonoScript>();
+        for (int i = 0; i < scripts.Length; i++)
+        {
+            var type = scripts[i].GetClass();
+            if (type != null && !m_ScriptCache.ContainsKey(type.FullName))
+            {
+                m_ScriptCache.Add(type.FullName, scripts[i]);
+            }
+        }
     }
     public float Draw()
     {
@@ -56,6 +70,11 @@ public class NodeContent
         FieldsRect.y = FieldsRect.y + 20;
         textToBeChose = EditorGUI.TextField(FieldsRect, textToBeChose);
 
+        FieldsRect.y = FieldsRect.y + 25;
+        EditorGUI.PrefixLabel(FieldsRect, new GUIContent("ActionToPerform:"));
+
+        (FieldsRect,action) = DrawMonoScriptField(FieldsRect, action, new GUIContent("Action:"));
+
         FieldsRect = DrawVisibilityItem(FieldsRect,visibilitys.Decide,"Decide");
         FieldsRect = DrawVisibilityItem(FieldsRect, visibilitys.See, "See");
         FieldsRect = DrawVisibilityItem(FieldsRect, visibilitys.Blind, "Blind");
@@ -71,12 +90,13 @@ public class NodeContent
     }
 
 
-    public void LoadContent(Places placeName,string question, string textToBeChose,Visibility visibilitys)
+    public void LoadContent(Places placeName,string question, string textToBeChose,Visibility visibilitys, string action)
     {
         this.placeName = placeName;
         this.question = question;
         this.textToBeChose= textToBeChose;
         this.visibilitys = visibilitys;
+        this.action = action;
     }
 
     public Rect DrawVisibilityItem(Rect rect, List<Roles> visibilityList, string visibilityName)
@@ -105,6 +125,44 @@ public class NodeContent
         return rect;
     }
 
+    bool m_ViewString = false;
+    public (Rect,string) DrawMonoScriptField(Rect position, string property, GUIContent label)
+    {
+            EditorGUI.PrefixLabel(position, label);
+            m_ViewString = GUI.Toggle(position, m_ViewString, "", "label");
+            position.y += 25;
+            if (m_ViewString)
+            {
+                property = EditorGUI.TextField(position, property);
+                return (position,property);
+            }
+            MonoScript script = null;
+            string typeName = property;
+            if (!string.IsNullOrEmpty(typeName))
+            {
+                m_ScriptCache.TryGetValue(typeName, out script);
+                if (script == null)
+                    GUI.color = Color.red;
+            }
+            
+            script = (MonoScript)EditorGUI.ObjectField(position, script, typeof(MonoScript), false);
+            if (GUI.changed)
+            {
+                if (script != null)
+                {
+                    var type = script.GetClass();
+
+                    if (type != null)
+                        property = script.GetClass().FullName;
+                    else
+                        Debug.LogWarning("The script file " + script.name + " doesn't contain an assignable class");
+                }
+                else
+                    property = "";
+            }
+        position.y += 25;
+        return (position,property);
+    }
     public (Rect,Roles) DrawRoles(Rect rect,Roles roleName)
     {
         rect.y += 20;

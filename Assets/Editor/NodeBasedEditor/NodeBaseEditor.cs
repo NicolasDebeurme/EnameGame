@@ -404,7 +404,7 @@ public class NodeBasedEditor : EditorWindow
 
 
         Node newNode = new Node(nodePosition, 200, 200, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode);
-        newNode.content.LoadContent(treeNode.data.place,treeNode.data.dialogueText,treeNode.data.textToBeChose,treeNode.data.visibilitys);
+        newNode.content.LoadContent(treeNode.data.place,treeNode.data.dialogueText,treeNode.data.textToBeChose,treeNode.data.visibilitys, treeNode.data.action);
         nodes.Add(newNode);
 
         if(nodes.Count > 1) // notRootNode
@@ -447,7 +447,7 @@ public class NodeBasedEditor : EditorWindow
                         if(connection.inPoint == node.inPoint)
                         {
                             NTree<StoryTreeNodeInfo> Nnode = treeNode.AddChild();
-                            Nnode.data = new StoryTreeNodeInfo(node.content.question, node.content.placeName, node.content.textToBeChose, node.content.visibilitys);
+                            Nnode.data = new StoryTreeNodeInfo(node.content.question, node.content.placeName, node.content.textToBeChose, node.content.visibilitys, node.content.action);
                             SaveTree(Nnode, node);
                         }
                     }
@@ -474,7 +474,7 @@ public class NodeBasedEditor : EditorWindow
             }    
 
             NTree <StoryTreeNodeInfo> treeRoot= new NTree<StoryTreeNodeInfo>();
-            treeRoot.data = new StoryTreeNodeInfo(nodes[0].content.question, nodes[0].content.placeName, nodes[0].content.textToBeChose, nodes[0].content.visibilitys);
+            treeRoot.data = new StoryTreeNodeInfo(nodes[0].content.question, nodes[0].content.placeName, nodes[0].content.textToBeChose, nodes[0].content.visibilitys, nodes[0].content.action);
             oui.root = treeRoot;
             SaveTree(treeRoot, nodes[0]);
 

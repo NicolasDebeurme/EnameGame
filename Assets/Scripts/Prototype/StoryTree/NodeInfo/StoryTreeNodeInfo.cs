@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static Enums;
 
@@ -11,14 +12,14 @@ public class StoryTreeNodeInfo
     public Visibility visibilitys;
     public string dialogueText;
     public Places place;
-
-
-    public StoryTreeNodeInfo(string dialogueText, Places place, string textToBeChose, Visibility visibilitys)
+    public string action;
+    public StoryTreeNodeInfo(string dialogueText, Places place, string textToBeChose, Visibility visibility, string action)
     {
         this.dialogueText = dialogueText;
         this.place = place;
         this.textToBeChose = textToBeChose;
-        this.visibilitys = visibilitys;
+        this.visibilitys = visibility;
+        this.action = action;
     }
 
 }

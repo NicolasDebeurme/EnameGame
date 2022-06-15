@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class AR : State
 {
-
+    //Action
+    private StepAction action;
     //WaySpot
     private WaySpotService wayspotService;
     private ARView _view;
@@ -33,9 +34,12 @@ public class AR : State
         wayspotService.ScreenTap += _inventory.UseItem;
         GameStateSystem._gameInfo._session.Ran += wayspotService.OnSessionStarted;
 
+        yield return new WaitForSeconds(1f);
+        action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
+        action.Initialize(GameStateSystem);
+
         yield break;
     }
-
     public override void NextState()
     {
         GameStateSystem.level++;

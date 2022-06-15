@@ -43,6 +43,13 @@ public class WaySpotService : MonoBehaviour
         this.locationService = locationService;
         this.LocalizationStatus = LocalizationStatus;
         actualLevel = level;
+
+        StartLevelLogic(actualLevel);
+    }
+
+    private void StartLevelLogic(int level)
+    {
+
     }
     public void Update()
     {

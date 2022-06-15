@@ -1,0 +1,25 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "ActionData", menuName = "Actions/CreateActionData", order = 1)]
+public class ActionData : ScriptableObject
+{
+    [Serializable]
+    public class Prefab
+    {
+        public string name;
+        public GameObject prefab;
+    }
+
+    public Prefab[] prefabs;
+
+    [Serializable]
+    public class Payload
+    {
+        public string name;
+        public string payloads;
+    }
+    public Payload[] payloads;
+}

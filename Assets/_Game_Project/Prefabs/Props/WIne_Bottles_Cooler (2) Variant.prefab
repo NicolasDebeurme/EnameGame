@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4039879195070769329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1497633551547254891, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: be4ebbf27015b634bbc777150bcbcc25, type: 2}
+    - target: {fileID: 6472036494680381826, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be4ebbf27015b634bbc777150bcbcc25, type: 2}
+    - target: {fileID: 8029497674754964579, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.39754802
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674754964579, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.10276232
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674754964579, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.06661344
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755062472, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_Name
+      value: WIne_Bottles_Cooler (2) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 313.43707
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0865312
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -259.2028
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9016588
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.43244833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 51.246002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029497674755352296, guid: 33453c1b594ad5b449b14336a784d0ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1267742694140196102, guid: 33453c1b594ad5b449b14336a784d0ef, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 33453c1b594ad5b449b14336a784d0ef, type: 3}
