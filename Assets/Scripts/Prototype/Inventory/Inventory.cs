@@ -22,7 +22,6 @@ public class Inventory
         _itemList = new List<Item>();
 
         _itemList.Add(new Item { itemType = ItemType.Pistol });
-        _itemList.Add(new Item { itemType = ItemType.Jar });
     }
 
     public void AddItem(Item item)

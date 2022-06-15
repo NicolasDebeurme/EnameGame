@@ -22,4 +22,27 @@ public class ActionData : ScriptableObject
         public string payloads;
     }
     public Payload[] payloads;
+
+    //Dialogues
+    [Serializable]
+    public class DialogueArray
+    {
+        [SerializeField]
+        private Dialogue[] dialogues;
+
+        public Dialogue this[string name]
+        {
+            get
+            {
+                foreach (var dialogue in dialogues)
+                {
+                    if (dialogue.name == name)
+                        return dialogue;
+                }
+                return null;
+            }
+        }
+    }
+
+    public DialogueArray dialogues;
 }

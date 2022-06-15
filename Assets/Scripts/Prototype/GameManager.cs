@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     //
 
     //GamePlay
-    private GameStateSystem _actualGameState = null;
+    public GameStateSystem _actualGameState = null;
 
     public UI_Inventory uiInventory;
     //

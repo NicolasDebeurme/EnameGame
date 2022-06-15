@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: ActionData
   m_EditorClassIdentifier: 
   prefabs:
-  - name: Jar
-    prefab: {fileID: 1652343495664601935, guid: 07847416245372c4e8b05d7969cec039,
+  - name: Alchemist
+    prefab: {fileID: 4154342236452732209, guid: e40a0f6308a402f408e4d9a47b414976,
       type: 3}
   payloads: []
+  dialogues:
+    dialogues:
+    - name: First
+      sentences:
+      - Test
+      - Ca va ?
+      - On est bien la

@@ -13,8 +13,8 @@ public class AR : State
     private WaySpotService wayspotService;
     private ARView _view;
 
-    private Inventory _inventory;
-        public UI_Inventory uiInventory;
+    public Inventory _inventory;
+    public UI_Inventory uiInventory;
     public AR(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
