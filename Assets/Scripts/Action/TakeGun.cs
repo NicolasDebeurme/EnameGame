@@ -34,6 +34,11 @@ public class TakeGun : MonoBehaviour
                 if (hit.collider != null)
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
+                    if (hit.transform.gameObject == Gun) // hit.transform.tag = " ..."
+                    {
+                        isGunTake = true;
+                        TextAnimator.SetTrigger("show");
+                    }
                 }
             }
 
