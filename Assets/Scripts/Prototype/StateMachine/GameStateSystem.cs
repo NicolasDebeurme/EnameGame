@@ -40,7 +40,7 @@ public class GameStateSystem : StateMachine
     private void Start()
     {
         inventory = new Inventory(UseItem);
-        GameManager._instance.uiInventory.SetInventory(inventory);
+        GameManager.Instance.uiInventory.SetInventory(inventory);
 
         LoadTreesFromAssets();
         if (_availableTrees?[0]?.root != null)

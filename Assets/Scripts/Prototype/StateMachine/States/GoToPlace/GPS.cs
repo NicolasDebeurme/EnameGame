@@ -25,7 +25,7 @@ public class GPS : MonoBehaviour
     private void Awake()
     {
 
-        GameManager gm = GameManager._instance;
+        GameManager gm = GameManager.Instance;
 
         Init(5, gm.imageBoussole, gm.pointToReach, GameStateSystem._instance.GetState());
     }

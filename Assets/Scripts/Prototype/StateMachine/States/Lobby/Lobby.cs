@@ -30,42 +30,11 @@ public class Lobby : State
 
     public override void NextState()
     {
-        GameManager.BroadCastNextState();
+        NetworkingManager.BroadCastNextState();
         GameStateSystem._playerRole = _view.playerRole;
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
 
-    private void CreateAndRunSharedAR()
-    {
-        var _arNetworking = ARNetworkingFactory.Create(GameManager._instance.runtimeEnv) ;
-        var _networking = _arNetworking.Networking;
-
-        var _session = _arNetworking.ARSession;
-
-
-        var _sessionConfigData = ARWorldTrackingConfigurationFactory.Create();
-        _sessionConfigData.WorldAlignment = WorldAlignment.Gravity;
-        _sessionConfigData.PlaneDetection = PlaneDetection.Horizontal;
-
-        _sessionConfigData.IsAutoFocusEnabled = false;
-        _sessionConfigData.IsDepthEnabled = false;
-        _sessionConfigData.IsLightEstimationEnabled = false;
-        _sessionConfigData.IsSharedExperienceEnabled = true;
-
-        GameStateSystem._gameInfo = new GameInfo(_arNetworking,_networking,_session,_sessionConfigData);
-
-
-        var sessionID = _view.SessionIDField.text;
-
-        var sessionIdAsBytes = Encoding.UTF8.GetBytes(sessionID);
-
-        _networking.Join(sessionIdAsBytes);
-
-        GameManager._instance.OnGameInitialized += UpdateLobby;
-        GameManager._instance.PlayerDictionnaryUpdated += OnPlayerDictionnaryUpdated;
-
-        GameManager._instance.GameInitialized(GameStateSystem._gameInfo); 
-    }
 
     private void OnLobbyButtonPressed(LobbyButton buttonType)
     {
@@ -73,16 +42,16 @@ public class Lobby : State
         {
             case (LobbyButton.Join):
                 if (GameStateSystem._gameInfo == null)
-                    CreateAndRunSharedAR();
+                    CreateNetworking();
                 break;
 
             case (LobbyButton.Create):
                 if (GameStateSystem._gameInfo == null)
-                    CreateAndRunSharedAR();
+                    CreateNetworking();
                 break;
 
             case(LobbyButton.Leave):
-                GameManager._instance.StopSharedAR();
+                NetworkingManager.Instance.StopSharedAR();
                 _view.PlayerRoleChange -= OnRoleChange;
                 break;
 
@@ -92,9 +61,18 @@ public class Lobby : State
         }
     }
 
+    private void CreateNetworking()
+    {
+        NetworkingManager.Instance.CreateAndRunSharedAR(_view.SessionIDField);
+
+        NetworkingManager.Instance.OnNetworkInitialized += UpdateLobby;
+        NetworkingManager.Instance.PlayerDictionnaryUpdated += OnPlayerDictionnaryUpdated;
+
+    }
+
     private void UpdateLobby(GameInfo gameInfo)
     {
-        GameManager._instance.OnGameInitialized -= UpdateLobby;
+        NetworkingManager.Instance.OnNetworkInitialized -= UpdateLobby;
 
         _view.PlayerRoleChange += OnRoleChange;
     }
@@ -103,8 +81,8 @@ public class Lobby : State
     {
         var netwotking = GameStateSystem._gameInfo._networking;
 
-        GameManager.players[netwotking.Self.Identifier] = newRole;
-        GameManager.SetPlayersDictionnary();
+        NetworkingManager.players[netwotking.Self.Identifier] = newRole;
+        NetworkingManager.SetPlayersDictionnary();
 
         if (newRole != 0 && netwotking.Self == netwotking.Host)
             _view._startButton.interactable = true;

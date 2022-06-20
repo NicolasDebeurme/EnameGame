@@ -49,7 +49,7 @@ public class AR : State
             GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
         else
         {
-            GameManager._instance.StopSharedAR();
+            NetworkingManager.Instance.StopSharedAR();
             GameStateSystem.SetState(new End(GameStateSystem));
         }
     }

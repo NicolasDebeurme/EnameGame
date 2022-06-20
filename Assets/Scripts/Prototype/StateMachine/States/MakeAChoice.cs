@@ -42,7 +42,7 @@ public class MakeAChoice : State
     }
     private void ButtonClicked(NTree<StoryTreeNodeInfo> child)
     {
-        GameManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child));
+        NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child));
 
         GameStateSystem.ActualNode = child;
 
