@@ -25,6 +25,8 @@ public class Lobby : State
 
         _view.LobbyButtonPressed += OnLobbyButtonPressed;
 
+        GameStateSystem.gameObject.AddComponent<NetworkingManager>();
+
         yield break ;
     }
 
@@ -63,11 +65,10 @@ public class Lobby : State
 
     private void CreateNetworking()
     {
-        NetworkingManager.Instance.CreateAndRunSharedAR(_view.SessionIDField);
-
         NetworkingManager.Instance.OnNetworkInitialized += UpdateLobby;
         NetworkingManager.Instance.PlayerDictionnaryUpdated += OnPlayerDictionnaryUpdated;
 
+        NetworkingManager.Instance.CreateAndRunSharedAR(_view.SessionIDField);
     }
 
     private void UpdateLobby(GameInfo gameInfo)

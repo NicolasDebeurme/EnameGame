@@ -55,7 +55,6 @@ public class LobbyView : View
         playerRole = (Roles)role;
 
         PlayerRoleChange?.Invoke(playerRole);
-
     }
 
     public void OnLobbyButton(int buttonType)
