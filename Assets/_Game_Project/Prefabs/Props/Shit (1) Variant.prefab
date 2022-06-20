@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1190290090302212152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541071263668437429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.72, y: 1.63, z: 5.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6761399737199933330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541071263668437429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RemoveGrass: 1
+  RemovePlants: 1
+  RemoveTrees: 1
+  RemoveObjects: 1
+  RemoveLargeObjects: 1
+  AdditionalGrassPerimiter: 0
+  AdditionalPlantPerimiter: 0
+  AdditionalTreePerimiter: 0
+  AdditionalObjectPerimiter: 0
+  AdditionalLargeObjectPerimiter: 0
+  AdditionalGrassPerimiterMax: 0
+  AdditionalPlantPerimiterMax: 0
+  AdditionalTreePerimiterMax: 0
+  AdditionalObjectPerimiterMax: 0
+  AdditionalLargeObjectPerimiterMax: 0
+  NoiseScaleGrass: 5
+  NoiseScalePlant: 5
+  NoiseScaleTree: 5
+  NoiseScaleObject: 5
+  NoiseScaleLargeObject: 5
+  Id: 4ed40339-605c-4d90-b3db-093d34db33c1
+  IncludeVegetationType: 0
+  Nodes:
+  - Selected: 0
+    Position: {x: 3.4926128, y: -0.10182381, z: 2.510358}
+    OverrideWidth: 0
+    CustomWidth: 2
+    Active: 1
+  - Selected: 0
+    Position: {x: 3.5073485, y: -0.14065742, z: -2.489402}
+    OverrideWidth: 0
+    CustomWidth: 2
+    Active: 1
+  - Selected: 0
+    Position: {x: -3.4929285, y: -0.12718391, z: -2.5101907}
+    OverrideWidth: 0
+    CustomWidth: 2
+    Active: 1
+  - Selected: 0
+    Position: {x: -3.5075822, y: -0.07741737, z: 2.4894786}
+    OverrideWidth: 0
+    CustomWidth: 2
+    Active: 1
+  ClosedArea: 1
+  ShowArea: 1
+  ShowHandles: 1
+  MaskName: 
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 33554432
+  VegetationTypeList: []
+  ReductionTolerance: 0.2
+--- !u!1001 &541071263668406037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_Name
+      value: Shit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 82.4066
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -186.37796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.93330145
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.35909387
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 42.089
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5275107b2b1387249a4998c7e643994a, type: 3}
+--- !u!1 &541071263668437429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5275107b2b1387249a4998c7e643994a,
+    type: 3}
+  m_PrefabInstance: {fileID: 541071263668406037}
+  m_PrefabAsset: {fileID: 0}

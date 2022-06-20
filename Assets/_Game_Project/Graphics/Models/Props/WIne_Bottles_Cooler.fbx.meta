@@ -1,0 +1,260 @@
+fileFormatVersion: 2
+guid: df6e8e44db0dd1c41aa4f36680960a28
+ModelImporter:
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Cube.1014
+  - first:
+      1: 100002
+    second: Cube.1016
+  - first:
+      1: 100004
+    second: Cube.1017
+  - first:
+      1: 100006
+    second: Cube.1018
+  - first:
+      1: 100008
+    second: Cylinder.040
+  - first:
+      1: 100010
+    second: Cylinder.044
+  - first:
+      1: 100012
+    second: Cylinder.045
+  - first:
+      1: 100014
+    second: Plane.001
+  - first:
+      1: 100016
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Cube.1014
+  - first:
+      4: 400002
+    second: Cube.1016
+  - first:
+      4: 400004
+    second: Cube.1017
+  - first:
+      4: 400006
+    second: Cube.1018
+  - first:
+      4: 400008
+    second: Cylinder.040
+  - first:
+      4: 400010
+    second: Cylinder.044
+  - first:
+      4: 400012
+    second: Cylinder.045
+  - first:
+      4: 400014
+    second: Plane.001
+  - first:
+      4: 400016
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Wine_Bottle_Cork
+  - first:
+      21: 2100002
+    second: Wine_BottleGlass
+  - first:
+      21: 2100004
+    second: Wine_Bottle_Wine
+  - first:
+      21: 2100006
+    second: Bottle_Cooler_Body
+  - first:
+      21: 2100008
+    second: Bottle_Cooler_water
+  - first:
+      23: 2300000
+    second: Cube.1014
+  - first:
+      23: 2300002
+    second: Cube.1016
+  - first:
+      23: 2300004
+    second: Cube.1017
+  - first:
+      23: 2300006
+    second: Cube.1018
+  - first:
+      23: 2300008
+    second: Cylinder.040
+  - first:
+      23: 2300010
+    second: Cylinder.044
+  - first:
+      23: 2300012
+    second: Cylinder.045
+  - first:
+      23: 2300014
+    second: Plane.001
+  - first:
+      33: 3300000
+    second: Cube.1014
+  - first:
+      33: 3300002
+    second: Cube.1016
+  - first:
+      33: 3300004
+    second: Cube.1017
+  - first:
+      33: 3300006
+    second: Cube.1018
+  - first:
+      33: 3300008
+    second: Cylinder.040
+  - first:
+      33: 3300010
+    second: Cylinder.044
+  - first:
+      33: 3300012
+    second: Cylinder.045
+  - first:
+      33: 3300014
+    second: Plane.001
+  - first:
+      43: 4300000
+    second: Cylinder.045
+  - first:
+      43: 4300002
+    second: Cube.1018
+  - first:
+      43: 4300004
+    second: Cube.1017
+  - first:
+      43: 4300006
+    second: Cube.1016
+  - first:
+      43: 4300008
+    second: Cylinder.040
+  - first:
+      43: 4300010
+    second: Plane.001
+  - first:
+      43: 4300012
+    second: Cube.1014
+  - first:
+      43: 4300014
+    second: Cylinder.044
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottle_Cooler_Body
+    second: {fileID: 2100000, guid: 3e273e38dc60e444f8c4b2ae6e2ad5fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottle_Cooler_water
+    second: {fileID: 2100000, guid: e5c0caf596f3c7d4a81189b9674a34ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wine_BottleGlass
+    second: {fileID: 2100000, guid: db64ee3cf83509244a33ef1cddf7f67e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wine_Bottle_Cork
+    second: {fileID: 2100000, guid: 3bca11d1eb4bb3045b5a8d3d6eaeecd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wine_Bottle_Wine
+    second: {fileID: 2100000, guid: 91e40969d84545e41b93b29da4a38998, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 2
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

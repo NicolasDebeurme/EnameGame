@@ -1,0 +1,260 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!43 &-8543938059443498788
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Zalfpotje_A_Impostor
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 30
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 12
+    localAABB:
+      m_Center: {x: 0, y: -0.0000023192842, z: 0}
+      m_Extent: {x: 0.00043602614, y: 0.00043602614, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 070003000b000b0009000700070005000300030001000b000b000a000900090008000700070006000500050004000300030002000100010000000b00
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 12
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 384
+    _typelessdata: 709ae4b9498aa9b8000000000000000000000000000080bf00000000a6e5d13e702bc7b9a39d86b9000000000000000000000000000080bf19d8833de039553e146f3bb9bad1e5b9000000000000000000000000ffff7fbf380d973e00000000b42c9738bad1e5b9000000000000000000000000000080bf5829153f00000000160283396983cbb9000000000000000000000000000080bfb65a493f10ab6b3d709ae4396b3d3cb9000000000000000000000000000080bf0000803f48f6973e709ae439fe53db38000000000000000000000000000080bf0000803fec611f3f3677b23992f1a839000000000000000000000000000080bf46ed633faf465f3f584ff9382663e339000000000000000000000000000080bf06e6223f0000803fc22904b92663e339000000000000000000000000000080bfbcffb53e0000803fdc7fb7b94451a539000000000000000000000000000080bf7809ca3de83e5d3f709ae4b98eb6c638000000000000000000000000000080bf000000002f7f1c3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -0.0000046114437, y: -0.0000022434979, z: 0.0000035347475}
+    m_Extent: {x: 0.00038342547, y: 0.00037760334, z: 0.00026712235}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
+--- !u!21 &-2422683746533344315
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Zalfpotje_A_Impostor
+  m_Shader: {fileID: 4800000, guid: 572f9be5706148142b8da6e9de53acdb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 3d33e1c63abae834ab0378640d36b0a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission:
+        m_Texture: {fileID: 2800000, guid: 27210e2e694f167478f0ea96ce0223e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 2800000, guid: 2107e8fdeb9169d41867740bd05f35e0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Specular:
+        m_Texture: {fileID: 2800000, guid: fdc32cef52ec5744ab3cda211265a999, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AI_AlphaToCoverage: 0
+    - _AI_ShadowBias: 0.25
+    - _AI_ShadowView: 1
+    - _ClipMask: 0.5
+    - _DepthSize: 0.0008690899
+    - _Frames: 15
+    - _FramesX: 15
+    - _FramesY: 15
+    - _Hemi: 0
+    - _Hue: 0
+    - _ImpostorSize: 0.0008720523
+    - _Parallax: 1
+    - _TextureBias: -1
+    - _Use_Parallax: 0
+    m_Colors:
+    - _AI_SizeOffset: {r: 0.0008720523, g: 0.0008690899, b: 0, a: -0.00017730496}
+    - _HueVariation: {r: 0, g: 0, b: 0, a: 0}
+    - _Offset: {r: -0.0000046114437, g: -0.0000022434979, b: 0.0000035347475, a: 0.0026595744}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ba7a43222473d4292f91ae936fe2cc, type: 3}
+  m_Name: Zalfpotje_A_Impostor
+  m_EditorClassIdentifier: 
+  Material: {fileID: -2422683746533344315}
+  Mesh: {fileID: -8543938059443498788}
+  Version: 9707
+  ImpostorType: 1
+  LockedSizes: 1
+  SelectedSize: 512
+  TexSize: {x: 512, y: 512}
+  DecoupleAxisFrames: 0
+  HorizontalFrames: 15
+  VerticalFrames: 15
+  PixelPadding: 30
+  MaxVertices: 12
+  Tolerance: 0.15
+  NormalScale: 0.01
+  ShapePoints:
+  - {x: 0, y: 0.5900448}
+  - {x: 0.06437702, y: 0.7917714}
+  - {x: 0.29502273, y: 1}
+  - {x: 0.5826621, y: 1}
+  - {x: 0.7865404, y: 0.9424638}
+  - {x: 1, y: 0.70319915}
+  - {x: 1, y: 0.37741208}
+  - {x: 0.89033926, y: 0.1278277}
+  - {x: 0.6363224, y: 0}
+  - {x: 0.35546672, y: 0}
+  - {x: 0.09865087, y: 0.13575888}
+  - {x: 0, y: 0.38868433}
+  Preset: {fileID: 11400000, guid: e4786beb7716da54dbb02a632681cc37, type: 2}
+  OverrideOutput: []

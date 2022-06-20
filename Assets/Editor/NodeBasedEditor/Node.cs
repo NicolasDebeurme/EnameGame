@@ -26,6 +26,7 @@ public class Node
         inPoint = new ConnectionPoint(this, ConnectionPointType.In, inPointStyle, OnClickInPoint);
 
         outPoints = new List<ConnectionPoint>();
+
         for (int i = 0; i < 5; i++)
             outPoints.Add(new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint));
 
@@ -48,7 +49,7 @@ public class Node
         for(int i =0; i < outPoints.Count; i++)
             outPoints[i].Draw(i-2);
 
-        content.Draw();  
+        rect.height = content.Draw();  
     }
 
     public bool ProcessEvents(Event e)

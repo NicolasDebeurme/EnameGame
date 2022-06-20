@@ -1,3 +1,4 @@
+// Copyright 2022 Niantic, Inc. All Rights Reserved.
 using Niantic.ARDK.AR;
 using Niantic.ARDK.AR.Awareness;
 using Niantic.ARDK.AR.Awareness.Depth;
@@ -42,7 +43,7 @@ namespace Niantic.ARDK.Extensions
     }
 
     [SerializeField]
-    public Renderer _occludee;
+    private Renderer _occludee;
 
     private void Awake()
     {
