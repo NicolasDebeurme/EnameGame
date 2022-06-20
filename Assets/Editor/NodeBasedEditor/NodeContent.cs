@@ -160,7 +160,6 @@ public class NodeContent
                 else
                     property = "";
             }
-        position.y += 25;
         return (position,property);
     }
     public (Rect,Roles) DrawRoles(Rect rect,Roles roleName)

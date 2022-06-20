@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860173516441723574}
   - component: {fileID: -8204955927043130565}
+  - component: {fileID: 3926788806773971817}
   m_Layer: 0
   m_Name: Jar
   m_TagString: Untagged
@@ -192,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 4446366308696838309}
   m_LocalRotation: {x: -0.6972593, y: -0.012437321, z: 0.012782469, w: 0.71659714}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 220, y: 220, z: 220}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7033019240932246675}
@@ -212,3 +213,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fcc3f5b3732194ea5b266bdb9774cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &3926788806773971817
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446366308696838309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.001000041
+  m_Center: {x: 0, y: 0, z: 0}

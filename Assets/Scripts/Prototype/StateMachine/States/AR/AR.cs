@@ -13,7 +13,6 @@ public class AR : State
     private WaySpotService wayspotService;
     private ARView _view;
 
-    public Inventory _inventory;
     public UI_Inventory uiInventory;
     public AR(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
@@ -23,18 +22,17 @@ public class AR : State
     {
         _view = UIManager.Show<ARView>();
 
-        _inventory = new Inventory(UseItem);
-        _inventory.OnItemHanded += UpdateItemUI;
-        GameManager._instance.uiInventory.SetInventory(_inventory);
+        GameStateSystem.inventory.OnItemHanded += UpdateItemUI;
 
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
         wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
-        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, GameStateSystem.locationService._locationService, _view.LocalizationStatus, GameStateSystem.level);
-        wayspotService.ScreenTap += _inventory.UseItem;
+        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, GameStateSystem.locationService._locationService, _view.LocalizationStatus);
+        wayspotService.ScreenTap += GameStateSystem.inventory.UseItem;
         GameStateSystem._gameInfo._session.Ran += wayspotService.OnSessionStarted;
 
         yield return new WaitForSeconds(1f);
+
         action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
         action.Initialize(GameStateSystem);
 
@@ -42,20 +40,18 @@ public class AR : State
     }
     public override void NextState()
     {
-        GameStateSystem.level++;
+        GameStateSystem.inventory.OnItemHanded -= UpdateItemUI;
 
-        if(GameStateSystem.ActualNode.children?.Count > 0)
+        action.DestroySelf();
+        wayspotService.DestroySelf();
+
+        if (GameStateSystem.ActualNode.children?.Count > 0)
             GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
         else
         {
             GameManager._instance.StopSharedAR();
             GameStateSystem.SetState(new End(GameStateSystem));
         }
-    }
-
-    private void UseItem(ItemWorld item)
-    {
-        Debug.Log(item.GetItem().itemType.ToString() + " used !");
     }
 
     private void UpdateItemUI(object sender, Item item)

@@ -20,8 +20,6 @@ public class Inventory
         this.useItemAction = useItemAction;
 
         _itemList = new List<Item>();
-
-        _itemList.Add(new Item { itemType = ItemType.Pistol });
     }
 
     public void AddItem(Item item)

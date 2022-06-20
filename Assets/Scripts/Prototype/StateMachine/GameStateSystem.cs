@@ -26,7 +26,7 @@ public class GameStateSystem : StateMachine
     public LocationService locationService;
 
     [NonSerialized]
-    public int level=0;
+    public Inventory inventory;
 
     //
 
@@ -39,6 +39,9 @@ public class GameStateSystem : StateMachine
 
     private void Start()
     {
+        inventory = new Inventory(UseItem);
+        GameManager._instance.uiInventory.SetInventory(inventory);
+
         LoadTreesFromAssets();
         if (_availableTrees?[0]?.root != null)
             ActualNode=_availableTrees[0].root;
@@ -59,7 +62,10 @@ public class GameStateSystem : StateMachine
     }
     //
 
-    //Choice State
+    private void UseItem(ItemWorld item)
+    {
+        Debug.Log(item.GetItem().itemType.ToString() + " used !");
+    }
 
-    //
+
 }

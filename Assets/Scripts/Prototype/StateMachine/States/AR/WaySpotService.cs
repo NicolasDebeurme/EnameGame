@@ -36,21 +36,16 @@ public class WaySpotService : MonoBehaviour
         wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
     }
 
-    public void Init(IARSession session, GameObject prefab, ILocationService locationService, TextMeshProUGUI LocalizationStatus, int level)
+    public void Init(IARSession session, GameObject prefab, ILocationService locationService, TextMeshProUGUI LocalizationStatus)
     {
         this.session = session;
         this.prefab = prefab;
         this.locationService = locationService;
         this.LocalizationStatus = LocalizationStatus;
-        actualLevel = level;
-
-        StartLevelLogic(actualLevel);
-    }
-
-    private void StartLevelLogic(int level)
-    {
 
     }
+
+    
     public void Update()
     {
         LocalizationStatus.text = wayspotAnchorService != null ? wayspotAnchorService.LocalizationState.ToString() : "NoWayspotService";
@@ -163,6 +158,11 @@ public class WaySpotService : MonoBehaviour
                 OnWaySpotAchorAdded(wayspotAnchors);
             }
         }
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(this);
     }
     [Serializable]
     private class MyStoredAnchorsData

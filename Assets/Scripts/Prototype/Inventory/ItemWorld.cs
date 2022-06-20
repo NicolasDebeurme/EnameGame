@@ -18,6 +18,15 @@ public class ItemWorld : MonoBehaviour
 
         return itemWorld;
     }
+    public static ItemWorld SpawnItemWorld(Item item, Transform parent)
+    {
+        Transform transform = Instantiate(ItemAssets.Instance.Assets[item.itemType].prefab,parent).transform;
+
+        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        itemWorld.SetItem(item);
+
+        return itemWorld;
+    }
 
     public static ItemWorld SpawnItemHand(Item item)
     {
@@ -45,5 +54,11 @@ public class ItemWorld : MonoBehaviour
     public void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    public void OnRayHit()
+    {
+        GameManager._instance._actualGameState.inventory.AddItem(_item);
+        DestroySelf();
     }
 }

@@ -18,18 +18,53 @@ public class EntranceAction : StepAction
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
-        Button btn = UIManager.ActionButton;
-
-        TextMeshProUGUI btnText = btn.GetComponentInChildren<TextMeshProUGUI>();
-        btnText.text = "Take the medecinal jar";
-
-        btn.onClick.AddListener(() => ActionButtonClicked());
     }
 
-    private void ActionButtonClicked()
+    private void Update()
     {
-        AR arState = GameStateSystem.GetState() as AR;
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Debug.Log("Touch ");
+            Debug.DrawRay(ray.origin, ray.direction * 20, Color.white, 1);
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Debug.Log("Touch " + hit.transform.gameObject.name);
+                if (hit.collider != null)
+                {
+                    Debug.Log("Touch " + hit.transform.gameObject.name);
 
-        arState._inventory.AddItem(new Item { itemType = ItemType.Jar });
+                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
+                    if (jar != null) // hit.transform.tag = " ..."
+                    {
+                        jar.OnRayHit();
+                    }
+                }
+            }
+
+        }
+#else
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider != null)
+                {
+                    Debug.Log("Touch " + hit.transform.gameObject.name);
+
+                    Jar jar = hit.transform.GetComponent<Jar>();
+                    if (jar != null) // hit.transform.tag = " ..."
+                    {
+                        jar.OnRayHit();
+                    }
+                }
+            }
+        }
+#endif
     }
 }

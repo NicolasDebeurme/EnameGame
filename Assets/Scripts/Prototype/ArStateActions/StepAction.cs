@@ -21,4 +21,9 @@ public abstract class StepAction : MonoBehaviour
         }
         return loadedObject;
     }
+
+    public virtual void DestroySelf()
+    {
+        Destroy(this);
+    }
 }
