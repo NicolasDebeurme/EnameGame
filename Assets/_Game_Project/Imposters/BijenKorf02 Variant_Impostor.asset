@@ -160,6 +160,7 @@ Mesh:
   m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
+    serializedVersion: 2
     offset: 0
     size: 0
     path: 
@@ -202,14 +203,15 @@ MonoBehaviour:
   OverrideOutput: []
 --- !u!21 &7009389136408099221
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BijenKorf02 Variant_Impostor
-  m_Shader: {fileID: 4800000, guid: 572f9be5706148142b8da6e9de53acdb, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: afdeae005ae55d640a2034c769746f2c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -227,6 +229,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9e7c0264020c4a74e9195c82125c5d0a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normals:
         m_Texture: {fileID: 2800000, guid: 43eb2ce4d0783114fbf7eba8302a908e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -235,6 +241,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9bcf9102829a7d14eb46b1408a9f6d35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AI_AlphaToCoverage: 0
     - _AI_ShadowBias: 0.25
@@ -246,8 +253,10 @@ Material:
     - _Hue: 0
     - _ImpostorSize: 0.96565604
     - _Parallax: 1
+    - _StencilComp: 3
     - _TextureBias: -1
     m_Colors:
     - _AI_SizeOffset: {r: 0.96565604, g: 0.97023135, b: 0, a: -0.004166667}
     - _HueVariation: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0.33501497, b: -0.0000000399369, a: 0.06666667}
+  m_BuildTextureStacks: []

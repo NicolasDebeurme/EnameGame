@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &-9074014890594830038
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Big_Bed Variant_Impostor
-  m_Shader: {fileID: 4800000, guid: 572f9be5706148142b8da6e9de53acdb, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: afdeae005ae55d640a2034c769746f2c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -27,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0976ea51cd203d1479f49ae7e60084e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normals:
         m_Texture: {fileID: 2800000, guid: 1c6b70a93295785419599ec84e101f69, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -35,6 +40,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: c698d5c09d16800469231a2ccc895938, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AI_AlphaToCoverage: 0
     - _AI_ShadowBias: 0.25
@@ -46,11 +52,13 @@ Material:
     - _Hue: 0
     - _ImpostorSize: 3.3042815
     - _Parallax: 1
+    - _StencilComp: 3
     - _TextureBias: -1
     m_Colors:
     - _AI_SizeOffset: {r: 3.3042815, g: 3.3004591, b: 0, a: 0.000375}
     - _HueVariation: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: -0.09142128, g: -0.08828789, b: 1.1239454, a: -0.012}
+  m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +256,7 @@ Mesh:
   m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
+    serializedVersion: 2
     offset: 0
     size: 0
     path: 

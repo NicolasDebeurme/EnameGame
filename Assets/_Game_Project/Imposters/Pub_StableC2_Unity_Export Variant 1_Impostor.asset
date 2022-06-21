@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &-8732974144362277865
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pub_StableC2_Unity_Export Variant 1_Impostor
-  m_Shader: {fileID: 4800000, guid: 572f9be5706148142b8da6e9de53acdb, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: afdeae005ae55d640a2034c769746f2c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -27,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: fa2664ad95d8b2d46937aa8f5b0e9ebe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normals:
         m_Texture: {fileID: 2800000, guid: a0ba7e43d7e544346bc2143b8a1b6a2d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -35,6 +40,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6057605e20093924b94827c52f24bacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AI_AlphaToCoverage: 0
     - _AI_ShadowBias: 0.25
@@ -46,11 +52,13 @@ Material:
     - _Hue: 0
     - _ImpostorSize: 10.029111
     - _Parallax: 1
+    - _StencilComp: 3
     - _TextureBias: -1
     m_Colors:
     - _AI_SizeOffset: {r: 10.029111, g: 10.031485, b: 0, a: -0.0010504201}
     - _HueVariation: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0.15317452, g: 2.561888, b: -0.24557209, a: 0.016806722}
+  m_BuildTextureStacks: []
 --- !u!43 &-1191773733572803976
 Mesh:
   m_ObjectHideFlags: 0
@@ -211,6 +219,7 @@ Mesh:
   m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
+    serializedVersion: 2
     offset: 0
     size: 0
     path: 
