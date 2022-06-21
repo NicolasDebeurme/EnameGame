@@ -57,7 +57,7 @@ public class EntranceAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    Jar jar = hit.transform.GetComponent<Jar>();
+                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
                     if (jar != null) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHit();

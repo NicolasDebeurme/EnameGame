@@ -8,20 +8,27 @@ public class PortalManager : MonoBehaviour
 	public GameObject MainCamera;
 	public GameObject Sponza;
 
-	private Material[] SponzaMaterials;
+	private Renderer[] SponzaMaterials;
 
 	// Use this for initialization
 	void Start()
 	{
-		SponzaMaterials = Sponza.GetComponent<Renderer>().sharedMaterials;
-        if (MainCamera== null )
+		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
+		if (MainCamera== null )
         {
 			MainCamera = Camera.main.gameObject;
         }
 	}
 
-	// Update is called once per frame
-	void OnTriggerStay(Collider collider)
+    public void Update()
+    {
+        if (MainCamera==null)
+        {
+			Debug.Log("CamNull");
+        }
+    }
+    // Update is called once per frame
+    void OnTriggerStay(Collider collider)
 	{
 
 		Vector3 camPositionInPortalSpace = transform.InverseTransformPoint(MainCamera.transform.position);
@@ -32,7 +39,10 @@ public class PortalManager : MonoBehaviour
 			//disable stencil test
 			for (int i = 0; i < SponzaMaterials.Length; ++i)
 			{
-				SponzaMaterials[i].SetInt("_StencilComp", (int)CompareFunction.Always);
+				for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
+				{
+					SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Always);
+				}
 			}
 		}
 		else
@@ -40,7 +50,10 @@ public class PortalManager : MonoBehaviour
 			//enable stencil test
 			for (int i = 0; i < SponzaMaterials.Length; ++i)
 			{
-				SponzaMaterials[i].SetInt("_StencilComp", (int)CompareFunction.Equal);
+				for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
+				{
+					SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Equal);
+				}
 			}
 		}
 	}
