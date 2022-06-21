@@ -7,7 +7,7 @@ public class ItemWorld : MonoBehaviour
 {
     private Item _item;
 
-    public static Vector3 HandSpawnPos = new Vector3(0.25f, -0.5f, 1.15f);
+    public static Vector3 HandSpawnPos = new Vector3(0.2f, -0.4f, 0.7f);
     public static Quaternion HandSpawnRot = Quaternion.Euler(-2.5f, -10f, 0);
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {

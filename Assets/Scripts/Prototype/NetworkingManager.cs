@@ -147,9 +147,11 @@ public class NetworkingManager : MonoBehaviour
 
     #endregion
 
-    #region Messaging + prefabManagment
+    // Tags: 0 -> NOTHING
+    //       1 -> ChoiceInfo
+    //       2 -> NextState
 
-    //Sending messages
+    #region Send Message
     public static void SendToASinglePeer(IMultipeerNetworking networking, IPeer peer, byte[] data)
     {
         networking.SendDataToPeer(tag: 0, data: data, peer: peer, transportType: TransportType.UnreliableUnordered);
@@ -192,12 +194,12 @@ public class NetworkingManager : MonoBehaviour
         BroadCastToSession(Instance._gameInfo._networking, 2, new byte[0], false);
     }
 
-    //Receiving messages
+    #endregion
+
+    #region Receive Message
+
     // Every time a message is received, this will be called
 
-    // Tags: 0 -> NOTHING
-    //       1 -> ChoiceInfo
-    //       2 -> BeginGame
     void OnPeerDataReceived(PeerDataReceivedArgs args)
     {
         var stream = args.CreateDataReader();
@@ -216,6 +218,7 @@ public class NetworkingManager : MonoBehaviour
                 GameStateSystem._instance.GetState().NextState();
                 break;
 
+
             default:
 
                 break;
@@ -232,9 +235,7 @@ public class NetworkingManager : MonoBehaviour
             return result;
         }
     }
-
     #endregion
-
 
     //KeyValuePair
     private void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)

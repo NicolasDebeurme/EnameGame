@@ -8,13 +8,14 @@ using static Enums;
 
 public class EntranceAction : StepAction
 {
+    GameObject alchemistHouse=null;
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem);
 
         actionData = LoadFromFile<ActionData>(GetType().ToString());
 
-        Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+        alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
@@ -66,5 +67,10 @@ public class EntranceAction : StepAction
             }
         }
 #endif
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(alchemistHouse);
     }
 }

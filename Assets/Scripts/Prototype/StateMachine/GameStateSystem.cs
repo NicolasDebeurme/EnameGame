@@ -23,7 +23,7 @@ public class GameStateSystem : StateMachine
     public Roles _playerRole;
 
     [NonSerialized]
-    public LocationService locationService;
+    public LocationService locationService = null;
 
     [NonSerialized]
     public Inventory inventory;
@@ -43,8 +43,16 @@ public class GameStateSystem : StateMachine
         GameManager.Instance.uiInventory.SetInventory(inventory);
 
         LoadTreesFromAssets();
-        if (_availableTrees?[0]?.root != null)
-            ActualNode=_availableTrees[0].root;
+
+        foreach(var tree in _availableTrees)
+        {
+            if(tree.name == GameManager.Instance.TreeToLoad_Name && tree?.root != null)
+                ActualNode = _availableTrees[0].root;
+        }
+
+        if (ActualNode == null)
+            throw new Exception("The StoryTree you trying to access does not exist or is empty ..");
+            
 
         SetState(new Lobby(this));
     }

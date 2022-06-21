@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static Enums;
 
 public class AR : State
 {
@@ -23,6 +23,7 @@ public class AR : State
         _view = UIManager.Show<ARView>();
 
         GameStateSystem.inventory.OnItemHanded += UpdateItemUI;
+        GameStateSystem.inventory.AddItem(new Item { itemType = ItemType.Pistol });
 
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
@@ -46,7 +47,18 @@ public class AR : State
         wayspotService.DestroySelf();
 
         if (GameStateSystem.ActualNode.children?.Count > 0)
-            GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
+        {
+            if (GameStateSystem.ActualNode.children.Count ==1)
+            {
+                NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(GameStateSystem.ActualNode.children[0]));
+
+                GameStateSystem.ActualNode = GameStateSystem.ActualNode.children[0];
+                GameStateSystem._gameInfo._session.Pause();
+                GameStateSystem.SetState(new GoToPlace(GameStateSystem));
+            }
+            else
+                GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
+        }
         else
         {
             NetworkingManager.Instance.StopSharedAR();

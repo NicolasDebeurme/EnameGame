@@ -27,22 +27,23 @@ public class LocationService : MonoBehaviour
     private string Url = "test.html";
     WebViewObject webViewObject;
 
-    internal void OnSessionStarted(ARSessionRanArgs args)
+    private void Start()
     {
-        _locationService = LocationServiceFactory.Create();
+
+        _locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
 
 #if UNITY_EDITOR
         var spoofService = (SpoofLocationService)_locationService;
 
         // In editor, the specified spoof location will be used.
         spoofService.SetLocation(_spoofLocation);
+
 #endif
 
-        //_locationService.LocationUpdated += OnLocationUpdated;
+        _locationService.LocationUpdated += OnLocationUpdated;
         //_locationService.CompassUpdated += OnCompassUpdated;
         _locationService.Start(1,0.5f);
 
-        InvokeRepeating(nameof(UpdateGPSData), 0.5f, 1f);
     }
 
     //private void OnCompassUpdated(CompassUpdatedArgs args)
@@ -245,42 +246,51 @@ public class LocationService : MonoBehaviour
     {
         _isSpoofEnabled = isSpoofEnabled;
     }
+    internal void PauseUIupdate()
+    {
+        _locationService.LocationUpdated -= OnLocationUpdated;
+    }
+    internal void PlayUIupdate()
+    {
+        _locationService.LocationUpdated += OnLocationUpdated;
+    }
 
     //Gps
 
-    private Point _yourPosition;
+    private LatLng _yourPosition;
     private float _anglePlayerTarget;
 
-    private Point _pointToReach = GameManager.Instance.pointToReach;
+    private LatLng _pointToReach = GameManager.Instance.pointToReach;
     private Image _imageBoussole = GameManager.Instance.imageBoussole;
 
     private float _minimumDistanceReachPoint = 1;
 
-    public void UpdateGPSData()
+    private void OnLocationUpdated(LocationUpdatedArgs args)
     {
-
         if (_locationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
-
-            _yourPosition.X = _locationService.LastData.Coordinates.Latitude;
-            _yourPosition.Y = _locationService.LastData.Coordinates.Longitude;
+#if UNITY_EDITOR
+            _yourPosition = new LatLng(_spoofLocation.Latitude, _spoofLocation.Longitude);
+#else
+            _yourPosition = args.LocationInfo.Coordinates;
+#endif
         }
 
         AsReachPosition();
         UpdateCompass();
     }
 
-    public void AsReachPosition()
+    private void AsReachPosition()
     {
-        if (_yourPosition.Distance(_yourPosition, _pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
+        if (_yourPosition.Distance(_pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
         {
             GameManager.Instance._actualGameState.GetState().NextState();
         }
     }
 
-    public void UpdateCompass()
+    private void UpdateCompass()
     {
-        Vector2 v1 = new Vector2((float)(_pointToReach.Y - _yourPosition.Y), (float)(_pointToReach.X - _yourPosition.X));
+        Vector2 v1 = new Vector2((float)(_pointToReach.Latitude - _yourPosition.Latitude), (float)(_pointToReach.Longitude - _yourPosition.Longitude));
         Vector2 v2 = new Vector2(0, 1);
         float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
         _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;

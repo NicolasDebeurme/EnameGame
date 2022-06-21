@@ -160,6 +160,15 @@ public class WaySpotService : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        SaveLocalReference();
+        foreach(var anchor in anchors)
+        {
+            Destroy(anchor.Value);
+        }
+        anchors.Clear();
+    }
     public void DestroySelf()
     {
         Destroy(this);
@@ -169,4 +178,5 @@ public class WaySpotService : MonoBehaviour
     {
         public string[] Payloads = Array.Empty<string>();
     }
+
     }

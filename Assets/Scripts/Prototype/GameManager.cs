@@ -1,5 +1,7 @@
 using Niantic.ARDK;
+using Niantic.ARDK.LocationService;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     //Runtime environment
     public RuntimeEnvironment runtimeEnv;
-
+    public string TreeToLoad_Name ="DefaultTree";
 
     //GamePlay
     [NonSerialized]
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     //GPS
     [Header("GPS")]
     public Image imageBoussole;
-    public Point pointToReach;
+    public LatLng pointToReach;
     //
 
     #region Monobehaviour
@@ -39,7 +41,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.SetUIEvents();
         _actualGameState = gameObject.AddComponent<GameStateSystem>();
     }
-
     #endregion
 
     
