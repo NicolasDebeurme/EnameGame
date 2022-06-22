@@ -15,4 +15,6 @@ MonoBehaviour:
   prefabs: []
   payloads: []
   dialogues:
-    dialogues: []
+    dialogues:
+    - name: 
+      sentences: []
