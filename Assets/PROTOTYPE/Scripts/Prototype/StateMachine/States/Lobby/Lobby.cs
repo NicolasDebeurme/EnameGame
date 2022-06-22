@@ -23,6 +23,7 @@ public class Lobby : State
     {
         _view =UIManager.Show<LobbyView>();
 
+        _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
         _view.LobbyButtonPressed += OnLobbyButtonPressed;
 
         GameStateSystem.gameObject.AddComponent<NetworkingManager>();
@@ -54,6 +55,7 @@ public class Lobby : State
 
             case(LobbyButton.Leave):
                 NetworkingManager.Instance.StopSharedAR();
+                _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
                 _view.PlayerRoleChange -= OnRoleChange;
                 break;
 
@@ -75,6 +77,7 @@ public class Lobby : State
     {
         NetworkingManager.Instance.OnNetworkInitialized -= UpdateLobby;
 
+        _view._dropDownBtn.transform.parent.gameObject.SetActive(true);
         _view.PlayerRoleChange += OnRoleChange;
     }
 

@@ -19,7 +19,7 @@ public class ActionData : ScriptableObject
     public class Payload
     {
         public string name;
-        public string payloads;
+        public string jsonData;
     }
     public Payload[] payloads;
 

@@ -17,16 +17,14 @@ public class LobbyView : View
     [SerializeField]
     private GameObject outLobby;
 
-    [SerializeField]
-    private TMP_Dropdown _dropDownBtn;
+    //Public
+    public TMP_Dropdown _dropDownBtn;
 
-    [SerializeField]
     public Button _startButton;
 
     [HideInInspector]
     public Roles playerRole = Roles.None;
 
-    //Public
     public InputField SessionIDField;
 
     //Events

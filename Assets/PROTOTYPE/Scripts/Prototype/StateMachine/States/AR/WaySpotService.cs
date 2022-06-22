@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using static ActionData;
 
 public class WaySpotService : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class WaySpotService : MonoBehaviour
     
 
     private WayspotAnchorService wayspotAnchorService;
+
     private bool InitialLocalizationFired = false;
     private Dictionary<Guid,GameObject> anchors = new Dictionary<Guid, GameObject>();
 
@@ -26,6 +28,7 @@ public class WaySpotService : MonoBehaviour
     public ILocationService locationService;
     public TextMeshProUGUI LocalizationStatus;
     public int actualLevel;
+
     //Event
     public EventHandler ScreenTap;
     public void OnSessionStarted(ARSessionRanArgs args)
@@ -179,4 +182,30 @@ public class WaySpotService : MonoBehaviour
         public string[] Payloads = Array.Empty<string>();
     }
 
+    #region WaySpotAnchor Payloads
+    public void LoadPayloads(Payload[] payloadsData)
+    {
+
+        foreach (var payloadData in payloadsData)
+        {
+            List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
+
+            string jsonData = payloadData.jsonData;
+            MyStoredAnchorsData storedData = JsonUtility.FromJson<MyStoredAnchorsData>(jsonData);
+
+            foreach (var wayspotAnchorPayload in storedData.Payloads)
+            {
+                var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
+                payloads.Add(payload);
+            }
+
+            if (payloads.Count > 0)
+            {
+                var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
+                OnWaySpotAchorAdded(wayspotAnchors);
+            }
+        }
+
     }
+    #endregion
+}

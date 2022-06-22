@@ -9,8 +9,10 @@ public class AR : State
 {
     //Action
     private StepAction action;
+
     //WaySpot
-    private WaySpotService wayspotService;
+    public WaySpotService wayspotService;
+
     private ARView _view;
 
     public UI_Inventory uiInventory;
