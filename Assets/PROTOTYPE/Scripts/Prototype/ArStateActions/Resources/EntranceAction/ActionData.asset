@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - name: Alchemist
-    prefab: {fileID: 4154342236452732209, guid: e40a0f6308a402f408e4d9a47b414976,
+    prefab: {fileID: 2694240084860189950, guid: 4441e267a83936e46bfa8e72714354e3,
       type: 3}
   payloads: []
   dialogues:
