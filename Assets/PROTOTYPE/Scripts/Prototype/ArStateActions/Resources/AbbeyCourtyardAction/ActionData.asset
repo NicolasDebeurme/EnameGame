@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
-  payloads: []
+  prefabs:
+  - name: Abbey
+    prefab: {fileID: 8238799719786607715, guid: a4530b02f678eb943a9baab043ca223a,
+      type: 3}
+  payloads:
+  - name: 
+    jsonData: 
   dialogues:
     dialogues:
-    - name: 
-      sentences: []
+    - name: First
+      sentences:
+      - Coucou c'es moi l'aabay

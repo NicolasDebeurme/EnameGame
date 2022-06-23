@@ -12,7 +12,12 @@ public class BenchAction : StepAction
 
         actionData = LoadFromFile<ActionData>(GetType().ToString());
 
+        pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+
         ArState.wayspotService.LoadPayloads(actionData.payloads);
+
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
+
     }
 
     private void Update()

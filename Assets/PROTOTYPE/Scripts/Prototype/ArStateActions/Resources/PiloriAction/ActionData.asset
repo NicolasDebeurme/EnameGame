@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: Baker
+    prefab: {fileID: 6103362519706422711, guid: 8cb994b8e6576794aaa4640b906f568c,
+      type: 3}
   payloads: []
   dialogues:
-    dialogues: []
+    dialogues:
+    - name: First
+      sentences:
+      - Bonjour c'est moi le boulanger

@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: pistol
+    prefab: {fileID: 1568518222249754470, guid: 177712d81913be94998d450ec7a21b40,
+      type: 3}
   payloads: []
   dialogues:
-    dialogues: []
+    dialogues:
+    - name: First
+      sentences:
+      - Click Pistol Bench

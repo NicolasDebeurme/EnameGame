@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HarbourAction : MonoBehaviour
+public class HarbourAction : StepAction
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject pistol = null;
+    GameObject boat = null;
+    public override void Initialize(GameStateSystem gameStateSystem)
     {
-        
+        base.Initialize(gameStateSystem);
+
+        actionData = LoadFromFile<ActionData>(GetType().ToString());
+
+        ArState.wayspotService.LoadPayloads(actionData.payloads);
+
+        pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+        boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
+
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnDestroy()
     {
-        
+        Destroy(pistol);
+        Destroy(boat);
     }
 }

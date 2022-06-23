@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbbeyCourtyardAction : MonoBehaviour
+public class AbbeyCourtyardAction : StepAction
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject abbey = null;
+    public override void Initialize(GameStateSystem gameStateSystem)
     {
-        
+        base.Initialize(gameStateSystem);
+
+        actionData = LoadFromFile<ActionData>(GetType().ToString());
+
+        ArState.wayspotService.LoadPayloads(actionData.payloads);
+
+        abbey = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnDestroy()
     {
-        
+        Destroy(abbey);
     }
 }
