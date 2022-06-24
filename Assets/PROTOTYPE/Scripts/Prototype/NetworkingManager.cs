@@ -117,7 +117,7 @@ public class NetworkingManager : MonoBehaviour
             {
                 {args.Self.Identifier, Roles.None }
             };
-            SetPlayersDictionnary();
+            BroadCastLobbyRole();
         }
 
 
@@ -130,7 +130,7 @@ public class NetworkingManager : MonoBehaviour
         {
             Debug.LogFormat("Peer joined: {0}", args.Peer.Identifier);
             players.Add(args.Peer.Identifier, Roles.None);
-            SetPlayersDictionnary();
+            BroadCastLobbyRole();
         }
     }
     private void OnPeerRemoved(PeerRemovedArgs args)
@@ -140,7 +140,7 @@ public class NetworkingManager : MonoBehaviour
             if (players.ContainsKey(args.Peer.Identifier))
             {
                 players.Remove(args.Peer.Identifier);
-                SetPlayersDictionnary();
+                BroadCastLobbyRole();
             }
         }
     }
@@ -150,8 +150,10 @@ public class NetworkingManager : MonoBehaviour
     // Tags: 0 -> NOTHING
     //       1 -> ChoiceInfo
     //       2 -> NextState
+    //       3 -> PlayerDictionnary
 
     #region Send Message
+
     public static void SendToASinglePeer(IMultipeerNetworking networking, IPeer peer, byte[] data)
     {
         networking.SendDataToPeer(tag: 0, data: data, peer: peer, transportType: TransportType.UnreliableUnordered);
@@ -163,36 +165,33 @@ public class NetworkingManager : MonoBehaviour
         networking.BroadcastData(tag: tag, data: data, transportType: TransportType.UnreliableOrdered, sendToSelf: sendToSelf);
     }
 
-    private static byte[] SerializePositionAndRotation(Vector3 position, Vector3 rotation)
+    private class ChoiceInfo
     {
-        using (var stream = new MemoryStream())
-        {
-            using (var serializer = new BinarySerializer(stream))
-            {
-                serializer.Serialize(position);
-                serializer.Serialize(rotation);
-                // here any other object can be serialized.
-                return stream.ToArray();
-            }
-        }
+        public int childCount;
+        public int typeOfChoice;
     }
-    public static void BroadCastChoice(int childCount)
+    public static void BroadCastChoice(int childCount, TypeOfChoice typeOfChoice)
     {
         Debug.Log("ChoiceBrodacasted");
-        MemoryStream stream = new MemoryStream();
 
-        BinarySerializer serializer = new BinarySerializer(stream);
+        var choiceInfo = new ChoiceInfo { childCount = childCount, typeOfChoice = (int)typeOfChoice };
 
-        serializer.Serialize(childCount);
+        var serializedInfo = choiceInfo.Serialize();
 
-        BroadCastToSession(Instance._gameInfo._networking, 1, stream.ToArray(), false);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ChoiceInfo, serializedInfo, false);
     }
     public static void BroadCastNextState()
     {
 
-        BroadCastToSession(Instance._gameInfo._networking, 2, new byte[1], true);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.NextState, new byte[1], true);
     }
 
+    public static void BroadCastLobbyRole()
+    {
+        var serializedInfo = players.Serialize();
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.PlayerDictionnary, serializedInfo, false);
+        NetworkingManager.Instance.PlayerDictionnaryUpdated?.Invoke(players);
+    }
     #endregion
 
     #region Receive Message
@@ -201,40 +200,66 @@ public class NetworkingManager : MonoBehaviour
 
     void OnPeerDataReceived(PeerDataReceivedArgs args)
     {
-        var stream = args.CreateDataReader();
-        BinaryDeserializer deserializer = new BinaryDeserializer(stream);
-
-        switch (args.Tag)
+        switch ((BrodcastType)args.Tag)
         {
-            case (1):
-                var indexOfChild = (int)deserializer.Deserialize();
+            case (BrodcastType.ChoiceInfo):
+                ChoiceInfo choiceInfo = args.CopyData().Deserialize<ChoiceInfo>();
 
-                GameStateSystem.SetNextActualNode(indexOfChild);
-                GameStateSystem._instance.GetState().NextState();
+                ManageChoice(choiceInfo);
                 break;
 
-            case (2):
+            case (BrodcastType.NextState):
                 Debug.Log("Lets goooo");
                 GameStateSystem._instance.GetState().NextState();
                 break;
+            case (BrodcastType.PlayerDictionnary):
+                var newPlayers = args.CopyData().Deserialize<Dictionary<Guid, Roles>>();
 
+                if (newPlayers != null)
+                {
+                    Debug.Log("Dictionnary updated");
+                    players = newPlayers;
+                    PlayerDictionnaryUpdated?.Invoke(players);
+                }
+                else
+                    Debug.Log("Error");
+                break;
 
             default:
 
                 break;
         }
     }
-    private static Vector3[] DeserializePositionAndRotation(MemoryStream stream)
+
+    private void ManageChoice(ChoiceInfo choiceInfo)
     {
-        using (var deserializer = new BinaryDeserializer(stream))
+        if (choiceInfo != null)
         {
-            var result = new Vector3[2];
-            result[0] = (Vector3)deserializer.Deserialize(); // position
-            result[1] = (Vector3)deserializer.Deserialize(); // rotation
-                                                             // The number and order of the Deserialize() calls should match the Serialize() calls.
-            return result;
+            bool b = choiceInfo.childCount == 0;
+
+            switch ((TypeOfChoice)choiceInfo.typeOfChoice)
+            {
+                case (TypeOfChoice.HasSwap):
+                    GameManager.Instance.HasSwap = b;
+                    break;
+                case (TypeOfChoice.HasDenounce):
+                    GameManager.Instance.HasDenounce = b;
+                    break;
+                case (TypeOfChoice.HasShoot):
+                    GameManager.Instance.HasShoot = b;
+                    break;
+            }
+
+            Debug.Log(choiceInfo.childCount);
+            GameStateSystem.SetNextActualNode(choiceInfo.childCount);
+            GameStateSystem._instance.GetState().NextState();
+        }
+        else
+        {
+            throw new Exception("NO choice info..");
         }
     }
+
     #endregion
 
     //KeyValuePair
@@ -252,23 +277,6 @@ public class NetworkingManager : MonoBehaviour
           value.Length
         );
 
-        switch (key)
-        {
-            case ("Players"):
-                players = value.Deserialize<Dictionary<Guid, Roles>>();
-                PlayerDictionnaryUpdated?.Invoke(players);
-                break;
-        }
-    }
-    public static void SetPlayersDictionnary()
-    {
-        string key = "Players";
-        byte[] value = players.Serialize();
-
-        // Stores the above data as a key-value pair on the server
-        Instance._gameInfo._networking.StorePersistentKeyValue(key, value);
-
-        Instance.PlayerDictionnaryUpdated?.Invoke(players);
     }
     //
 }
