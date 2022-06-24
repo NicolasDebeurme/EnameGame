@@ -96,7 +96,7 @@ public class Lobby : State
     {
 
         NetworkingManager.players[networking.Self.Identifier] = newRole;
-        NetworkingManager.SetPlayersDictionnary();
+        NetworkingManager.BroadCastLobbyRole();
 
         if (newRole != 0 && networking.Self == networking.Host)
             _view._startButton.interactable = true;

@@ -37,8 +37,9 @@ public class Enums : MonoBehaviour
     public enum BrodcastType
     {
         None,
-        Choice,
-        Pos
+        ChoiceInfo,
+        NextState,
+        PlayerDictionnary
     }
 
     public enum TypeOfChoice

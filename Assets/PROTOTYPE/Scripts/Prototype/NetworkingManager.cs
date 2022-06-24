@@ -117,7 +117,7 @@ public class NetworkingManager : MonoBehaviour
             {
                 {args.Self.Identifier, Roles.None }
             };
-            SetPlayersDictionnary();
+            BroadCastLobbyRole();
         }
 
 
@@ -130,7 +130,7 @@ public class NetworkingManager : MonoBehaviour
         {
             Debug.LogFormat("Peer joined: {0}", args.Peer.Identifier);
             players.Add(args.Peer.Identifier, Roles.None);
-            SetPlayersDictionnary();
+            BroadCastLobbyRole();
         }
     }
     private void OnPeerRemoved(PeerRemovedArgs args)
@@ -140,7 +140,7 @@ public class NetworkingManager : MonoBehaviour
             if (players.ContainsKey(args.Peer.Identifier))
             {
                 players.Remove(args.Peer.Identifier);
-                SetPlayersDictionnary();
+                BroadCastLobbyRole();
             }
         }
     }
@@ -150,6 +150,7 @@ public class NetworkingManager : MonoBehaviour
     // Tags: 0 -> NOTHING
     //       1 -> ChoiceInfo
     //       2 -> NextState
+    //       3 -> PlayerDictionnary
 
     #region Send Message
 
@@ -175,22 +176,22 @@ public class NetworkingManager : MonoBehaviour
 
         var choiceInfo = new ChoiceInfo { childCount = childCount, typeOfChoice = (int)typeOfChoice };
 
-        //MemoryStream stream = new MemoryStream();
-
-        //BinarySerializer serializer = new BinarySerializer(stream);
-
-        //serializer.Serialize(childCount);
-
         var serializedInfo = choiceInfo.Serialize();
 
-        BroadCastToSession(Instance._gameInfo._networking, 1, serializedInfo, false);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ChoiceInfo, serializedInfo, false);
     }
     public static void BroadCastNextState()
     {
 
-        BroadCastToSession(Instance._gameInfo._networking, 2, new byte[1], true);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.NextState, new byte[1], true);
     }
 
+    public static void BroadCastLobbyRole()
+    {
+        var serializedInfo = players.Serialize();
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.PlayerDictionnary, serializedInfo, false);
+        NetworkingManager.Instance.PlayerDictionnaryUpdated?.Invoke(players);
+    }
     #endregion
 
     #region Receive Message
@@ -199,22 +200,30 @@ public class NetworkingManager : MonoBehaviour
 
     void OnPeerDataReceived(PeerDataReceivedArgs args)
     {
-        var stream = args.CreateDataReader();
-        BinaryDeserializer deserializer = new BinaryDeserializer(stream);
-
-        switch (args.Tag)
+        switch ((BrodcastType)args.Tag)
         {
-            case (1):
+            case (BrodcastType.ChoiceInfo):
                 ChoiceInfo choiceInfo = args.CopyData().Deserialize<ChoiceInfo>();
 
                 ManageChoice(choiceInfo);
                 break;
 
-            case (2):
+            case (BrodcastType.NextState):
                 Debug.Log("Lets goooo");
                 GameStateSystem._instance.GetState().NextState();
                 break;
+            case (BrodcastType.PlayerDictionnary):
+                var newPlayers = args.CopyData().Deserialize<Dictionary<Guid, Roles>>();
 
+                if (newPlayers != null)
+                {
+                    Debug.Log("Dictionnary updated");
+                    players = newPlayers;
+                    PlayerDictionnaryUpdated?.Invoke(players);
+                }
+                else
+                    Debug.Log("Error");
+                break;
 
             default:
 
@@ -268,23 +277,6 @@ public class NetworkingManager : MonoBehaviour
           value.Length
         );
 
-        switch (key)
-        {
-            case ("Players"):
-                players = value.Deserialize<Dictionary<Guid, Roles>>();
-                PlayerDictionnaryUpdated?.Invoke(players);
-                break;
-        }
-    }
-    public static void SetPlayersDictionnary()
-    {
-        string key = "Players";
-        byte[] value = players.Serialize();
-
-        // Stores the above data as a key-value pair on the server
-        Instance._gameInfo._networking.StorePersistentKeyValue(key, value);
-
-        Instance.PlayerDictionnaryUpdated?.Invoke(players);
     }
     //
 }
