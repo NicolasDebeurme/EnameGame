@@ -20,6 +20,7 @@ public class ActionData : ScriptableObject
     {
         public string name;
         public string jsonData;
+        public GameObject prefab;
     }
     public Payload[] payloads;
 

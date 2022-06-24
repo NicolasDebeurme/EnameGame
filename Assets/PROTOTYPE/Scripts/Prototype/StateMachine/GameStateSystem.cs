@@ -25,6 +25,8 @@ public class GameStateSystem : StateMachine
     [NonSerialized]
     public Inventory inventory;
 
+    [NonSerialized]
+    public LocationService locationService = null;
     //
 
     [NonSerialized]

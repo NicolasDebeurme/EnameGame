@@ -13,7 +13,6 @@ using TMPro;
 
 public class LocationService : MonoBehaviour
 {
-    public static LocationService Instance { get; private set; }
     //ILocation---------------------
     public ILocationService _locationService;
 
@@ -21,18 +20,13 @@ public class LocationService : MonoBehaviour
     private LatLng _spoofLocation = new LatLng(37.79531921750984, -122.39360429639748);
     private bool _isSpoofEnabled = false;
 
-    public int _queryRadius = 100;
+    public int _queryRadius = 50;
 
 
     //WebView-------------------------------
     private string Url = "test.html";
     WebViewObject webViewObject;
 
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }
     private void Start()
     {
 
@@ -45,11 +39,7 @@ public class LocationService : MonoBehaviour
         spoofService.SetLocation(_spoofLocation);
 
 #endif
-
-        _locationService.LocationUpdated += OnLocationUpdated;
-        _locationService.StatusUpdated += OnStatusUpdated;
-        _locationService.CompassUpdated += OnCompassUpdated;
-        _locationService.Start(1, 0.001f);
+        PlayUIupdate();
 
     }
 
@@ -249,6 +239,15 @@ public class LocationService : MonoBehaviour
     //    webViewObject.EvaluateJS(@"updateMapCompass("+trueHeading.ToString().Replace(',', '.') + ");");
     //}
 
+    private LatLng _yourPosition;
+
+    private float _anglePlayerToNorth;
+    private float _anglePlayerTarget;
+
+    private LatLng _pointToReach;
+    private Image _imageBoussole = GameManager.Instance.imageBoussole;
+
+    private float _minimumDistanceReachPoint = 1;
     internal void Destroy()
     {
         Destroy(webViewObject);
@@ -262,24 +261,26 @@ public class LocationService : MonoBehaviour
     {
         _locationService.Stop();
         _locationService.LocationUpdated -= OnLocationUpdated;
+        _locationService.StatusUpdated -= OnStatusUpdated;
+        _locationService.CompassUpdated -= OnCompassUpdated;
     }
     internal void PlayUIupdate()
     {
-        _locationService.Start(1, 0.001f);
-        _locationService.LocationUpdated += OnLocationUpdated;
+        _pointToReach = Enums.Places_Coord[GameManager.Instance._actualGameState.ActualNode.data.place];
+
+        if (_pointToReach != null)
+        {
+            _locationService.Start(1, 0.001f);
+            _locationService.LocationUpdated += OnLocationUpdated;
+            _locationService.StatusUpdated += OnStatusUpdated;
+            _locationService.CompassUpdated += OnCompassUpdated;
+        }
+        else
+            throw new Exception("ERROR: Place doesn't exist or isn't initialized");
     }
 
     //Gps
 
-    private LatLng _yourPosition;
-
-    private float _anglePlayerToNorth;
-    private float _anglePlayerTarget;
-
-    private LatLng _pointToReach = GameManager.Instance.pointToReach;
-    private Image _imageBoussole = GameManager.Instance.imageBoussole;
-
-    private float _minimumDistanceReachPoint = 1;
 
     private void OnCompassUpdated(CompassUpdatedArgs args)
     {
@@ -303,6 +304,7 @@ public class LocationService : MonoBehaviour
 
     private void AsReachPosition()
     {
+        Debug.Log(_yourPosition.Distance(_pointToReach));
         if (_yourPosition.Distance(_pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
         {
             GameManager.Instance._actualGameState.GetState().NextState();

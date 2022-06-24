@@ -17,13 +17,13 @@ public abstract class StepAction : MonoBehaviour
         ArState = GameStateSystem.GetState() as AR;
 
         actionData = LoadAction(actionType.GetType().ToString());
-#if UNITY_EDITOR
-#else
+
+#if !UNITY_EDITOR
         if (actionData.payloads != null)
         {
             foreach(var payload in actionData.payloads)
             {
-                ArState.wayspotService.LoadPayloads(payload.jsonData);
+                ArState.wayspotService.LoadPayloads(payload.jsonData,payload.prefab);
             }
         }
 #endif

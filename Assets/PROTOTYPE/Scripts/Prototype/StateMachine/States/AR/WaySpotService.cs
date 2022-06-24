@@ -206,11 +206,10 @@ public class WaySpotService : MonoBehaviour
     }
 
     #region WaySpotAnchor Payloads
-    public void LoadPayloads(string json)
+    public void LoadPayloads(string json, GameObject anchorPrefab)
     {
         
             var payloads = new List<WayspotAnchorPayload>();
-            Debug.Log(json);
             var storedData = JsonUtility.FromJson<WayspotAnchorsData>(json);
 
             foreach (var wayspotAnchorPayload in storedData.Payloads)
@@ -222,11 +221,23 @@ public class WaySpotService : MonoBehaviour
             if (payloads.Count > 0)
             {
                 var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
-                OnWaySpotAchorAdded(wayspotAnchors);
+
+                foreach (var wayspotAnchor in wayspotAnchors)
+                {
+                    if (anchors.ContainsKey(wayspotAnchor.ID)) continue;
+                    var id = wayspotAnchor.ID;
+                    var anchor = Instantiate(anchorPrefab);
+                    anchor.SetActive(false);
+                    anchor.name = $"Anchor {id}";
+                    anchors.Add(id, anchor);
+                    wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
+                }
+
             }
         
 
     }
+
     #endregion
 
     [Serializable]
