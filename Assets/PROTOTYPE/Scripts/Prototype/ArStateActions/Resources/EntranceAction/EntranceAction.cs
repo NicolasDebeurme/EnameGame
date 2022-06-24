@@ -15,6 +15,13 @@ public class EntranceAction : StepAction
 
         //alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
+#if !UNITY_EDITOR
+        var json = "{\"Payloads\":[\"ChUI6ZPv4Kquyt9iEN6y4rvax / b + jgEYluyPqaIBKkUKFQjdm + iQguCvpBkQt +/ ZwtjYvv6sARInCg8N9F0NPxUdKow / HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR + kc / HQAAgD8 = \"]}";
+        ArState.wayspotService.LoadPayloads(json);
+#endif
+
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
+
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
 
         if (gameStateSystem._playerRole == Roles.Alchemist)

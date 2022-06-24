@@ -17,7 +17,6 @@ public abstract class StepAction : MonoBehaviour
         ArState = GameStateSystem.GetState() as AR;
 
         actionData = LoadAction(actionType.GetType().ToString());
-
 #if UNITY_EDITOR
 #else
         if (actionData.payloads != null)

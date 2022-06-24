@@ -13,6 +13,7 @@ using TMPro;
 
 public class LocationService : MonoBehaviour
 {
+    public static LocationService Instance { get; private set; }
     //ILocation---------------------
     public ILocationService _locationService;
 
@@ -27,6 +28,11 @@ public class LocationService : MonoBehaviour
     private string Url = "test.html";
     WebViewObject webViewObject;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     private void Start()
     {
 
@@ -42,7 +48,7 @@ public class LocationService : MonoBehaviour
 
         _locationService.LocationUpdated += OnLocationUpdated;
         _locationService.StatusUpdated += OnStatusUpdated;
-        //_locationService.CompassUpdated += OnCompassUpdated;
+        _locationService.CompassUpdated += OnCompassUpdated;
         _locationService.Start(1, 0.001f);
 
     }
@@ -254,16 +260,20 @@ public class LocationService : MonoBehaviour
     }
     internal void PauseUIupdate()
     {
+        _locationService.Stop();
         _locationService.LocationUpdated -= OnLocationUpdated;
     }
     internal void PlayUIupdate()
     {
+        _locationService.Start(1, 0.001f);
         _locationService.LocationUpdated += OnLocationUpdated;
     }
 
     //Gps
 
     private LatLng _yourPosition;
+
+    private float _anglePlayerToNorth;
     private float _anglePlayerTarget;
 
     private LatLng _pointToReach = GameManager.Instance.pointToReach;
@@ -271,6 +281,10 @@ public class LocationService : MonoBehaviour
 
     private float _minimumDistanceReachPoint = 1;
 
+    private void OnCompassUpdated(CompassUpdatedArgs args)
+    {
+        _anglePlayerToNorth = args.TrueHeading;
+    }
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
         Debug.Log("locationupdated");
@@ -302,6 +316,6 @@ public class LocationService : MonoBehaviour
         float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
         _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;
 
-        _imageBoussole.gameObject.transform.rotation = Quaternion.Euler(0, 0, (+Input.compass.magneticHeading + _anglePlayerTarget));
+        _imageBoussole.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
     }
 }

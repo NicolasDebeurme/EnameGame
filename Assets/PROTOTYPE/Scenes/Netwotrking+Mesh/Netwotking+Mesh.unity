@@ -267,9 +267,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36704498}
-  - component: {fileID: 36704500}
   - component: {fileID: 36704499}
-  - component: {fileID: 36704501}
+  - component: {fileID: 36704500}
   - component: {fileID: 36704502}
   m_Layer: 0
   m_Name: GameManager
@@ -331,22 +330,6 @@ MonoBehaviour:
   Failure:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &36704501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36704493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b019f0c4dd824101a0a664f35dcb7ace, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manageUsingUnityLifecycle: 1
-  _planePrefab: {fileID: 1092543363889104, guid: 98e455e2ba6ba413287f8cd497d4b08e,
-    type: 3}
-  _detectedPlaneTypes: 1
 --- !u!114 &36704502
 MonoBehaviour:
   m_ObjectHideFlags: 0

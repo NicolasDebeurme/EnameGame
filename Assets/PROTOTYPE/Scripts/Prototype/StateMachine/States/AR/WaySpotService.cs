@@ -25,7 +25,7 @@ public class WaySpotService : MonoBehaviour
     //ToSet
     public IARSession session;
     public GameObject prefab;
-    public ILocationService locationService;
+
 
     public TextMeshProUGUI TextPanelTitle;
     public TextMeshProUGUI LocalizationStatus;
@@ -40,14 +40,18 @@ public class WaySpotService : MonoBehaviour
         Debug.Log("WS Sessionstarted Event");
         var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
 
+        var locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        locationService.Start(1, 0.001f);
+
         wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
     }
 
-    public void Init(IARSession session, GameObject prefab, ILocationService locationService, GameObject TextPanel)
+
+
+    public void Init(IARSession session, GameObject prefab, GameObject TextPanel)
     {
         this.session = session;
         this.prefab = prefab;
-        this.locationService = locationService;
 
         TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
         TextPanelTitle.text = "Waypoint Anchors Status Log";
@@ -57,7 +61,6 @@ public class WaySpotService : MonoBehaviour
     
     public void Update()
     {
-        Debug.Log(locationService.LastData.Coordinates.Longitude);
         if(wayspotAnchorService == null)
         {
             LocalizationStatus.text = "NoWayspotService";
@@ -190,7 +193,8 @@ public class WaySpotService : MonoBehaviour
     private void OnDestroy()
     {
         SaveLocalReference();
-        foreach(var anchor in anchors)
+
+        foreach (var anchor in anchors)
         {
             Destroy(anchor.Value);
         }

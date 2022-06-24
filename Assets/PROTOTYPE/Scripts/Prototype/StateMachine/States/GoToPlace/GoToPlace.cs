@@ -16,20 +16,20 @@ public class GoToPlace : State
     {
         _view = UIManager.Show<GoToPlaceView>();
 
-        if (GameStateSystem.locationService == null)
-            GameStateSystem.locationService = GameStateSystem.gameObject.AddComponent<LocationService>();
+        if (LocationService.Instance == null)
+            GameStateSystem.gameObject.AddComponent<LocationService>();
         else
-            GameStateSystem.locationService.PlayUIupdate();
+            LocationService.Instance.PlayUIupdate();
 
 
-        _view.OnSpoofValueChange += GameStateSystem.locationService.SpoofValueChange;
+        _view.OnSpoofValueChange += LocationService.Instance.SpoofValueChange;
 
         yield break;
     }
 
     public override void NextState()
     {
-        GameStateSystem.locationService.PauseUIupdate();
+        LocationService.Instance.PauseUIupdate();
 
         GameStateSystem.SetState(new AR(GameStateSystem));
     }

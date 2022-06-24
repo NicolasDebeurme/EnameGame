@@ -22,9 +22,6 @@ public class GameStateSystem : StateMachine
     [NonSerialized]
     public Roles _playerRole;
 
-    [HideInInspector]
-    public LocationService locationService = null;
-
     [NonSerialized]
     public Inventory inventory;
 

@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Enums;
-using TMPro;
 
 public class PharmacyAction : StepAction
 {

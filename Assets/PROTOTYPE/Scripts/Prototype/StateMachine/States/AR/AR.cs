@@ -29,7 +29,7 @@ public class AR : State
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
         wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
-        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, GameStateSystem.locationService._locationService, _view.textPanel);
+        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, _view.textPanel);
         wayspotService.ScreenTap += GameStateSystem.inventory.UseItem;
         wayspotService.WayspotLocalized += OnWayspotLocalized;
         wayspotService.WayspotLost += OnWayspotLost;
@@ -43,7 +43,8 @@ public class AR : State
     {
         GameStateSystem.inventory.OnItemHanded -= UpdateItemUI;
 
-        action.DestroySelf();
+        if(action != null)
+            action.DestroySelf();
 
         wayspotService.DestroySelf();
 
@@ -73,12 +74,18 @@ public class AR : State
     }
     private void OnWayspotLost(object sender, EventArgs e)
     {
-        action.DestroySelf();
+        Debug.Log("wayspotLost");
+        if(action != null)
+            action.DestroySelf();
     }
 
     private void OnWayspotLocalized(object sender, EventArgs e)
     {
-        action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
-        action.Initialize(GameStateSystem);
+        Debug.Log("wayspotLocalized");
+        if (action == null)
+        {
+            action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
+            action.Initialize(GameStateSystem);
+        }
     }
 }
