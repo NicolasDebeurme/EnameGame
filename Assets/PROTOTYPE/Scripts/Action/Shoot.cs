@@ -30,7 +30,8 @@ public class Shoot : MonoBehaviour
     {
         if (hasTouch)
         {
-            Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
+            //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
+            Boat.transform.position -= new Vector3(0, 0.005f, 0);
         }
     }
 

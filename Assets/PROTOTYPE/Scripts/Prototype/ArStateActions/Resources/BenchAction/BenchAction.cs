@@ -8,7 +8,7 @@ using static Enums;
 public class BenchAction : StepAction
 {
     private bool isGunTaken=false;
-    private GameObject pistol;
+    
 
     public override void Initialize(GameStateSystem gameStateSystem)
     {
@@ -16,10 +16,10 @@ public class BenchAction : StepAction
 
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "HelloWorld";
 
-        pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+       
 
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
+        
 
         if(gameStateSystem._playerRole == Roles.RandomMan)
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";
@@ -51,6 +51,7 @@ public class BenchAction : StepAction
                     {
                         isGunTaken = true;
                         pistol.OnRayHit();
+                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["GunTaken"]));
                     }
                 }
             }
@@ -81,6 +82,6 @@ public class BenchAction : StepAction
 
     private void OnDestroy()
     {
-        Destroy(pistol);
+        
     }
 }

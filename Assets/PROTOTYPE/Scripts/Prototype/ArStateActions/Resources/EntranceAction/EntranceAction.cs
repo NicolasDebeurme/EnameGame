@@ -8,15 +8,12 @@ using static Enums;
 
 public class EntranceAction : StepAction
 {
-    GameObject alchemistHouse=null;
     private bool isJarTaken = false;
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem,this);
 
         //alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
-
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
 
@@ -55,6 +52,7 @@ public class EntranceAction : StepAction
                     {
                         jar.OnRayHit();
                         isJarTaken = true;
+                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
                     }
                 }
             }
@@ -84,6 +82,6 @@ public class EntranceAction : StepAction
     }
     private void OnDestroy()
     {
-        Destroy(alchemistHouse);
+        
     }
 }

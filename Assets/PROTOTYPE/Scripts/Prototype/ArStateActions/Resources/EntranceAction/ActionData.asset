@@ -23,8 +23,6 @@ MonoBehaviour:
       + kc / HQAAgD8 = \"]}'
   dialogues:
     dialogues:
-    - name: First
+    - name: JarTaken
       sentences:
-      - Test
-      - Ca va ?
-      - On est bien la
+      - This Jar will be usefull in the future

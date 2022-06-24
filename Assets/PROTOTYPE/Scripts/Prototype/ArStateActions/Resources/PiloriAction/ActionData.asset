@@ -21,4 +21,5 @@ MonoBehaviour:
     dialogues:
     - name: First
       sentences:
-      - Bonjour c'est moi le boulanger
+      - Hi I'm the baker of Ename
+      - The abbey hung me here, don't trust him

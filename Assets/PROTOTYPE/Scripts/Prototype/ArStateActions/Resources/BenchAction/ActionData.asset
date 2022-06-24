@@ -19,6 +19,6 @@ MonoBehaviour:
   payloads: []
   dialogues:
     dialogues:
-    - name: First
+    - name: GunTaken
       sentences:
-      - Click Pistol Bench
+      - This Gun will be usefull in the future

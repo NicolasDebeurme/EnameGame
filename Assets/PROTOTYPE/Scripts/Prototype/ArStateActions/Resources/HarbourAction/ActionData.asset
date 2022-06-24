@@ -24,4 +24,5 @@ MonoBehaviour:
     dialogues:
     - name: First
       sentences:
-      - Shoot the boat or not
+      - 'Now you have the choise to shoot the boat '
+      - 'Your future depends on it '
