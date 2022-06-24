@@ -7,15 +7,14 @@ using static Enums;
 
 public class AR : State
 {
-    //Action
+    //Public
+    public WaySpotService wayspotService;
+    public UI_Inventory uiInventory;
+    public GameObject textPanel;
+    //Private
+    private ARView _view;
     private StepAction action;
 
-    //WaySpot
-    public WaySpotService wayspotService;
-
-    private ARView _view;
-
-    public UI_Inventory uiInventory;
     public AR(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
@@ -23,29 +22,29 @@ public class AR : State
     public override IEnumerator Start()
     {
         _view = UIManager.Show<ARView>();
+        textPanel = _view.textPanel;
 
         GameStateSystem.inventory.OnItemHanded += UpdateItemUI;
         GameStateSystem.inventory.AddItem(new Item { itemType = ItemType.Pistol });
-
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
         wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
-        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, GameStateSystem.locationService._locationService, _view.LocalizationStatus);
+        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, GameStateSystem.locationService._locationService, _view.textPanel);
         wayspotService.ScreenTap += GameStateSystem.inventory.UseItem;
+        wayspotService.WayspotLocalized += OnWayspotLocalized;
+        wayspotService.WayspotLost += OnWayspotLost;
+
         GameStateSystem._gameInfo._session.Ran += wayspotService.OnSessionStarted;
-
-        yield return new WaitForSeconds(1f);
-
-        action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
-        action.Initialize(GameStateSystem);
 
         yield break;
     }
+
     public override void NextState()
     {
         GameStateSystem.inventory.OnItemHanded -= UpdateItemUI;
 
         action.DestroySelf();
+
         wayspotService.DestroySelf();
 
         if (GameStateSystem.ActualNode.children?.Count > 0)
@@ -71,5 +70,15 @@ public class AR : State
     private void UpdateItemUI(object sender, Item item)
     {
         _view.UpdateItemUI(item);
+    }
+    private void OnWayspotLost(object sender, EventArgs e)
+    {
+        action.DestroySelf();
+    }
+
+    private void OnWayspotLocalized(object sender, EventArgs e)
+    {
+        action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
+        action.Initialize(GameStateSystem);
     }
 }

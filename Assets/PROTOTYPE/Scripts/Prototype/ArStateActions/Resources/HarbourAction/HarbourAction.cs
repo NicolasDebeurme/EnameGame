@@ -10,10 +10,6 @@ public class HarbourAction : StepAction
     {
         base.Initialize(gameStateSystem);
 
-        actionData = LoadFromFile<ActionData>(GetType().ToString());
-
-        ArState.wayspotService.LoadPayloads(actionData.payloads);
-
         pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
         boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
 

@@ -30,9 +30,8 @@ public class PortalManager : MonoBehaviour
     // Update is called once per frame
     void OnTriggerStay(Collider collider)
 	{
-
+		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
 		Vector3 camPositionInPortalSpace = transform.InverseTransformPoint(MainCamera.transform.position);
-		Debug.Log(camPositionInPortalSpace);
 
 		if (camPositionInPortalSpace.y < .3f)
 		{

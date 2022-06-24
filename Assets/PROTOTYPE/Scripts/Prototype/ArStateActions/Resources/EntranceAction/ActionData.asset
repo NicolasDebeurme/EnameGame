@@ -16,7 +16,11 @@ MonoBehaviour:
   - name: Alchemist
     prefab: {fileID: 2694240084860189950, guid: 4441e267a83936e46bfa8e72714354e3,
       type: 3}
-  payloads: []
+  payloads:
+  - name: Entrance
+    jsonData: '{\"Payloads\":[\"ChUI6ZPv4Kquyt9iEN6y4rvax / b + jgEYluyPqaIBKkUKFQjdm
+      + iQguCvpBkQt +/ ZwtjYvv6sARInCg8N9F0NPxUdKow / HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR
+      + kc / HQAAgD8 = \"]}'
   dialogues:
     dialogues:
     - name: First

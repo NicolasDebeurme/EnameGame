@@ -9,10 +9,6 @@ public class AbbeyCourtyardAction : StepAction
     {
         base.Initialize(gameStateSystem);
 
-        actionData = LoadFromFile<ActionData>(GetType().ToString());
-
-        ArState.wayspotService.LoadPayloads(actionData.payloads);
-
         abbey = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));

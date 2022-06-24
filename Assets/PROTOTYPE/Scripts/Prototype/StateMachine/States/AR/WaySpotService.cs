@@ -26,11 +26,15 @@ public class WaySpotService : MonoBehaviour
     public IARSession session;
     public GameObject prefab;
     public ILocationService locationService;
+
+    public TextMeshProUGUI TextPanelTitle;
     public TextMeshProUGUI LocalizationStatus;
-    public int actualLevel;
 
     //Event
     public EventHandler ScreenTap;
+
+    public EventHandler WayspotLocalized;
+    public EventHandler WayspotLost;
     public void OnSessionStarted(ARSessionRanArgs args)
     {
         Debug.Log("WS Sessionstarted Event");
@@ -39,22 +43,41 @@ public class WaySpotService : MonoBehaviour
         wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
     }
 
-    public void Init(IARSession session, GameObject prefab, ILocationService locationService, TextMeshProUGUI LocalizationStatus)
+    public void Init(IARSession session, GameObject prefab, ILocationService locationService, GameObject TextPanel)
     {
         this.session = session;
         this.prefab = prefab;
         this.locationService = locationService;
-        this.LocalizationStatus = LocalizationStatus;
 
+        TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        TextPanelTitle.text = "Waypoint Anchors Status Log";
+        LocalizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
     }
 
     
     public void Update()
     {
-        LocalizationStatus.text = wayspotAnchorService != null ? wayspotAnchorService.LocalizationState.ToString() : "NoWayspotService";
+        Debug.Log(locationService.LastData.Coordinates.Longitude);
+        if(wayspotAnchorService == null)
+        {
+            LocalizationStatus.text = "NoWayspotService";
+            return;
+        }
+        else if(wayspotAnchorService.LocalizationState != LocalizationState.Localized)
+        {
+            LocalizationStatus.text = wayspotAnchorService.LocalizationState.ToString();
+        }
+
+
         if (wayspotAnchorService != null && wayspotAnchorService.LocalizationState == LocalizationState.Failed)
         {
             wayspotAnchorService.Restart();
+
+            if(InitialLocalizationFired)
+            {
+                WayspotLost.Invoke(this, EventArgs.Empty);
+                InitialLocalizationFired = false;
+            }
             return;
         }
 
@@ -63,6 +86,7 @@ public class WaySpotService : MonoBehaviour
         if(wayspotAnchorService.LocalizationState == LocalizationState.Localized && !InitialLocalizationFired)
         {
             LoadLocalReference();
+            WayspotLocalized.Invoke(this, EventArgs.Empty);
             InitialLocalizationFired = true;
         }
             
@@ -133,7 +157,7 @@ public class WaySpotService : MonoBehaviour
     {
         IWayspotAnchor[] wayspotAnchors = wayspotAnchorService.GetAllWayspotAnchors();
 
-        MyStoredAnchorsData storedAnchorsData = new MyStoredAnchorsData();
+        WayspotAnchorsData storedAnchorsData = new WayspotAnchorsData();
         storedAnchorsData.Payloads =wayspotAnchors.Select(a => a.Payload.Serialize()).ToArray();
 
         string jsonData = JsonUtility.ToJson(storedAnchorsData);
@@ -147,7 +171,7 @@ public class WaySpotService : MonoBehaviour
             List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
 
             string jsonData = PlayerPrefs.GetString(LocalSaveKey);
-            MyStoredAnchorsData storedData = JsonUtility.FromJson<MyStoredAnchorsData>(jsonData);
+            WayspotAnchorsData storedData = JsonUtility.FromJson<WayspotAnchorsData>(jsonData);
 
             foreach(var wayspotAnchorPayload in storedData.Payloads)
             {
@@ -176,22 +200,14 @@ public class WaySpotService : MonoBehaviour
     {
         Destroy(this);
     }
-    [Serializable]
-    private class MyStoredAnchorsData
-    {
-        public string[] Payloads = Array.Empty<string>();
-    }
 
     #region WaySpotAnchor Payloads
-    public void LoadPayloads(Payload[] payloadsData)
+    public void LoadPayloads(string json)
     {
-
-        foreach (var payloadData in payloadsData)
-        {
-            List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
-
-            string jsonData = payloadData.jsonData;
-            MyStoredAnchorsData storedData = JsonUtility.FromJson<MyStoredAnchorsData>(jsonData);
+        
+            var payloads = new List<WayspotAnchorPayload>();
+            Debug.Log(json);
+            var storedData = JsonUtility.FromJson<WayspotAnchorsData>(json);
 
             foreach (var wayspotAnchorPayload in storedData.Payloads)
             {
@@ -204,8 +220,14 @@ public class WaySpotService : MonoBehaviour
                 var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
                 OnWaySpotAchorAdded(wayspotAnchors);
             }
-        }
+        
 
     }
     #endregion
+
+    [Serializable]
+    private class WayspotAnchorsData
+    {
+        public string[] Payloads = Array.Empty<string>();
+    }
 }

@@ -1,27 +1,37 @@
 using Niantic.ARDK.AR.WayspotAnchors;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static Enums;
 
 public class BenchAction : StepAction
 {
-    GameObject pistol = null;
+    private bool isGunTaken=false;
+    private GameObject pistol;
+
     public override void Initialize(GameStateSystem gameStateSystem)
     {
-        base.Initialize(gameStateSystem);
+        base.Initialize(gameStateSystem,this);
 
-        actionData = LoadFromFile<ActionData>(GetType().ToString());
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "HelloWorld";
 
         pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
-        ArState.wayspotService.LoadPayloads(actionData.payloads);
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
+        if(gameStateSystem._playerRole == Roles.RandomMan)
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";
+        else
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to tkae the gun";
     }
 
     private void Update()
     {
+        if (isGunTaken)
+            return;
+
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
@@ -36,10 +46,11 @@ public class BenchAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null) // hit.transform.tag = " ..."
+                    ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
+                    if (pistol != null) // hit.transform.tag = " ..."
                     {
-                        jar.OnRayHit();
+                        isGunTaken = true;
+                        pistol.OnRayHit();
                     }
                 }
             }

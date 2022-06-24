@@ -41,9 +41,15 @@ public class LocationService : MonoBehaviour
 #endif
 
         _locationService.LocationUpdated += OnLocationUpdated;
+        _locationService.StatusUpdated += OnStatusUpdated;
         //_locationService.CompassUpdated += OnCompassUpdated;
-        _locationService.Start(1,0.5f);
+        _locationService.Start(1, 0.001f);
 
+    }
+
+    private void OnStatusUpdated(LocationStatusUpdatedArgs args)
+    {
+        Debug.Log(args.Status.ToString());
     }
 
     //private void OnCompassUpdated(CompassUpdatedArgs args)
@@ -267,6 +273,7 @@ public class LocationService : MonoBehaviour
 
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
+        Debug.Log("locationupdated");
         if (_locationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR

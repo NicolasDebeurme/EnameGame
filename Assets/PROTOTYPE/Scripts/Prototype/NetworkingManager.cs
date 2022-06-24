@@ -76,7 +76,7 @@ public class NetworkingManager : MonoBehaviour
 
         _networking.PersistentKeyValueUpdated += OnPersistentKeyValueUpdated;
 
-        GameManager.Instance.NetworkInitialized(_gameInfo);
+        GameManager.Instance.NetworkInitialized();
     }
 
     #region Networking
@@ -189,9 +189,8 @@ public class NetworkingManager : MonoBehaviour
     }
     public static void BroadCastNextState()
     {
-        Debug.Log("NextState");
 
-        BroadCastToSession(Instance._gameInfo._networking, 2, new byte[0], false);
+        BroadCastToSession(Instance._gameInfo._networking, 2, new byte[1], true);
     }
 
     #endregion
@@ -215,6 +214,7 @@ public class NetworkingManager : MonoBehaviour
                 break;
 
             case (2):
+                Debug.Log("Lets goooo");
                 GameStateSystem._instance.GetState().NextState();
                 break;
 

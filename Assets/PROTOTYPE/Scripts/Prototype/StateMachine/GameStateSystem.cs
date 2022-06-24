@@ -22,7 +22,7 @@ public class GameStateSystem : StateMachine
     [NonSerialized]
     public Roles _playerRole;
 
-    [NonSerialized]
+    [HideInInspector]
     public LocationService locationService = null;
 
     [NonSerialized]

@@ -78,5 +78,6 @@ namespace Niantic.ARDKExamples.WayspotAnchors
       /// The payloads to save via JsonUtility
       public string[] Payloads = Array.Empty<string>();
     }
+
   }
 }

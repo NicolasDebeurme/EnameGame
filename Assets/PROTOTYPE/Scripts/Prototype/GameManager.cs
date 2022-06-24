@@ -50,9 +50,8 @@ public class GameManager : MonoBehaviour
         GameStateSystem._instance.GetState().NextState();
     }
 
-    public void NetworkInitialized(GameInfo ARNetworkingSession)
+    public void NetworkInitialized()
     {
-        _actualGameState._gameInfo = ARNetworkingSession;  
     }
 
 }

@@ -31,6 +31,9 @@ public class LobbyView : View
     public event OnLobbyButtonPressedDelegate LobbyButtonPressed;
     public delegate void OnLobbyButtonPressedDelegate(LobbyButton buttonType);
 
+    public event StartButtonDelegate StartButtonTriggered;
+    public delegate void StartButtonDelegate();
+
     public event PlayerRoleChangeDelegate PlayerRoleChange;
     public delegate void PlayerRoleChangeDelegate(Roles playerRole);
 
@@ -48,6 +51,11 @@ public class LobbyView : View
     }
 
     #region Public methods
+    public void OnStart()
+    {
+        StartButtonTriggered?.Invoke();
+    }
+
     public void OnDropDownButtonDown(int role)
     {
         playerRole = (Roles)role;

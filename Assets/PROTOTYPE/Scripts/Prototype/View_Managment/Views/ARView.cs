@@ -6,7 +6,7 @@ using System;
 
 public class ARView : View
 {
-    public TextMeshProUGUI LocalizationStatus;
+    public GameObject textPanel;
     public GameObject prefabToSpawn;
 
     private GameObject _itemUI = null;

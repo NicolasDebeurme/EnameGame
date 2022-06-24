@@ -32,7 +32,7 @@ MonoBehaviour:
         Blind: 
       dialogueText: 
       place: 2
-      action: 
+      action: BenchAction
     childCount: 1
     indexOfFirstChild: 2
   - data:
@@ -43,7 +43,7 @@ MonoBehaviour:
         Blind: 
       dialogueText: 
       place: 3
-      action: 
+      action: PiloriAction
     childCount: 1
     indexOfFirstChild: 3
   - data:
@@ -54,7 +54,7 @@ MonoBehaviour:
         Blind: 02000000
       dialogueText: Swap the jars and kill the monk ?
       place: 4
-      action: 
+      action: PharmacyAction
     childCount: 2
     indexOfFirstChild: 4
   - data:
@@ -65,7 +65,7 @@ MonoBehaviour:
         Blind: 01000000
       dialogueText: Denounce the Alchemist ?
       place: 5
-      action: 
+      action: AbbeyCourtyardAction
     childCount: 2
     indexOfFirstChild: 5
   - data:
@@ -142,7 +142,7 @@ MonoBehaviour:
         Blind: 01000000
       dialogueText: Denounce the Alchemist ?
       place: 5
-      action: 
+      action: AbbeyCourtyardAction
     childCount: 2
     indexOfFirstChild: 12
   - data:

@@ -9,19 +9,32 @@ using static Enums;
 public class EntranceAction : StepAction
 {
     GameObject alchemistHouse=null;
+    private bool isJarTaken = false;
     public override void Initialize(GameStateSystem gameStateSystem)
     {
-        base.Initialize(gameStateSystem);
+        base.Initialize(gameStateSystem,this);
 
-        actionData = LoadFromFile<ActionData>(GetType().ToString());
-
-        alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
+        //alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
+
+        if (gameStateSystem._playerRole == Roles.Alchemist)
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the jar and take it";
+        else
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to take the jar";
     }
 
     private void Update()
+    {
+        if(GameStateSystem._playerRole == Roles.Alchemist && !isJarTaken)
+        {
+            MakeRaycast();
+        }
+    }
+
+    private void MakeRaycast()
     {
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
@@ -41,6 +54,7 @@ public class EntranceAction : StepAction
                     if (jar != null) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHit();
+                        isJarTaken = true;
                     }
                 }
             }
@@ -68,7 +82,6 @@ public class EntranceAction : StepAction
         }
 #endif
     }
-
     private void OnDestroy()
     {
         Destroy(alchemistHouse);

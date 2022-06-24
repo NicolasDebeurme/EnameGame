@@ -14,6 +14,7 @@ using static Enums;
 public class Lobby : State
 {
     private LobbyView _view =null;
+    private IMultipeerNetworking networking = null;
 
     public Lobby(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
@@ -25,6 +26,7 @@ public class Lobby : State
 
         _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
         _view.LobbyButtonPressed += OnLobbyButtonPressed;
+        _view.StartButtonTriggered += OnStartButton;
 
         GameStateSystem.gameObject.AddComponent<NetworkingManager>();
 
@@ -33,12 +35,19 @@ public class Lobby : State
 
     public override void NextState()
     {
-        NetworkingManager.BroadCastNextState();
         GameStateSystem._playerRole = _view.playerRole;
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
 
-
+    private void OnStartButton()
+    {
+        if (networking.Self == networking.Host)
+        {
+            NetworkingManager.BroadCastNextState();
+        }
+        else
+            throw new Exception("You'r not the HOST");
+    }
     private void OnLobbyButtonPressed(LobbyButton buttonType)
     {
         switch(buttonType)
@@ -77,18 +86,19 @@ public class Lobby : State
     {
         NetworkingManager.Instance.OnNetworkInitialized -= UpdateLobby;
 
+        GameStateSystem._gameInfo = gameInfo;
+        networking = gameInfo._networking;
         _view._dropDownBtn.transform.parent.gameObject.SetActive(true);
         _view.PlayerRoleChange += OnRoleChange;
     }
 
     private void OnRoleChange(Roles newRole)
     {
-        var netwotking = GameStateSystem._gameInfo._networking;
 
-        NetworkingManager.players[netwotking.Self.Identifier] = newRole;
+        NetworkingManager.players[networking.Self.Identifier] = newRole;
         NetworkingManager.SetPlayersDictionnary();
 
-        if (newRole != 0 && netwotking.Self == netwotking.Host)
+        if (newRole != 0 && networking.Self == networking.Host)
             _view._startButton.interactable = true;
         else
             _view._startButton.interactable = false;
