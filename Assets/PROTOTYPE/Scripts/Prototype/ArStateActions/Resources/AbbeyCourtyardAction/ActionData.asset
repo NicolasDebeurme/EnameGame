@@ -16,12 +16,10 @@ MonoBehaviour:
   - name: Abbey
     prefab: {fileID: 8238799719786607715, guid: a4530b02f678eb943a9baab043ca223a,
       type: 3}
-  payloads:
-  - name: 
-    jsonData: 
+  payloads: []
   dialogues:
     dialogues:
-    - name: First
+    - name: First2
       sentences:
       - "Hello young man, I heard about your arrival.\r"
       - 'I will need a favor from you, I have the impression that some villagers

@@ -15,4 +15,60 @@ MonoBehaviour:
   prefabs: []
   payloads: []
   dialogues:
-    dialogues: []
+    dialogues:
+    - name: FirstPoliceman
+      sentences:
+      - Here you put the gun in the bag
+      - The Alchemist take the gold of the bag
+    - name: FirstAlchemist
+      sentences:
+      - Here you take the gold of the bag
+      - The Policeman put the gun in the bag
+    - name: Ending1
+      sentences:
+      - You both escape rich with the boat
+      - "There were no deaths that day, \nand the village of ename headed \nby the
+        monk had an almost happy ending"
+    - name: Ending2
+      sentences:
+      - You both escape rich by the road
+      - "There were no deaths that day, \nand the village of ename headed \nby the
+        monk had an almost happy ending"
+    - name: Ending3
+      sentences:
+      - The alchemist rich escape with the boat just before abbey army try to arest
+        him
+      - 'Policeman get the abbey trust,
+
+        but without new title'
+    - name: Ending4
+      sentences:
+      - 'Abbey army arest the alchemist trying to escape,
+
+        the army finf
+        stolen gold on him, so the alchemist have been condemn for theft'
+      - Policeman get the abbe trust and a new title
+    - name: Ending5
+      sentences:
+      - 'Abbey dies because of the poison jar,
+
+        Abbey army  block the road
+        to find the murderer
+
+        The rich Alchemist and Policeman escape with
+        the boat'
+    - name: Ending6
+      sentences:
+      - "Abbey dies because of the poison jar,\nAbbey army  block the road to find
+        the murderer\nThe rich Alchemist and Policeman try too escape by the road.\nUnfortunately
+        they both get caught by the abbey army.\nYou both go to jail for the abbey
+        murder.\n\n\n army"
+    - name: Ending7
+      sentences:
+      - "Abbey find out the poison jar,\nso he live\nAlchemist escape rich with the
+        boat, \nPoliceman get abbey trust and a new title"
+    - name: Ending8
+      sentences:
+      - "Abbey find out the poison jar,\nso he live\nAlchemist get caught by the
+        abbey army before he escape, he is sent to prison, \nPoliceman get abbey
+        trust and a new title"

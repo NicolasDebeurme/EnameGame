@@ -25,7 +25,13 @@ public class HarbourAction : StepAction
         base.Initialize(gameStateSystem);
         cam = Camera.main;
         boat = GameObject.Find("Boat");
+        Reticule = GameObject.Find("PistolUI").GetComponent<Image>();
+        ShootButton = GameObject.Find("ShootButton").GetComponent<Button>();
+
+        ShootButton.onClick.AddListener(() => OnClickShoot());
+
         pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity, cam.transform);
+        pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
         //boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
 
         Reticule.gameObject.SetActive(true);
