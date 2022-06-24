@@ -152,6 +152,7 @@ public class NetworkingManager : MonoBehaviour
     //       2 -> NextState
 
     #region Send Message
+
     public static void SendToASinglePeer(IMultipeerNetworking networking, IPeer peer, byte[] data)
     {
         networking.SendDataToPeer(tag: 0, data: data, peer: peer, transportType: TransportType.UnreliableUnordered);
@@ -163,29 +164,26 @@ public class NetworkingManager : MonoBehaviour
         networking.BroadcastData(tag: tag, data: data, transportType: TransportType.UnreliableOrdered, sendToSelf: sendToSelf);
     }
 
-    private static byte[] SerializePositionAndRotation(Vector3 position, Vector3 rotation)
+    private class ChoiceInfo
     {
-        using (var stream = new MemoryStream())
-        {
-            using (var serializer = new BinarySerializer(stream))
-            {
-                serializer.Serialize(position);
-                serializer.Serialize(rotation);
-                // here any other object can be serialized.
-                return stream.ToArray();
-            }
-        }
+        public int childCount;
+        public int typeOfChoice;
     }
-    public static void BroadCastChoice(int childCount)
+    public static void BroadCastChoice(int childCount, TypeOfChoice typeOfChoice)
     {
         Debug.Log("ChoiceBrodacasted");
-        MemoryStream stream = new MemoryStream();
 
-        BinarySerializer serializer = new BinarySerializer(stream);
+        var choiceInfo = new ChoiceInfo { childCount = childCount, typeOfChoice = (int)typeOfChoice };
 
-        serializer.Serialize(childCount);
+        //MemoryStream stream = new MemoryStream();
 
-        BroadCastToSession(Instance._gameInfo._networking, 1, stream.ToArray(), false);
+        //BinarySerializer serializer = new BinarySerializer(stream);
+
+        //serializer.Serialize(childCount);
+
+        var serializedInfo = choiceInfo.Serialize();
+
+        BroadCastToSession(Instance._gameInfo._networking, 1, serializedInfo, false);
     }
     public static void BroadCastNextState()
     {
@@ -207,10 +205,9 @@ public class NetworkingManager : MonoBehaviour
         switch (args.Tag)
         {
             case (1):
-                var indexOfChild = (int)deserializer.Deserialize();
+                ChoiceInfo choiceInfo = args.CopyData().Deserialize<ChoiceInfo>();
 
-                GameStateSystem.SetNextActualNode(indexOfChild);
-                GameStateSystem._instance.GetState().NextState();
+                ManageChoice(choiceInfo);
                 break;
 
             case (2):
@@ -224,17 +221,36 @@ public class NetworkingManager : MonoBehaviour
                 break;
         }
     }
-    private static Vector3[] DeserializePositionAndRotation(MemoryStream stream)
+
+    private void ManageChoice(ChoiceInfo choiceInfo)
     {
-        using (var deserializer = new BinaryDeserializer(stream))
+        if (choiceInfo != null)
         {
-            var result = new Vector3[2];
-            result[0] = (Vector3)deserializer.Deserialize(); // position
-            result[1] = (Vector3)deserializer.Deserialize(); // rotation
-                                                             // The number and order of the Deserialize() calls should match the Serialize() calls.
-            return result;
+            bool b = choiceInfo.childCount == 0;
+
+            switch ((TypeOfChoice)choiceInfo.typeOfChoice)
+            {
+                case (TypeOfChoice.HasSwap):
+                    GameManager.Instance.HasSwap = b;
+                    break;
+                case (TypeOfChoice.HasDenounce):
+                    GameManager.Instance.HasDenounce = b;
+                    break;
+                case (TypeOfChoice.HasShoot):
+                    GameManager.Instance.HasShoot = b;
+                    break;
+            }
+
+            Debug.Log(choiceInfo.childCount);
+            GameStateSystem.SetNextActualNode(choiceInfo.childCount);
+            GameStateSystem._instance.GetState().NextState();
+        }
+        else
+        {
+            throw new Exception("NO choice info..");
         }
     }
+
     #endregion
 
     //KeyValuePair

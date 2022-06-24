@@ -41,6 +41,13 @@ public class Enums : MonoBehaviour
         Pos
     }
 
+    public enum TypeOfChoice
+    {
+        Default,
+        HasSwap,
+        HasDenounce,
+        HasShoot
+    }
     public enum LobbyButton
     {
         Join,

@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public GameStateSystem _actualGameState = null;
 
     public UI_Inventory uiInventory;
+
+    public bool HasSwap = false;
+    public bool HasDenounce = false;
+    public bool HasShoot = false;
     //
 
 
@@ -49,7 +53,10 @@ public class GameManager : MonoBehaviour
     {
         GameStateSystem._instance.GetState().NextState();
     }
-
+    public void BroadcastNextState()
+    {
+        NetworkingManager.BroadCastNextState();
+    }
     public void NetworkInitialized()
     {
     }

@@ -41,6 +41,11 @@ public abstract class StepAction : MonoBehaviour
         return loadedObject;
     }
 
+    protected void NextState()
+    {
+        GameStateSystem.GetState().NextState();
+    }
+
     public virtual void DestroySelf()
     {
         Destroy(this);

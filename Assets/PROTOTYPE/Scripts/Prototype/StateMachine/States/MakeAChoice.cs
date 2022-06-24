@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using static Enums;
 
 public class MakeAChoice : State
 {
     private MakeAChoiceView _view;
+    private TypeOfChoice typeOfChoice;
     public MakeAChoice(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
@@ -38,11 +40,18 @@ public class MakeAChoice : State
             _view.Question.text = "Waiting for other player ..";
         }
 
+        if (GameStateSystem.ActualNode.data.place == Places.Pharmacy) 
+                typeOfChoice = TypeOfChoice.HasSwap;
+        else if (GameStateSystem.ActualNode.data.place == Places.Abbey_Courtyard)
+            typeOfChoice = TypeOfChoice.HasDenounce;
+        else if (GameStateSystem.ActualNode.data.place == Places.Harbour)
+            typeOfChoice = TypeOfChoice.HasShoot;
+
         yield break;
     }
     private void ButtonClicked(NTree<StoryTreeNodeInfo> child)
     {
-        NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child));
+        NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child),typeOfChoice);
 
         GameStateSystem.ActualNode = child;
 

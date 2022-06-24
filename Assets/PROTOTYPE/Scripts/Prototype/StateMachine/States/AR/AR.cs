@@ -25,7 +25,6 @@ public class AR : State
         textPanel = _view.textPanel;
 
         GameStateSystem.inventory.OnItemHanded += UpdateItemUI;
-        GameStateSystem.inventory.AddItem(new Item { itemType = ItemType.Pistol });
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
         wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
@@ -48,15 +47,14 @@ public class AR : State
 
         wayspotService.DestroySelf();
 
+ 
         if (GameStateSystem.ActualNode.children?.Count > 0)
         {
             if (GameStateSystem.ActualNode.children.Count ==1)
             {
-                NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(GameStateSystem.ActualNode.children[0]));
-
-                GameStateSystem.ActualNode = GameStateSystem.ActualNode.children[0];
-                GameStateSystem._gameInfo._session.Pause();
-                GameStateSystem.SetState(new GoToPlace(GameStateSystem));
+                    GameStateSystem.ActualNode = GameStateSystem.ActualNode.children[0];
+                    GameStateSystem._gameInfo._session.Pause();
+                    GameStateSystem.SetState(new GoToPlace(GameStateSystem)); 
             }
             else
                 GameStateSystem.SetState(new MakeAChoice(GameStateSystem));

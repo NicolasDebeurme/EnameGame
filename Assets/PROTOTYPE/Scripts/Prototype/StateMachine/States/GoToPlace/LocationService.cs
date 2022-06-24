@@ -247,7 +247,7 @@ public class LocationService : MonoBehaviour
     private LatLng _pointToReach;
     private Image _imageBoussole = GameManager.Instance.imageBoussole;
 
-    private float _minimumDistanceReachPoint = 1;
+    private float _minimumDistanceReachPoint = 10;
     internal void Destroy()
     {
         Destroy(webViewObject);
