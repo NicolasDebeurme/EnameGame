@@ -69,10 +69,12 @@ public class BenchAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null) // hit.transform.tag = " ..."
+                    ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
+                    if (pistol != null) // hit.transform.tag = " ..."
                     {
-                        jar.OnRayHit();
+                        isGunTaken = true;
+                        pistol.OnRayHit();
+                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["GunTaken"]));
                     }
                 }
             }

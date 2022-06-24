@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs:
-  - name: pistol
+  prefabs: []
+  payloads:
+  - name: Pistol
+    jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
     prefab: {fileID: 1568518222249754470, guid: 177712d81913be94998d450ec7a21b40,
       type: 3}
-  payloads: []
   dialogues:
     dialogues:
     - name: GunTaken

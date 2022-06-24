@@ -13,9 +13,6 @@ public class EntranceAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        //alchemistHouse =Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
-
-
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
 
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
