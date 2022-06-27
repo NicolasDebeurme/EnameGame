@@ -63,9 +63,8 @@ public class Lobby : State
                 break;
 
             case(LobbyButton.Leave):
-                NetworkingManager.Instance.StopSharedAR();
-                _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
-                _view.PlayerRoleChange -= OnRoleChange;
+                if (GameStateSystem._gameInfo != null)
+                    DisposeNetworking();
                 break;
 
             default:
@@ -76,20 +75,34 @@ public class Lobby : State
 
     private void CreateNetworking()
     {
-        NetworkingManager.Instance.OnNetworkInitialized += UpdateLobby;
+        NetworkingManager.Instance.NetworkStateChanged += UpdateLobby;
         NetworkingManager.Instance.PlayerDictionnaryUpdated += OnPlayerDictionnaryUpdated;
 
         NetworkingManager.Instance.CreateAndRunSharedAR(_view.SessionIDField);
     }
 
+    private void DisposeNetworking()
+    {
+        NetworkingManager.Instance.StopSharedAR();
+        _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
+        _view.PlayerRoleChange -= OnRoleChange;
+    }
     private void UpdateLobby(GameInfo gameInfo)
     {
-        NetworkingManager.Instance.OnNetworkInitialized -= UpdateLobby;
-
         GameStateSystem._gameInfo = gameInfo;
-        networking = gameInfo._networking;
-        _view._dropDownBtn.transform.parent.gameObject.SetActive(true);
-        _view.PlayerRoleChange += OnRoleChange;
+
+        if(gameInfo != null)
+        {
+            networking = gameInfo._networking;
+            _view._dropDownBtn.transform.parent.gameObject.SetActive(true);
+            _view.PlayerRoleChange += OnRoleChange;
+        }
+        else
+        {
+            networking = null;
+            _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
+            _view.PlayerRoleChange -= OnRoleChange;
+        }
     }
 
     private void OnRoleChange(Roles newRole)

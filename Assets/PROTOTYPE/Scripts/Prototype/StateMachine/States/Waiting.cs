@@ -18,6 +18,6 @@ public class Waiting : State
 
     public override void NextState()
     {
-        
+        GameStateSystem.SetState(new AR(GameStateSystem));
     }
 }

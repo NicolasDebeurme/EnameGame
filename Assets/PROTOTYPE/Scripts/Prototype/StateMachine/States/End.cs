@@ -11,7 +11,7 @@ public class End : State
     public override IEnumerator Start()
     {
         Debug.Log("end");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         UIManager.Show<EndView>();
         yield return new WaitForSeconds(5f);
         GameStateSystem.SetState(new Lobby(GameStateSystem));

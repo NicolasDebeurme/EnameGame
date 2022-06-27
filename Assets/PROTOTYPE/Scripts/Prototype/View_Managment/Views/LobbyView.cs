@@ -72,10 +72,13 @@ public class LobbyView : View
     public void UpdateUI(Dictionary<Guid, Roles> players)
     {
         int count = 0;
-        foreach (var player in players)
+        if(players != null)
         {
-            playersUI[count].text = player.Key + " is " + player.Value.ToString();
+            foreach (var player in players)
+            {
+                playersUI[count].text = player.Key + " is " + player.Value.ToString();
                 count++;
+            }
         }
 
         for(int i= count; i<playersUI.Length; i++)

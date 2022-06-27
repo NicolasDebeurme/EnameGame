@@ -26,8 +26,8 @@ public class NetworkingManager : MonoBehaviour
     //
 
     //Events
-    public event OnNetworkInitilizedDelegate OnNetworkInitialized;
-    public delegate void OnNetworkInitilizedDelegate(GameInfo ARNetworkingSession);
+    public event NetworkStateChangedDelegate NetworkStateChanged;
+    public delegate void NetworkStateChangedDelegate(GameInfo ARNetworkingSession);
 
     public event PlayerDictionnaryUpdatedDelegate PlayerDictionnaryUpdated;
     public delegate void PlayerDictionnaryUpdatedDelegate(Dictionary<Guid, Roles> players);
@@ -71,7 +71,10 @@ public class NetworkingManager : MonoBehaviour
 
         _networking.PeerAdded += OnPeerAdded;
         _networking.PeerRemoved += OnPeerRemoved;
+
         _networking.Connected += OnNetworkedConnected;
+        _networking.Disconnected += OnNetworkDisconnected;
+
         _networking.PeerDataReceived += OnPeerDataReceived;
 
         _networking.PersistentKeyValueUpdated += OnPersistentKeyValueUpdated;
@@ -79,25 +82,21 @@ public class NetworkingManager : MonoBehaviour
         GameManager.Instance.NetworkInitialized();
     }
 
-    #region Networking
-
     public void StopSharedAR()
     {
-
-        _gameInfo._networking.Dispose();
-        _gameInfo._session.Dispose();
-
         _gameInfo._arNetworking.Dispose();
 
-        _self = null;
-        _gameInfo = null;
+        _gameInfo._session.Dispose();
+        _gameInfo._networking.Dispose();
+
     }
+
+    #region Networking
 
     private void OnSessionDeinitialized(ARSessionDeinitializedArgs args)
     {
         Debug.Log("stopped");
 
-        StopSharedAR();
     }
 
     private void OnSessionRan(ARSessionRanArgs args)
@@ -121,9 +120,19 @@ public class NetworkingManager : MonoBehaviour
         }
 
 
-        OnNetworkInitialized?.Invoke(_gameInfo);
+        NetworkStateChanged?.Invoke(_gameInfo);
     }
 
+    private void OnNetworkDisconnected(DisconnectedArgs args)
+    {
+
+        players = null;
+        _self = null;
+        _gameInfo = null;
+
+        NetworkStateChanged?.Invoke(_gameInfo);
+        PlayerDictionnaryUpdated?.Invoke(players);
+    }
     private void OnPeerAdded(PeerAddedArgs args)
     {
         if (_self == _gameInfo._networking.Host)
@@ -139,9 +148,14 @@ public class NetworkingManager : MonoBehaviour
         {
             if (players.ContainsKey(args.Peer.Identifier))
             {
+                Debug.Log(args.Peer.Identifier.ToString() + " as left..");
                 players.Remove(args.Peer.Identifier);
                 BroadCastLobbyRole();
             }
+        }
+        else if(args.Peer.Identifier.Equals(_gameInfo._networking.Host))
+        {
+            StopSharedAR();
         }
     }
 

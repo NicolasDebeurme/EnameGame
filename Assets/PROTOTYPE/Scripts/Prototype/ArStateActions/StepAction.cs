@@ -8,6 +8,7 @@ public abstract class StepAction : MonoBehaviour
     protected GameStateSystem GameStateSystem;
     protected ActionData actionData;
     protected AR ArState;
+    protected GameObject[] AnchorsPrefab;
 
     public virtual void Initialize(GameStateSystem GameStateSystem) {}
     public virtual void Initialize(GameStateSystem GameStateSystem,StepAction actionType)
@@ -23,7 +24,7 @@ public abstract class StepAction : MonoBehaviour
         {
             foreach(var payload in actionData.payloads)
             {
-                ArState.wayspotService.LoadPayloads(payload.jsonData,payload.prefab);
+                AnchorsPrefab = ArState.wayspotService.LoadPayloads(payload.jsonData,payload.prefab);
             }
         }
 #endif

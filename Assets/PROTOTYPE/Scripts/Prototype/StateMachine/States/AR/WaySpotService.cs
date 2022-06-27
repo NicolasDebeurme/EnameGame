@@ -21,6 +21,7 @@ public class WaySpotService : MonoBehaviour
 
     private bool InitialLocalizationFired = false;
     private Dictionary<Guid,GameObject> anchors = new Dictionary<Guid, GameObject>();
+    private ILocationService locationService = null;
 
     //ToSet
     public IARSession session;
@@ -34,15 +35,17 @@ public class WaySpotService : MonoBehaviour
 
     public EventHandler WayspotLocalized;
     public EventHandler WayspotLost;
+
     public void OnSessionStarted(ARSessionRanArgs args)
     {
         Debug.Log("WS Sessionstarted Event");
         var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
 
-        var locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
         locationService.Start(1, 0.001f);
 
-        wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
+        if(locationService != null)
+            wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
     }
 
 
@@ -173,6 +176,8 @@ public class WaySpotService : MonoBehaviour
 
     private void OnDestroy()
     {
+        locationService.Stop();
+        wayspotAnchorService.Dispose();
 
         foreach (var anchor in anchors)
         {
@@ -186,9 +191,9 @@ public class WaySpotService : MonoBehaviour
     }
 
     #region WaySpotAnchor Payloads
-    public void LoadPayloads(string json, GameObject anchorPrefab)
+    public GameObject[] LoadPayloads(string json, GameObject anchorPrefab)
     {
-        
+        var AnchorsPrefabs = new List<GameObject>();
             var payloads = new List<WayspotAnchorPayload>();
             var storedData = JsonUtility.FromJson<WayspotAnchorsData>(json);
 
@@ -210,12 +215,14 @@ public class WaySpotService : MonoBehaviour
                     anchor.SetActive(false);
                     anchor.name = $"Anchor {id}";
                     anchors.Add(id, anchor);
+
+                    AnchorsPrefabs.Add(anchor);
                     wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
                 }
 
             }
         
-
+            return AnchorsPrefabs.ToArray();
     }
 
     //private void OnWaySpotAchorAdded(IWayspotAnchor[] wayspotAnchors)
