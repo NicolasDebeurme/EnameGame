@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,7 @@ public abstract class StepAction : MonoBehaviour
         }
 #endif
 
+        DialogueManager._dialogueInstance.DialogueEnded += OnDialogueEnded;
     }
 
     protected ActionData LoadAction(string actionName) 
@@ -48,8 +50,13 @@ public abstract class StepAction : MonoBehaviour
         GameStateSystem.GetState().NextState();
     }
 
+    protected void OnDialogueEnded(object sender, EventArgs e)
+    {
+        Debug.Log("DialogueEnded");
+    }
     public virtual void DestroySelf()
     {
         Destroy(this);
     }
+    
 }

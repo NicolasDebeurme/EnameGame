@@ -8,13 +8,17 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager _dialogueInstance;
 
+
     private Queue<string> sentences;
+    private Queue<Dialogue> dialogues;
 
     [SerializeField]
     private Animator _dialogueBoxAnim;
     [SerializeField]
     private TextMeshProUGUI _dialogueText;
 
+    //Events
+    public EventHandler DialogueEnded;
     private void Awake()
     {
         _dialogueInstance = this;
@@ -22,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        dialogues = new Queue<Dialogue>();
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -68,6 +73,8 @@ public class DialogueManager : MonoBehaviour
     {
         isPlaying = false;
         _dialogueBoxAnim.SetTrigger("Close");
+        DialogueEnded.Invoke(this, EventArgs.Empty);
+        DisplayNextDialogue();
     }
 
     bool isPlaying = false;
@@ -80,5 +87,35 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(timeStamp);
             DisplayNextSentence();
         }
+    }
+
+    public IEnumerator PlayDialogue(Dialogue dialogue)
+    {
+        StartDialogue(dialogue);
+
+        while (isPlaying)
+        {
+            yield return new WaitForSeconds(3f);
+            DisplayNextSentence();
+        }
+    }
+
+    public void EnqueueDialogue(Dialogue dialogue)
+    {
+        dialogues.Enqueue(dialogue);
+
+        if(!isPlaying)
+            DisplayNextDialogue();
+    }
+    private void DisplayNextDialogue()
+    {
+        if (dialogues.Count == 0)
+        {
+            return;
+        }
+
+        Dialogue dialogue = dialogues.Dequeue();
+
+        StartCoroutine(PlayDialogue(dialogue));
     }
 }
