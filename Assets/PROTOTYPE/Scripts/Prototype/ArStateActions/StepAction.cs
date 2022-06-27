@@ -25,7 +25,7 @@ public abstract class StepAction : MonoBehaviour
         {
             foreach(var payload in actionData.payloads)
             {
-                AnchorsPrefab = ArState.wayspotService.LoadPayloads(payload.jsonData,payload.prefab);
+                AnchorsPrefab = GameStateSystem.waySpotService.LoadPayloads(payload.jsonData,payload.prefab);
             }
         }
 #endif

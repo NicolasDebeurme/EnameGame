@@ -81,7 +81,11 @@ public class AR : State
         if (action == null)
         {
             action = GameStateSystem.gameObject.AddComponent(Type.GetType(GameStateSystem.ActualNode.data.action)) as StepAction;
-            action.Initialize(GameStateSystem);
+
+            if (action != null)
+                action.Initialize(GameStateSystem);
+            else
+                Debug.Log("No action provided");
         }
     }
 }

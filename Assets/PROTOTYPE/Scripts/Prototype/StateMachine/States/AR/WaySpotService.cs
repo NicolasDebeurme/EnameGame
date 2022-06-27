@@ -33,28 +33,27 @@ public class WaySpotService : MonoBehaviour
     public EventHandler WayspotLocalized;
     public EventHandler WayspotLost;
 
-    private void Awake()
-    {
-        Debug.Log("WS Sessionstarted Event");
-        var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
-
-        locationService = GameStateSystem._instance.locationService._locationService;
-        locationService.Start(1, 0.001f);
-
-        if (locationService != null)
-            wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
-        else
-            Debug.Log("No location Service");
-    }
-
     public void Init(IARSession session, GameObject TextPanel)
     {
         this.session = session;
+
         session.Paused += OnSessionPaused;
         session.Ran += OnSessionRan;
         TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
         TextPanelTitle.text = "Waypoint Anchors Status Log";
         LocalizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
+
+        Debug.Log("WS Sessionstarted Event");
+        var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
+        wayspotAnchorsConfiguration.ContinuousLocalizationEnabled = true;
+
+        locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+
+
+        if (locationService != null)
+            wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
+        else
+            Debug.Log("No location Service");
     }
 
     private void OnSessionRan(ARSessionRanArgs args)
@@ -75,6 +74,7 @@ public class WaySpotService : MonoBehaviour
 
     public void Update()
     {
+        if (session.State == ARSessionState.Paused) return;
         if(wayspotAnchorService == null)
         {
             LocalizationStatus.text = "NoWayspotService";

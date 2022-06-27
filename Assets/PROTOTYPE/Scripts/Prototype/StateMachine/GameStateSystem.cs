@@ -52,7 +52,10 @@ public class GameStateSystem : StateMachine
         }
 
         if (ActualNode == null)
-            throw new Exception("The StoryTree you trying to access does not exist or is empty ..");
+        {
+            ActualNode = _availableTrees[0].root;
+            Debug.Log("DefaultTree taken");
+        }
             
 
         SetState(new Lobby(this));
