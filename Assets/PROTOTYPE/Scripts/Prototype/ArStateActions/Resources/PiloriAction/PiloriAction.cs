@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Niantic.ARDK.Extensions;
 using TMPro;
+using static Enums;
 
 public class PiloriAction : StepAction
 {
@@ -33,8 +34,10 @@ public class PiloriAction : StepAction
 
     private void OnDestroy()
     {
+        /*
         Camera.main.GetComponent<ARDepthManager>().enabled = false;
         Camera.main.GetComponent<ARDepthInterpolationAdapter>().enabled = false;
+        */
     }
 
 

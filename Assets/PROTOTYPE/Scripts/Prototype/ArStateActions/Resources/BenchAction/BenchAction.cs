@@ -23,6 +23,7 @@ public class BenchAction : StepAction
         else
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to tkae the gun";
     }
+    
 
     private void Update()
     {

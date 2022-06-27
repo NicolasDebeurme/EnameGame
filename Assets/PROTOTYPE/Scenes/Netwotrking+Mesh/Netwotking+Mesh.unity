@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -705,6 +705,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.9899
+      objectReference: {fileID: 0}
+    - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.9899
+      objectReference: {fileID: 0}
+    - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.9899
+      objectReference: {fileID: 0}
+    - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -741,12 +756,12 @@ PrefabInstance:
     - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 203
       objectReference: {fileID: 0}
     - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 224318102711888160, guid: 53d58211943764d66a747d5ba617615e,
         type: 3}
@@ -2878,7 +2893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.650513, y: -16.25}
+  m_AnchoredPosition: {x: -8.650391, y: -16.25}
   m_SizeDelta: {x: -117.3, y: -132.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &928659363

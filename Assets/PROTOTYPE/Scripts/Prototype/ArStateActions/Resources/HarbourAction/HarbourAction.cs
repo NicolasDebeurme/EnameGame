@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enums;
+using TMPro;
 
 public class HarbourAction : StepAction
 {
@@ -23,6 +25,7 @@ public class HarbourAction : StepAction
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem, this );
+        /*
         cam = Camera.main;
         boat = GameObject.Find("Boat");
 
@@ -32,7 +35,7 @@ public class HarbourAction : StepAction
         pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
         //boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
 
-        
+        */
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
     }
