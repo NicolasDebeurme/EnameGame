@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Niantic.ARDK.Extensions;
+using TMPro;
 
 public class PiloriAction : StepAction
 {
@@ -10,6 +11,11 @@ public class PiloriAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Pilori..";
+
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "The Baker have something to tell you";
+
+        /*
         Camera.main.GetComponent<ARDepthManager>().enabled = true;
         Camera.main.GetComponent<ARDepthInterpolationAdapter>().enabled = true;
 
@@ -20,8 +26,8 @@ public class PiloriAction : StepAction
 
         //baker = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity);
 
-        //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
-
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Baker"]));
+        */
     }
 
 

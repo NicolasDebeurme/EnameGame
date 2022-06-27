@@ -20,7 +20,7 @@ MonoBehaviour:
       type: 3}
   dialogues:
     dialogues:
-    - name: First
+    - name: Baker
       sentences:
       - Hi I'm the baker of Ename
       - The abbey hung me here, don't trust him

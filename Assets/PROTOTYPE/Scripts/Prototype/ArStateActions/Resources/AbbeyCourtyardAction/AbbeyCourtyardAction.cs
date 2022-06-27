@@ -9,7 +9,7 @@ public class AbbeyCourtyardAction : StepAction
     {
         base.Initialize(gameStateSystem, this);
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First2"]));
+        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
 
 
 

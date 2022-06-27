@@ -13,7 +13,7 @@ public class EntranceAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
+        //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
 
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
 
@@ -74,6 +74,8 @@ public class EntranceAction : StepAction
                     if (jar != null) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHit();
+                        isJarTaken = true;
+                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
                     }
                 }
             }

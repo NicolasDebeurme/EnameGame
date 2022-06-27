@@ -5,15 +5,15 @@ using static Enums;
 
 public class Saint_AnthonyAction : StepAction
 {
-    bool DontSwap;
-    bool DontDenonce;
-    bool DontShoot;
+    bool DontSwap = !GameManager.Instance.HasSwap;
+    bool DontDenonce = !GameManager.Instance.HasDenounce;
+    bool DontShoot= !GameManager.Instance.HasShoot;
 
 
 
     public override void Initialize(GameStateSystem gameStateSystem)
     {
-        base.Initialize(gameStateSystem);
+        base.Initialize(gameStateSystem, this );
 
 
         if (gameStateSystem._playerRole == Roles.RandomMan)

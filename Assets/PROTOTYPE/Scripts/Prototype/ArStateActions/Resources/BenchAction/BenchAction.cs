@@ -14,12 +14,9 @@ public class BenchAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "HelloWorld";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Bench...";
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["GunTaken"]));
-
-
-
+        //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["GunTaken"]));
 
         if (gameStateSystem._playerRole == Roles.RandomMan)
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";

@@ -20,7 +20,7 @@ MonoBehaviour:
       type: 3}
   dialogues:
     dialogues:
-    - name: First2
+    - name: First
       sentences:
       - "Hello young man, I heard about your arrival.\r"
       - 'I will need a favor from you, I have the impression that some villagers

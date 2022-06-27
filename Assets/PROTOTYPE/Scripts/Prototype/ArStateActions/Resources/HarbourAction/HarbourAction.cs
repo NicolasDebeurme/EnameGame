@@ -22,11 +22,9 @@ public class HarbourAction : StepAction
 
     public override void Initialize(GameStateSystem gameStateSystem)
     {
-        base.Initialize(gameStateSystem);
+        base.Initialize(gameStateSystem, this );
         cam = Camera.main;
         boat = GameObject.Find("Boat");
-        Reticule = GameObject.Find("PistolUI").GetComponent<Image>();
-        ShootButton = GameObject.Find("ShootButton").GetComponent<Button>();
 
         ShootButton.onClick.AddListener(() => OnClickShoot());
 
@@ -34,13 +32,11 @@ public class HarbourAction : StepAction
         pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
         //boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
 
-        Reticule.gameObject.SetActive(true);
-        ShootButton.gameObject.SetActive(true);
-
+        
 
         StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
-
     }
+
     void Update()
     {
         if (hasTouch)
@@ -75,8 +71,7 @@ public class HarbourAction : StepAction
             numberBullet--;
             if (numberBullet == 0)
             {
-                Reticule.gameObject.SetActive(false);
-                ShootButton.gameObject.SetActive(false);
+                
             }
         }
         else
