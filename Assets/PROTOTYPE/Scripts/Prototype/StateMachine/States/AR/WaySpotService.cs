@@ -24,7 +24,6 @@ public class WaySpotService : MonoBehaviour
 
     //ToSet
     public IARSession session;
-    public GameObject prefab;
 
 
     public TextMeshProUGUI TextPanelTitle;
@@ -48,10 +47,9 @@ public class WaySpotService : MonoBehaviour
 
 
 
-    public void Init(IARSession session, GameObject prefab, GameObject TextPanel)
+    public void Init(IARSession session, GameObject TextPanel)
     {
         this.session = session;
-        this.prefab = prefab;
 
         TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
         TextPanelTitle.text = "Waypoint Anchors Status Log";
@@ -71,24 +69,37 @@ public class WaySpotService : MonoBehaviour
             LocalizationStatus.text = wayspotAnchorService.LocalizationState.ToString();
         }
 
-
-        if (wayspotAnchorService != null && wayspotAnchorService.LocalizationState == LocalizationState.Failed)
+        if (wayspotAnchorService != null)
         {
-            wayspotAnchorService.Restart();
-
-            if(InitialLocalizationFired)
+            if (wayspotAnchorService.LocalizationState == LocalizationState.Failed)
             {
-                WayspotLost.Invoke(this, EventArgs.Empty);
-                InitialLocalizationFired = false;
+                wayspotAnchorService.Restart();
+
+                if (InitialLocalizationFired)
+                {
+                    Debug.Log("Failed");
+                    WayspotLost.Invoke(this, EventArgs.Empty);
+                    InitialLocalizationFired = false;
+                }
+                return;
             }
-            return;
+            else if (wayspotAnchorService.LocalizationState == LocalizationState.Localizing)
+            {
+
+                if (InitialLocalizationFired)
+                {
+                    WayspotLost.Invoke(this, EventArgs.Empty);
+                    InitialLocalizationFired = false;
+                }
+                return;
+            }
         }
+        
 
         if (wayspotAnchorService.LocalizationState != LocalizationState.Localized) return;
 
         if(wayspotAnchorService.LocalizationState == LocalizationState.Localized && !InitialLocalizationFired)
         {
-            LoadLocalReference();
             WayspotLocalized.Invoke(this, EventArgs.Empty);
             InitialLocalizationFired = true;
         }
@@ -121,78 +132,47 @@ public class WaySpotService : MonoBehaviour
         ScreenTap?.Invoke(this, EventArgs.Empty); // TapPassEvent
 
         Matrix4x4 poseMatrix = hitTestResults[0].WorldTransform;
-
-        AddAnchor(poseMatrix);
     }
 
-    private void AddAnchor(Matrix4x4 poseMatrix)
-    {
-        wayspotAnchorService.CreateWayspotAnchors(OnWaySpotAchorAdded, poseMatrix);
-    }
 
-    private void OnWaySpotAchorAdded(IWayspotAnchor[] wayspotAnchors)
-    {
-        foreach (var wayspotAnchor in wayspotAnchors)
-        {
-            if (anchors.ContainsKey(wayspotAnchor.ID)) continue;
-            var id =wayspotAnchor.ID;
-            var anchor = Instantiate(prefab);
-            anchor.SetActive(false);
-            anchor.name = $"Anchor {id}";
-            anchors.Add(id, anchor);
-            wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
-        }
 
-        if(InitialLocalizationFired)
-            SaveLocalReference();
-    }
 
-    private void OnUpdateAnchorPose(WayspotAnchorResolvedArgs args)
-    {
-        var anchor = anchors[args.ID].transform;
+    //private void SaveLocalReference()
+    //{
+    //    IWayspotAnchor[] wayspotAnchors = wayspotAnchorService.GetAllWayspotAnchors();
 
-        anchor.rotation = args.Rotation;
-        anchor.position = args.Position;
-        anchor.gameObject.SetActive(true);
-    }
+    //    WayspotAnchorsData storedAnchorsData = new WayspotAnchorsData();
+    //    storedAnchorsData.Payloads =wayspotAnchors.Select(a => a.Payload.Serialize()).ToArray();
 
-    private void SaveLocalReference()
-    {
-        IWayspotAnchor[] wayspotAnchors = wayspotAnchorService.GetAllWayspotAnchors();
+    //    string jsonData = JsonUtility.ToJson(storedAnchorsData);
+    //    PlayerPrefs.SetString(LocalSaveKey, jsonData);
+    //}
 
-        WayspotAnchorsData storedAnchorsData = new WayspotAnchorsData();
-        storedAnchorsData.Payloads =wayspotAnchors.Select(a => a.Payload.Serialize()).ToArray();
+    //public void LoadLocalReference()
+    //{
+    //    if(PlayerPrefs.HasKey(LocalSaveKey))
+    //    {
+    //        List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
 
-        string jsonData = JsonUtility.ToJson(storedAnchorsData);
-        PlayerPrefs.SetString(LocalSaveKey, jsonData);
-    }
+    //        string jsonData = PlayerPrefs.GetString(LocalSaveKey);
+    //        WayspotAnchorsData storedData = JsonUtility.FromJson<WayspotAnchorsData>(jsonData);
 
-    public void LoadLocalReference()
-    {
-        if(PlayerPrefs.HasKey(LocalSaveKey))
-        {
-            List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
+    //        foreach(var wayspotAnchorPayload in storedData.Payloads)
+    //        {
+    //            var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
+    //            payloads.Add(payload);
+    //        }
 
-            string jsonData = PlayerPrefs.GetString(LocalSaveKey);
-            WayspotAnchorsData storedData = JsonUtility.FromJson<WayspotAnchorsData>(jsonData);
-
-            foreach(var wayspotAnchorPayload in storedData.Payloads)
-            {
-                var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
-                payloads.Add(payload);
-            }
-
-            if(payloads.Count > 0)
-            {
-                var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
-                OnWaySpotAchorAdded(wayspotAnchors);
-            }
-        }
-    }
+    //        if(payloads.Count > 0)
+    //        {
+    //            var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
+    //            OnWaySpotAchorAdded(wayspotAnchors);
+    //        }
+    //    }
+    //}
 
     private void OnDestroy()
     {
-        SaveLocalReference();
 
         foreach (var anchor in anchors)
         {
@@ -238,6 +218,30 @@ public class WaySpotService : MonoBehaviour
 
     }
 
+    //private void OnWaySpotAchorAdded(IWayspotAnchor[] wayspotAnchors)
+    //{
+    //    foreach (var wayspotAnchor in wayspotAnchors)
+    //    {
+    //        if (anchors.ContainsKey(wayspotAnchor.ID)) continue;
+    //        var id = wayspotAnchor.ID;
+    //        var anchor = Instantiate(prefab);
+    //        anchor.SetActive(false);
+    //        anchor.name = $"Anchor {id}";
+    //        anchors.Add(id, anchor);
+    //        wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
+    //    }
+
+    //    if (InitialLocalizationFired)
+    //        SaveLocalReference();
+    //}
+    private void OnUpdateAnchorPose(WayspotAnchorResolvedArgs args)
+    {
+        var anchor = anchors[args.ID].transform;
+
+        anchor.rotation = args.Rotation;
+        anchor.position = args.Position;
+        anchor.gameObject.SetActive(true);
+    }
     #endregion
 
     [Serializable]

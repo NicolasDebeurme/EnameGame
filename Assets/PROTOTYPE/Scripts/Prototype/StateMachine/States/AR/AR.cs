@@ -28,7 +28,7 @@ public class AR : State
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
 
         wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
-        wayspotService.Init(GameStateSystem._gameInfo._session, _view.prefabToSpawn, _view.textPanel);
+        wayspotService.Init(GameStateSystem._gameInfo._session, _view.textPanel);
         wayspotService.ScreenTap += GameStateSystem.inventory.UseItem;
         wayspotService.WayspotLocalized += OnWayspotLocalized;
         wayspotService.WayspotLost += OnWayspotLost;
