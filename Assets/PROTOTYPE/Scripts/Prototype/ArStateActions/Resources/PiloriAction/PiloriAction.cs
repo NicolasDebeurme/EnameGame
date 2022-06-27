@@ -7,7 +7,7 @@ using static Enums;
 
 public class PiloriAction : StepAction
 {
-    GameObject baker;   
+    //GameObject baker;   
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem,this);

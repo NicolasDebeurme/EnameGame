@@ -16,7 +16,7 @@ MonoBehaviour:
   payloads:
   - name: Pistol
     jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
-    prefab: {fileID: 1568518222249754470, guid: 177712d81913be94998d450ec7a21b40,
+    prefab: {fileID: 4239238473724786832, guid: 13d51c98c0026884cb738ce9814a452b,
       type: 3}
   dialogues:
     dialogues:
