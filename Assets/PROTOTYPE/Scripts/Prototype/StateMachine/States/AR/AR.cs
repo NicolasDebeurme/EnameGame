@@ -8,7 +8,6 @@ using static Enums;
 public class AR : State
 {
     //Public
-    public WaySpotService wayspotService;
     public UI_Inventory uiInventory;
     public GameObject textPanel;
     //Private
@@ -24,16 +23,17 @@ public class AR : State
         _view = UIManager.Show<ARView>();
         textPanel = _view.textPanel;
 
+        if(GameStateSystem.waySpotService == null)
+        {
+            GameStateSystem.waySpotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
+            GameStateSystem.waySpotService.Init(GameStateSystem._gameInfo._session, _view.textPanel);
+            GameStateSystem.waySpotService.ScreenTap += GameStateSystem.inventory.UseItem;
+            GameStateSystem.waySpotService.WayspotLocalized += OnWayspotLocalized;
+            GameStateSystem.waySpotService.WayspotLost += OnWayspotLost;
+        }
+
         GameStateSystem.inventory.OnItemHanded += UpdateItemUI;
         GameStateSystem._gameInfo._session.Run(GameStateSystem._gameInfo._sessionConfigData);
-
-        wayspotService = GameStateSystem.gameObject.AddComponent<WaySpotService>();
-        wayspotService.Init(GameStateSystem._gameInfo._session, _view.textPanel);
-        wayspotService.ScreenTap += GameStateSystem.inventory.UseItem;
-        wayspotService.WayspotLocalized += OnWayspotLocalized;
-        wayspotService.WayspotLost += OnWayspotLost;
-
-        GameStateSystem._gameInfo._session.Ran += wayspotService.OnSessionStarted;
 
         yield break;
     }
@@ -44,8 +44,6 @@ public class AR : State
 
         if(action != null)
             action.DestroySelf();
-
-        wayspotService.DestroySelf();
 
  
         if (GameStateSystem.ActualNode.children?.Count > 0)

@@ -27,6 +27,8 @@ public class GameStateSystem : StateMachine
 
     [NonSerialized]
     public LocationService locationService = null;
+    [NonSerialized]
+    public WaySpotService waySpotService = null;
     //
 
     [NonSerialized]
@@ -46,7 +48,7 @@ public class GameStateSystem : StateMachine
         foreach(var tree in _availableTrees)
         {
             if(tree.name == GameManager.Instance.TreeToLoad_Name && tree?.root != null)
-                ActualNode = _availableTrees[0].root;
+                ActualNode = tree.root;
         }
 
         if (ActualNode == null)
