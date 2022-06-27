@@ -17,9 +17,9 @@ public class Saint_AnthonyAction : StepAction
         base.Initialize(gameStateSystem, this );
 
 
-        if (gameStateSystem._playerRole == Roles.RandomMan)
+        //if (gameStateSystem._playerRole == Roles.RandomMan)
             //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstPoliceman"]));
-        else
+        //else
             //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstAlchemist"]));
 
         if (DontSwap)
