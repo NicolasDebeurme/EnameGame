@@ -20,7 +20,8 @@ public abstract class StepAction : MonoBehaviour
         actionData = LoadAction(actionType.GetType().ToString());
 
 #if !UNITY_EDITOR
-        if (actionData.payloads != null)
+
+        if (actionData.payloads != null && false)
         {
             foreach(var payload in actionData.payloads)
             {

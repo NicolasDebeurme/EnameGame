@@ -27,11 +27,11 @@ MonoBehaviour:
   - data:
       textToBeChose: 
       visibilitys:
-        Decide: 02000000
-        See: 01000000
+        Decide: 0200000001000000
+        See: 
         Blind: 
       dialogueText: 
       place: 5
-      action: BenchAction
+      action: AbbeyCourtyardAction
     childCount: 0
     indexOfFirstChild: 2
