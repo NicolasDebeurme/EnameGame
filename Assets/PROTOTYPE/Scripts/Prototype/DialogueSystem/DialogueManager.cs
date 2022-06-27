@@ -71,13 +71,13 @@ public class DialogueManager : MonoBehaviour
     }
 
     bool isPlaying = false;
-    public IEnumerator PlayDialogue(Dialogue dialogue)
+    public IEnumerator PlayDialogue(Dialogue dialogue, float timeStamp)
     {
         StartDialogue(dialogue);
 
         while(isPlaying)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(timeStamp);
             DisplayNextSentence();
         }
     }
