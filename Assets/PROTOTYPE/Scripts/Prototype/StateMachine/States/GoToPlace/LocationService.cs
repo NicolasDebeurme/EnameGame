@@ -45,7 +45,7 @@ public class LocationService : MonoBehaviour
 
     private void OnStatusUpdated(LocationStatusUpdatedArgs args)
     {
-        Debug.Log(args.Status.ToString());
+        Debug.Log("LocationService :" + args.Status.ToString());
     }
 
     //private void OnCompassUpdated(CompassUpdatedArgs args)

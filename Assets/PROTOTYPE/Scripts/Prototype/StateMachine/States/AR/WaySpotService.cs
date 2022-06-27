@@ -14,9 +14,6 @@ using static ActionData;
 
 public class WaySpotService : MonoBehaviour
 {
-    private string LocalSaveKey = "my_wayspots";
-    
-
     private WayspotAnchorService wayspotAnchorService;
 
     private bool InitialLocalizationFired = false;
@@ -36,30 +33,46 @@ public class WaySpotService : MonoBehaviour
     public EventHandler WayspotLocalized;
     public EventHandler WayspotLost;
 
-    public void OnSessionStarted(ARSessionRanArgs args)
+    private void Awake()
     {
         Debug.Log("WS Sessionstarted Event");
         var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
 
-        locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        locationService = GameStateSystem._instance.locationService._locationService;
         locationService.Start(1, 0.001f);
 
-        if(locationService != null)
+        if (locationService != null)
             wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
+        else
+            Debug.Log("No location Service");
     }
-
-
 
     public void Init(IARSession session, GameObject TextPanel)
     {
         this.session = session;
-
+        session.Paused += OnSessionPaused;
+        session.Ran += OnSessionRan;
         TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
         TextPanelTitle.text = "Waypoint Anchors Status Log";
         LocalizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
     }
 
-    
+    private void OnSessionRan(ARSessionRanArgs args)
+    {
+        locationService.Start(1, 0.001f);
+    }
+
+    private void OnSessionPaused(ARSessionPausedArgs args)
+    {
+        locationService.Stop();
+
+        foreach (var anchor in anchors)
+        {
+            Destroy(anchor.Value);
+        }
+        anchors.Clear();
+    }
+
     public void Update()
     {
         if(wayspotAnchorService == null)
@@ -176,14 +189,7 @@ public class WaySpotService : MonoBehaviour
 
     private void OnDestroy()
     {
-        locationService.Stop();
-        wayspotAnchorService.Dispose();
-
-        foreach (var anchor in anchors)
-        {
-            Destroy(anchor.Value);
-        }
-        anchors.Clear();
+        
     }
     public void DestroySelf()
     {
