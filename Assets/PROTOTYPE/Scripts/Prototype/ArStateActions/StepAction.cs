@@ -21,7 +21,7 @@ public abstract class StepAction : MonoBehaviour
 
 #if !UNITY_EDITOR
 
-        if (actionData.payloads != null && false)
+        if (actionData.payloads != null)
         {
             foreach(var payload in actionData.payloads)
             {
