@@ -27,3 +27,7 @@ MonoBehaviour:
       sentences:
       - 'Now you have the choise to shoot the boat '
       - 'Your future depends on it '
+    - name: hasTouch
+      sentences:
+      - 'Now you have the choise to shoot the boat '
+      - 'Your future depends on it '

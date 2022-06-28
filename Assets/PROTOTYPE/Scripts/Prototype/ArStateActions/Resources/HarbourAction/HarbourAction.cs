@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Enums;
 using TMPro;
+using System;
 
 public class HarbourAction : StepAction
 {
-    GameObject pistol = null;
+    public GameObject pistol = null;
     Camera cam = null;
     GameObject boat = null;
 
@@ -16,8 +17,7 @@ public class HarbourAction : StepAction
     private bool hasTouch = false;
 
     [Header("UI")]
-    public Image Reticule;
-    public Button ShootButton;
+    Button ShootButton;
 
 
 
@@ -25,19 +25,27 @@ public class HarbourAction : StepAction
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem, this );
-        /*
-        cam = Camera.main;
-        boat = GameObject.Find("Boat");
 
+        gameStateSystem.inventory.OnItemHanded += GetPistol;
+
+        cam = Camera.main;
+        //boat = GameObject.Find("Boat");
+        boat = AnchorsPrefab[0];
+        ShootButton = ArState._view.shootButton.GetComponent<Button>(); 
         ShootButton.onClick.AddListener(() => OnClickShoot());
 
-        pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity, cam.transform);
-        pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
-        //boat = Instantiate(actionData.prefabs[1].prefab, Vector3.zero, Quaternion.identity);
-
-        */
+        //pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity, cam.transform);
+        //pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
 
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
+    }
+
+    private void GetPistol(object sender, Item _item)
+    {
+        if (_item.itemWorld.transform.gameObject != null)
+        {
+            pistol = _item.itemWorld.transform.gameObject;
+        }
     }
 
     void Update()
@@ -46,11 +54,12 @@ public class HarbourAction : StepAction
         {
             //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
             boat.transform.position -= new Vector3(0, 0.005f, 0);
+            StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["hasTouch"]));
         }
     }
     public void OnClickShoot()
     {
-        pistol.GetComponent<Animator>().SetTrigger("shoot");
+        //pistol.GetComponent<Animator>().SetTrigger("shoot");
         if (numberBullet >= 1)
         {
             RaycastHit hit;
@@ -82,9 +91,12 @@ public class HarbourAction : StepAction
 
         }
     }
+
+
+
     private void OnDestroy()
     {
-        Destroy(pistol);
+        //Destroy(pistol);
         //Destroy(boat);
     }
 }

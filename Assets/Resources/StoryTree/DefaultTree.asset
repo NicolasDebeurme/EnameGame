@@ -49,9 +49,9 @@ MonoBehaviour:
   - data:
       textToBeChose: 
       visibilitys:
-        Decide: 01000000
+        Decide: 0100000002000000
         See: 
-        Blind: 02000000
+        Blind: 
       dialogueText: Swap the jars and kill the monk ?
       place: 4
       action: PharmacyAction
@@ -60,9 +60,9 @@ MonoBehaviour:
   - data:
       textToBeChose: Yes
       visibilitys:
-        Decide: 02000000
+        Decide: 0200000001000000
         See: 
-        Blind: 01000000
+        Blind: 
       dialogueText: Denounce the Alchemist ?
       place: 5
       action: AbbeyCourtyardAction
@@ -71,9 +71,9 @@ MonoBehaviour:
   - data:
       textToBeChose: Yes
       visibilitys:
-        Decide: 02000000
+        Decide: 0200000001000000
         See: 
-        Blind: 01000000
+        Blind: 
       dialogueText: Shoot the boat to prevent alchemist escape ?
       place: 6
       action: HarbourAction
