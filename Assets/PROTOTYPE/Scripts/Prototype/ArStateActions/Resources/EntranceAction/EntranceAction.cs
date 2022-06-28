@@ -52,7 +52,7 @@ public class EntranceAction : StepAction
                     {
                         jar.OnRayHit();
                         isJarTaken = true;
-                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
+                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                     }
                 }
             }

@@ -165,6 +165,7 @@ public class NetworkingManager : MonoBehaviour
     //       1 -> ChoiceInfo
     //       2 -> NextState
     //       3 -> PlayerDictionnary
+    //       4 -> ItemTaken
 
     #region Send Message
 
@@ -206,6 +207,12 @@ public class NetworkingManager : MonoBehaviour
         BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.PlayerDictionnary, serializedInfo, false);
         NetworkingManager.Instance.PlayerDictionnaryUpdated?.Invoke(players);
     }
+
+    public static void BroadcastItemTaken(ItemType itemType)
+    {
+        var serializedInfo = ((int)itemType).Serialize();
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ItemTaken, serializedInfo, false);
+    }
     #endregion
 
     #region Receive Message
@@ -237,6 +244,11 @@ public class NetworkingManager : MonoBehaviour
                 }
                 else
                     Debug.Log("Error");
+                break;
+            case (BrodcastType.ItemTaken):
+                var itemType = (ItemType)args.CopyData().Deserialize<int>();
+
+                Debug.Log(ItemWorld.DestroyItemOnBroadcast(itemType)? "Item destroyed..":"Item not destroyed,a problem as occured ..");
                 break;
 
             default:

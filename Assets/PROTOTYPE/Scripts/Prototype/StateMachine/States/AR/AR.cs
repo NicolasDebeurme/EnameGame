@@ -10,8 +10,8 @@ public class AR : State
     //Public
     public UI_Inventory uiInventory;
     public GameObject textPanel;
+    public ARView _view;
     //Private
-    private ARView _view;
     private StepAction action;
 
     public AR(GameStateSystem gameStateSystem) : base(gameStateSystem)

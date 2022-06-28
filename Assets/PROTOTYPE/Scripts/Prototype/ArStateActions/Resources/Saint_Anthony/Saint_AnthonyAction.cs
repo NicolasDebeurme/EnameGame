@@ -28,22 +28,22 @@ public class Saint_AnthonyAction : StepAction
             {
                 if (DontShoot)
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending1"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending1"]);
                 }
                 else
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending2"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending2"]);
                 }
             }
             else
             {
                 if (DontShoot)
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending3"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending3"]);
                 }
                 else
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending4"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending4"]);
                 }
             }
         }
@@ -53,22 +53,22 @@ public class Saint_AnthonyAction : StepAction
             {
                 if (DontShoot)
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending5"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending5"]);
                 }
                 else
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending6"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending6"]);
                 }
             }
             else
             {
                 if (DontShoot)
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending7"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending7"]);
                 }
                 else
                 {
-                    StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Ending8"]));
+                    DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Ending8"]);
                 }
             }
         }

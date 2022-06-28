@@ -49,7 +49,7 @@ public class BenchAction : StepAction
                     {
                         isGunTaken = true;
                         pistol.OnRayHit();
-                        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["GunTaken"]));
+                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
                     }
                 }
             }

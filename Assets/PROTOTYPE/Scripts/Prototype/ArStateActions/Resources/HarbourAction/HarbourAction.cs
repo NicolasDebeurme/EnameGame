@@ -37,7 +37,7 @@ public class HarbourAction : StepAction
 
         */
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["First"]));
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
     }
 
     void Update()

@@ -39,7 +39,8 @@ public class Enums : MonoBehaviour
         None,
         ChoiceInfo,
         NextState,
-        PlayerDictionnary
+        PlayerDictionnary,
+        ItemTaken
     }
 
     public enum TypeOfChoice

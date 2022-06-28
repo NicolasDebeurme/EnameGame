@@ -46,21 +46,28 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
+    private IEnumerator sentencePlaying = null;
     private void DisplayNextSentence()
     {
+        Debug.Log("DisplayNext");
         if(sentences.Count == 0)
         {
+            Debug.Log("EndOfDialogue");
             EndDialogue();
             return;
         }
 
         string sentence = sentences.Dequeue();
 
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if(sentencePlaying != null)
+            StopCoroutine(sentencePlaying);
+
+        sentencePlaying = TypeSentence(sentence);
+        StartCoroutine(sentencePlaying);
     }
     IEnumerator TypeSentence(string sentence)
     {
+
         _dialogueText.text = "";
 
         foreach(var letter in sentence)
@@ -78,24 +85,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     bool isPlaying = false;
-    public IEnumerator PlayDialogue(Dialogue dialogue, float timeStamp)
-    {
-        StartDialogue(dialogue);
 
-        while(isPlaying)
-        {
-            yield return new WaitForSeconds(timeStamp);
-            DisplayNextSentence();
-        }
-    }
-
-    public IEnumerator PlayDialogue(Dialogue dialogue)
+    private IEnumerator PlayDialogue(Dialogue dialogue)
     {
         StartDialogue(dialogue);
 
         while (isPlaying)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(dialogue.TimeStamp);
             DisplayNextSentence();
         }
     }
