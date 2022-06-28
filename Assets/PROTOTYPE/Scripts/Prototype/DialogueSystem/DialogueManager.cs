@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -67,12 +68,13 @@ public class DialogueManager : MonoBehaviour
     }
     IEnumerator TypeSentence(string sentence)
     {
-
+        var RectTransform = _dialogueText.transform.parent.GetComponent<RectTransform>();
         _dialogueText.text = "";
 
         foreach(var letter in sentence)
         {
             _dialogueText.text += letter;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
             yield return null;
         }
     }
