@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 2202171912692180444}
   - component: {fileID: 7707450088391654742}
   - component: {fileID: 8487665942050780578}
+  - component: {fileID: 1964966603}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -187,6 +188,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.13244809, y: 0.22676834, z: 0.63508284}
   m_Center: {x: -0.0044103283, y: 0.021121427, z: 0.21355194}
+--- !u!95 &1964966603
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568518222249754470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89af97b7288ac0c4bb636cab64111385, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1980283223707011015
 GameObject:
   m_ObjectHideFlags: 0

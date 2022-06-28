@@ -20,7 +20,7 @@ public class BenchAction : StepAction
         if (gameStateSystem._playerRole == Roles.RandomMan)
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";
         else
-            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to tkae the gun";
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to take the gun";
     }
     
 

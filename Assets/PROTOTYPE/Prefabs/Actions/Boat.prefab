@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3365944273634308172}
-  m_Layer: 0
+  - component: {fileID: 7298950339087059664}
+  m_Layer: 6
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,16 +29,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5370787053455422035}
-  - {fileID: 7607443074119267363}
-  - {fileID: 7607443074344570838}
-  - {fileID: 7607443075144161341}
-  - {fileID: 7607443075351409440}
-  - {fileID: 7607443075041934257}
-  - {fileID: 1149098022647912083}
+  - {fileID: 6128032275465007091}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7298950339087059664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4298549240031072944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1971698, y: 0.33573562, z: 0.66339326}
+  m_Center: {x: -0.07111001, y: 0.16705301, z: 0.0073115826}
 --- !u!1 &5448353140804717014
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +57,7 @@ GameObject:
   - component: {fileID: 7317473636412179242}
   - component: {fileID: 2144846766437520788}
   - component: {fileID: 3703539065795549307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Impostor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,17 +129,80 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6140607247648130910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6128032275465007091}
+  m_Layer: 6
+  m_Name: MovingObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6128032275465007091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6140607247648130910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5370787053455422035}
+  - {fileID: 7607443074119267363}
+  - {fileID: 7607443074344570838}
+  - {fileID: 7607443075144161341}
+  - {fileID: 7607443075351409440}
+  - {fileID: 7607443075041934257}
+  - {fileID: 1149098022647912083}
+  m_Father: {fileID: 3365944273634308172}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3119027493476998077
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
+    - target: {fileID: 7044153889820442107, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044153889828570161, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044153889828570161, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044153890691459417, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7044153891065539048, guid: a9af41e259c08a04fb2b8ba99884020b,
         type: 3}
       propertyPath: m_Name
       value: Looplank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044153891065539048, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7044153891065539054, guid: a9af41e259c08a04fb2b8ba99884020b,
         type: 3}
@@ -188,6 +259,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.269
       objectReference: {fileID: 0}
+    - target: {fileID: 7044153891076538225, guid: a9af41e259c08a04fb2b8ba99884020b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9af41e259c08a04fb2b8ba99884020b, type: 3}
 --- !u!4 &5370787053455422035 stripped
@@ -201,12 +277,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
     - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
       propertyPath: m_Name
       value: WoodCuttingstapel (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988991312652243504, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2529843718276595951, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
@@ -268,6 +354,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 91.665
       objectReference: {fileID: 0}
+    - target: {fileID: 3227852237679902970, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301949281626466829, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e2a3c1a304c94980b5121f50fbad2, type: 3}
 --- !u!4 &7607443075351409440 stripped
@@ -281,8 +377,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
+    - target: {fileID: -5409676305347087430, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5409676305347087430, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -375,8 +476,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451412837999464038, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4451412837999464038, guid: 2cb18b654eed5b54a85ec4a4ec35f578,
         type: 3}
@@ -466,12 +577,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
     - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
       propertyPath: m_Name
       value: WoodCuttingstapel (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988991312652243504, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2529843718276595951, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
@@ -533,6 +654,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 179.24301
       objectReference: {fileID: 0}
+    - target: {fileID: 3227852237679902970, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301949281626466829, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e2a3c1a304c94980b5121f50fbad2, type: 3}
 --- !u!4 &7607443074119267363 stripped
@@ -546,12 +677,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
     - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
       propertyPath: m_Name
       value: WoodCuttingstapel (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988991312652243504, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2529843718276595951, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
@@ -613,6 +754,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 88.335
       objectReference: {fileID: 0}
+    - target: {fileID: 3227852237679902970, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301949281626466829, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e2a3c1a304c94980b5121f50fbad2, type: 3}
 --- !u!4 &7607443074344570838 stripped
@@ -626,12 +777,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
     - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
       propertyPath: m_Name
       value: WoodCuttingstapel (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988991312652243504, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2529843718276595951, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
@@ -693,6 +854,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.000015258789
       objectReference: {fileID: 0}
+    - target: {fileID: 3227852237679902970, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301949281626466829, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e2a3c1a304c94980b5121f50fbad2, type: 3}
 --- !u!4 &7607443075144161341 stripped
@@ -706,12 +877,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3365944273634308172}
+    m_TransformParent: {fileID: 6128032275465007091}
     m_Modifications:
     - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
       propertyPath: m_Name
       value: WoodCuttingstapel (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531389545943642876, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988991312652243504, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2529843718276595951, guid: 922e2a3c1a304c94980b5121f50fbad2,
         type: 3}
@@ -772,6 +953,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 88.335
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227852237679902970, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301949281626466829, guid: 922e2a3c1a304c94980b5121f50fbad2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e2a3c1a304c94980b5121f50fbad2, type: 3}
