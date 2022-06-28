@@ -31,7 +31,7 @@ public class PiloriAction : StepAction
         }
 
 
-        StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["Baker"]));
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
         
     }
 

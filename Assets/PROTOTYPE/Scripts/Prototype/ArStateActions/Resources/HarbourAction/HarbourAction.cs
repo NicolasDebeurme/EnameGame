@@ -54,7 +54,7 @@ public class HarbourAction : StepAction
         {
             //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
             boat.transform.position -= new Vector3(0, 0.005f, 0);
-            StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["hasTouch"]));
+            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
         }
     }
     public void OnClickShoot()
