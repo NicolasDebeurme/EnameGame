@@ -8,6 +8,7 @@ public class ARView : View
 {
     public GameObject textPanel;
     public GameObject prefabToSpawn;
+    public GameObject shootButton;
 
     private GameObject _itemUI = null;
     public override void Initialize()

@@ -35,7 +35,6 @@ public class Inventory
 
     public void ItemClicked(Item item)
     {
-        OnItemHanded?.Invoke(this, item);
         if (_itemOut == null)
         {
             _itemOut = ItemWorld.SpawnItemHand(item);
@@ -50,6 +49,9 @@ public class Inventory
             _itemOut.DestroySelf();
             _itemOut = null;
         }
+
+        item.itemWorld = _itemOut;
+        OnItemHanded?.Invoke(this, item);
     }
 
     public void UseItem(object sender, EventArgs e)

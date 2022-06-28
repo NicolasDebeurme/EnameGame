@@ -40,7 +40,6 @@ public class WaySpotService : MonoBehaviour
         session.Paused += OnSessionPaused;
         session.Ran += OnSessionRan;
         TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        TextPanelTitle.text = "Waypoint Anchors Status Log";
         LocalizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
 
         Debug.Log("WS Sessionstarted Event");
@@ -59,6 +58,7 @@ public class WaySpotService : MonoBehaviour
     private void OnSessionRan(ARSessionRanArgs args)
     {
         locationService.Start(1, 0.001f);
+        TextPanelTitle.text = "Location state";
     }
 
     private void OnSessionPaused(ARSessionPausedArgs args)

@@ -11,6 +11,10 @@ public class AR : State
     public UI_Inventory uiInventory;
     public GameObject textPanel;
     public ARView _view;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     //Private
     private StepAction action;
 
