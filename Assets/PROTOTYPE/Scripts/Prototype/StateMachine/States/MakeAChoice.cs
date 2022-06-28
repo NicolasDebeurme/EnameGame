@@ -52,10 +52,6 @@ public class MakeAChoice : State
     private void ButtonClicked(NTree<StoryTreeNodeInfo> child)
     {
         NetworkingManager.BroadCastChoice(GameStateSystem.ActualNode.children.IndexOf(child),typeOfChoice);
-
-        GameStateSystem.ActualNode = child;
-
-        NextState();
     }
 
     private void ResetButtons()

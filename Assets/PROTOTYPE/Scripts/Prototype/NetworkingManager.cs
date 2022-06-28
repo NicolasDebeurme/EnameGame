@@ -193,7 +193,7 @@ public class NetworkingManager : MonoBehaviour
 
         var serializedInfo = choiceInfo.Serialize();
 
-        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ChoiceInfo, serializedInfo, false);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ChoiceInfo, serializedInfo, true);
     }
     public static void BroadCastNextState()
     {
@@ -275,10 +275,7 @@ public class NetworkingManager : MonoBehaviour
                     GameManager.Instance.HasShoot = b;
                     break;
             }
-
-            Debug.Log(choiceInfo.childCount);
             GameStateSystem.SetNextActualNode(choiceInfo.childCount);
-            GameStateSystem._instance.GetState().NextState();
         }
         else
         {

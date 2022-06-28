@@ -70,7 +70,8 @@ public class GameStateSystem : StateMachine
 
     public static void SetNextActualNode(int indexOfChild)
     {
-        _instance.ActualNode = _instance.ActualNode.GetChild(indexOfChild);
+        _instance.ActualNode = _instance.ActualNode.children[indexOfChild];
+        _instance.GetState().NextState();
     }
     //
 
