@@ -20,8 +20,6 @@ public class PiloriAction : StepAction
         baker = GameObject.Find("Baker");
 #else
         baker = AnchorsPrefab[0];
-#endif
-        //Camera.main.GetComponent<ARDepthInterpolationAdapter>().TrackOccludee(baker.GetComponent<Renderer>());
 
         Renderer[] rd = baker.GetComponentsInChildren<Renderer>();
         
@@ -29,6 +27,10 @@ public class PiloriAction : StepAction
         {
             Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
         }
+#endif
+        //Camera.main.GetComponent<ARDepthInterpolationAdapter>().TrackOccludee(baker.GetComponent<Renderer>());
+
+
 
 
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);

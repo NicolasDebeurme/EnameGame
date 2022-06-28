@@ -50,10 +50,8 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator sentencePlaying = null;
     private void DisplayNextSentence()
     {
-        Debug.Log("DisplayNext");
         if(sentences.Count == 0)
         {
-            Debug.Log("EndOfDialogue");
             EndDialogue();
             return;
         }
