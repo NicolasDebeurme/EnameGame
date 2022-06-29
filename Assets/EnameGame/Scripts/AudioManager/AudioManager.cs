@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.outputAudioMixerGroup = s.mixerGroup;
 		}
+        Play("Music");
 	}
 
 	public void Play(string sound, float volume = 0f)
