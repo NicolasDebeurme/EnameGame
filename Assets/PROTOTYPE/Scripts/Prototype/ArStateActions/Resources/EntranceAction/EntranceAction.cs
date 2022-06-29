@@ -53,6 +53,7 @@ public class EntranceAction : StepAction
                         jar.OnRayHit();
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
+                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }
                 }
             }

@@ -33,7 +33,6 @@ public abstract class StepAction : MonoBehaviour
         AnchorsPrefab = new GameObject[3];
 #endif
 
-        DialogueManager._dialogueInstance.DialogueEnded += OnDialogueEnded;
     }
 
     protected ActionData LoadAction(string actionName) 
@@ -52,9 +51,11 @@ public abstract class StepAction : MonoBehaviour
         GameStateSystem.GetState().NextState();
     }
 
-    protected void OnDialogueEnded(object sender, EventArgs e)
+    public virtual IEnumerator OnActionEnded()
     {
         Debug.Log("DialogueEnded");
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.continueButton.gameObject.SetActive(true);
     }
     public virtual void DestroySelf()
     {

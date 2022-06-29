@@ -14,7 +14,8 @@ public class PharmacyAction : StepAction
 
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Pharmacy..";
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Do you want to switch the medecin jar with the poison one?";
-        
+
+        StartCoroutine(OnActionEnded());
     }
 
     private void Update()

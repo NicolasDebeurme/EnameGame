@@ -248,7 +248,7 @@ public class NetworkingManager : MonoBehaviour
             case (BrodcastType.ItemTaken):
                 var itemType = (ItemType)args.CopyData().Deserialize<int>();
 
-                Debug.Log(ItemWorld.DestroyItemOnBroadcast(itemType)? "Item destroyed..":"Item not destroyed,a problem as occured ..");
+                Debug.Log(ItemWorld.DestroyItemOnBroadcast(itemType)? "Item destroyed..":"Item not destroyed,a problem as occured .."); 
                 break;
 
             default:

@@ -19,7 +19,9 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI _dialogueText;
 
     //Events
-    public EventHandler DialogueEnded;
+    public event DialogueEndedDelegate DialogueEnded;
+    public delegate IEnumerator DialogueEndedDelegate();
+
     private void Awake()
     {
         _dialogueInstance = this;
@@ -80,7 +82,15 @@ public class DialogueManager : MonoBehaviour
     {
         isPlaying = false;
         _dialogueBoxAnim.SetTrigger("Close");
-        DialogueEnded.Invoke(this, EventArgs.Empty);
+
+        if(DialogueEnded != null)
+        {
+            foreach (DialogueEndedDelegate handler in DialogueEnded.GetInvocationList())
+            {
+                StartCoroutine(handler.Invoke());
+            }
+        }
+
         DisplayNextDialogue();
     }
 

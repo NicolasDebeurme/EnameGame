@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public bool HasDenounce = false;
     public bool HasShoot = false;
 
-    public GameObject continueButton = null;
+    public Button continueButton = null;
     //
 
 
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void OnContinue()
     {
+        continueButton.gameObject.SetActive(false);
         GameStateSystem._instance.GetState().NextState();
     }
     public void BroadcastNextState()

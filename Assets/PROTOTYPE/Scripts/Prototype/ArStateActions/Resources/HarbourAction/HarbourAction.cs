@@ -77,6 +77,7 @@ public class HarbourAction : StepAction
             if (doOne)
             {
                 DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
+                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                 doOne = false;
             }
 

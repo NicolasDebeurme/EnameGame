@@ -4,6 +4,7 @@ using UnityEngine;
 using Niantic.ARDK.Extensions;
 using TMPro;
 using static Enums;
+using System;
 
 public class PiloriAction : StepAction
 {
@@ -30,13 +31,9 @@ public class PiloriAction : StepAction
 #endif
         //Camera.main.GetComponent<ARDepthInterpolationAdapter>().TrackOccludee(baker.GetComponent<Renderer>());
 
-
-
-
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
-        
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
-
 
     private void OnDestroy()
     {
