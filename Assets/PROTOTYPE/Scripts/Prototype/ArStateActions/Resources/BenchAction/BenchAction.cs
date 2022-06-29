@@ -49,6 +49,7 @@ public class BenchAction : StepAction
                         isGunTaken = true;
                         pistol.OnRayHit();
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
+                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }
                 }
             }
@@ -72,6 +73,7 @@ public class BenchAction : StepAction
                         isGunTaken = true;
                         pistol.OnRayHit();
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
+                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }
                 }
             }

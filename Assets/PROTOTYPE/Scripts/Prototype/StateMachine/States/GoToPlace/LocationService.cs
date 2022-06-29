@@ -40,6 +40,11 @@ public class LocationService : MonoBehaviour
 
     }
 
+    public void Init(TextMeshProUGUI distanceText, Image compassArrow)
+    {
+        this.distanceText = distanceText;
+        _imageBoussole =compassArrow;
+    }
     private void OnStatusUpdated(LocationStatusUpdatedArgs args)
     {
         Debug.Log("LocationService :" + args.Status.ToString());
@@ -242,7 +247,7 @@ public class LocationService : MonoBehaviour
     private float _anglePlayerTarget;
 
     private LatLng _pointToReach;
-    private Image _imageBoussole = GameManager.Instance.imageBoussole;
+    private Image _imageBoussole;
 
     private float _minimumDistanceReachPoint = 10;
     internal void Destroy()

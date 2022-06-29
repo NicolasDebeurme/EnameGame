@@ -23,3 +23,5 @@ MonoBehaviour:
     - name: JarTaken
       sentences:
       - This Jar will be usefull in the future
+      TimeStamp: 3
+  automaticNextScene: 1

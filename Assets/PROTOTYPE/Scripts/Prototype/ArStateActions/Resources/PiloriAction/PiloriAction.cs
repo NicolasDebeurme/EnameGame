@@ -42,7 +42,7 @@ public class PiloriAction : StepAction
 
         
 
-        foreach (var Script in Camera.main.GetComponents< ARDepthInterpolationAdapter>())
+        foreach (var Script in Camera.main.GetComponents<ARDepthInterpolationAdapter>())
         {
             Destroy(Script);
         }

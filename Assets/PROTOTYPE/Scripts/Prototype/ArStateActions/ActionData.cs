@@ -46,4 +46,5 @@ public class ActionData : ScriptableObject
     }
 
     public DialogueArray dialogues;
+    public bool automaticNextScene = false;
 }

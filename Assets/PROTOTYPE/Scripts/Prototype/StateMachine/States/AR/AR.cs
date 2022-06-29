@@ -88,4 +88,9 @@ public class AR : State
                 Debug.Log("No action provided");
         }
     }
+    public void OnContinue()
+    {
+        _view.continueButton.gameObject.SetActive(false);
+        GameStateSystem.GetState().NextState();
+    }
 }

@@ -19,7 +19,7 @@ public class GoToPlace : State
         if (GameStateSystem.locationService == null)
         {
             GameStateSystem.locationService = GameStateSystem.gameObject.AddComponent<LocationService>();
-            GameStateSystem.locationService.distanceText = _view.distanceText;
+            GameStateSystem.locationService.Init(_view.distanceText, _view.compassArrow);
         }
         else
             GameStateSystem.locationService.PlayUIupdate();

@@ -38,7 +38,6 @@ public class EntranceAction : StepAction
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.Log("Touch ");
             Debug.DrawRay(ray.origin, ray.direction * 20, Color.white, 1);
             if (Physics.Raycast(ray, out hit, 100))
             {
@@ -77,6 +76,7 @@ public class EntranceAction : StepAction
                         jar.OnRayHit();
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
+                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }
                 }
             }
