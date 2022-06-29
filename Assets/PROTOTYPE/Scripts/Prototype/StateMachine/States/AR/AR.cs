@@ -60,7 +60,6 @@ public class AR : State
         }
         else
         {
-            NetworkingManager.Instance.StopSharedAR();
             GameStateSystem.SetState(new End(GameStateSystem));
         }
     }

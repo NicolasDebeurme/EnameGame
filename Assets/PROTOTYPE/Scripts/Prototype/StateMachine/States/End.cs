@@ -14,6 +14,7 @@ public class End : State
         yield return new WaitForSeconds(2f);
         UIManager.Show<EndView>();
         yield return new WaitForSeconds(5f);
+        NetworkingManager.Instance.StopSharedAR();
         GameStateSystem.SetState(new Lobby(GameStateSystem));
     }
 

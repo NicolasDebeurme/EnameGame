@@ -17,12 +17,13 @@ public class GoToPlace : State
         _view = UIManager.Show<GoToPlaceView>();
 
         if (GameStateSystem.locationService == null)
-            GameStateSystem.locationService=GameStateSystem.gameObject.AddComponent<LocationService>();
+        {
+            GameStateSystem.locationService = GameStateSystem.gameObject.AddComponent<LocationService>();
+            GameStateSystem.locationService.distanceText = _view.distanceText;
+        }
         else
             GameStateSystem.locationService.PlayUIupdate();
 
-
-        _view.OnSpoofValueChange += GameStateSystem.locationService.SpoofValueChange;
 
         yield break;
     }
@@ -31,7 +32,10 @@ public class GoToPlace : State
     {
         GameStateSystem.locationService.PauseUIupdate();
 
-        GameStateSystem.SetState(new AR(GameStateSystem));
+        if (GameStateSystem.ActualNode.data.visibilitys.See.Contains(GameStateSystem._playerRole) || GameStateSystem.ActualNode.data.visibilitys.Decide.Contains(GameStateSystem._playerRole))
+            GameStateSystem.SetState(new AR(GameStateSystem));
+        else
+            GameStateSystem.SetState(new Waiting(GameStateSystem));
     }
 
 }

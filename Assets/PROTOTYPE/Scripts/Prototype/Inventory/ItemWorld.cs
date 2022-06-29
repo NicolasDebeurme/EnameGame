@@ -74,6 +74,7 @@ public class ItemWorld : MonoBehaviour
     public void OnRayHit()
     {
         GameManager.Instance._actualGameState.inventory.AddItem(_item);
+        NetworkingManager.BroadcastItemTaken(_item.itemType);
         DestroySelf();
     }
 }

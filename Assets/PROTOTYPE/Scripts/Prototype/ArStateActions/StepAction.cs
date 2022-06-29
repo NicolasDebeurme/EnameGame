@@ -29,6 +29,8 @@ public abstract class StepAction : MonoBehaviour
                 AnchorsPrefab = GameStateSystem.waySpotService.LoadPayloads(payload.jsonData,payload.prefab);
             }
         }
+#else
+        AnchorsPrefab = new GameObject[3];
 #endif
 
         DialogueManager._dialogueInstance.DialogueEnded += OnDialogueEnded;

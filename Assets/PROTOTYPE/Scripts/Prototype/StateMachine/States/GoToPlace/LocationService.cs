@@ -17,11 +17,9 @@ public class LocationService : MonoBehaviour
     public ILocationService _locationService;
 
     // Default is the Ferry Building in San Francisco
-    private LatLng _spoofLocation = new LatLng(37.79531921750984, -122.39360429639748);
-    private bool _isSpoofEnabled = false;
 
     public int _queryRadius = 50;
-
+    public TextMeshProUGUI distanceText;
 
     //WebView-------------------------------
     private string Url = "test.html";
@@ -36,7 +34,6 @@ public class LocationService : MonoBehaviour
         var spoofService = (SpoofLocationService)_locationService;
 
         // In editor, the specified spoof location will be used.
-        spoofService.SetLocation(_spoofLocation);
 
 #endif
         PlayUIupdate();
@@ -253,10 +250,6 @@ public class LocationService : MonoBehaviour
         Destroy(webViewObject);
         Destroy(this);
     }
-    internal void SpoofValueChange(bool isSpoofEnabled)
-    {
-        _isSpoofEnabled = isSpoofEnabled;
-    }
     internal void PauseUIupdate()
     {
         _locationService.Stop();
@@ -292,7 +285,7 @@ public class LocationService : MonoBehaviour
         if (_locationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR
-            _yourPosition = new LatLng(_spoofLocation.Latitude, _spoofLocation.Longitude);
+            _yourPosition = new LatLng(20, 20);
 #else
             _yourPosition = args.LocationInfo.Coordinates;
 #endif
@@ -304,7 +297,7 @@ public class LocationService : MonoBehaviour
 
     private void AsReachPosition()
     {
-        Debug.Log(_yourPosition.Distance(_pointToReach));
+        distanceText.text = _yourPosition.Distance(_pointToReach).ToString("N2") + " meters";
         if (_yourPosition.Distance(_pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
         {
             GameManager.Instance._actualGameState.GetState().NextState();

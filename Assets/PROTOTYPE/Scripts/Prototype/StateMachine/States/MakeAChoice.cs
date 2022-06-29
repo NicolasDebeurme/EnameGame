@@ -5,10 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using static Enums;
+using System.IO;
 
 public class MakeAChoice : State
 {
     private MakeAChoiceView _view;
+    private ActionData actionData;
     private TypeOfChoice typeOfChoice;
     public MakeAChoice(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
@@ -17,6 +19,9 @@ public class MakeAChoice : State
     public override IEnumerator Start()
     {
         _view = UIManager.Show<MakeAChoiceView>();
+
+        Debug.Log(GameStateSystem.ActualNode.data.action.ToString());
+        actionData = LoadAction(GameStateSystem.ActualNode.data.action.ToString());
 
         if (GameStateSystem.ActualNode.data.visibilitys.See.Contains(GameStateSystem._playerRole))
         {
@@ -70,4 +75,14 @@ public class MakeAChoice : State
         GameStateSystem.SetState(new GoToPlace(GameStateSystem));
     }
 
+    private ActionData LoadAction(string actionName)
+    {
+        var loadedObject = Resources.Load<ActionData>(actionName + "/ActionData");
+        if (loadedObject == null)
+        {
+            throw new FileNotFoundException("...no file found - please check the configuration");
+        }
+
+        return loadedObject;
+    }
 }

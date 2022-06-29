@@ -148,6 +148,12 @@ public class WaySpotService : MonoBehaviour
         ScreenTap?.Invoke(this, EventArgs.Empty); // TapPassEvent
 
         Matrix4x4 poseMatrix = hitTestResults[0].WorldTransform;
+        wayspotAnchorService.CreateWayspotAnchors(OnAnchorAdded, poseMatrix);
+    }
+
+    private void OnAnchorAdded(IWayspotAnchor[] obj)
+    {
+        throw new NotImplementedException();
     }
 
 

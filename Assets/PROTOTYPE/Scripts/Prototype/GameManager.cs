@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public bool HasSwap = false;
     public bool HasDenounce = false;
     public bool HasShoot = false;
+
+    public GameObject continueButton = null;
     //
 
 

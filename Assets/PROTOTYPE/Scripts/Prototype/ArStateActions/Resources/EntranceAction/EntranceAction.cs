@@ -48,7 +48,7 @@ public class EntranceAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null) // hit.transform.tag = " ..."
+                    if (jar != null && GameStateSystem._playerRole == Roles.Alchemist) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHit();
                         isJarTaken = true;
@@ -71,7 +71,7 @@ public class EntranceAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null) // hit.transform.tag = " ..."
+                    if (jar != null && GameStateSystem._playerRole == Roles.Alchemist) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHit();
                         isJarTaken = true;

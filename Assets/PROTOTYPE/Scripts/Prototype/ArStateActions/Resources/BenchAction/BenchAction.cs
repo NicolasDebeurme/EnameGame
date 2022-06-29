@@ -44,7 +44,7 @@ public class BenchAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null) // hit.transform.tag = " ..."
+                    if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
                         pistol.OnRayHit();
@@ -67,7 +67,7 @@ public class BenchAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null) // hit.transform.tag = " ..."
+                    if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
                         pistol.OnRayHit();

@@ -69,6 +69,7 @@ public class HarbourAction : StepAction
 
     void Update()
     {
+#if !UNITY_EDITOR
         if (hasTouch)
         {
             //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
@@ -80,6 +81,7 @@ public class HarbourAction : StepAction
             }
 
         }
+#endif
     }
     public void OnClickShoot()
     {

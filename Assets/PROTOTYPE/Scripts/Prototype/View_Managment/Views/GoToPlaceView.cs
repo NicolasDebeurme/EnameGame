@@ -5,9 +5,7 @@ using TMPro;
 
 public class GoToPlaceView : View
 {
-    public delegate void OnSpoofValueChangeDelegate(bool isSpoofEnabled);
-
-    public event OnSpoofValueChangeDelegate OnSpoofValueChange;
+    public TextMeshProUGUI distanceText;
 
     public override void Initialize()
     {
@@ -15,7 +13,5 @@ public class GoToPlaceView : View
 
     public void OnSpoofToggle(bool value)
     {
-        if(OnSpoofValueChange != null)
-            OnSpoofValueChange(value);
     }
 }
