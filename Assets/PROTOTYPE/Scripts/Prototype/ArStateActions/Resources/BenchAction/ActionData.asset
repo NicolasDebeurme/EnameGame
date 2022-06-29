@@ -23,3 +23,5 @@ MonoBehaviour:
     - name: GunTaken
       sentences:
       - This Gun will be usefull in the future
+      TimeStamp: 3
+  automaticNextScene: 1

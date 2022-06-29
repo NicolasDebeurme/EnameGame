@@ -53,9 +53,12 @@ public abstract class StepAction : MonoBehaviour
 
     public virtual IEnumerator OnActionEnded()
     {
-        Debug.Log("DialogueEnded");
-        yield return new WaitForSeconds(3f);
-        GameManager.Instance.continueButton.gameObject.SetActive(true);
+        Debug.Log("ActionEnded");
+        yield return new WaitForSeconds(2f);
+        if (actionData.automaticNextScene)
+            GameManager.Instance.BroadcastNextState();
+        else
+            ArState._view.continueButton.gameObject.SetActive(true);
     }
     public virtual void DestroySelf()
     {

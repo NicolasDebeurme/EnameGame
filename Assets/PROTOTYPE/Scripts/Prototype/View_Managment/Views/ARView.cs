@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -9,6 +10,7 @@ public class ARView : View
     public GameObject textPanel;
     public GameObject prefabToSpawn;
     public GameObject shootButton;
+    public Button continueButton;
 
     private GameObject _itemUI = null;
     public override void Initialize()

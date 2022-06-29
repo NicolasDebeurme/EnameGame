@@ -25,15 +25,6 @@ public class GameManager : MonoBehaviour
     public bool HasSwap = false;
     public bool HasDenounce = false;
     public bool HasShoot = false;
-
-    public Button continueButton = null;
-    //
-
-
-    //GPS
-    [Header("GPS")]
-    public Image imageBoussole;
-    public LatLng pointToReach;
     //
 
     #region Monobehaviour
@@ -49,11 +40,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    
-
     public void OnContinue()
     {
-        continueButton.gameObject.SetActive(false);
         GameStateSystem._instance.GetState().NextState();
     }
     public void BroadcastNextState()
