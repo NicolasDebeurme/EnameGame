@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using static Enums;
 
 public class Lobby : State
@@ -84,8 +85,6 @@ public class Lobby : State
     private void DisposeNetworking()
     {
         NetworkingManager.Instance.StopSharedAR();
-        _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
-        _view.PlayerRoleChange -= OnRoleChange;
     }
     private void UpdateLobby(GameInfo gameInfo)
     {
@@ -102,7 +101,9 @@ public class Lobby : State
             networking = null;
             _view._dropDownBtn.transform.parent.gameObject.SetActive(false);
             _view.PlayerRoleChange -= OnRoleChange;
+            NetworkingManager.Instance.NetworkStateChanged -= UpdateLobby;
         }
+        _view.ChangeLobbyState();
     }
 
     private void OnRoleChange(Roles newRole)
@@ -111,13 +112,23 @@ public class Lobby : State
         NetworkingManager.players[networking.Self.Identifier] = newRole;
         NetworkingManager.BroadCastLobbyRole();
 
-        if (newRole != 0 && networking.Self == networking.Host)
-            _view._startButton.interactable = true;
-        else
-            _view._startButton.interactable = false;
+       
     }
     private void OnPlayerDictionnaryUpdated(Dictionary<Guid, Roles> players)
     {
         _view.UpdateUI(players);
+
+        if(players != null)
+        {
+            if (!NetworkingManager.players.ContainsValue(Roles.None) && networking.Self == networking.Host)
+                _view._startButton.interactable = true;
+            else
+                _view._startButton.interactable = false;
+        }
+        else
+        {
+            NetworkingManager.Instance.PlayerDictionnaryUpdated -= OnPlayerDictionnaryUpdated;
+        }
     }
+
 }

@@ -88,7 +88,7 @@ public class NetworkingManager : MonoBehaviour
 
         _gameInfo._session.Dispose();
         _gameInfo._networking.Dispose();
-
+        players = null;
     }
 
     #region Networking
@@ -110,17 +110,17 @@ public class NetworkingManager : MonoBehaviour
 
         _self = args.Self;
 
-        if (args.IsHost)
-        {
-            players = new()
+            if (args.IsHost)
             {
-                {args.Self.Identifier, Roles.None }
-            };
-            BroadCastLobbyRole();
-        }
+                players = new()
+                {
+                    {args.Self.Identifier, Roles.None }
+                };
+                BroadCastLobbyRole();
+            }
 
+            NetworkStateChanged?.Invoke(_gameInfo);
 
-        NetworkStateChanged?.Invoke(_gameInfo);
     }
 
     private void OnNetworkDisconnected(DisconnectedArgs args)
@@ -135,7 +135,7 @@ public class NetworkingManager : MonoBehaviour
     }
     private void OnPeerAdded(PeerAddedArgs args)
     {
-        if (_self == _gameInfo._networking.Host)
+        if (_self == _gameInfo._networking.Host && players.Count < 3)
         {
             Debug.LogFormat("Peer joined: {0}", args.Peer.Identifier);
             players.Add(args.Peer.Identifier, Roles.None);
@@ -166,6 +166,7 @@ public class NetworkingManager : MonoBehaviour
     //       2 -> NextState
     //       3 -> PlayerDictionnary
     //       4 -> ItemTaken
+    //       5 -> HostDisconnected
 
     #region Send Message
 
@@ -213,6 +214,11 @@ public class NetworkingManager : MonoBehaviour
         var serializedInfo = ((int)itemType).Serialize();
         BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ItemTaken, serializedInfo, false);
     }
+
+    public static void BroadcastHostDisconnected()
+    {
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.HostDisconnected, new byte[1], false);
+    }
     #endregion
 
     #region Receive Message
@@ -249,6 +255,10 @@ public class NetworkingManager : MonoBehaviour
                 var itemType = (ItemType)args.CopyData().Deserialize<int>();
 
                 Debug.Log(ItemWorld.DestroyItemOnBroadcast(itemType)? "Item destroyed..":"Item not destroyed,a problem as occured .."); 
+                break;
+            case (BrodcastType.HostDisconnected):
+
+                StopSharedAR();
                 break;
 
             default:

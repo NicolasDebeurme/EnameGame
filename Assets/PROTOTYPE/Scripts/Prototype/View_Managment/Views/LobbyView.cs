@@ -67,7 +67,6 @@ public class LobbyView : View
     {
         LobbyButtonPressed?.Invoke((LobbyButton)buttonType);
 
-        ChangeLobbyState();
     }
     public void UpdateUI(Dictionary<Guid, Roles> players)
     {
@@ -76,20 +75,24 @@ public class LobbyView : View
         {
             foreach (var player in players)
             {
-                playersUI[count].text = player.Key + " is " + player.Value.ToString();
+                if(player.Key == NetworkingManager._self.Identifier)
+                    playersUI[count].text = "You are " + player.Value.ToString();
+                else
+                    playersUI[count].text = player.Key + " is " + player.Value.ToString();
+
+                playersUI[count].transform.parent.GetComponent<Image>().color = new Color32(0, 173, 0, 183);
                 count++;
             }
         }
 
         for(int i= count; i<playersUI.Length; i++)
         {
-            playersUI[i].text = "Waiting for players ...";
+            playersUI[i].text = "Waiting for player ...";
+            playersUI[i].transform.parent.GetComponent<Image>().color = new Color32(173, 0, 0, 183);
         }
     }
-    #endregion
 
-    #region Private methods
-    private void ChangeLobbyState()
+    public void ChangeLobbyState()
     {
         if (inLobby.activeSelf)
         {
@@ -102,6 +105,10 @@ public class LobbyView : View
             inLobby.SetActive(true);
         }
     }
+    #endregion
+
+    #region Private methods
+
     #endregion
 }
 

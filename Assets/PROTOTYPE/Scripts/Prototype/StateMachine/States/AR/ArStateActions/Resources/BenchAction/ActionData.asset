@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
+  m_Name: ActionData
+  m_EditorClassIdentifier: 
+  prefabs: []
+  payloads:
+  - name: Pistol
+    jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
+    prefab: {fileID: 4239238473724786832, guid: 13d51c98c0026884cb738ce9814a452b,
+      type: 3}
+  dialogues:
+    dialogues:
+    - name: GunTaken
+      sentences:
+      - This Gun will be usefull in the future
+      TimeStamp: 3
+  automaticNextScene: 1
