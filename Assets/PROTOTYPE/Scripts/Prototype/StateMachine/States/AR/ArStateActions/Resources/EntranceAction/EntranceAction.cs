@@ -47,9 +47,9 @@ public class EntranceAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null && GameStateSystem._playerRole == Roles.Alchemist) // hit.transform.tag = " ..."
+                    if (jar != null ) // hit.transform.tag = " ..."
                     {
-                        jar.OnRayHit();
+                        jar.OnRayHitAddItem();
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
@@ -71,9 +71,9 @@ public class EntranceAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null && GameStateSystem._playerRole == Roles.Alchemist) // hit.transform.tag = " ..."
+                    if (jar != null) // hit.transform.tag = " ..."
                     {
-                        jar.OnRayHit();
+                        jar.OnRayHitAddItem();
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;

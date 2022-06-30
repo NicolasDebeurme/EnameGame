@@ -13,29 +13,27 @@ using TMPro;
 
 public class LocationService : MonoBehaviour
 {
-    //ILocation---------------------
-    public ILocationService _locationService;
-
-    // Default is the Ferry Building in San Francisco
-
-    public int _queryRadius = 50;
+    //ILocation-----------------------------
+    public ILocationService _iLocationService;
     public TextMeshProUGUI distanceText;
+
+    private LatLng _yourPosition;
+    private LatLng _pointToReach;
+    private float _anglePlayerToNorth;
+    private float _anglePlayerTarget;
+
+    private Image _compassArrow;
+    private readonly float _minimumDistanceReachPoint = 10;
 
     //WebView-------------------------------
     private string Url = "test.html";
-    WebViewObject webViewObject;
+    private WebViewObject webViewObject;
 
     private void Start()
     {
 
-        _locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        _iLocationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
 
-#if UNITY_EDITOR
-        var spoofService = (SpoofLocationService)_locationService;
-
-        // In editor, the specified spoof location will be used.
-
-#endif
         PlayUIupdate();
 
     }
@@ -43,7 +41,7 @@ public class LocationService : MonoBehaviour
     public void Init(TextMeshProUGUI distanceText, Image compassArrow)
     {
         this.distanceText = distanceText;
-        _imageBoussole =compassArrow;
+        _compassArrow = compassArrow;
     }
     private void OnStatusUpdated(LocationStatusUpdatedArgs args)
     {
@@ -241,26 +239,18 @@ public class LocationService : MonoBehaviour
     //    webViewObject.EvaluateJS(@"updateMapCompass("+trueHeading.ToString().Replace(',', '.') + ");");
     //}
 
-    private LatLng _yourPosition;
-
-    private float _anglePlayerToNorth;
-    private float _anglePlayerTarget;
-
-    private LatLng _pointToReach;
-    private Image _imageBoussole;
-
-    private float _minimumDistanceReachPoint = 10;
     internal void Destroy()
     {
         Destroy(webViewObject);
         Destroy(this);
+        GameStateSystem.LocationService = null;
     }
     internal void PauseUIupdate()
     {
-        _locationService.Stop();
-        _locationService.LocationUpdated -= OnLocationUpdated;
-        _locationService.StatusUpdated -= OnStatusUpdated;
-        _locationService.CompassUpdated -= OnCompassUpdated;
+        _iLocationService.Stop();
+        _iLocationService.LocationUpdated -= OnLocationUpdated;
+        _iLocationService.StatusUpdated -= OnStatusUpdated;
+        _iLocationService.CompassUpdated -= OnCompassUpdated;
     }
     internal void PlayUIupdate()
     {
@@ -268,10 +258,10 @@ public class LocationService : MonoBehaviour
 
         if (_pointToReach != null)
         {
-            _locationService.Start(1, 0.001f);
-            _locationService.LocationUpdated += OnLocationUpdated;
-            _locationService.StatusUpdated += OnStatusUpdated;
-            _locationService.CompassUpdated += OnCompassUpdated;
+            _iLocationService.Start(1, 0.001f);
+            _iLocationService.LocationUpdated += OnLocationUpdated;
+            _iLocationService.StatusUpdated += OnStatusUpdated;
+            _iLocationService.CompassUpdated += OnCompassUpdated;
         }
         else
             throw new Exception("ERROR: Place doesn't exist or isn't initialized");
@@ -287,7 +277,7 @@ public class LocationService : MonoBehaviour
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
         Debug.Log("locationupdated");
-        if (_locationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
+        if (_iLocationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR
             _yourPosition = new LatLng(20, 20);
@@ -303,7 +293,7 @@ public class LocationService : MonoBehaviour
     private void AsReachPosition()
     {
         distanceText.text = _yourPosition.Distance(_pointToReach).ToString("N2") + " meters";
-        if (_yourPosition.Distance(_pointToReach) < _minimumDistanceReachPoint && GameStateSystem._instance != null)
+        if (_yourPosition.Distance(_pointToReach) < _minimumDistanceReachPoint && GameStateSystem.Instance != null)
         {
             GameManager.Instance._actualGameState.GetState().NextState();
         }
@@ -316,6 +306,6 @@ public class LocationService : MonoBehaviour
         float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
         _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;
 
-        _imageBoussole.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
+        _compassArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
     }
 }

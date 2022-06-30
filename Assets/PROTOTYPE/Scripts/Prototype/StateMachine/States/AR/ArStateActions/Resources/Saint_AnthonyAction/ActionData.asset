@@ -17,38 +17,51 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: FirstPoliceman
+      speaker: 
       sentences:
       - Here you put the gun in the bag
       - The Alchemist take the gold of the bag
+      TimeStamp: 3
     - name: FirstAlchemist
+      speaker: 
       sentences:
       - Here you take the gold of the bag
       - The Policeman put the gun in the bag
+      TimeStamp: 3
     - name: Ending1
+      speaker: 
       sentences:
       - You both escape rich with the boat
       - "There were no deaths that day, \nand the village of ename headed \nby the
         monk had an almost happy ending"
+      TimeStamp: 3
     - name: Ending2
+      speaker: 
       sentences:
       - You both escape rich by the road
       - "There were no deaths that day, \nand the village of ename headed \nby the
         monk had an almost happy ending"
+      TimeStamp: 3
     - name: Ending3
+      speaker: 
       sentences:
       - The alchemist rich escape with the boat just before abbey army try to arest
         him
       - 'Policeman get the abbey trust,
 
         but without new title'
+      TimeStamp: 3
     - name: Ending4
+      speaker: 
       sentences:
       - 'Abbey army arest the alchemist trying to escape,
 
         the army finf
         stolen gold on him, so the alchemist have been condemn for theft'
       - Policeman get the abbe trust and a new title
+      TimeStamp: 3
     - name: Ending5
+      speaker: 
       sentences:
       - 'Abbey dies because of the poison jar,
 
@@ -57,18 +70,26 @@ MonoBehaviour:
 
         The rich Alchemist and Policeman escape with
         the boat'
+      TimeStamp: 3
     - name: Ending6
+      speaker: 
       sentences:
       - "Abbey dies because of the poison jar,\nAbbey army  block the road to find
         the murderer\nThe rich Alchemist and Policeman try too escape by the road.\nUnfortunately
         they both get caught by the abbey army.\nYou both go to jail for the abbey
         murder.\n\n\n army"
+      TimeStamp: 3
     - name: Ending7
+      speaker: 
       sentences:
       - "Abbey find out the poison jar,\nso he live\nAlchemist escape rich with the
         boat, \nPoliceman get abbey trust and a new title"
+      TimeStamp: 3
     - name: Ending8
+      speaker: 
       sentences:
       - "Abbey find out the poison jar,\nso he live\nAlchemist get caught by the
         abbey army before he escape, he is sent to prison, \nPoliceman get abbey
         trust and a new title"
+      TimeStamp: 3
+  automaticNextScene: 1

@@ -12,11 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: Pharmacy
+    prefab: {fileID: 7166690612489229140, guid: 6090c3fb8c1efe74db29439d85ee61ea,
+      type: 3}
   payloads:
   - name: Pharmacy
     jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
     prefab: {fileID: 7166690612489229140, guid: 6090c3fb8c1efe74db29439d85ee61ea,
       type: 3}
   dialogues:
-    dialogues: []
+    dialogues:
+    - name: Swap
+      speaker: 
+      sentences:
+      - You succesfully swapped the poison jar with the medicine one !
+      TimeStamp: 3
+    - name: NoJar
+      speaker: 
+      sentences:
+      - You have no jar in your inventory, you can't swap the jars ..
+      TimeStamp: 3
+    - name: NoSwap
+      speaker: 
+      sentences:
+      - You reconsidered your choice and decided not to exchange the jars
+      TimeStamp: 3
+  automaticNextScene: 0

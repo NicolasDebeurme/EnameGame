@@ -104,9 +104,9 @@ MonoBehaviour:
   - data:
       textToBeChose: No
       visibilitys:
-        Decide: 02000000
+        Decide: 0200000001000000
         See: 
-        Blind: 010000000000000000000000
+        Blind: 01000000
       dialogueText: Shoot the boat to prevent alchemist escape ?
       place: 6
       action: HarbourAction
@@ -137,7 +137,7 @@ MonoBehaviour:
   - data:
       textToBeChose: No
       visibilitys:
-        Decide: 02000000
+        Decide: 0200000001000000
         See: 
         Blind: 01000000
       dialogueText: Denounce the Alchemist ?

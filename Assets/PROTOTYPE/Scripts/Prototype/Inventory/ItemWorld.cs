@@ -7,7 +7,7 @@ public class ItemWorld : MonoBehaviour
 {
     private Item _item;
 
-    public static Vector3 HandSpawnPos = new Vector3(0.2f, -0.4f, 0.7f);
+    public static Vector3 HandSpawnPos = new(0.2f, -0.4f, 0.7f);
     public static Quaternion HandSpawnRot = Quaternion.Euler(-2.5f, -10f, 0);
     public static List<ItemWorld> itemsWorld = new();
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
@@ -22,6 +22,7 @@ public class ItemWorld : MonoBehaviour
     public static ItemWorld SpawnItemWorld(Item item, Transform parent)
     {
         Transform transform = Instantiate(ItemAssets.Instance.Assets[item.itemType].prefab,parent).transform;
+        Instantiate(ItemAssets.Instance.arrowPrefab, parent);
 
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
@@ -67,14 +68,18 @@ public class ItemWorld : MonoBehaviour
 
     public void DestroySelf()
     {
-        Destroy(gameObject);
+        if (transform.parent.gameObject != Camera.main.gameObject)
+            Destroy(gameObject.transform.parent.gameObject);
+        else
+            Destroy(gameObject);
         itemsWorld.Remove(this);
     }
 
-    public void OnRayHit()
+    public void OnRayHitAddItem()
     {
         GameManager.Instance._actualGameState.inventory.AddItem(_item);
         NetworkingManager.BroadcastItemTaken(_item.itemType);
         DestroySelf();
     }
+
 }

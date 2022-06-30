@@ -21,8 +21,11 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: First
+      speaker: Abbey
       sentences:
       - "Hello young man, I heard about your arrival.\r"
       - 'I will need a favor from you, I have the impression that some villagers
         are rebelling against me. '
       - Have you heard of people wishing me harm?
+      TimeStamp: 3
+  automaticNextScene: 0

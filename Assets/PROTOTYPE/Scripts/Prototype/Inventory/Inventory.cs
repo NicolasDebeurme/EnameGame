@@ -28,10 +28,25 @@ public class Inventory
         OnItemListChanged?.Invoke(this,EventArgs.Empty);
     }
 
+    public bool TryRemoveItemOfType(ItemType itemType)
+    {
+        foreach(var item in _itemList)
+        {
+            if(item.itemType == itemType)
+            {
+                _itemList.Remove(item);
+                OnItemListChanged?.Invoke(this, EventArgs.Empty);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Item> GetItemList()
     {
         return _itemList;
     }
+
 
     public void ItemClicked(Item item)
     {

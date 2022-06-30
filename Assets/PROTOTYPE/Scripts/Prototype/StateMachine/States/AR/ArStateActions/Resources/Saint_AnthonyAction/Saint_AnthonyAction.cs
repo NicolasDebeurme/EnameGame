@@ -23,7 +23,6 @@ public class Saint_AnthonyAction : StepAction
         //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstPoliceman"]));
         //else
         //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstAlchemist"]));
-        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
         if (DontSwap)
         {
             if (DontDenonce)
@@ -75,6 +74,6 @@ public class Saint_AnthonyAction : StepAction
             }
         }
 
-
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
 }

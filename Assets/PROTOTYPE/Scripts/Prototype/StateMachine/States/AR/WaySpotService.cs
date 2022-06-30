@@ -14,56 +14,56 @@ using static ActionData;
 
 public class WaySpotService : MonoBehaviour
 {
-    private WayspotAnchorService wayspotAnchorService;
+    private WayspotAnchorService _wayspotAnchorService;
 
     private bool InitialLocalizationFired = false;
-    private Dictionary<Guid,GameObject> anchors = new Dictionary<Guid, GameObject>();
-    private ILocationService locationService = null;
+    private Dictionary<Guid,GameObject> anchors = new();
+    private ILocationService iLocationService;
 
     //ToSet
-    public IARSession session;
+    private IARSession _actualSession;
+    private TextMeshProUGUI _textPanelTitle;
+    private TextMeshProUGUI _localizationStatus;
 
-
-    public TextMeshProUGUI TextPanelTitle;
-    public TextMeshProUGUI LocalizationStatus;
-
-    //Event
+    //Events
     public EventHandler ScreenTap;
-
     public EventHandler WayspotLocalized;
     public EventHandler WayspotLost;
 
     public void Init(IARSession session, GameObject TextPanel)
     {
-        this.session = session;
+        _actualSession = session;
 
         session.Paused += OnSessionPaused;
         session.Ran += OnSessionRan;
-        TextPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        LocalizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
+        _textPanelTitle = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[0];
+        _localizationStatus = TextPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
 
-        Debug.Log("WS Sessionstarted Event");
+
         var wayspotAnchorsConfiguration = WayspotAnchorsConfigurationFactory.Create();
         wayspotAnchorsConfiguration.ContinuousLocalizationEnabled = true;
 
-        locationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        //-----WORK-----
+        //iLocationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
 
+        //-----Doesn't WORK-----
+        iLocationService = GameStateSystem.LocationService._iLocationService;
 
-        if (locationService != null)
-            wayspotAnchorService = new WayspotAnchorService(session, locationService, wayspotAnchorsConfiguration);
+        if (iLocationService != null)
+            _wayspotAnchorService = new WayspotAnchorService(session, iLocationService, wayspotAnchorsConfiguration);
         else
             Debug.Log("No location Service");
     }
 
     private void OnSessionRan(ARSessionRanArgs args)
     {
-        locationService.Start(1, 0.001f);
-        TextPanelTitle.text = "Location state";
+        iLocationService.Start(1, 0.001f);
+        _textPanelTitle.text = "Location state";
     }
 
     private void OnSessionPaused(ARSessionPausedArgs args)
     {
-        locationService.Stop();
+        iLocationService.Stop();
 
         foreach (var anchor in anchors)
         {
@@ -74,37 +74,39 @@ public class WaySpotService : MonoBehaviour
 
     public void Update()
     {
-        if (session.State == ARSessionState.Paused) return;
-        if(wayspotAnchorService == null)
+        if (_actualSession.State == ARSessionState.Paused) return;
+        if(_wayspotAnchorService == null)
         {
-            LocalizationStatus.text = "NoWayspotService";
+            _localizationStatus.text = "NoWayspotService";
             return;
         }
-        else if(wayspotAnchorService.LocalizationState != LocalizationState.Localized)
+        else if(_wayspotAnchorService.LocalizationState != LocalizationState.Localized)
         {
-            LocalizationStatus.text = wayspotAnchorService.LocalizationState.ToString();
+            _localizationStatus.text = _wayspotAnchorService.LocalizationState.ToString();
         }
 
-        if (wayspotAnchorService != null)
+        if (_wayspotAnchorService != null)
         {
-            if (wayspotAnchorService.LocalizationState == LocalizationState.Failed)
+            if (_wayspotAnchorService.LocalizationState == LocalizationState.Failed)
             {
-                wayspotAnchorService.Restart();
+                _wayspotAnchorService.Restart();
 
                 if (InitialLocalizationFired)
                 {
                     Debug.Log("Failed");
                     WayspotLost.Invoke(this, EventArgs.Empty);
+                    _textPanelTitle.text = "Location state";
                     InitialLocalizationFired = false;
                 }
                 return;
             }
-            else if (wayspotAnchorService.LocalizationState == LocalizationState.Localizing)
+            else if (_wayspotAnchorService.LocalizationState == LocalizationState.Localizing)
             {
 
                 if (InitialLocalizationFired)
                 {
                     WayspotLost.Invoke(this, EventArgs.Empty);
+                    _textPanelTitle.text = "Location state";
                     InitialLocalizationFired = false;
                 }
                 return;
@@ -112,9 +114,9 @@ public class WaySpotService : MonoBehaviour
         }
         
 
-        if (wayspotAnchorService.LocalizationState != LocalizationState.Localized) return;
+        if (_wayspotAnchorService.LocalizationState != LocalizationState.Localized) return;
 
-        if(wayspotAnchorService.LocalizationState == LocalizationState.Localized && !InitialLocalizationFired)
+        if(_wayspotAnchorService.LocalizationState == LocalizationState.Localized && !InitialLocalizationFired)
         {
             WayspotLocalized.Invoke(this, EventArgs.Empty);
             InitialLocalizationFired = true;
@@ -132,7 +134,7 @@ public class WaySpotService : MonoBehaviour
 
     private void OnTapScreen(Touch touch)
     {
-        var currentFrame = session.CurrentFrame;
+        var currentFrame = _actualSession.CurrentFrame;
 
         if (currentFrame == null) return;
 
@@ -148,7 +150,7 @@ public class WaySpotService : MonoBehaviour
         ScreenTap?.Invoke(this, EventArgs.Empty); // TapPassEvent
 
         Matrix4x4 poseMatrix = hitTestResults[0].WorldTransform;
-        wayspotAnchorService.CreateWayspotAnchors(OnAnchorAdded, poseMatrix);
+        _wayspotAnchorService.CreateWayspotAnchors(OnAnchorAdded, poseMatrix);
     }
 
     private void OnAnchorAdded(IWayspotAnchor[] obj)
@@ -217,7 +219,7 @@ public class WaySpotService : MonoBehaviour
 
             if (payloads.Count > 0)
             {
-                var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
+                var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
 
                 foreach (var wayspotAnchor in wayspotAnchors)
                 {

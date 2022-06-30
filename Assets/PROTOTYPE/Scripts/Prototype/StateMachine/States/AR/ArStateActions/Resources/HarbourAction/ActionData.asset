@@ -24,10 +24,15 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: First
+      speaker: 
       sentences:
       - 'Now you have the choise to shoot the boat '
       - 'Your future depends on it '
+      TimeStamp: 3
     - name: hasTouch
+      speaker: 
       sentences:
       - 'Now you have the choise to shoot the boat '
       - 'Your future depends on it '
+      TimeStamp: 3
+  automaticNextScene: 0

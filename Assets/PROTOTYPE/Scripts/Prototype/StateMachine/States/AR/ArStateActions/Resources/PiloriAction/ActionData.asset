@@ -21,6 +21,9 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: Baker
+      speaker: Baker
       sentences:
       - Hi I'm the baker of Ename
       - The abbey hung me here, don't trust him
+      TimeStamp: 3
+  automaticNextScene: 0

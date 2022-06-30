@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: pistol
+    prefab: {fileID: 4239238473724786832, guid: 13d51c98c0026884cb738ce9814a452b,
+      type: 3}
   payloads:
   - name: Pistol
     jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
@@ -21,6 +24,7 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: GunTaken
+      speaker: 
       sentences:
       - This Gun will be usefull in the future
       TimeStamp: 3

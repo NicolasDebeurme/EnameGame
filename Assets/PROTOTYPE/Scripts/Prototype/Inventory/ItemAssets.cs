@@ -20,7 +20,8 @@ public class ItemAssets : MonoBehaviour
     private List<ItemAsset> assets;
 
     [HideInInspector]
-    public Dictionary<ItemType,ItemAsset> Assets { get; private set; } 
+    public Dictionary<ItemType,ItemAsset> Assets { get; private set; }
+    public GameObject arrowPrefab;
     private void Awake()
     {
         Instance = this;

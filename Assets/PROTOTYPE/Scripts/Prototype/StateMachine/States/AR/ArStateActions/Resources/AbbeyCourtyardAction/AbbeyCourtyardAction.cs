@@ -11,16 +11,16 @@ public class AbbeyCourtyardAction : StepAction
     {
         base.Initialize(gameStateSystem, this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Abbey Courtyard..";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Abbey Courtyard";
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "The Abbey have something to tell you";
 
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
-        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
 
 
-    private void OnDestroy()
+    public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
-        
+        NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasDenounce);
+        yield break;
     }
 }

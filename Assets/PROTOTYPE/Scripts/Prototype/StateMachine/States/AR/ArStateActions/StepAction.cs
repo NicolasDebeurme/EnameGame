@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static Enums;
 
 public abstract class StepAction : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public abstract class StepAction : MonoBehaviour
         }
 #else
         AnchorsPrefab = new GameObject[3];
+        if(actionData.prefabs.Length > 0)
+            AnchorsPrefab[0] = Instantiate(actionData.prefabs[0].prefab);
 #endif
 
     }
@@ -62,7 +65,21 @@ public abstract class StepAction : MonoBehaviour
     }
     public virtual void DestroySelf()
     {
+        foreach(var gO in AnchorsPrefab)
+        {
+            Destroy(gO);
+        }
         Destroy(this);
     }
-    
+    public virtual IEnumerator ShowDecisionResult(int indexOfDecison)
+    {
+        Debug.Log("No decison result ..");
+        yield break;
+    }
+
+    public ActionData GetActionData()
+    {
+        return actionData;
+    }
+
 }

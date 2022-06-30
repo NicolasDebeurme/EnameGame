@@ -9,7 +9,8 @@ using Niantic.ARDK.LocationService;
 
 public class GameStateSystem : StateMachine
 {
-    public static GameStateSystem _instance;
+    public static GameStateSystem Instance { get; private set;}
+    public static LocationService LocationService { get; set;}
 
 
     //Tree
@@ -26,7 +27,8 @@ public class GameStateSystem : StateMachine
     public Inventory inventory;
 
     [NonSerialized]
-    public LocationService locationService = null;
+    public StepAction actualAction = null;
+
     [NonSerialized]
     public WaySpotService waySpotService = null;
     //
@@ -35,7 +37,7 @@ public class GameStateSystem : StateMachine
     public GameInfo _gameInfo;
     private void Awake()
     {
-        _instance = this;
+        Instance = this;
     }
 
     private void Start()
@@ -62,7 +64,7 @@ public class GameStateSystem : StateMachine
     }
 
     //Tree Managment
-    public void LoadTreesFromAssets()
+    private void LoadTreesFromAssets()
     {
         _availableTrees = null;
         _availableTrees = Resources.LoadAll<Serialized_Tree>("StoryTree");
@@ -70,15 +72,17 @@ public class GameStateSystem : StateMachine
 
     public static void SetNextActualNode(int indexOfChild)
     {
-        _instance.ActualNode = _instance.ActualNode.children[indexOfChild];
-        _instance.GetState().NextState();
+        Instance.ActualNode = Instance.ActualNode.children[indexOfChild];
+        Instance._gameInfo._session.Pause();
+        Instance.GetState().NextState();
     }
     //
 
+    //Inventory
     private void UseItem(ItemWorld item)
     {
         Debug.Log(item.GetItem().itemType.ToString() + " used !");
     }
-
+    //
 
 }

@@ -16,13 +16,13 @@ public class GoToPlace : State
     {
         _view = UIManager.Show<GoToPlaceView>();
 
-        if (GameStateSystem.locationService == null)
+        if (GameStateSystem.LocationService == null)
         {
-            GameStateSystem.locationService = GameStateSystem.gameObject.AddComponent<LocationService>();
-            GameStateSystem.locationService.Init(_view.distanceText, _view.compassArrow);
+            GameStateSystem.LocationService = GameStateSystem.gameObject.AddComponent<LocationService>();
+            GameStateSystem.LocationService.Init(_view.distanceText, _view.compassArrow);
         }
         else
-            GameStateSystem.locationService.PlayUIupdate();
+            GameStateSystem.LocationService.PlayUIupdate();
 
 
         yield break;
@@ -30,7 +30,7 @@ public class GoToPlace : State
 
     public override void NextState()
     {
-        GameStateSystem.locationService.PauseUIupdate();
+        GameStateSystem.LocationService.PauseUIupdate();
 
         if (GameStateSystem.ActualNode.data.visibilitys.See.Contains(GameStateSystem._playerRole) || GameStateSystem.ActualNode.data.visibilitys.Decide.Contains(GameStateSystem._playerRole))
             GameStateSystem.SetState(new AR(GameStateSystem));

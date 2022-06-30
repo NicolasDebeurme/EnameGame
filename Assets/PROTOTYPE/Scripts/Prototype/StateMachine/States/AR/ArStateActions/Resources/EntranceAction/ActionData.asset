@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: Alchemisthouse
+    prefab: {fileID: 4154342236452732209, guid: e40a0f6308a402f408e4d9a47b414976,
+      type: 3}
   payloads:
   - name: Alchemist
     jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
@@ -21,6 +24,7 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: JarTaken
+      speaker: 
       sentences:
       - This Jar will be usefull in the future
       TimeStamp: 3

@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 860173516441723574}
   - component: {fileID: -8204955927043130565}
   - component: {fileID: 3926788806773971817}
+  - component: {fileID: 1169660796585497911}
   m_Layer: 0
   m_Name: Jar
   m_TagString: Untagged
@@ -226,3 +227,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.001000041
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1169660796585497911
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446366308696838309}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f687e4efa8b115847804b98825cf4b16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

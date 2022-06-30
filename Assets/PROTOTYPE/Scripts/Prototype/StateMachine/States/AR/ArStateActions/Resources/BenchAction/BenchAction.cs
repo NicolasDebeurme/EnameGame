@@ -47,7 +47,7 @@ public class BenchAction : StepAction
                     if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
-                        pistol.OnRayHit();
+                        pistol.OnRayHitAddItem();
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }
@@ -71,7 +71,7 @@ public class BenchAction : StepAction
                     if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
-                        pistol.OnRayHit();
+                        pistol.OnRayHitAddItem();
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                     }

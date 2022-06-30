@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private Animator _dialogueBoxAnim;
     [SerializeField]
+    private TextMeshProUGUI _speakerText;
+    [SerializeField]
     private TextMeshProUGUI _dialogueText;
 
     //Events
@@ -43,9 +45,9 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
         isPlaying = true;
 
+        _speakerText.text = dialogue.speaker;
         DisplayNextSentence();
     }
 

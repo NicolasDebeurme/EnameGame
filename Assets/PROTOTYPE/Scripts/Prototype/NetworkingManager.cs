@@ -237,7 +237,7 @@ public class NetworkingManager : MonoBehaviour
 
             case (BrodcastType.NextState):
                 Debug.Log("Lets goooo");
-                GameStateSystem._instance.GetState().NextState();
+                GameStateSystem.Instance.GetState().NextState();
                 break;
             case (BrodcastType.PlayerDictionnary):
                 var newPlayers = args.CopyData().Deserialize<Dictionary<Guid, Roles>>();

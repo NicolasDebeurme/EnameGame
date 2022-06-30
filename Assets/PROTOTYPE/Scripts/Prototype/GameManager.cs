@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void OnContinue()
     {
-        GameStateSystem._instance.GetState().NextState();
+        GameStateSystem.Instance.GetState().NextState();
     }
     public void BroadcastNextState()
     {

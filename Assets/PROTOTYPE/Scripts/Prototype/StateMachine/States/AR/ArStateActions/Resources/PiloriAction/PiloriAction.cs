@@ -17,9 +17,10 @@ public class PiloriAction : StepAction
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "The Baker have something to tell you";
 
         Camera.main.GetComponent<ARDepthManager>().enabled = true;
-#if UNITY_EDITOR
+
+#if !UNITY_EDITOR
         baker = GameObject.Find("Baker");
-#else
+
         baker = AnchorsPrefab[0];
 
         Renderer[] rd = baker.GetComponentsInChildren<Renderer>();

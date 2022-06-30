@@ -80,7 +80,6 @@ public class HarbourAction : StepAction
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                 doOne = false;
             }
-
         }
 #endif
     }
@@ -90,8 +89,7 @@ public class HarbourAction : StepAction
         pistol.GetComponent<Animator>().SetTrigger("shoot");
         if (numberBullet >= 1)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, ShootDistance, hitMask))  // Layer 6 = Boat
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, ShootDistance, hitMask))  // Layer 6 = Boat
             {
                 Debug.Log("Shhoot");
                 Debug.Log("_________");
@@ -107,15 +105,16 @@ public class HarbourAction : StepAction
                     Debug.Log("________________________________");
                     hasTouch = true;
                 }
-
-
             }
             numberBullet--;
         }
-        
     }
 
-
+    public override IEnumerator ShowDecisionResult(int indexOfDecison)
+    {
+        NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasShoot);
+        yield break;
+    }
 
     private void OnDestroy()
     {
