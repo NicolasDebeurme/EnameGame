@@ -39,36 +39,6 @@ public class AR : State
         yield break;
     }
 
-    public override void NextState()
-    {
-        GameStateSystem.waySpotService.WayspotLocalized -= OnWayspotLocalized;
-        GameStateSystem.waySpotService.WayspotLost -= OnWayspotLost;
-        GameStateSystem.inventory.OnItemHanded -= UpdateItemUI;
-
- 
-        if (GameStateSystem.ActualNode.children?.Count > 0)
-        {
-            if (GameStateSystem.ActualNode.children.Count ==1)
-            {
-                if (GameStateSystem.actualAction != null)
-                    GameStateSystem.actualAction.DestroySelf();
-
-                GameStateSystem.ActualNode = GameStateSystem.ActualNode.children[0];
-                GameStateSystem._gameInfo._session.Pause();
-                GameStateSystem.SetState(new GoToPlace(GameStateSystem)); 
-            }
-            else
-                GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
-        }
-        else
-        {
-            if (GameStateSystem.actualAction != null)
-                GameStateSystem.actualAction.DestroySelf();
-
-            GameStateSystem.SetState(new End(GameStateSystem));
-        }
-    }
-
     private void UpdateItemUI(object sender, Item item)
     {
         _view.UpdateItemUI(item);
@@ -93,8 +63,32 @@ public class AR : State
                 Debug.Log("No action provided");
         }
     }
-    public void OnContinue()
+
+    public override void NextState()
     {
-        GameStateSystem.GetState().NextState();
+        GameStateSystem.waySpotService.WayspotLocalized -= OnWayspotLocalized;
+        GameStateSystem.waySpotService.WayspotLost -= OnWayspotLost;
+        GameStateSystem.inventory.OnItemHanded -= UpdateItemUI;
+
+
+        if (GameStateSystem.ActualNode.children?.Count > 0)
+        {
+            if (GameStateSystem.ActualNode.children.Count == 1)
+            {
+                if (GameStateSystem.actualAction != null)
+                    GameStateSystem.actualAction.DestroySelf();
+
+                GameStateSystem.SetNextActualNode(0);
+            }
+            else
+                GameStateSystem.SetState(new MakeAChoice(GameStateSystem));
+        }
+        else
+        {
+            if (GameStateSystem.actualAction != null)
+                GameStateSystem.actualAction.DestroySelf();
+
+            GameStateSystem.SetState(new End(GameStateSystem));
+        }
     }
 }

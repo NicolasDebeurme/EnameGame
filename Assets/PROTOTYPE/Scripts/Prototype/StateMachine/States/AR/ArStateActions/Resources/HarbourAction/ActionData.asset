@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ActionData
   m_EditorClassIdentifier: 
   prefabs:
+  - name: Boat
+    prefab: {fileID: 4298549240031072944, guid: 47f5b3cf3074c714db8c19cfb31b8a9c,
+      type: 3}
   - name: pistol
     prefab: {fileID: 1568518222249754470, guid: 177712d81913be94998d450ec7a21b40,
       type: 3}
@@ -35,4 +38,4 @@ MonoBehaviour:
       - 'Now you have the choise to shoot the boat '
       - 'Your future depends on it '
       TimeStamp: 3
-  automaticNextScene: 0
+  automaticNextScene: 1

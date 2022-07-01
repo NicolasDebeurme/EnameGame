@@ -42,6 +42,17 @@ public class Inventory
         return false;
     }
 
+    public Item GetItemOfType(ItemType itemType)
+    {
+        foreach (var item in _itemList)
+        {
+            if (item.itemType == itemType)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
     public List<Item> GetItemList()
     {
         return _itemList;

@@ -44,10 +44,10 @@ public class WaySpotService : MonoBehaviour
         wayspotAnchorsConfiguration.ContinuousLocalizationEnabled = true;
 
         //-----WORK-----
-        //iLocationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
+        iLocationService = LocationServiceFactory.Create(GameManager.Instance.runtimeEnv);
 
         //-----Doesn't WORK-----
-        iLocationService = GameStateSystem.LocationService._iLocationService;
+        //iLocationService = GameStateSystem.LocationService._iLocationService;
 
         if (iLocationService != null)
             _wayspotAnchorService = new WayspotAnchorService(session, iLocationService, wayspotAnchorsConfiguration);
@@ -59,6 +59,7 @@ public class WaySpotService : MonoBehaviour
     {
         iLocationService.Start(1, 0.001f);
         _textPanelTitle.text = "Location state";
+        InitialLocalizationFired = false;
     }
 
     private void OnSessionPaused(ARSessionPausedArgs args)
@@ -235,7 +236,6 @@ public class WaySpotService : MonoBehaviour
                 }
 
             }
-        
             return AnchorsPrefabs.ToArray();
     }
 

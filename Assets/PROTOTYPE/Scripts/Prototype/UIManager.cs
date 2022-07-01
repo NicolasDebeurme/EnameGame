@@ -12,16 +12,10 @@ public class UIManager : ViewManager<UIManager>
 	[Header("Views")]
 	[SerializeField]
 	private View[] _gameViews;
-
-	[SerializeField]
-	private Button actionButton;
-
-	public static Button ActionButton;
 	//
 	protected override void Awake()
 	{
 		base.Awake();
-		ActionButton = actionButton;
 	}
 
 

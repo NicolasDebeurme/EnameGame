@@ -10,7 +10,6 @@ using System.IO;
 public class MakeAChoice : State
 {
     private MakeAChoiceView _view;
-    private ActionData actionData;
     public MakeAChoice(GameStateSystem gameStateSystem) : base(gameStateSystem)
     {
     }
@@ -20,7 +19,6 @@ public class MakeAChoice : State
         _view = UIManager.Show<MakeAChoiceView>();
         _view.Question.transform.parent.gameObject.SetActive(true);
 
-        actionData = GameStateSystem.actualAction.GetActionData();
 
         if (GameStateSystem.ActualNode.data.visibilitys.See.Contains(GameStateSystem._playerRole))
         {
@@ -50,6 +48,8 @@ public class MakeAChoice : State
     {
         _view.Question.transform.parent.gameObject.SetActive(false);
         GameStateSystem.actualAction.StartCoroutine(GameStateSystem.actualAction.ShowDecisionResult(GameStateSystem.ActualNode.children.IndexOf(child)));
+        ResetButtons();
+
     }
 
     private void ResetButtons()
@@ -62,10 +62,6 @@ public class MakeAChoice : State
     }
 
     public override void NextState()
-    {
-        ResetButtons();
-        GameStateSystem._gameInfo._session.Pause();
-        GameStateSystem.SetState(new GoToPlace(GameStateSystem));
-    }
+    {}
 
 }

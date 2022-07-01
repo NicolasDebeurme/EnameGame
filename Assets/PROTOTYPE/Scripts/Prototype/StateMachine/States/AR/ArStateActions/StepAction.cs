@@ -32,6 +32,7 @@ public abstract class StepAction : MonoBehaviour
         }
 #else
         AnchorsPrefab = new GameObject[3];
+
         if(actionData.prefabs.Length > 0)
             AnchorsPrefab[0] = Instantiate(actionData.prefabs[0].prefab);
 #endif
@@ -45,7 +46,6 @@ public abstract class StepAction : MonoBehaviour
         {
             throw new FileNotFoundException("...no file found - please check the configuration");
         }
-
         return loadedObject;
     }
 
@@ -58,6 +58,7 @@ public abstract class StepAction : MonoBehaviour
     {
         Debug.Log("ActionEnded");
         yield return new WaitForSeconds(2f);
+
         if (actionData.automaticNextScene)
             GameManager.Instance.BroadcastNextState();
         else
@@ -74,6 +75,7 @@ public abstract class StepAction : MonoBehaviour
     public virtual IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         Debug.Log("No decison result ..");
+        DestroySelf();
         yield break;
     }
 

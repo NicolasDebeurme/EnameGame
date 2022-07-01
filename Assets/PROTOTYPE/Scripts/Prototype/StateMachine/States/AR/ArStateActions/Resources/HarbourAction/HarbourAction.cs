@@ -8,87 +8,67 @@ using System;
 
 public class HarbourAction : StepAction
 {
-    public GameObject pistol = null;
+    public Item pistol = null;
     Camera cam = null;
     GameObject boat = null;
 
     private float ShootDistance = 100f;
-    public int numberBullet = 5;
+    private int numberBullet = 5;
     private bool hasTouch = false;
-
     private bool doOne = true;
 
-    [Header("UI")]
     Button ShootButton;
 
     private LayerMask hitMask = 1<<6;
 
-
+    private bool isBeforeChoice = true;
+    private TextMeshProUGUI _textInfo;
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem, this );
 
-
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Harbour..";
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "You have the choice to fire the boat or not";
-
-        gameStateSystem.inventory.OnItemHanded += GetPistol;
-
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Harbour";
+        _textInfo = ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1];
         cam = Camera.main;
-        //boat = GameObject.Find("Boat");
         boat = AnchorsPrefab[0];
-        if (boat!= null)
+
+        pistol = GameStateSystem.inventory.GetItemOfType(ItemType.Pistol);
+
+        if(pistol != null)
         {
-            Debug.Log(boat.name);
-            Debug.Log("__________________________________");
+            _textInfo.text = "Should we shoot the boat ?";
+
+            ShootButton = ArState._view.shootButton.GetComponent<Button>();
+            ShootButton.onClick.AddListener(() => OnClickShoot());
+
+            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
+            DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
         }
         else
         {
-            Debug.Log("BOAT NULLLLLLLLLLLLLLLL");
-            Debug.Log("__________________________________");
+            _textInfo.text = "You don't have any pistol ..";
 
-        }
-        ShootButton = ArState._view.shootButton.GetComponent<Button>(); 
-        ShootButton.onClick.AddListener(() => OnClickShoot());
-
-        //pistol = Instantiate(actionData.prefabs[0].prefab, Vector3.zero, Quaternion.identity, cam.transform);
-        //pistol.transform.localPosition = new Vector3(0.089f, -0.12f, 0.445f);
-
-        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
-    }
-
-    private void GetPistol(object sender, Item _item)
-    {
-        if (_item.itemWorld.transform.gameObject != null)
-        {
-            pistol = _item.itemWorld.transform.gameObject;
-            Debug.Log(pistol.name);
-            Debug.Log("_________");
+            StartCoroutine(OnActionEnded());
         }
     }
 
     void Update()
     {
-        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
-
-#if !UNITY_EDITOR
-        if (hasTouch)
-        {
-            //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
-            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.005f, 0);
-            if (doOne)
-            {
-                DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
-                        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
-                doOne = false;
-            }
-        }
-#endif
+        //if (hasTouch)
+        //{
+        //    //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
+        //    boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.005f, 0);
+        //    if (doOne)
+        //    {
+        //        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
+        //        doOne = false;
+        //    }
+        //}
     }
     public void OnClickShoot()
     {
         Debug.Log("ShootHa");
-        pistol.GetComponent<Animator>().SetTrigger("shoot");
+        pistol.itemWorld.transform.gameObject.GetComponent<Animator>().SetTrigger("shoot");
         if (numberBullet >= 1)
         {
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, ShootDistance, hitMask))  // Layer 6 = Boat
@@ -101,10 +81,11 @@ public class HarbourAction : StepAction
                 //PrefabObjectImpactClone.transform.rotation = Quaternion.Euler(hit.normal);
                 //Debug.Log(hit.normal);
 
-                if (hit.transform.gameObject == boat)
+                Boat boat = hit.transform.GetComponent<Boat>();
+
+                if (boat != null)
                 {
-                    Debug.Log("Touch The Boat ");
-                    Debug.Log("________________________________");
+                    boat.StartCoroutine(boat.Drown());
                     hasTouch = true;
                 }
             }
@@ -114,13 +95,39 @@ public class HarbourAction : StepAction
 
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
+        UIManager.Show<ARView>();
+
+        isBeforeChoice = false;
+        GameStateSystem.inventory.ItemClicked(pistol);
+        ShootButton.gameObject.SetActive(true);
+        _textInfo.text = "Aim and shoot the boat !";
+
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasShoot);
         yield break;
     }
 
+    public override IEnumerator OnActionEnded()
+    {
+        if(pistol == null)
+        {
+            yield return new WaitForSeconds(3f);
+            NetworkingManager.BroadCastChoice(2, TypeOfChoice.HasSwap);
+        }
+        else if(isBeforeChoice)
+        {
+            yield return new WaitForSeconds(2f);
+            GameManager.Instance.BroadcastNextState();
+        }
+        else
+        {
+
+        }
+        yield break;
+    }
     private void OnDestroy()
     {
-        Destroy(pistol);
-        //Destroy(boat);
+        if(pistol != null)
+            Destroy(pistol.itemWorld.transform.gameObject);
+
     }
 }

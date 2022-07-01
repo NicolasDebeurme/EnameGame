@@ -73,8 +73,9 @@ public class GameStateSystem : StateMachine
     public static void SetNextActualNode(int indexOfChild)
     {
         Instance.ActualNode = Instance.ActualNode.children[indexOfChild];
+        Debug.Log("SessionPaused - " + Instance._gameInfo._session);
         Instance._gameInfo._session.Pause();
-        Instance.GetState().NextState();
+        Instance.SetState(new GoToPlace(Instance));
     }
     //
 

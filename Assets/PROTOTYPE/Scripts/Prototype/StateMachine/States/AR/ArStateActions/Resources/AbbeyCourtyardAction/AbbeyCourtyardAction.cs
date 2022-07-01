@@ -24,6 +24,7 @@ public class AbbeyCourtyardAction : StepAction
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasDenounce);
+        DestroySelf();
         yield break;
     }
 }

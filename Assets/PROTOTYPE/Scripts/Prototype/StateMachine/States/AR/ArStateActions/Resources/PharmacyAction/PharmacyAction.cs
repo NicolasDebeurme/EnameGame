@@ -25,7 +25,7 @@ public class PharmacyAction : StepAction
     {
         if(indexOfDecison == 0)
         {
-            if(GameManager.Instance._actualGameState.inventory.TryRemoveItemOfType(ItemType.Jar))
+            if(GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Jar))
             {
                 _jar.GetComponent<Animator>().SetTrigger("Change");
                 DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Swap"]);
@@ -43,6 +43,7 @@ public class PharmacyAction : StepAction
 
         yield return new WaitForSeconds(4f);
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasSwap);
+        DestroySelf();
     }
 
     private void Update()
