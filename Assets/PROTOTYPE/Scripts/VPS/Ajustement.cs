@@ -27,16 +27,5 @@ public class Ajustement : MonoBehaviour
         TextX.text = SliderX.value.ToString();
         TextY.text = SliderY.value.ToString();
         TextZ.text = SliderZ.value.ToString();
-
-
-
-
-
-
-
-
-
-
-
     }
 }

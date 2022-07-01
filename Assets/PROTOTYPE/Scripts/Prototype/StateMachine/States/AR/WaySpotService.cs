@@ -57,7 +57,7 @@ public class WaySpotService : MonoBehaviour
 
     private void OnSessionRan(ARSessionRanArgs args)
     {
-        iLocationService.Start(1, 0.001f);
+        iLocationService.Start(0.001f, 0.001f);
         _textPanelTitle.text = "Location state";
         InitialLocalizationFired = false;
     }
