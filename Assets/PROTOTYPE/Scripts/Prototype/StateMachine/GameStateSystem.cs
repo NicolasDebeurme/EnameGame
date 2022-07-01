@@ -58,7 +58,9 @@ public class GameStateSystem : StateMachine
             ActualNode = _availableTrees[0].root;
             Debug.Log("DefaultTree taken");
         }
-            
+
+        inventory.AddItem(new Item { itemType= ItemType.Pistol});
+        inventory.AddItem(new Item { itemType = ItemType.Jar });
 
         SetState(new Lobby(this));
     }

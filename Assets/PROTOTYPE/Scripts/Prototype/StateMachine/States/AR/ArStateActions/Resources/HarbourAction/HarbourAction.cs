@@ -14,15 +14,15 @@ public class HarbourAction : StepAction
 
     private float ShootDistance = 100f;
     private int numberBullet = 5;
-    private bool hasTouch = false;
-    private bool doOne = true;
 
     Button ShootButton;
 
     private LayerMask hitMask = 1<<6;
-
+    private ARView _view;
     private bool isBeforeChoice = true;
+    private bool isBoatShooted = false;
     private TextMeshProUGUI _textInfo;
+
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem, this );
@@ -41,7 +41,7 @@ public class HarbourAction : StepAction
             ShootButton = ArState._view.shootButton.GetComponent<Button>();
             ShootButton.onClick.AddListener(() => OnClickShoot());
 
-            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
+            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["HarbourEntrance"]);
             DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
         }
         else
@@ -52,25 +52,12 @@ public class HarbourAction : StepAction
         }
     }
 
-    void Update()
-    {
-        //if (hasTouch)
-        //{
-        //    //Boat.transform.position = Vector3.Lerp(Boat.transform.position, BoatUnderWaterPosition.position, Time.deltaTime);
-        //    boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.005f, 0);
-        //    if (doOne)
-        //    {
-        //        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
-        //        doOne = false;
-        //    }
-        //}
-    }
     public void OnClickShoot()
     {
-        Debug.Log("ShootHa");
-        pistol.itemWorld.transform.gameObject.GetComponent<Animator>().SetTrigger("shoot");
         if (numberBullet >= 1)
         {
+            Debug.Log("ShootHa");
+            pistol.itemWorld.transform.gameObject.GetComponent<Animator>().SetTrigger("shoot");
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, ShootDistance, hitMask))  // Layer 6 = Boat
             {
                 Debug.Log("Shhoot");
@@ -81,37 +68,59 @@ public class HarbourAction : StepAction
                 //PrefabObjectImpactClone.transform.rotation = Quaternion.Euler(hit.normal);
                 //Debug.Log(hit.normal);
 
-                Boat boat = hit.transform.GetComponent<Boat>();
-
-                if (boat != null)
-                {
-                    boat.StartCoroutine(boat.Drown());
-                    hasTouch = true;
-                }
+                isBoatShooted = true;
+                StartCoroutine(DrownBoat());
             }
             numberBullet--;
+        }
+        else
+        {
+            //DIALOGUE PLUS DE BALLES DONC BATEAU PAS COULE--------------------------------
+            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasNoMoreBullets"]);
+            Debug.Log("No more bullets");
         }
     }
 
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
-        UIManager.Show<ARView>();
 
-        isBeforeChoice = false;
-        GameStateSystem.inventory.ItemClicked(pistol);
-        ShootButton.gameObject.SetActive(true);
-        _textInfo.text = "Aim and shoot the boat !";
-
-        NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasShoot);
+        if(indexOfDecison ==0)
+        {
+            _view = UIManager.Show<ARView>();
+            isBeforeChoice = false;
+            GameStateSystem.inventory.ItemClicked(pistol);
+            _view.UpdateItemUI(pistol);
+            ShootButton.gameObject.SetActive(true);
+            _textInfo.text = "Aim and shoot the boat !";
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
+            //DIALOGUE A DIT NON POUR COULE LE BATEAU--------------------------------
+            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["No"]);
+        }
         yield break;
     }
 
+    private IEnumerator DrownBoat()
+    {
+        while (boat.transform.GetChild(0).position.y > -4f)
+        {
+            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.005f, 0);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //DIALOGUE BATEAU COULE--------------------------------
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
+    }
     public override IEnumerator OnActionEnded()
     {
         if(pistol == null)
         {
             yield return new WaitForSeconds(3f);
-            NetworkingManager.BroadCastChoice(2, TypeOfChoice.HasSwap);
+            NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
+
+            DestroySelf();
         }
         else if(isBeforeChoice)
         {
@@ -120,8 +129,21 @@ public class HarbourAction : StepAction
         }
         else
         {
+            _view.UpdateItemUI(pistol);
+            ShootButton.gameObject.SetActive(false);
+            GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Jar);
+            if (isBoatShooted)
+            {
+                NetworkingManager.BroadCastChoice(0, TypeOfChoice.HasShoot);
+            }
+            else
+            {
+                NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
+            }
 
+            DestroySelf();
         }
+
         yield break;
     }
     private void OnDestroy()

@@ -13,8 +13,6 @@ public class EntranceAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["JarTaken"]));
-
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
 
         if (gameStateSystem._playerRole == Roles.Alchemist)
@@ -29,6 +27,7 @@ public class EntranceAction : StepAction
         {
             MakeRaycast();
         }
+
         AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
     }
 
