@@ -38,6 +38,13 @@ public class PiloriAction : StepAction
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
 
+    public void Update()
+    {
+        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
+
+    }
+
+
     private void OnDestroy()
     {
         Camera.main.GetComponent<ARDepthManager>().enabled = false;

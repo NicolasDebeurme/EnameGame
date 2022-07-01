@@ -17,7 +17,10 @@ public class AbbeyCourtyardAction : StepAction
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
     }
 
-
+    public void Update()
+    {
+        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
+    }
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasDenounce);

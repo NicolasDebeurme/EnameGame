@@ -69,6 +69,8 @@ public class HarbourAction : StepAction
 
     void Update()
     {
+        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
+
 #if !UNITY_EDITOR
         if (hasTouch)
         {
