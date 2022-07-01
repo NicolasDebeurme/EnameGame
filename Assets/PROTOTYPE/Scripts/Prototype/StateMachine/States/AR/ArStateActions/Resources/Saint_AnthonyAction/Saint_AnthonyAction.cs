@@ -23,6 +23,9 @@ public class Saint_AnthonyAction : StepAction
         //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstPoliceman"]));
         //else
         //StartCoroutine(DialogueManager._dialogueInstance.PlayDialogue(actionData.dialogues["FirstAlchemist"]));
+
+        AudioManager.Instance.Play("Victory");
+
         if (DontSwap)
         {
             if (DontDenonce)

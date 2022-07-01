@@ -18,6 +18,8 @@ public class PiloriAction : StepAction
 
         Camera.main.GetComponent<ARDepthManager>().enabled = true;
 
+        AudioManager.Instance.Play("Chain");
+
 #if !UNITY_EDITOR
         baker = GameObject.Find("Baker");
 

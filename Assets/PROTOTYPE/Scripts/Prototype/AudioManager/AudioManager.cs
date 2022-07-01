@@ -1,6 +1,9 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,14 +28,18 @@ public class AudioManager : MonoBehaviour
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
 
-            s.source.dopplerLevel = 0f;
             s.source.clip = s.clip;
 			s.source.loop = s.loop;
             s.source.volume = s.volume;
-            s.source.outputAudioMixerGroup = s.mixerGroup;
-		}
+            s.source.pitch = s.pitch;
+
+        }
         Play("Music");
-        Play("Fire");
+
+
+
+
+        
     }
 
 	public void Play(string sound, float volume = 0f)
@@ -64,34 +71,9 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
-    public void Play(int sound, float volume = 0f)
-    {
-        Sound s = Array.Find(sounds, item => item.number == sound);
+   
+   
 
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + sound + " not found!");
-            return;
-        }
-
-        //Debug.Log("Playing: " + sound);
-
-        if (s.source.isPlaying)
-        {
-            s.source.Stop();
-        }
-
-        if (volume != 0)
-        {
-            s.source.volume = volume;
-        }
-        else
-        {
-            s.source.volume = s.volume;
-        }
-
-        s.source.Play();
-    }
 
     public void Stop(string sound)
     {
@@ -106,4 +88,7 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+      
+
+    
 }

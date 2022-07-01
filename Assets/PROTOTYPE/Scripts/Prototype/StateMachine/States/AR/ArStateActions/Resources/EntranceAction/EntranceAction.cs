@@ -53,6 +53,7 @@ public class EntranceAction : StepAction
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+                        AudioManager.Instance.Play("Collect");
                     }
                 }
             }
@@ -77,6 +78,7 @@ public class EntranceAction : StepAction
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+                        AudioManager.Instance.Play("Collect");
                     }
                 }
             }
