@@ -32,7 +32,8 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = s.mixerGroup;
 		}
         Play("Music");
-	}
+        Play("Fire");
+    }
 
 	public void Play(string sound, float volume = 0f)
 	{
