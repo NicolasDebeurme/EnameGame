@@ -9,11 +9,14 @@ public class PortalManager : MonoBehaviour
 	public GameObject Sponza;
 
 	private Renderer[] SponzaMaterials;
+	private Terrain Terrain;
 
 	// Use this for initialization
 	void Start()
 	{
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
+		Terrain = Sponza.GetComponentInChildren<Terrain>();
+
 		if (MainCamera== null )
         {
 			MainCamera = Camera.main.gameObject;
@@ -27,14 +30,17 @@ public class PortalManager : MonoBehaviour
 			Debug.Log("CamNull");
         }
     }
-    // Update is called once per frame
+
     void OnTriggerStay(Collider collider)
 	{
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
+
 		Vector3 camPositionInPortalSpace = transform.InverseTransformPoint(MainCamera.transform.position);
 
 		if (camPositionInPortalSpace.y < .3f)
 		{
+			if (Terrain != null)
+				Terrain.gameObject.SetActive(false);
 			//disable stencil test
 			for (int i = 0; i < SponzaMaterials.Length; ++i)
 			{
@@ -46,6 +52,8 @@ public class PortalManager : MonoBehaviour
 		}
 		else
 		{
+			if (Terrain != null)
+				Terrain.gameObject.SetActive(true);
 			//enable stencil test
 			for (int i = 0; i < SponzaMaterials.Length; ++i)
 			{
