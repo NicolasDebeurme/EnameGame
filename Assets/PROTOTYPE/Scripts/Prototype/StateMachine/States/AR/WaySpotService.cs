@@ -196,10 +196,6 @@ public class WaySpotService : MonoBehaviour
     //    }
     //}
 
-    private void OnDestroy()
-    {
-        
-    }
     public void DestroySelf()
     {
         Destroy(this);
@@ -208,19 +204,14 @@ public class WaySpotService : MonoBehaviour
     #region WaySpotAnchor Payloads
     public GameObject[] LoadPayloads(string json, GameObject anchorPrefab)
     {
-        var AnchorsPrefabs = new List<GameObject>();
-            var payloads = new List<WayspotAnchorPayload>();
-            var storedData = JsonUtility.FromJson<WayspotAnchorsData>(json);
+            var AnchorsPrefabs = new List<GameObject>();
+            var storedData = JsonUtility.FromJson<string>(json);
 
-            foreach (var wayspotAnchorPayload in storedData.Payloads)
-            {
-                var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
-                payloads.Add(payload);
-            }
+            var payload = WayspotAnchorPayload.Deserialize(storedData);
 
-            if (payloads.Count > 0)
+            if (payload != null)
             {
-                var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
+                var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payload);
 
                 foreach (var wayspotAnchor in wayspotAnchors)
                 {
