@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PROTOTYPE/Scenes/Netwotrking+Mesh/Netwotking+Mesh.unity
+    path: Assets/PROTOTYPE/Scenes/ENAME_GAME/Game.unity
     guid: 47e1a16945b1fb44a964138a02847dae
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5e668f8ab45c4054c83d51f0268749e0,
