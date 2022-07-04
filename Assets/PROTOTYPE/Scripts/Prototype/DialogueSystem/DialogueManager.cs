@@ -77,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         {
             _dialogueText.text += letter;
             LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
-            yield return null;
+            yield return new WaitForSeconds(0.04f);
         }
     }
     private void EndDialogue()
