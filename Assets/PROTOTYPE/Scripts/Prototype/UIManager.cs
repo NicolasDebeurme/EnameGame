@@ -16,17 +16,6 @@ public class UIManager : ViewManager<UIManager>
 	protected override void Awake()
 	{
 		base.Awake();
-	}
-
-
-	private void Start()
-	{
-
-	}
-
-	#region private Methodes
-	private void GameInitialized()
-	{
 
 		_views = new View[_gameViews.Length];
 
@@ -37,17 +26,16 @@ public class UIManager : ViewManager<UIManager>
 
 		for (int i = 0; i < _views.Length; i++)
 		{
-            _views[i].Initialize();
+			_views[i].Initialize();
 
 			_views[i].Hide();
 		}
 	}
+
+
+	#region private Methodes
 	#endregion
 
 	#region public static Methodes
-	public void SetUIEvents()
-    {
-        s_instance.GameInitialized();
-    }
 	#endregion
 }

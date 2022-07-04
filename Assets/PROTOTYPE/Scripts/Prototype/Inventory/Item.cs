@@ -10,7 +10,6 @@ public class Item
     public Sprite GetSprite()
     {
         var itemSprite = ItemAssets.Instance.Assets[itemType].sprite;
-        
 
         return itemSprite;
     }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Enums;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,8 +36,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.SetUIEvents();
         _actualGameState = gameObject.AddComponent<GameStateSystem>();
+
+        _actualGameState.inventory.AddItem(new Item { itemType = ItemType.Pistol });
+        _actualGameState.inventory.AddItem(new Item { itemType = ItemType.Jar });
     }
     #endregion
 
