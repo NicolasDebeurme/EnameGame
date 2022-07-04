@@ -47,7 +47,9 @@ public class AR : State
     {
         Debug.Log("wayspotLost");
         if(GameStateSystem.actualAction != null)
+        {
             GameStateSystem.actualAction.DestroySelf();
+        }
     }
 
     private void OnWayspotLocalized(object sender, EventArgs e)

@@ -111,9 +111,10 @@ namespace Niantic.ARDK.AR.WayspotAnchors
         byte[] blob = wayspotAnchorPayload._Blob;
       #if UNITY_EDITOR
         var wayspotAnchor = new _MockWayspotAnchor(blob);
+
       #else
         var wayspotAnchor = new _NativeWayspotAnchor(blob);
-      #endif
+#endif
         wayspotAnchors.Add(wayspotAnchor);
       }
 
