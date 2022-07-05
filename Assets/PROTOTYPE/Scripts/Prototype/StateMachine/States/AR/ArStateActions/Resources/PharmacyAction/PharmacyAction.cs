@@ -21,31 +21,45 @@ public class PharmacyAction : StepAction
 
     }
 
+    private bool isYes;
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
         if(indexOfDecison == 0)
         {
             if(GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Jar))
             {
                 _jar?.GetComponent<Animator>().SetTrigger("Change");
                 DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Swap"]);
+                isYes = true;
             }
             else
             {
                 indexOfDecison = 1;
+                isYes = false;
                 DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["NoJar"]);
             }
         }
         else
         {
+            isYes = false;
             DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["NoSwap"]);
         }
 
-        yield return new WaitForSeconds(4f);
-        NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasSwap);
-        DestroySelf();
+        yield break;
     }
 
+    public override IEnumerator OnActionEnded()
+    {
+        DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
+        Debug.Log("ActionEnded");
+        yield return new WaitForSeconds(2f);
+
+        if(isYes)
+            NetworkingManager.BroadCastChoice(0, TypeOfChoice.HasSwap);
+        else
+            NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasSwap);
+    }
     private void Update()
     {
         AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);

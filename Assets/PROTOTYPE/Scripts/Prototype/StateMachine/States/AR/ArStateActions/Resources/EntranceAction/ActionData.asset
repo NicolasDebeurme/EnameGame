@@ -24,8 +24,7 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: JarTaken
-      speaker: 
+      speaker: Daniel
       sentences:
       - This Jar will be usefull in the future
       TimeStamp: 3
-  automaticNextScene: 1

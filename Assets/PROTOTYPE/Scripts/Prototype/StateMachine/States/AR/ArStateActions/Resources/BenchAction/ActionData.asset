@@ -24,8 +24,7 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: GunTaken
-      speaker: 
+      speaker: Daniel
       sentences:
       - This Gun will be usefull in the future
       TimeStamp: 3
-  automaticNextScene: 1

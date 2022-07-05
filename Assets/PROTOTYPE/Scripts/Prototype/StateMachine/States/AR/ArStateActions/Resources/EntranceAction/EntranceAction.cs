@@ -53,6 +53,7 @@ public class EntranceAction : StepAction
                         jar.OnRayHitAddItem();
                         isJarTaken = true;
                         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
+                        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "";
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                         AudioManager.Instance.Play("Collect");
                     }

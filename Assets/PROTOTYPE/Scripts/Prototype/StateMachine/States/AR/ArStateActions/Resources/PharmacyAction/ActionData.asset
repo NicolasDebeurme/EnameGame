@@ -24,17 +24,17 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: Swap
-      speaker: 
+      speaker: Daniel
       sentences:
       - You succesfully swapped the poison jar with the medicine one !
       TimeStamp: 5
     - name: NoJar
-      speaker: 
+      speaker: Daniel
       sentences:
       - You have no jar in your inventory, you can't swap the jars ..
       TimeStamp: 5
     - name: NoSwap
-      speaker: 
+      speaker: Daniel
       sentences:
       - You reconsidered your choice and decided not to exchange the jars
       TimeStamp: 5

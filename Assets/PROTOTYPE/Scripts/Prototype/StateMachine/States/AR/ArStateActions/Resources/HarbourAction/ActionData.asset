@@ -27,21 +27,21 @@ MonoBehaviour:
   dialogues:
     dialogues:
     - name: HarbourEntrance
-      speaker: 
+      speaker: Daniel
       sentences:
       - Now you have the choice to shoot the boat or not.
       - If you do it, the alchemist won't be able to escape.
       - Otherwise he will do so.. Take your decision !
       TimeStamp: 3
     - name: hasTouch
-      speaker: 
+      speaker: Daniel
       sentences:
       - You succesfully shoot and drawned the boat ! The alchemist won"t be able
         to escape now.
       - Now let's go to the inn to find the alchemist
       TimeStamp: 5
     - name: hasNoMoreBullets
-      speaker: 
+      speaker: Daniel
       sentences:
       - You don't have any bullet left .. No choice but letting the boat the way
         he is.
