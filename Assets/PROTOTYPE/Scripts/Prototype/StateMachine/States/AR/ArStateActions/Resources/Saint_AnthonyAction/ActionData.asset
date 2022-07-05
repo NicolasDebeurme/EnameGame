@@ -21,20 +21,20 @@ MonoBehaviour:
       sentences:
       - Here you put the gun in the bag
       - The Alchemist take the gold of the bag
-      TimeStamp: 5
+      TimeStamp: 10
     - name: FirstAlchemist
       speaker: Daniel
       sentences:
       - Here you take the gold of the bag
       - The Policeman put the gun in the bag
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending1
       speaker: Daniel
       sentences:
       - You both escape rich with the boat
       - "There were no deaths that day, \nand the village of ename headed \nby the
         monk had an almost happy ending"
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending2
       speaker: 
       sentences:
@@ -50,7 +50,7 @@ MonoBehaviour:
       - 'Policeman get the abbey trust,
 
         but without new title'
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending4
       speaker: Daniel
       sentences:
@@ -59,7 +59,7 @@ MonoBehaviour:
         the army finf
         stolen gold on him, so the alchemist have been condemn for theft'
       - Policeman get the abbe trust and a new title
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending5
       speaker: Daniel
       sentences:
@@ -70,7 +70,7 @@ MonoBehaviour:
 
         The rich Alchemist and Policeman escape with
         the boat'
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending6
       speaker: Daniel
       sentences:
@@ -78,17 +78,17 @@ MonoBehaviour:
         the murderer\nThe rich Alchemist and Policeman try too escape by the road.\nUnfortunately
         they both get caught by the abbey army.\nYou both go to jail for the abbey
         murder.\n\n\n army"
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending7
       speaker: Daniel
       sentences:
       - "Abbey find out the poison jar,\nso he live\nAlchemist escape rich with the
         boat, \nPoliceman get abbey trust and a new title"
-      TimeStamp: 5
+      TimeStamp: 10
     - name: Ending8
       speaker: Daniel
       sentences:
       - "Abbey find out the poison jar,\nso he live\nAlchemist get caught by the
         abbey army before he escape, he is sent to prison, \nPoliceman get abbey
         trust and a new title"
-      TimeStamp: 5
+      TimeStamp: 10

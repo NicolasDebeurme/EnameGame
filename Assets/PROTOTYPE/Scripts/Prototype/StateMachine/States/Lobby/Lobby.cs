@@ -7,6 +7,7 @@ using Niantic.ARDK.Networking.MultipeerNetworkingEventArgs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -120,7 +121,8 @@ public class Lobby : State
 
         if(players != null)
         {
-            if (!NetworkingManager.players.ContainsValue(Roles.None) && networking.Self == networking.Host)
+            // && NetworkingManager.players.Values.Distinct().Count() == 2 ------------------------------------------------CONDITION TO ADD
+            if (!NetworkingManager.players.ContainsValue(Roles.None) && networking.Self == networking.Host )
                 _view._startButton.interactable = true;
             else
                 _view._startButton.interactable = false;
