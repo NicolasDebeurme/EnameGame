@@ -23,7 +23,7 @@ public class LocationService : MonoBehaviour
     private float _anglePlayerTarget;
 
     private Image _compassArrow;
-    private readonly float _minimumDistanceReachPoint = 10;
+    private readonly float _minimumDistanceReachPoint = 5;
 
     //WebView-------------------------------
     private string Url = "test.html";
@@ -299,10 +299,11 @@ public class LocationService : MonoBehaviour
 
     private void UpdateCompass()
     {
-        Vector2 v1 = new((float)(_pointToReach.Latitude - _yourPosition.Latitude), (float)(_pointToReach.Longitude - _yourPosition.Longitude));
+        Vector2 v1 = new((float)(_pointToReach.Longitude - _yourPosition.Longitude), (float)(_pointToReach.Latitude - _yourPosition.Latitude));
         Vector2 v2 = new(0, 1);
-        float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
-        _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;
+
+
+        _anglePlayerTarget = -Vector2.SignedAngle(v1, v2);
 
         _compassArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
         Debug.Log(_anglePlayerToNorth + " " + _anglePlayerTarget);
