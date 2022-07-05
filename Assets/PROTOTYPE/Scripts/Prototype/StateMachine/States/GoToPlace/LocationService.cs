@@ -23,7 +23,7 @@ public class LocationService : MonoBehaviour
     private float _anglePlayerTarget;
 
     private Image _compassArrow;
-    private readonly float _minimumDistanceReachPoint = 5;
+    private readonly float _minimumDistanceReachPoint = 10;
 
     //WebView-------------------------------
     private string Url = "test.html";
