@@ -9,13 +9,11 @@ public class PortalManager : MonoBehaviour
 	public GameObject Sponza;
 
 	private Renderer[] SponzaMaterials;
-	private Terrain Terrain;
 
 	// Use this for initialization
 	void Start()
 	{
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
-		Terrain = Sponza.GetComponentInChildren<Terrain>();
 
 		if (MainCamera== null )
         {
@@ -34,8 +32,6 @@ public class PortalManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
-		if (Terrain != null)
-			Terrain.gameObject.SetActive(true);
 		//disable stencil test
 		for (int i = 0; i < SponzaMaterials.Length; ++i)
 		{
@@ -49,8 +45,6 @@ public class PortalManager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
-		if (Terrain != null)
-			Terrain.gameObject.SetActive(false);
 		//enable stencil test
 		for (int i = 0; i < SponzaMaterials.Length; ++i)
 		{
