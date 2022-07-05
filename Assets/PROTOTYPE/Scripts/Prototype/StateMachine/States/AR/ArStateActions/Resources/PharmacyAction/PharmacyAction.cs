@@ -55,6 +55,7 @@ public class PharmacyAction : StepAction
         Debug.Log("ActionEnded");
         yield return new WaitForSeconds(2f);
 
+        DestroySelf();
         if(isYes)
             NetworkingManager.BroadCastChoice(0, TypeOfChoice.HasSwap);
         else
