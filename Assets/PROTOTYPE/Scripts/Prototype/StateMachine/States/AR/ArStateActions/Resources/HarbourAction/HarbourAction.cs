@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using static Enums;
 using TMPro;
 using System;
+using Niantic.ARDK.Extensions;
 
 public class HarbourAction : StepAction
 {
@@ -50,6 +51,16 @@ public class HarbourAction : StepAction
 
             StartCoroutine(OnActionEnded());
         }
+
+        Camera.main.GetComponent<ARDepthManager>().enabled = true;
+        Renderer[] rd = AnchorsPrefab[0].GetComponentsInChildren<Renderer>();
+
+        for (int i = 0; i < rd.Length; i++)
+        {
+            Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
+        }
+
+
     }
 
     public void OnClickShoot()
@@ -149,4 +160,18 @@ public class HarbourAction : StepAction
 
         yield break;
     }
+
+
+    private void OnDestroy()
+    {
+        
+
+        Camera.main.GetComponent<ARDepthManager>().enabled = false;
+
+        foreach (var Script in Camera.main.GetComponents<ARDepthInterpolationAdapter>())
+        {
+            Destroy(Script);
+        }
+    }
+
 }

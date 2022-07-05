@@ -21,7 +21,7 @@ MonoBehaviour:
       type: 3}
   payloads:
   - name: Boat
-    jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
+    jsonData: '{"Payloads":["ChQIqeqyj9m5yoo5EPSs3cLwlqOBVhjom6GnKCpFChUInueElJz+z6XOARCLo5zojoi1kBASJwoPDaoAv0EVGBifPx2ktYNAEhQNCwg+pBV92AU/HUxOf6QlHzlaPx0AAIA/"]}'
     prefab: {fileID: 4298549240031072944, guid: 47f5b3cf3074c714db8c19cfb31b8a9c,
       type: 3}
   dialogues:

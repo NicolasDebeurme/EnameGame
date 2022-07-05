@@ -305,5 +305,6 @@ public class LocationService : MonoBehaviour
         _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;
 
         _compassArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
+        Debug.Log(_anglePlayerToNorth + " " + _anglePlayerTarget);
     }
 }

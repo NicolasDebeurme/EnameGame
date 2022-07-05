@@ -21,7 +21,7 @@ public class PiloriAction : StepAction
         AudioManager.Instance.Play("Chain");
 
 #if !UNITY_EDITOR
-        baker = GameObject.Find("Baker");
+        
 
         baker = AnchorsPrefab[0];
 
@@ -32,7 +32,6 @@ public class PiloriAction : StepAction
             Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
         }
 #endif
-        //Camera.main.GetComponent<ARDepthInterpolationAdapter>().TrackOccludee(baker.GetComponent<Renderer>());
 
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
