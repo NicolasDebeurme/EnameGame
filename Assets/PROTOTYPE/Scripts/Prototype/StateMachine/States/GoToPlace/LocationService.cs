@@ -275,7 +275,6 @@ public class LocationService : MonoBehaviour
     }
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
-        Debug.Log("locationupdated");
         if (_iLocationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR

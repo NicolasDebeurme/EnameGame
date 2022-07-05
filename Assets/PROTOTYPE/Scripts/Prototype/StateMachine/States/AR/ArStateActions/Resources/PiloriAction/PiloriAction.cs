@@ -13,7 +13,7 @@ public class PiloriAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Pilori..";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Pilori";
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "The Baker have something to tell you";
 
         Camera.main.GetComponent<ARDepthManager>().enabled = true;

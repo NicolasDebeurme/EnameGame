@@ -13,7 +13,7 @@ public class EntranceAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance..";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance";
 
         if (gameStateSystem._playerRole == Roles.Alchemist)
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the jar and take it";
