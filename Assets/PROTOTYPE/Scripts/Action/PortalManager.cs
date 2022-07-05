@@ -31,38 +31,35 @@ public class PortalManager : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider collider)
-	{
+    private void OnTriggerEnter(Collider other)
+    {
 		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
-
-		Vector3 camPositionInPortalSpace = transform.InverseTransformPoint(MainCamera.transform.position);
-
-		if (camPositionInPortalSpace.y < .3f)
+		if (Terrain != null)
+			Terrain.gameObject.SetActive(true);
+		//disable stencil test
+		for (int i = 0; i < SponzaMaterials.Length; ++i)
 		{
-			if (Terrain != null)
-				Terrain.gameObject.SetActive(false);
-			//disable stencil test
-			for (int i = 0; i < SponzaMaterials.Length; ++i)
+			for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
 			{
-				for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
-				{
-					SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Always);
-				}
-			}
-		}
-		else
-		{
-			if (Terrain != null)
-				Terrain.gameObject.SetActive(true);
-			//enable stencil test
-			for (int i = 0; i < SponzaMaterials.Length; ++i)
-			{
-				for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
-				{
-					SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Equal);
-				}
+				SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Always);
 			}
 		}
 	}
+
+    private void OnTriggerExit(Collider other)
+    {
+		SponzaMaterials = Sponza.GetComponentsInChildren<Renderer>();
+		if (Terrain != null)
+			Terrain.gameObject.SetActive(false);
+		//enable stencil test
+		for (int i = 0; i < SponzaMaterials.Length; ++i)
+		{
+			for (int ii = 0; ii < SponzaMaterials[i].sharedMaterials.Length; ii++)
+			{
+				SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Equal);
+			}
+		}
+	}
+
 }
 

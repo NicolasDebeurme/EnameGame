@@ -56,6 +56,7 @@ public abstract class StepAction : MonoBehaviour
 
     public virtual IEnumerator OnActionEnded()
     {
+        DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
         Debug.Log("ActionEnded");
         yield return new WaitForSeconds(2f);
 

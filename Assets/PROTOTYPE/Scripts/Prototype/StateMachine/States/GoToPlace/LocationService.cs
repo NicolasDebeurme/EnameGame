@@ -271,6 +271,7 @@ public class LocationService : MonoBehaviour
     private void OnCompassUpdated(CompassUpdatedArgs args)
     {
         _anglePlayerToNorth = args.TrueHeading;
+        UpdateCompass();
     }
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
@@ -285,7 +286,6 @@ public class LocationService : MonoBehaviour
         }
 
         AsReachPosition();
-        UpdateCompass();
     }
 
     private void AsReachPosition()

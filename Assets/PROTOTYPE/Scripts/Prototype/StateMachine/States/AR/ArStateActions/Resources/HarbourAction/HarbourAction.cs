@@ -106,10 +106,11 @@ public class HarbourAction : StepAction
     {
         while (boat.transform.GetChild(0).position.y > -2f)
         {
-            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.5f, 0);
+            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.05f, 0);
             yield return new WaitForSeconds(0.05f);
         }
 
+        GameStateSystem.inventory.ItemClicked(pistol);
         _view.UpdateItemUI(pistol);
         ShootButton.gameObject.SetActive(false);
         //DIALOGUE BATEAU COULE--------------------------------
@@ -117,9 +118,10 @@ public class HarbourAction : StepAction
     }
     public override IEnumerator OnActionEnded()
     {
-        if(pistol == null)
+        if (pistol == null)
         {
             yield return new WaitForSeconds(3f);
+            DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
             NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
 
             DestroySelf();
@@ -131,6 +133,7 @@ public class HarbourAction : StepAction
         }
         else
         {
+            DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
             GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Pistol);
             if (isBoatShooted)
             {
@@ -145,11 +148,5 @@ public class HarbourAction : StepAction
         }
 
         yield break;
-    }
-    private void OnDestroy()
-    {
-        if(pistol != null)
-            Destroy(pistol.itemWorld.transform.gameObject);
-
     }
 }
