@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
-  payloads: []
+  prefabs:
+  - name: House
+    prefab: {fileID: 6822827380196476298, guid: caa102489a6827c42b31b52660584f2b,
+      type: 3}
+  payloads:
+  - name: House
+    jsonData: '{"Payloads":["ChQIv/mV7Kj86rg2ELitpcmcz/+EKxja9N6cSCpEChQIi8CVpe+ThKcpEKLLqKPWkM3xSxInCg8N01HgQRX6WlI/HQyqDkASFA34+B4kFSHU/D4do49YIiVInF4/HQAAgD8="]}'
+    prefab: {fileID: 6822827380196476298, guid: caa102489a6827c42b31b52660584f2b,
+      type: 3}
   dialogues:
     dialogues:
     - name: FirstPoliceman
