@@ -268,8 +268,6 @@ public class LocationService : MonoBehaviour
     }
 
     //Gps
-
-
     private void OnCompassUpdated(CompassUpdatedArgs args)
     {
         _anglePlayerToNorth = args.TrueHeading;
@@ -301,8 +299,8 @@ public class LocationService : MonoBehaviour
 
     private void UpdateCompass()
     {
-        Vector2 v1 = new Vector2((float)(_pointToReach.Latitude - _yourPosition.Latitude), (float)(_pointToReach.Longitude - _yourPosition.Longitude));
-        Vector2 v2 = new Vector2(0, 1);
+        Vector2 v1 = new((float)(_pointToReach.Latitude - _yourPosition.Latitude), (float)(_pointToReach.Longitude - _yourPosition.Longitude));
+        Vector2 v2 = new(0, 1);
         float sign = Mathf.Sign(v1.x * v2.y - v1.y * v2.x);
         _anglePlayerTarget = -Vector2.Angle(v1, v2) * sign;
 

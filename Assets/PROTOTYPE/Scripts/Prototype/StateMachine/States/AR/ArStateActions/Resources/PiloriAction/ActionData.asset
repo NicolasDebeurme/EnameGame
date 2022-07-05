@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: baker
+    prefab: {fileID: 6103362519706422711, guid: 8cb994b8e6576794aaa4640b906f568c,
+      type: 3}
   payloads:
   - name: Baker
     jsonData: '{"Payloads":["ChUIxtXMl9bEpaQJELO1nN7Ku+fz9gEYoa2YukcqRgoWCM//iZPwoKWmmAEQjpWw8pGBgP7jARInCg8N4jGtvxX5lIo/HZJyJMASFA23oK+1FSdbJ78dsg0gtiWnuEE/HQAAgD8qRgoWCM7X4aPl766kogEQornUu6SBn7fXARInCg8NY+KAPxV7AF8/HVoTD0ASFA2lT4+2FSdzZT8dn32zNCW7DuM+HQAAgD8qRQoVCN6V6Z+K3OqnGxCj39Kfqs2AipoBEicKDw17yYI/FXWsbj8dLiILQBIUDVXR/LcV5ytnPx0xwA63JRf22z4dAACAPw=="]}'
@@ -25,5 +28,4 @@ MonoBehaviour:
       sentences:
       - Hi I'm the baker of Ename
       - The abbey hung me here, don't trust him
-      TimeStamp: 3
-  automaticNextScene: 0
+      TimeStamp: 5

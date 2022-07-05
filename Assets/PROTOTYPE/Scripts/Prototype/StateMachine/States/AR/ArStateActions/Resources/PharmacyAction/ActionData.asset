@@ -27,15 +27,14 @@ MonoBehaviour:
       speaker: 
       sentences:
       - You succesfully swapped the poison jar with the medicine one !
-      TimeStamp: 3
+      TimeStamp: 4
     - name: NoJar
       speaker: 
       sentences:
       - You have no jar in your inventory, you can't swap the jars ..
-      TimeStamp: 3
+      TimeStamp: 4
     - name: NoSwap
       speaker: 
       sentences:
       - You reconsidered your choice and decided not to exchange the jars
-      TimeStamp: 3
-  automaticNextScene: 0
+      TimeStamp: 4

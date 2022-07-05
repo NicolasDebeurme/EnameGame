@@ -38,7 +38,8 @@ MonoBehaviour:
       sentences:
       - You succesfully shoot and drawned the boat ! The alchemist won"t be able
         to escape now.
-      TimeStamp: 3
+      - Now let's go to the inn to find the alchemist
+      TimeStamp: 5
     - name: hasNoMoreBullets
       speaker: 
       sentences:
@@ -50,4 +51,3 @@ MonoBehaviour:
       sentences:
       - You decided not to drawned the boat, wise decision as the wise men you are
       TimeStamp: 3
-  automaticNextScene: 1

@@ -59,10 +59,7 @@ public abstract class StepAction : MonoBehaviour
         Debug.Log("ActionEnded");
         yield return new WaitForSeconds(2f);
 
-        if (actionData.automaticNextScene)
-            GameManager.Instance.BroadcastNextState();
-        else
-            ArState._view.continueButton.gameObject.SetActive(true);
+        ArState._view.continueButton.gameObject.SetActive(true);
     }
     public virtual void DestroySelf()
     {

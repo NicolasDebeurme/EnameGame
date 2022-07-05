@@ -27,7 +27,7 @@ public class PharmacyAction : StepAction
         {
             if(GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Jar))
             {
-                _jar.GetComponent<Animator>().SetTrigger("Change");
+                _jar?.GetComponent<Animator>().SetTrigger("Change");
                 DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Swap"]);
             }
             else

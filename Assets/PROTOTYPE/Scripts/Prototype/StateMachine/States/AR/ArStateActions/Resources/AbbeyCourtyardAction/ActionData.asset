@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
   m_Name: ActionData
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - name: Cart
+    prefab: {fileID: 8238799719786607715, guid: a4530b02f678eb943a9baab043ca223a,
+      type: 3}
   payloads:
   - name: Abbey
     jsonData: '{"Payloads":["ChUI6ZPv4Kquyt9iEN6y4rvax/b+jgEYluyPqaIBKkUKFQjdm+iQguCvpBkQt+/ZwtjYvv6sARInCg8N9F0NPxUdKow/HU21HT8SFA3VmSmyFUHTHz8dBVVyNSXR+kc/HQAAgD8="]}'
@@ -27,5 +30,4 @@ MonoBehaviour:
       - 'I will need a favor from you, I have the impression that some villagers
         are rebelling against me. '
       - Have you heard of people wishing me harm?
-      TimeStamp: 3
-  automaticNextScene: 0
+      TimeStamp: 5

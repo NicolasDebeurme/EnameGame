@@ -54,7 +54,7 @@ public class HarbourAction : StepAction
 
     public void OnClickShoot()
     {
-        if (numberBullet >= 1)
+        if (numberBullet >= 1 && !isBoatShooted)
         {
             Debug.Log("ShootHa");
             pistol.itemWorld.transform.gameObject.GetComponent<Animator>().SetTrigger("shoot");
@@ -104,12 +104,14 @@ public class HarbourAction : StepAction
 
     private IEnumerator DrownBoat()
     {
-        while (boat.transform.GetChild(0).position.y > -4f)
+        while (boat.transform.GetChild(0).position.y > -2f)
         {
-            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.005f, 0);
+            boat.transform.GetChild(0).gameObject.transform.position -= new Vector3(0, 0.5f, 0);
             yield return new WaitForSeconds(0.05f);
         }
 
+        _view.UpdateItemUI(pistol);
+        ShootButton.gameObject.SetActive(false);
         //DIALOGUE BATEAU COULE--------------------------------
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["hasTouch"]);
     }
@@ -129,9 +131,7 @@ public class HarbourAction : StepAction
         }
         else
         {
-            _view.UpdateItemUI(pistol);
-            ShootButton.gameObject.SetActive(false);
-            GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Jar);
+            GameStateSystem.inventory.TryRemoveItemOfType(ItemType.Pistol);
             if (isBoatShooted)
             {
                 NetworkingManager.BroadCastChoice(0, TypeOfChoice.HasShoot);
