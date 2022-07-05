@@ -45,7 +45,7 @@ public class LocationService : MonoBehaviour
     }
     private void OnStatusUpdated(LocationStatusUpdatedArgs args)
     {
-        Debug.Log("LocationService :" + args.Status.ToString());
+        //Debug.Log("LocationService :" + args.Status.ToString());
     }
 
     //private void OnCompassUpdated(CompassUpdatedArgs args)
@@ -275,7 +275,7 @@ public class LocationService : MonoBehaviour
     }
     private void OnLocationUpdated(LocationUpdatedArgs args)
     {
-        Debug.Log("locationupdated");
+        //Debug.Log("locationupdated");
         if (_iLocationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR
@@ -306,6 +306,6 @@ public class LocationService : MonoBehaviour
         _anglePlayerTarget = -Vector2.SignedAngle(v1, v2);
 
         _compassArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, (_anglePlayerToNorth + _anglePlayerTarget));
-        Debug.Log(_anglePlayerToNorth + " " + _anglePlayerTarget);
+        //Debug.Log(_anglePlayerToNorth + " " + _anglePlayerTarget);
     }
 }
