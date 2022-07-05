@@ -258,7 +258,7 @@ public class LocationService : MonoBehaviour
 
         if (_pointToReach != null)
         {
-            _iLocationService.Start(1, 0.001f);
+            _iLocationService.Start(0.001f, 0.001f);
             _iLocationService.LocationUpdated += OnLocationUpdated;
             _iLocationService.StatusUpdated += OnStatusUpdated;
             _iLocationService.CompassUpdated += OnCompassUpdated;
@@ -278,7 +278,7 @@ public class LocationService : MonoBehaviour
         if (_iLocationService.Status == Niantic.ARDK.LocationService.LocationServiceStatus.Running)
         {
 #if UNITY_EDITOR
-            _yourPosition = new LatLng(20, 20);
+            _yourPosition = new LatLng(50.8554550137514f, 3.634270943007247f);
 #else
             _yourPosition = args.LocationInfo.Coordinates;
 #endif
