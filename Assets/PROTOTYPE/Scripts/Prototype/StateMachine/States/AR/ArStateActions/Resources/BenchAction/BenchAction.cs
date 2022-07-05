@@ -14,7 +14,7 @@ public class BenchAction : StepAction
     {
         base.Initialize(gameStateSystem,this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Bench...";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Bench";
 
 
         if (gameStateSystem._playerRole == Roles.RandomMan)
