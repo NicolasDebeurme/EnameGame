@@ -56,7 +56,7 @@ The frameworks/libraries used in this project :
 * [Unity](https://unity.com/fr)  is used for game engine
 * [LightShip ARDK](https://lightship.dev/)  is used for Augmented Reality system,  
                                             VPS systeme which positions 3D models with centimeter  precision in AR,  
-                                            and multiplayer system.  
+                                            and Multiplayer system.  
 <br />
 
 
