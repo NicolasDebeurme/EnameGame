@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Netwotrking+Mesh/Netwotking+Mesh.unity
+    path: Assets/PROTOTYPE/Scenes/ENAME_GAME/Intro.unity
+    guid: d56585aa459fe084c9405b0655898290
+  - enabled: 1
+    path: Assets/PROTOTYPE/Scenes/ENAME_GAME/Game.unity
     guid: 47e1a16945b1fb44a964138a02847dae
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5e668f8ab45c4054c83d51f0268749e0,
@@ -19,5 +22,7 @@ EditorBuildSettings:
       guid: 0034686808897314e9adca4288983909, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 0d57497ca6fa0f74cb504e6818e7fbda, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 849e8c6a18b9df547a45e42282ab5887,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9177aa98e09c79c41a09b252e5de3aad,
       type: 2}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
+  m_Name: ActionData
+  m_EditorClassIdentifier: 
+  prefabs:
+  - name: Alchemisthouse
+    prefab: {fileID: 2694240084860189950, guid: 4441e267a83936e46bfa8e72714354e3,
+      type: 3}
+  payloads:
+  - name: Alchemist
+    jsonData: '{"Payloads":["ChUI+7qx5cm70Yw6EJ2Skr2orICfnQEYgo3iinEqRQoVCPKxgIjY0PWh3wEQlYuvo67nvNdlEicKDw0SaC8/FSXYQUAd/IyxwBIUDdAHRDUVMCU7Px0BHze1Jb+tLj8dAACAPypGChYIyeCPkcmIkKPAARCCv7XvibWMhacBEicKDw3Qexm+FZdynT8dPUFjwBIUDZElgbMVz9Ifvh3UcoQyJdjcfD8dAACAPypGChYIm6Tvo4qLwqPOARCW+ei1z+WT1ZIBEicKDw0ARCe9FYr7nD8dhwBcwBIUDYOJnbQVn+kxvh0a7FSyJUQbfD8dAACAPw=="]}'
+    prefab: {fileID: 2694240084860189950, guid: 4441e267a83936e46bfa8e72714354e3,
+      type: 3}
+  dialogues:
+    dialogues:
+    - name: JarTaken
+      speaker: Daniel
+      sentences:
+      - This Jar will be usefull in the future
+      TimeStamp: 3

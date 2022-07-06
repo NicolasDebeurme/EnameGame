@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: VisualDimension
-  productName: LightShip_Prototype
+  companyName: VisualDimension2
+  productName: Prototype3
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -51,7 +51,7 @@ PlayerSettings:
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
-  m_StackTraceTypes: 010000000100000001000000000000000100000001000000
+  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -125,7 +125,7 @@ PlayerSettings:
   stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
-  vulkanEnablePreTransform: 0
+  vulkanEnablePreTransform: 1
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   m_SupportedAspectRatios:
@@ -145,7 +145,7 @@ PlayerSettings:
   vrSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
-  enableFrameTimingStats: 1
+  enableFrameTimingStats: 0
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
@@ -154,7 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.VisualDimension.LightShip_Prototype
+    Android: com.VisualDimension2.Prototype2
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -703,7 +703,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    Android: ENVIRO_LW;ENVIRO_HD;SECTR_AUDIO_PRESENT;SECTR_CORE_PRESENT;SECTR_STREAM_PRESENT;CTS_PRESENT;VEGETATION_STUDIO_PRO;TOUCH_REACT
+    Android: ENVIRO_LW;ENVIRO_HD;SECTR_AUDIO_PRESENT;SECTR_CORE_PRESENT;SECTR_STREAM_PRESENT;VEGETATION_STUDIO_PRO;TOUCH_REACT;AMPLIFY_SHADER_EDITOR;UPPipeline;CTS_PRESENT
     CloudRendering: ENVIRO_LW;ENVIRO_HD
     EmbeddedLinux: ENVIRO_LW;ENVIRO_HD
     GameCoreXboxOne: ENVIRO_LW;ENVIRO_HD

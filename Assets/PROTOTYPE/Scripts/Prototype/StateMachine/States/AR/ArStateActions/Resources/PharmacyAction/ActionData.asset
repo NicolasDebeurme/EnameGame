@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
+  m_Name: ActionData
+  m_EditorClassIdentifier: 
+  prefabs:
+  - name: Pharmacy
+    prefab: {fileID: 7166690612489229140, guid: 6090c3fb8c1efe74db29439d85ee61ea,
+      type: 3}
+  payloads:
+  - name: Pharmacy
+    jsonData: '{"Payloads":["ChQIzeLN37rX2dcZEOyjn8yboYKMIBjTzvGiKipGChYI18if6uzgwqCUARCVkfOSn+7946ABEicKDw3xKTlBFXPcgD8deh+vvxIUDepazqQVxsKGvR1ghSqjJflxfz8dAACAPw=="]}'
+    prefab: {fileID: 7166690612489229140, guid: 6090c3fb8c1efe74db29439d85ee61ea,
+      type: 3}
+  dialogues:
+    dialogues:
+    - name: Swap
+      speaker: Daniel
+      sentences:
+      - You succesfully swapped the poison jar with the medicine one !
+      TimeStamp: 5
+    - name: NoJar
+      speaker: Daniel
+      sentences:
+      - You have no jar in your inventory, you can't swap the jars ..
+      TimeStamp: 5
+    - name: NoSwap
+      speaker: Daniel
+      sentences:
+      - You reconsidered your choice and decided not to exchange the jars
+      TimeStamp: 5

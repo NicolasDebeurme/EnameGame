@@ -14,35 +14,200 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedNodes:
   - data:
-      textToBeChose: aze
+      textToBeChose: 
       visibilitys:
         Decide: 01000000
-        See: 
+        See: 02000000
         Blind: 
       dialogueText: 
       place: 1
       action: EntranceAction
-    childCount: 2
+    childCount: 1
     indexOfFirstChild: 1
   - data:
-      textToBeChose: aze
+      textToBeChose: 
       visibilitys:
-        Decide: 
-        See: 
+        Decide: 02000000
+        See: 01000000
         Blind: 
       dialogueText: 
-      place: 0
-      action: 
-    childCount: 0
+      place: 2
+      action: BenchAction
+    childCount: 1
     indexOfFirstChild: 2
   - data:
-      textToBeChose: zer
+      textToBeChose: 
       visibilitys:
-        Decide: 
+        Decide: 0100000002000000
         See: 
         Blind: 
       dialogueText: 
-      place: 0
-      action: 
-    childCount: 0
+      place: 3
+      action: PiloriAction
+    childCount: 1
     indexOfFirstChild: 3
+  - data:
+      textToBeChose: 
+      visibilitys:
+        Decide: 01000000
+        See: 
+        Blind: 02000000
+      dialogueText: Swap the jars and kill the monk ?
+      place: 4
+      action: PharmacyAction
+    childCount: 2
+    indexOfFirstChild: 4
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Denounce the Alchemist ?
+      place: 5
+      action: AbbeyCourtyardAction
+    childCount: 2
+    indexOfFirstChild: 5
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
+    indexOfFirstChild: 6
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 7
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 8
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
+    indexOfFirstChild: 9
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 10
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 11
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Denounce the Alchemist ?
+      place: 5
+      action: AbbeyCourtyardAction
+    childCount: 2
+    indexOfFirstChild: 12
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
+    indexOfFirstChild: 13
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 14
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 15
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 02000000
+        See: 
+        Blind: 01000000
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
+    indexOfFirstChild: 16
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 17
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 18

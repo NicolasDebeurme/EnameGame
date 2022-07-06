@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac508e633b8ccb84e84a4989edebe123, type: 3}
+  m_Name: ActionData
+  m_EditorClassIdentifier: 
+  prefabs:
+  - name: Cart
+    prefab: {fileID: 8238799719786607715, guid: a4530b02f678eb943a9baab043ca223a,
+      type: 3}
+  payloads:
+  - name: Abbey
+    jsonData: '{"Payloads":["ChQIqeqyj9m5yoo5EPSs3cLwlqOBVhjom6GnKCpFChUInueElJz+z6XOARCLo5zojoi1kBASJwoPDaoAv0EVGBifPx2ktYNAEhQNCwg+pBV92AU/HUxOf6QlHzlaPx0AAIA/"]}'
+    prefab: {fileID: 8238799719786607715, guid: a4530b02f678eb943a9baab043ca223a,
+      type: 3}
+  dialogues:
+    dialogues:
+    - name: First
+      speaker: Abbey
+      sentences:
+      - "Hello young man, I heard about your arrival.\r"
+      - 'I will need a favor from you, I have the impression that some villagers
+        are rebelling against me. '
+      - Have you heard of people wishing me harm?
+      TimeStamp: 5
