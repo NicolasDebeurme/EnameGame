@@ -34,10 +34,10 @@
 
 
 
-__
+
 ### About The Project
 
- `BLANK_README.md` ....
+  This
 <br />
 <br />
 
@@ -45,7 +45,7 @@ __
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+The frameworks/libraries used in this project.
 
 * [Unity](https://unity.com/fr)
 * [LightShip ARDK](https://lightship.dev/)
@@ -57,8 +57,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+* To use the project on pc you can open it with Unity, 
+the location and VPS system wil not block the game execution in play mode.
+
+* To try the game on Phone you can use the apk in the builds folder, 
+but you need to be in Audenarde (Belgium) because the game need the right location and the right VPS scans.
 <br />
 <br />
 
