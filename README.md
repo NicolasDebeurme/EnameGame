@@ -30,11 +30,7 @@
   </p>
 </div>
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 
 
 
@@ -44,7 +40,7 @@
 ### About The Project
 
  `BLANK_README.md` ....
-
+<br />
 
 
 
@@ -55,7 +51,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [Unity](https://unity.com/fr)
 * [LightShip ARDK](https://lightship.dev/)
-
+<br />
 
 
 
@@ -65,6 +61,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+<br />
 
 ### Prerequisites
 
@@ -73,10 +70,11 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
-
+<br />
 
 
 ### Contact
 
 Hakim Duparcq - hakim.duparcq@student.junia.com
 Nicolas Debeurme - nicolas.debeurme@student.junia.com
+<br />
