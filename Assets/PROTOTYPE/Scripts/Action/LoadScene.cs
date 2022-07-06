@@ -10,8 +10,9 @@ public class LoadScene : MonoBehaviour
     public GameObject StartButton;
 
     public GameObject Monk;
+    public int moonkAnimationFrame = 0;
     public DialogueArray dialogues;
-    
+
 
 
     public void Start()
@@ -34,6 +35,8 @@ public class LoadScene : MonoBehaviour
 
     private IEnumerator DialogueEnd()
     {
+        StartCoroutine(MoonkAnimation());
+
         yield return new WaitForSeconds(1);
         StartButton.SetActive(true);
         Monk.SetActive(false);
@@ -43,10 +46,22 @@ public class LoadScene : MonoBehaviour
     public void OnStartClick()
     {
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
+
     }
 
 
-    
+    public IEnumerator MoonkAnimation()
+    {
+        while (moonkAnimationFrame <  100)
+        {
+            moonkAnimationFrame++;
+            Monk.transform.position += new Vector3(-100,0,0);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+
+    }
 
 
 
