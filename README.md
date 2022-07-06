@@ -16,7 +16,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img src="logoAR.png" alt="Logo" width="160" height="200">
+    <img src="logoAR.png" alt="Logo" width="200" height="160">
   </a>
 
   <h3 align="center">ENAME GAME</h3>
@@ -32,35 +32,11 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 
 
-<!-- ABOUT THE PROJECT -->
+
+
 ### About The Project
 
  `BLANK_README.md` ....
@@ -69,7 +45,7 @@
 
 
 
-## Built With
+### Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
@@ -80,8 +56,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 
 
-<!-- GETTING STARTED -->
-## Getting Started
+
+### Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
@@ -95,8 +71,8 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 
-<!-- CONTACT -->
-## Contact
+
+### Contact
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
