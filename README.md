@@ -57,11 +57,11 @@ The frameworks/libraries used in this project.
 
 ### Getting Started
 
-* To use the project on pc you can open it with Unity, 
-the location and VPS system wil not block the game execution in play mode.
+* Use project on PC : you can open it with Unity, 
+                      the location and VPS system wil not block the game execution in play mode.
 
-* To try the game on Phone you can use the apk in the builds folder, 
-but you need to be in Audenarde (Belgium) because the game need the right location and the right VPS scans.
+* Use the game on Phone : you can use the apk in the builds folder, 
+                          but you need to be in Audenarde (Belgium) because the game need the right location and the right VPS scans.
 <br />
 <br />
 
