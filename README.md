@@ -29,8 +29,12 @@
     <br />
   </p>
 </div>
-
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 
@@ -74,14 +78,5 @@ This is an example of how to list things you need to use the software and how to
 
 ### Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-
-
-
+Hakim Duparcq - hakim.duparcq@student.junia.com
+Nicolas Debeurme - nicolas.debeurme@student.junia.com
