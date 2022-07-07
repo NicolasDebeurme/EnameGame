@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassAlchemist
+  m_Name: GrassSaint
   m_Shader: {fileID: -6465566751694194690, guid: 8bce200b9afd743429b9d8451c5fad30,
     type: 3}
   m_ValidKeywords: []
