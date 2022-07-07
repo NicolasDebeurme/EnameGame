@@ -32,4 +32,10 @@ public class AbbeyCourtyardAction : StepAction
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
+
+    public override IEnumerator OnActionEnded()
+    {
+        yield return new WaitForSeconds(1f);
+        NextState();
+    }
 }
