@@ -31,6 +31,9 @@ public class GameStateSystem : StateMachine
 
     [NonSerialized]
     public WaySpotService waySpotService = null;
+
+    [NonSerialized]
+    public bool isDialogueDone = false;
     //
 
     [NonSerialized]

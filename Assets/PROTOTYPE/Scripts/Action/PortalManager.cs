@@ -7,6 +7,7 @@ public class PortalManager : MonoBehaviour
 {
 	public GameObject MainCamera;
 	public GameObject Sponza;
+	public GameObject Ground;
 
 	private Renderer[] SponzaMaterials;
 
@@ -40,6 +41,7 @@ public class PortalManager : MonoBehaviour
 				SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Always);
 			}
 		}
+		Ground.SetActive(true);
 	}
 
     private void OnTriggerExit(Collider other)
@@ -53,6 +55,7 @@ public class PortalManager : MonoBehaviour
 				SponzaMaterials[i].sharedMaterials[ii].SetInt("_StencilComp", (int)CompareFunction.Equal);
 			}
 		}
+		Ground.SetActive(false);
 	}
 
 }

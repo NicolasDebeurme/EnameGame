@@ -27,9 +27,6 @@ public class EntranceAction : StepAction
         {
             MakeRaycast();
         }
-
-        if(AnchorsPrefab?.Length > 0)
-            AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
     }
 
     private void MakeRaycast()

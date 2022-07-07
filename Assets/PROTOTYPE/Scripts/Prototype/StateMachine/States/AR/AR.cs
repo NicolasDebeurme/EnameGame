@@ -22,7 +22,7 @@ public class AR : State
         _view = UIManager.Show<ARView>();
         _view.continueButton.gameObject.SetActive(false);
         textPanel = _view.textPanel;
-
+        GameStateSystem.isDialogueDone = false;
 
         if (GameStateSystem.waySpotService == null)
         {

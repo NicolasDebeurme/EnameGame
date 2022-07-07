@@ -94,10 +94,9 @@ public class HarbourAction : StepAction
 
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
-
-        if(indexOfDecison ==0)
+        _view = UIManager.Show<ARView>();
+        if (indexOfDecison ==0)
         {
-            _view = UIManager.Show<ARView>();
             isBeforeChoice = false;
             GameStateSystem.inventory.ItemClicked(pistol);
             _view.UpdateItemUI(pistol);

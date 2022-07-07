@@ -921,7 +921,6 @@ GameObject:
   - component: {fileID: 25723960730461140}
   - component: {fileID: 1360486740938167602}
   - component: {fileID: 1679800773243093768}
-  - component: {fileID: 2834534026247928918}
   m_Layer: 0
   m_Name: HouseA_Door2
   m_TagString: Untagged
@@ -1008,32 +1007,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08027239, y: 1.0186807, z: 2.0209212}
   m_Center: {x: -0.020990709, y: -0.49662417, z: -0.6702121}
---- !u!114 &2834534026247928918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203702589865666071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: -90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &232773387160167883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,7 +5031,6 @@ GameObject:
   - component: {fileID: 2234280773311645390}
   - component: {fileID: 9135854025678697980}
   - component: {fileID: 4708813562796514970}
-  - component: {fileID: 3664376186512897214}
   m_Layer: 0
   m_Name: HouseA_Door3
   m_TagString: Untagged
@@ -5145,32 +5117,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2391359, y: 0.07969105, z: 2.0213172}
   m_Center: {x: -0.60622376, y: -0.024578178, z: -0.67038983}
---- !u!114 &3664376186512897214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126944567692150335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1144197365201991888
 GameObject:
   m_ObjectHideFlags: 0
@@ -15263,7 +15209,6 @@ GameObject:
   - component: {fileID: 5163721357240675526}
   - component: {fileID: 2293313532130929956}
   - component: {fileID: 5256151048736923016}
-  - component: {fileID: 8110007279912005603}
   m_Layer: 0
   m_Name: HouseA_Door1
   m_TagString: Untagged
@@ -15350,32 +15295,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.296611, y: 0.08926132, z: 2.0193484}
   m_Center: {x: -0.6349532, y: 0.031232378, z: -0.6754506}
---- !u!114 &8110007279912005603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3789975498698520042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: -90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &3823669544115258353
 GameObject:
   m_ObjectHideFlags: 0
@@ -31235,7 +31154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7983350548402168010}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -44.931}
 --- !u!33 &6822827379684229548
 MeshFilter:
@@ -31314,6 +31233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   Sponza: {fileID: 7257191539167839653}
+  Ground: {fileID: 7200047575860186433}
 --- !u!1 &6822827379851823117
 GameObject:
   m_ObjectHideFlags: 0
@@ -31951,6 +31871,7 @@ Transform:
   m_Children:
   - {fileID: 6822827378313685518}
   - {fileID: 8464038602411423223}
+  - {fileID: 2775034043490428468}
   - {fileID: 6822827379684229712}
   m_Father: {fileID: 6822827380196476299}
   m_RootOrder: 0
@@ -32664,12 +32585,12 @@ GameObject:
   - component: {fileID: 1969436998479339675}
   - component: {fileID: 5551966842215746630}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2775034043490428468
 Transform:
   m_ObjectHideFlags: 0
@@ -32679,11 +32600,11 @@ Transform:
   m_GameObject: {fileID: 7200047575860186433}
   m_LocalRotation: {x: -0, y: -0.042568658, z: -0, w: 0.99909353}
   m_LocalPosition: {x: -11.5, y: 0, z: -14.5}
-  m_LocalScale: {x: 4.0791645, y: 1, z: 3.4152493}
+  m_LocalScale: {x: 4.079165, y: 1, z: 3.4152498}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8464038602411423223}
-  m_RootOrder: 20
+  m_Father: {fileID: 7983350548402168010}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -4.879, z: 0}
 --- !u!33 &4549190177646551037
 MeshFilter:
@@ -32797,7 +32718,6 @@ Transform:
   - {fileID: 3955320621706815033}
   - {fileID: 4848229442025723071}
   - {fileID: 512055441992873217}
-  - {fileID: 2775034043490428468}
   m_Father: {fileID: 7983350548402168010}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35258,7 +35178,6 @@ GameObject:
   - component: {fileID: 8153988170255372037}
   - component: {fileID: 8153988170255372036}
   - component: {fileID: 8153988170255372035}
-  - component: {fileID: 8153988170255372034}
   m_Layer: 0
   m_Name: Back_Door
   m_TagString: Untagged
@@ -35345,32 +35264,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100483, y: 0.21431345, z: 2.0979528}
   m_Center: {x: -0.49244738, y: -0.094761595, z: 0.36920476}
---- !u!114 &8153988170255372034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170255372032}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170316140488
 GameObject:
   m_ObjectHideFlags: 0
@@ -35577,7 +35470,6 @@ GameObject:
   - component: {fileID: 8153988170434751750}
   - component: {fileID: 8153988170434751749}
   - component: {fileID: 8153988170434751748}
-  - component: {fileID: 8153988170434751747}
   m_Layer: 0
   m_Name: Front_Door
   m_TagString: Untagged
@@ -35664,32 +35556,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0155574, y: 0.16840705, z: 2.042936}
   m_Center: {x: 0.4953379, y: 0.016813302, z: -0.6361414}
---- !u!114 &8153988170434751747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170434751745}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170448556975
 GameObject:
   m_ObjectHideFlags: 0
@@ -35702,7 +35568,6 @@ GameObject:
   - component: {fileID: 8153988170448557012}
   - component: {fileID: 8153988170448557011}
   - component: {fileID: 8153988170448557010}
-  - component: {fileID: 8153988170448557009}
   m_Layer: 0
   m_Name: Guest_Door_2
   m_TagString: Untagged
@@ -35789,32 +35654,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100477, y: 0.21431345, z: 2.1075997}
   m_Center: {x: -0.49244633, y: -0.09475744, z: 0.3740285}
---- !u!114 &8153988170448557009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170448556975}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170600784751
 GameObject:
   m_ObjectHideFlags: 0
@@ -35827,7 +35666,6 @@ GameObject:
   - component: {fileID: 8153988170600784020}
   - component: {fileID: 8153988170600784019}
   - component: {fileID: 8153988170600784018}
-  - component: {fileID: 8153988170600784017}
   m_Layer: 0
   m_Name: Guest_Door_3
   m_TagString: Untagged
@@ -35914,32 +35752,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100477, y: 0.21431406, z: 2.086808}
   m_Center: {x: -0.49244612, y: -0.094763614, z: -0.61420506}
---- !u!114 &8153988170600784017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170600784751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170808487842
 GameObject:
   m_ObjectHideFlags: 0
@@ -36149,7 +35961,6 @@ GameObject:
   - component: {fileID: 8153988170833805482}
   - component: {fileID: 8153988170833805481}
   - component: {fileID: 8153988170833805480}
-  - component: {fileID: 8153988170833805479}
   m_Layer: 0
   m_Name: Farm_Door1
   m_TagString: Untagged
@@ -36236,32 +36047,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16840701, y: 1.0155575, z: 2.0979528}
   m_Center: {x: 0.016801825, y: -0.49531445, z: -0.6086336}
---- !u!114 &8153988170833805479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170833805477}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170847319067
 GameObject:
   m_ObjectHideFlags: 0
@@ -36468,7 +36253,6 @@ GameObject:
   - component: {fileID: 8153988170945622735}
   - component: {fileID: 8153988170945622734}
   - component: {fileID: 8153988170945622733}
-  - component: {fileID: 8153988170945622732}
   m_Layer: 0
   m_Name: Guest_Door_1
   m_TagString: Untagged
@@ -36555,32 +36339,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100502, y: 0.21431345, z: 2.0954278}
   m_Center: {x: -0.49243912, y: -0.09476186, z: -0.609895}
---- !u!114 &8153988170945622732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170945622730}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171034649592
 GameObject:
   m_ObjectHideFlags: 0
@@ -36773,7 +36531,6 @@ GameObject:
   - component: {fileID: 8153988171167567540}
   - component: {fileID: 8153988171167567539}
   - component: {fileID: 8153988171167567538}
-  - component: {fileID: 8153988171167567537}
   m_Layer: 0
   m_Name: Farm_Door2
   m_TagString: Untagged
@@ -36860,32 +36617,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17882465, y: 1.0155576, z: 2.0979528}
   m_Center: {x: 0.022016363, y: -0.49532005, z: -0.6086331}
---- !u!114 &8153988171167567537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171167567503}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171290638749
 GameObject:
   m_ObjectHideFlags: 0
@@ -36995,7 +36726,6 @@ GameObject:
   - component: {fileID: 8153988171361986939}
   - component: {fileID: 8153988171361986938}
   - component: {fileID: 8153988171361986937}
-  - component: {fileID: 8153988171361986936}
   m_Layer: 0
   m_Name: Farm_Door3
   m_TagString: Untagged
@@ -37082,32 +36812,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16840701, y: 1.0155581, z: 2.0979528}
   m_Center: {x: 0.016813269, y: -0.49532202, z: -0.6086336}
---- !u!114 &8153988171361986936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171361986934}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171500041287
 GameObject:
   m_ObjectHideFlags: 0

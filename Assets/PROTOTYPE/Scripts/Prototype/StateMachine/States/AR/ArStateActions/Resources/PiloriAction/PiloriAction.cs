@@ -20,9 +20,6 @@ public class PiloriAction : StepAction
 
         AudioManager.Instance.Play("Chain");
 
-#if !UNITY_EDITOR
-        
-
         baker = AnchorsPrefab[0];
 
         Renderer[] rd = baker.GetComponentsInChildren<Renderer>();
@@ -31,18 +28,10 @@ public class PiloriAction : StepAction
         {
             Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
         }
-#endif
 
-        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
-        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+        if(!GameStateSystem.isDialogueDone)
+            StartCoroutine(StartDialogue());
     }
-
-    public void Update()
-    {
-        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
-    }
-
-
     private void OnDestroy()
     {
         Camera.main.GetComponent<ARDepthManager>().enabled = false;
@@ -54,5 +43,12 @@ public class PiloriAction : StepAction
 
     }
 
+    private IEnumerator StartDialogue()
+    {
+        GameStateSystem.isDialogueDone = true;
+        yield return new WaitForSeconds(3f);
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+    }
 
 }

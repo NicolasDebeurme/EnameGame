@@ -27,7 +27,7 @@ MonoBehaviour:
       speaker: Daniel
       sentences:
       - Here you put the gun in the bag
-      - The Alchemist take the gold of the bag
+      - The Alchemist take the bag full of gold with him
       TimeStamp: 10
     - name: FirstAlchemist
       speaker: Daniel
