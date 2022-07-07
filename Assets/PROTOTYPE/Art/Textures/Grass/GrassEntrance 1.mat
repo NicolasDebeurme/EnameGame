@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StencilComp: 8
+    - _StencilComp: 3
     m_Colors:
     - _Repetition: {r: 4.94, g: 8.32, b: 0, a: 0}
   m_BuildTextureStacks: []
