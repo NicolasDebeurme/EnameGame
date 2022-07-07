@@ -26,6 +26,6 @@ MonoBehaviour:
     - name: Baker
       speaker: Baker
       sentences:
-      - Hi I'm the baker of Ename
-      - The abbey hung me here, don't trust him
+      - "Please help meee ! \rI am innocent, I promise !"
+      - The abbey hung me here, he didn't like my bread ..
       TimeStamp: 5

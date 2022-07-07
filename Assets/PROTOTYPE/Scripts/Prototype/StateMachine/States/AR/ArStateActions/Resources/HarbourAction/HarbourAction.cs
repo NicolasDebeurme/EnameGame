@@ -42,8 +42,7 @@ public class HarbourAction : StepAction
             ShootButton = ArState._view.shootButton.GetComponent<Button>();
             ShootButton.onClick.AddListener(() => OnClickShoot());
 
-            if (!GameStateSystem.isDialogueDone)
-                StartCoroutine(StartDialogue());
+            StartCoroutine(StartDialogue());
 
             Camera.main.GetComponent<ARDepthManager>().enabled = true;
             Renderer[] rd = AnchorsPrefab[0].GetComponentsInChildren<Renderer>();
@@ -155,8 +154,7 @@ public class HarbourAction : StepAction
 
     private IEnumerator StartDialogue()
     {
-        GameStateSystem.isDialogueDone = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["HarbourEntrance"]);
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }

@@ -29,11 +29,11 @@ public class PiloriAction : StepAction
             Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
         }
 
-        if(!GameStateSystem.isDialogueDone)
-            StartCoroutine(StartDialogue());
+         StartCoroutine(StartDialogue());
     }
     private void OnDestroy()
     {
+        StopAllCoroutines();
         Camera.main.GetComponent<ARDepthManager>().enabled = false;
 
         foreach (var Script in Camera.main.GetComponents<ARDepthInterpolationAdapter>())
@@ -45,8 +45,7 @@ public class PiloriAction : StepAction
 
     private IEnumerator StartDialogue()
     {
-        GameStateSystem.isDialogueDone = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
