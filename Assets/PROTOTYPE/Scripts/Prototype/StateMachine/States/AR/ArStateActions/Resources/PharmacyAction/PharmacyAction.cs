@@ -118,6 +118,6 @@ public class PharmacyAction : StepAction
 
     private void CleanJarHit()
     {
-        GameManager.Instance.BroadcastNextState();
+        NextState();
     }
 }
