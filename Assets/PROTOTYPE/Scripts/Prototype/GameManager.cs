@@ -38,9 +38,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _actualGameState = gameObject.AddComponent<GameStateSystem>();
-
-        _actualGameState.inventory.AddItem(new Item { itemType = ItemType.Pistol });
-        _actualGameState.inventory.AddItem(new Item { itemType = ItemType.Jar });
     }
     #endregion
 
