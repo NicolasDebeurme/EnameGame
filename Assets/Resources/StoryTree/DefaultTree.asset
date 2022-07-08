@@ -60,7 +60,7 @@ MonoBehaviour:
   - data:
       textToBeChose: Yes
       visibilitys:
-        Decide: 0200000001000000
+        Decide: 02000000
         See: 
         Blind: 01000000
       dialogueText: Denounce the Alchemist ?
@@ -71,7 +71,7 @@ MonoBehaviour:
   - data:
       textToBeChose: Yes
       visibilitys:
-        Decide: 0200000001000000
+        Decide: 02000000
         See: 
         Blind: 01000000
       dialogueText: Shoot the boat to prevent alchemist escape ?

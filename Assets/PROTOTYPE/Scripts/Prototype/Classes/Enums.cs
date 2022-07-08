@@ -10,7 +10,7 @@ public class Enums : MonoBehaviour
     {
         None,
         Alchemist,
-        RandomMan
+        Policeman
     }
     public enum Places
     {
