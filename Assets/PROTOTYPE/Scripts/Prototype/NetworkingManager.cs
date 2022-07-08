@@ -212,7 +212,7 @@ public class NetworkingManager : MonoBehaviour
     public static void BroadcastItemTaken(ItemType itemType)
     {
         var serializedInfo = ((int)itemType).Serialize();
-        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ItemTaken, serializedInfo, false);
+        BroadCastToSession(Instance._gameInfo._networking, (int)BrodcastType.ItemTaken, serializedInfo, true);
     }
 
     public static void BroadcastHostDisconnected()

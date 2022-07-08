@@ -26,6 +26,7 @@ public class ItemWorld : MonoBehaviour
 
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
+        itemsWorld.Add(itemWorld);
 
         return itemWorld;
     }
@@ -47,11 +48,15 @@ public class ItemWorld : MonoBehaviour
     {
         foreach(var itemWorld in itemsWorld)
         {
-            if(itemWorld._item.itemType == itemType)
+            if(itemWorld.TryGetComponent<ItemWorld>(out var itemWorldScript))
             {
-                itemWorld.DestroySelf();
-                return true;
+                if (itemWorldScript._item.itemType == itemType)
+                {
+                    itemWorldScript.DestroySelf();
+                    return true;
+                }
             }
+
         }
         return false;
     }
@@ -72,14 +77,16 @@ public class ItemWorld : MonoBehaviour
             Destroy(gameObject.transform.parent.gameObject);
         else
             Destroy(gameObject);
-        itemsWorld.Remove(this);
     }
 
     public void OnRayHitAddItem()
     {
         GameManager.Instance._actualGameState.inventory.AddItem(_item);
         NetworkingManager.BroadcastItemTaken(_item.itemType);
-        DestroySelf();
     }
 
+    private void OnDestroy()
+    {
+        itemsWorld.Remove(this);
+    }
 }
