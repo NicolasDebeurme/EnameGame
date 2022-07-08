@@ -19,19 +19,74 @@ MonoBehaviour:
         Decide: 0100000002000000
         See: 
         Blind: 
-      dialogueText: 
-      place: 4
-      action: PharmacyAction
-    childCount: 1
+      dialogueText: Denounce the Alchemist ?
+      place: 5
+      action: AbbeyCourtyardAction
+    childCount: 2
     indexOfFirstChild: 1
   - data:
-      textToBeChose: 
+      textToBeChose: Yes
       visibilitys:
         Decide: 0200000001000000
         See: 
         Blind: 
-      dialogueText: 
-      place: 5
-      action: AbbeyCourtyardAction
-    childCount: 0
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
     indexOfFirstChild: 2
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 3
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 4
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: Shoot the boat to prevent alchemist escape ?
+      place: 6
+      action: HarbourAction
+    childCount: 2
+    indexOfFirstChild: 5
+  - data:
+      textToBeChose: Yes
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 6
+  - data:
+      textToBeChose: No
+      visibilitys:
+        Decide: 0100000002000000
+        See: 
+        Blind: 
+      dialogueText: 
+      place: 7
+      action: Saint_AnthonyAction
+    childCount: 0
+    indexOfFirstChild: 7
