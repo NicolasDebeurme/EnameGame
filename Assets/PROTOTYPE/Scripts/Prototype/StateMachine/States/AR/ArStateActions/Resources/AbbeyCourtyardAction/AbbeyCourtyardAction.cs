@@ -14,18 +14,31 @@ public class AbbeyCourtyardAction : StepAction
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Abbey Courtyard";
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "The Abbey have something to tell you";
 
-        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
-        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+        StartCoroutine(StartDialogue());
     }
 
-    public void Update()
-    {
-        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
-    }
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasDenounce);
         DestroySelf();
         yield break;
+    }
+
+    private IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(2f);
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["First"]);
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+    }
+
+    public override IEnumerator OnActionEnded()
+    {
+        yield return new WaitForSeconds(1f);
+        NextState();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

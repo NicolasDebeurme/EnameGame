@@ -39,7 +39,7 @@ public class UI_Inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate,transform).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
 
-            itemSlotRectTransform.anchoredPosition = new Vector2(x, y* (itemSlotRectTransform.rect.height+ itemSlotRectTransform.rect.height/4));
+            itemSlotRectTransform.anchoredPosition = new Vector2(x, y* (itemSlotRectTransform.rect.height+ itemSlotRectTransform.rect.height/5));
 
             Image itemImage = itemSlotRectTransform.GetComponentsInChildren<Image>()[1];
             itemImage.sprite = item.GetSprite();

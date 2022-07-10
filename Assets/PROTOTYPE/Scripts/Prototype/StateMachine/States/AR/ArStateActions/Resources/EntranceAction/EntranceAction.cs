@@ -27,9 +27,6 @@ public class EntranceAction : StepAction
         {
             MakeRaycast();
         }
-
-        if(AnchorsPrefab?.Length > 0)
-            AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
     }
 
     private void MakeRaycast()
@@ -47,8 +44,7 @@ public class EntranceAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
-                    if (jar != null ) // hit.transform.tag = " ..."
+                    if (hit.transform.TryGetComponent<ItemWorld>(out var jar)) // hit.transform.tag = " ..."
                     {
                         jar.OnRayHitAddItem();
                         isJarTaken = true;

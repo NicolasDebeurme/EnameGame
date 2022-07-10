@@ -36,7 +36,7 @@ MonoBehaviour:
     - name: hasTouch
       speaker: Daniel
       sentences:
-      - You succesfully shoot and drawned the boat ! The alchemist won"t be able
+      - You succesfully shoot and drawned the boat ! The alchemist won't be able
         to escape now.
       - Now let's go to the inn to find the alchemist
       TimeStamp: 5

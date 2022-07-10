@@ -26,76 +26,74 @@ MonoBehaviour:
     - name: FirstPoliceman
       speaker: Daniel
       sentences:
-      - Here you put the gun in the bag
-      - The Alchemist take the gold of the bag
+      - Here you put the gun in the bag.
+      - The Alchemist take the bag full of gold with him.
       TimeStamp: 10
     - name: FirstAlchemist
       speaker: Daniel
       sentences:
-      - Here you take the gold of the bag
-      - The Policeman put the gun in the bag
+      - Here you take the gold of the bag.
+      - The Policeman put the gun in the bag.
       TimeStamp: 10
     - name: Ending1
       speaker: Daniel
       sentences:
-      - You both escape rich with the boat
-      - "There were no deaths that day, \nand the village of ename headed \nby the
-        monk had an almost happy ending"
+      - You both escape rich with the boat.
+      - There were no deaths that day, and the village of ename headed by the monk
+        had an almost happy ending.
       TimeStamp: 10
     - name: Ending2
-      speaker: 
+      speaker: Daniel
       sentences:
-      - You both escape rich by the road
-      - "There were no deaths that day, \nand the village of ename headed \nby the
-        monk had an almost happy ending"
+      - You both escape rich by the road.
+      - There were no deaths that day, and the village of ename headed by the monk
+        had an almost happy ending.
       TimeStamp: 3
     - name: Ending3
       speaker: Daniel
       sentences:
       - The alchemist rich escape with the boat just before abbey army try to arest
-        him
-      - 'Policeman get the abbey trust,
-
-        but without new title'
+        him.
+      - Policeman get the abbey trust, but without new title.
       TimeStamp: 10
     - name: Ending4
       speaker: Daniel
       sentences:
-      - 'Abbey army arest the alchemist trying to escape,
-
-        the army finf
-        stolen gold on him, so the alchemist have been condemn for theft'
-      - Policeman get the abbe trust and a new title
+      - Abbey army arest the alchemist trying to escape, the army finf stolen gold
+        on him, so the alchemist have been condemn for theft.
+      - Policeman get the abbe trust and a new title.
       TimeStamp: 10
     - name: Ending5
       speaker: Daniel
       sentences:
-      - 'Abbey dies because of the poison jar,
-
-        Abbey army  block the road
-        to find the murderer
-
-        The rich Alchemist and Policeman escape with
-        the boat'
+      - Abbey dies because of the poison jar,Abbey army  block the road to find the
+        murderer.
+      - The rich Alchemist and Policeman escape with the boat.
       TimeStamp: 10
     - name: Ending6
       speaker: Daniel
       sentences:
-      - "Abbey dies because of the poison jar,\nAbbey army  block the road to find
-        the murderer\nThe rich Alchemist and Policeman try too escape by the road.\nUnfortunately
-        they both get caught by the abbey army.\nYou both go to jail for the abbey
-        murder.\n\n\n army"
+      - 'Abbey dies because of the poison jar, his army  block the road to find the
+        murderer.
+
+'
+      - The rich Alchemist and Policeman try too escape by the road.
+      - Unfortunately they both get caught by the abbey army.
+      - You both go to jail for the abbey murder.
       TimeStamp: 10
     - name: Ending7
       speaker: Daniel
       sentences:
-      - "Abbey find out the poison jar,\nso he live\nAlchemist escape rich with the
-        boat, \nPoliceman get abbey trust and a new title"
+      - 'Abbey find out about the poison jar, so he live.
+
+'
+      - Alchemist escape rich with the boat.
+      - Policeman get abbey trust and a new title.
       TimeStamp: 10
     - name: Ending8
       speaker: Daniel
       sentences:
-      - "Abbey find out the poison jar,\nso he live\nAlchemist get caught by the
-        abbey army before he escape, he is sent to prison, \nPoliceman get abbey
-        trust and a new title"
+      - Abbey find out the poison jar, so he live.
+      - Alchemist get caught by the abbey army before he escape, he is sent to prison.
+      - Policeman get abbey trust and a new title.
       TimeStamp: 10

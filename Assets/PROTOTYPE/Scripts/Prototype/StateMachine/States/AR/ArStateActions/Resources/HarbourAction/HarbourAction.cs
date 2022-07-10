@@ -42,8 +42,15 @@ public class HarbourAction : StepAction
             ShootButton = ArState._view.shootButton.GetComponent<Button>();
             ShootButton.onClick.AddListener(() => OnClickShoot());
 
-            DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["HarbourEntrance"]);
-            DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+            StartCoroutine(StartDialogue());
+
+            Camera.main.GetComponent<ARDepthManager>().enabled = true;
+            Renderer[] rd = AnchorsPrefab[0].GetComponentsInChildren<Renderer>();
+
+            for (int i = 0; i < rd.Length; i++)
+            {
+                Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
+            }
         }
         else
         {
@@ -51,16 +58,6 @@ public class HarbourAction : StepAction
 
             StartCoroutine(OnActionEnded());
         }
-
-        Camera.main.GetComponent<ARDepthManager>().enabled = true;
-        Renderer[] rd = AnchorsPrefab[0].GetComponentsInChildren<Renderer>();
-
-        for (int i = 0; i < rd.Length; i++)
-        {
-            Camera.main.gameObject.AddComponent<ARDepthInterpolationAdapter>().TrackOccludee(rd[i]);
-        }
-
-
     }
 
     public void OnClickShoot()
@@ -73,11 +70,6 @@ public class HarbourAction : StepAction
             {
                 Debug.Log("Shhoot");
                 Debug.Log("_________");
-                //Debug.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * ShootDistance, Color.white, 0.5f);
-                //GameObject PrefabObjectImpactClone = Instantiate(PrefabObjectImpact, ContenaireObjectImpact);
-                //PrefabObjectImpactClone.transform.position = hit.point;
-                //PrefabObjectImpactClone.transform.rotation = Quaternion.Euler(hit.normal);
-                //Debug.Log(hit.normal);
 
                 isBoatShooted = true;
                 StartCoroutine(DrownBoat());
@@ -94,10 +86,9 @@ public class HarbourAction : StepAction
 
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
-
-        if(indexOfDecison ==0)
+        _view = UIManager.Show<ARView>();
+        if (indexOfDecison ==0)
         {
-            _view = UIManager.Show<ARView>();
             isBeforeChoice = false;
             GameStateSystem.inventory.ItemClicked(pistol);
             _view.UpdateItemUI(pistol);
@@ -131,16 +122,16 @@ public class HarbourAction : StepAction
     {
         if (pistol == null)
         {
-            yield return new WaitForSeconds(3f);
             DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
+            yield return new WaitForSeconds(3f);
             NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
 
             DestroySelf();
         }
         else if(isBeforeChoice)
         {
-            yield return new WaitForSeconds(2f);
-            GameManager.Instance.BroadcastNextState();
+            yield return new WaitForSeconds(1f);
+            NextState();
         }
         else
         {
@@ -161,10 +152,16 @@ public class HarbourAction : StepAction
         yield break;
     }
 
+    private IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(2f);
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["HarbourEntrance"]);
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+    }
 
     private void OnDestroy()
     {
-        
+        StopAllCoroutines();
 
         Camera.main.GetComponent<ARDepthManager>().enabled = false;
 

@@ -46,7 +46,6 @@ public class MakeAChoice : State
     }
     private void ButtonClicked(NTree<StoryTreeNodeInfo> child)
     {
-        _view.Question.transform.parent.gameObject.SetActive(false);
         GameStateSystem.actualAction.StartCoroutine(GameStateSystem.actualAction.ShowDecisionResult(GameStateSystem.ActualNode.children.IndexOf(child)));
         ResetButtons();
 

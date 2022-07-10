@@ -921,7 +921,6 @@ GameObject:
   - component: {fileID: 25723960730461140}
   - component: {fileID: 1360486740938167602}
   - component: {fileID: 1679800773243093768}
-  - component: {fileID: 2834534026247928918}
   m_Layer: 0
   m_Name: HouseA_Door2
   m_TagString: Untagged
@@ -1008,32 +1007,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08027239, y: 1.0186807, z: 2.0209212}
   m_Center: {x: -0.020990709, y: -0.49662417, z: -0.6702121}
---- !u!114 &2834534026247928918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203702589865666071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: -90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &232773387160167883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,7 +5031,6 @@ GameObject:
   - component: {fileID: 2234280773311645390}
   - component: {fileID: 9135854025678697980}
   - component: {fileID: 4708813562796514970}
-  - component: {fileID: 3664376186512897214}
   m_Layer: 0
   m_Name: HouseA_Door3
   m_TagString: Untagged
@@ -5145,32 +5117,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2391359, y: 0.07969105, z: 2.0213172}
   m_Center: {x: -0.60622376, y: -0.024578178, z: -0.67038983}
---- !u!114 &3664376186512897214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126944567692150335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1144197365201991888
 GameObject:
   m_ObjectHideFlags: 0
@@ -7179,7 +7125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766570460571636750}
-  - component: {fileID: 5085723941785864732}
   m_Layer: 0
   m_Name: Interior_Sint_Antoon_Location
   m_TagString: Untagged
@@ -7202,29 +7147,6 @@ Transform:
   m_Father: {fileID: 7871113589011544135}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -180, y: -50.935974, z: 180}
---- !u!114 &5085723941785864732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684064249568190523}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b18d2b5f49f954faa3712f2e19e52b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usePrefabTransform: 0
-  sphereRadius: 50
-  secondsBeforeLoad: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  objectToLoad:
-    m_AssetGUID: 991c161056cefd34bb0118983e45b361
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!1 &1742582724925776308
 GameObject:
   m_ObjectHideFlags: 0
@@ -11554,7 +11476,6 @@ GameObject:
   - component: {fileID: 2432999544706470811}
   - component: {fileID: 4046867936571414838}
   - component: {fileID: 5696358170627062829}
-  - component: {fileID: 2916438618206087789}
   m_Layer: 0
   m_Name: Spreeuwpot
   m_TagString: Untagged
@@ -11619,29 +11540,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0019203147, y: 0.0048248013, z: 0.0030818786}
   m_Center: {x: 0.0003398425, y: -0.001124894, z: 0.00024093903}
---- !u!114 &2916438618206087789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438227519382660489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 233b01ee27ad59245b2a41c6705a3898, type: 2}
-  m_rootTransform: {fileID: 2432999544706470811}
-  m_lodGroup: {fileID: 4046867936571414838}
-  m_renderers:
-  - {fileID: 0}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 8116584856901860081}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &2444552279508052555
 GameObject:
   m_ObjectHideFlags: 0
@@ -15263,7 +15161,6 @@ GameObject:
   - component: {fileID: 5163721357240675526}
   - component: {fileID: 2293313532130929956}
   - component: {fileID: 5256151048736923016}
-  - component: {fileID: 8110007279912005603}
   m_Layer: 0
   m_Name: HouseA_Door1
   m_TagString: Untagged
@@ -15350,32 +15247,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.296611, y: 0.08926132, z: 2.0193484}
   m_Center: {x: -0.6349532, y: 0.031232378, z: -0.6754506}
---- !u!114 &8110007279912005603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3789975498698520042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: -90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &3823669544115258353
 GameObject:
   m_ObjectHideFlags: 0
@@ -18100,7 +17971,6 @@ GameObject:
   - component: {fileID: 3853710413603380790}
   - component: {fileID: 7796879606902945760}
   - component: {fileID: 8029510410243213883}
-  - component: {fileID: 1847830353238787871}
   m_Layer: 0
   m_Name: Table1 (5)
   m_TagString: Untagged
@@ -18165,29 +18035,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.011947226, y: 0.008260202, z: 0.0076348693}
   m_Center: {x: 0.00018856121, y: 4.6242607e-11, z: 0.0038446048}
---- !u!114 &1847830353238787871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3850783807238338796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 138795f8c431a6b4e9e1fbb21f3c3eac, type: 2}
-  m_rootTransform: {fileID: 3853710413603380790}
-  m_lodGroup: {fileID: 7796879606902945760}
-  m_renderers:
-  - {fileID: 5936913690130500826}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 1661485930556456708}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &3850824129003492170
 GameObject:
   m_ObjectHideFlags: 0
@@ -18730,7 +18577,6 @@ GameObject:
   - component: {fileID: 3847607692306810051}
   - component: {fileID: 4889294004515837362}
   - component: {fileID: 3399459199062550090}
-  - component: {fileID: 8067586533597983098}
   m_Layer: 0
   m_Name: Small_Stoel_Three_Legs (3)
   m_TagString: Untagged
@@ -18795,29 +18641,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 251262639380728483}
   m_Enabled: 0
---- !u!114 &8067586533597983098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3851100515487341867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 8a4536ea71ac81e4cb16fe04f19f0548, type: 2}
-  m_rootTransform: {fileID: 3847607692306810051}
-  m_lodGroup: {fileID: 3399459199062550090}
-  m_renderers:
-  - {fileID: 4419105863725301114}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 5567439548619258300}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &3851100515905890422
 GameObject:
   m_ObjectHideFlags: 0
@@ -23748,7 +23571,6 @@ GameObject:
   - component: {fileID: 4259807555347664069}
   - component: {fileID: 2519619571102418536}
   - component: {fileID: 6184471189360075635}
-  - component: {fileID: 3649997264061527347}
   m_Layer: 0
   m_Name: Spreeuwpot
   m_TagString: Untagged
@@ -23813,29 +23635,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0019203147, y: 0.0048248013, z: 0.0030818786}
   m_Center: {x: 0.0003398425, y: -0.001124894, z: 0.00024093903}
---- !u!114 &3649997264061527347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253776662372416215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 233b01ee27ad59245b2a41c6705a3898, type: 2}
-  m_rootTransform: {fileID: 4259807555347664069}
-  m_lodGroup: {fileID: 2519619571102418536}
-  m_renderers:
-  - {fileID: 0}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 7673507835633493423}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &4304222585498948178
 GameObject:
   m_ObjectHideFlags: 0
@@ -24736,7 +24535,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8577820737871108325}
-  - component: {fileID: 2465140483887892038}
   m_Layer: 0
   m_Name: Afdak_baksteen
   m_TagString: Untagged
@@ -24762,29 +24560,6 @@ Transform:
   m_Father: {fileID: 4786788419458762425}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2465140483887892038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706775475058354934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 72f2947acd3d48344b59b2ac2499c29b, type: 2}
-  m_rootTransform: {fileID: 8577820737871108325}
-  m_lodGroup: {fileID: 0}
-  m_renderers:
-  - {fileID: 2475715795414001931}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 0
-  m_lastImpostor: {fileID: 7897955809960603808}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &4753550610230862134
 GameObject:
   m_ObjectHideFlags: 0
@@ -31537,7 +31312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7618820690390375783}
   - component: {fileID: 8153988171866054634}
-  - component: {fileID: 5256617676089946303}
   m_Layer: 0
   m_Name: HuisTypeA01_Unity_Export Variant
   m_TagString: Untagged
@@ -31604,70 +31378,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7088598645692647965}
   m_Enabled: 0
---- !u!114 &5256617676089946303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6908562329215676276}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveGrass: 1
-  RemovePlants: 1
-  RemoveTrees: 1
-  RemoveObjects: 1
-  RemoveLargeObjects: 1
-  AdditionalGrassPerimiter: 0
-  AdditionalPlantPerimiter: 0
-  AdditionalTreePerimiter: 0
-  AdditionalObjectPerimiter: 0
-  AdditionalLargeObjectPerimiter: 0
-  AdditionalGrassPerimiterMax: 0
-  AdditionalPlantPerimiterMax: 0
-  AdditionalTreePerimiterMax: 0
-  AdditionalObjectPerimiterMax: 0
-  AdditionalLargeObjectPerimiterMax: 0
-  NoiseScaleGrass: 5
-  NoiseScalePlant: 5
-  NoiseScaleTree: 5
-  NoiseScaleObject: 5
-  NoiseScaleLargeObject: 5
-  Id: 41628b70-3704-47cd-bd56-ede228e90c7e
-  IncludeVegetationType: 0
-  Nodes:
-  - Selected: 0
-    Position: {x: 4.7458134, y: -8.610651, z: 2.315555}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -5.480318, y: -8.610651, z: 2.7468538}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -5.208349, y: -8.67975, z: -3.265327}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 4.7163234, y: -8.739534, z: -3.1976633}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  ClosedArea: 1
-  ShowArea: 1
-  ShowHandles: 1
-  MaskName: 
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  VegetationTypeList: []
-  ReductionTolerance: 0.2
 --- !u!1 &6947099481130354545
 GameObject:
   m_ObjectHideFlags: 0
@@ -31944,7 +31654,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7085295349293811537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31954,7 +31664,7 @@ Transform:
   - {fileID: 6822827379684229712}
   m_Father: {fileID: 6822827380196476299}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7129535184833462164
 GameObject:
   m_ObjectHideFlags: 0
@@ -32651,6 +32361,104 @@ Transform:
   m_Father: {fileID: 3853464883701093640}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7200047575860186433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2775034043490428468}
+  - component: {fileID: 4549190177646551037}
+  - component: {fileID: 1969436998479339675}
+  - component: {fileID: 5551966842215746630}
+  m_Layer: 0
+  m_Name: Ground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2775034043490428468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200047575860186433}
+  m_LocalRotation: {x: -0, y: -0.042568658, z: -0, w: 0.99909353}
+  m_LocalPosition: {x: -11.5, y: 0, z: -14.5}
+  m_LocalScale: {x: 4.0791655, y: 1, z: 3.4152503}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8464038602411423223}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: -4.879, z: 0}
+--- !u!33 &4549190177646551037
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200047575860186433}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1969436998479339675
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200047575860186433}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ef04da470c3aa934fa8ca947e6c5c132, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5551966842215746630
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200047575860186433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7257191539167839653
 GameObject:
   m_ObjectHideFlags: 0
@@ -32699,7 +32507,7 @@ Transform:
   - {fileID: 3955320621706815033}
   - {fileID: 4848229442025723071}
   - {fileID: 512055441992873217}
-  - {fileID: 1075063938}
+  - {fileID: 2775034043490428468}
   m_Father: {fileID: 7983350548402168010}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35160,7 +34968,6 @@ GameObject:
   - component: {fileID: 8153988170255372037}
   - component: {fileID: 8153988170255372036}
   - component: {fileID: 8153988170255372035}
-  - component: {fileID: 8153988170255372034}
   m_Layer: 0
   m_Name: Back_Door
   m_TagString: Untagged
@@ -35247,32 +35054,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100483, y: 0.21431345, z: 2.0979528}
   m_Center: {x: -0.49244738, y: -0.094761595, z: 0.36920476}
---- !u!114 &8153988170255372034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170255372032}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170316140488
 GameObject:
   m_ObjectHideFlags: 0
@@ -35479,7 +35260,6 @@ GameObject:
   - component: {fileID: 8153988170434751750}
   - component: {fileID: 8153988170434751749}
   - component: {fileID: 8153988170434751748}
-  - component: {fileID: 8153988170434751747}
   m_Layer: 0
   m_Name: Front_Door
   m_TagString: Untagged
@@ -35566,32 +35346,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0155574, y: 0.16840705, z: 2.042936}
   m_Center: {x: 0.4953379, y: 0.016813302, z: -0.6361414}
---- !u!114 &8153988170434751747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170434751745}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170448556975
 GameObject:
   m_ObjectHideFlags: 0
@@ -35604,7 +35358,6 @@ GameObject:
   - component: {fileID: 8153988170448557012}
   - component: {fileID: 8153988170448557011}
   - component: {fileID: 8153988170448557010}
-  - component: {fileID: 8153988170448557009}
   m_Layer: 0
   m_Name: Guest_Door_2
   m_TagString: Untagged
@@ -35691,32 +35444,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100477, y: 0.21431345, z: 2.1075997}
   m_Center: {x: -0.49244633, y: -0.09475744, z: 0.3740285}
---- !u!114 &8153988170448557009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170448556975}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170600784751
 GameObject:
   m_ObjectHideFlags: 0
@@ -35729,7 +35456,6 @@ GameObject:
   - component: {fileID: 8153988170600784020}
   - component: {fileID: 8153988170600784019}
   - component: {fileID: 8153988170600784018}
-  - component: {fileID: 8153988170600784017}
   m_Layer: 0
   m_Name: Guest_Door_3
   m_TagString: Untagged
@@ -35816,32 +35542,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100477, y: 0.21431406, z: 2.086808}
   m_Center: {x: -0.49244612, y: -0.094763614, z: -0.61420506}
---- !u!114 &8153988170600784017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170600784751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170808487842
 GameObject:
   m_ObjectHideFlags: 0
@@ -36051,7 +35751,6 @@ GameObject:
   - component: {fileID: 8153988170833805482}
   - component: {fileID: 8153988170833805481}
   - component: {fileID: 8153988170833805480}
-  - component: {fileID: 8153988170833805479}
   m_Layer: 0
   m_Name: Farm_Door1
   m_TagString: Untagged
@@ -36138,32 +35837,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16840701, y: 1.0155575, z: 2.0979528}
   m_Center: {x: 0.016801825, y: -0.49531445, z: -0.6086336}
---- !u!114 &8153988170833805479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170833805477}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988170847319067
 GameObject:
   m_ObjectHideFlags: 0
@@ -36370,7 +36043,6 @@ GameObject:
   - component: {fileID: 8153988170945622735}
   - component: {fileID: 8153988170945622734}
   - component: {fileID: 8153988170945622733}
-  - component: {fileID: 8153988170945622732}
   m_Layer: 0
   m_Name: Guest_Door_1
   m_TagString: Untagged
@@ -36457,32 +36129,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100502, y: 0.21431345, z: 2.0954278}
   m_Center: {x: -0.49243912, y: -0.09476186, z: -0.609895}
---- !u!114 &8153988170945622732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988170945622730}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 85
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171034649592
 GameObject:
   m_ObjectHideFlags: 0
@@ -36675,7 +36321,6 @@ GameObject:
   - component: {fileID: 8153988171167567540}
   - component: {fileID: 8153988171167567539}
   - component: {fileID: 8153988171167567538}
-  - component: {fileID: 8153988171167567537}
   m_Layer: 0
   m_Name: Farm_Door2
   m_TagString: Untagged
@@ -36762,32 +36407,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17882465, y: 1.0155576, z: 2.0979528}
   m_Center: {x: 0.022016363, y: -0.49532005, z: -0.6086331}
---- !u!114 &8153988171167567537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171167567503}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171290638749
 GameObject:
   m_ObjectHideFlags: 0
@@ -36897,7 +36516,6 @@ GameObject:
   - component: {fileID: 8153988171361986939}
   - component: {fileID: 8153988171361986938}
   - component: {fileID: 8153988171361986937}
-  - component: {fileID: 8153988171361986936}
   m_Layer: 0
   m_Name: Farm_Door3
   m_TagString: Untagged
@@ -36984,32 +36602,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16840701, y: 1.0155581, z: 2.0979528}
   m_Center: {x: 0.016813269, y: -0.49532202, z: -0.6086336}
---- !u!114 &8153988171361986936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171361986934}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &8153988171500041287
 GameObject:
   m_ObjectHideFlags: 0
@@ -37406,8 +36998,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8153988171619121902}
   - component: {fileID: 8153988171619121681}
-  - component: {fileID: 8153988171619121680}
-  - component: {fileID: 8153988171619121903}
   m_Layer: 0
   m_Name: Sint_Antoon (1)
   m_TagString: Untagged
@@ -37489,113 +37079,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8153988171034649594}
   m_Enabled: 0
---- !u!114 &8153988171619121680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171619121901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: f49caecdc6254764582454dba4ad2a70, type: 2}
-  m_rootTransform: {fileID: 8153988171619121902}
-  m_lodGroup: {fileID: 8153988171619121681}
-  m_renderers:
-  - {fileID: 8153988170255372036}
-  - {fileID: 8153988171582409072}
-  - {fileID: 8153988170833805481}
-  - {fileID: 8153988171167567539}
-  - {fileID: 8153988171361986938}
-  - {fileID: 8153988170434751749}
-  - {fileID: 8153988170945622734}
-  - {fileID: 8153988170448557011}
-  - {fileID: 8153988170600784019}
-  - {fileID: 8153988170826250261}
-  - {fileID: 8153988172019838565}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 8153988171034649592}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
---- !u!114 &8153988171619121903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153988171619121901}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveGrass: 1
-  RemovePlants: 1
-  RemoveTrees: 1
-  RemoveObjects: 1
-  RemoveLargeObjects: 1
-  AdditionalGrassPerimiter: 0
-  AdditionalPlantPerimiter: 0
-  AdditionalTreePerimiter: 0
-  AdditionalObjectPerimiter: 0
-  AdditionalLargeObjectPerimiter: 0
-  AdditionalGrassPerimiterMax: 0
-  AdditionalPlantPerimiterMax: 0
-  AdditionalTreePerimiterMax: 0
-  AdditionalObjectPerimiterMax: 0
-  AdditionalLargeObjectPerimiterMax: 0
-  NoiseScaleGrass: 5
-  NoiseScalePlant: 5
-  NoiseScaleTree: 5
-  NoiseScaleObject: 5
-  NoiseScaleLargeObject: 5
-  Id: 39638888-57f2-4714-916d-88a0598b967d
-  IncludeVegetationType: 0
-  Nodes:
-  - Selected: 0
-    Position: {x: -3.2345552, y: -8.521858, z: 24.366789}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 2.0163832, y: -8.615349, z: 24.366903}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 2.2010546, y: -8.703148, z: 0.5746012}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 21.461327, y: -8.614868, z: -1.7812481}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 20.852772, y: -8.621605, z: -7.184725}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -3.2345273, y: -8.6241455, z: -5.092886}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  ClosedArea: 1
-  ShowArea: 1
-  ShowHandles: 1
-  MaskName: 
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 33554432
-  VegetationTypeList: []
-  ReductionTolerance: 0.2
 --- !u!1 &8153988171896792202
 GameObject:
   m_ObjectHideFlags: 0
@@ -38375,7 +37858,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4786788420404710809}
   - component: {fileID: 5340574415311018845}
-  - component: {fileID: 510211304627414662}
   m_Layer: 0
   m_Name: Afdak_baksteen2
   m_TagString: Untagged
@@ -38430,75 +37912,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 249933011527493292}
   m_Enabled: 0
---- !u!114 &510211304627414662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373686407888895882}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveGrass: 1
-  RemovePlants: 1
-  RemoveTrees: 1
-  RemoveObjects: 1
-  RemoveLargeObjects: 1
-  AdditionalGrassPerimiter: 0
-  AdditionalPlantPerimiter: 0
-  AdditionalTreePerimiter: 0
-  AdditionalObjectPerimiter: 0
-  AdditionalLargeObjectPerimiter: 0
-  AdditionalGrassPerimiterMax: 0
-  AdditionalPlantPerimiterMax: 0
-  AdditionalTreePerimiterMax: 0
-  AdditionalObjectPerimiterMax: 0
-  AdditionalLargeObjectPerimiterMax: 0
-  NoiseScaleGrass: 5
-  NoiseScalePlant: 5
-  NoiseScaleTree: 5
-  NoiseScaleObject: 5
-  NoiseScaleLargeObject: 5
-  Id: 0bd284c9-0c66-4a2f-a081-62dfb6c7378d
-  IncludeVegetationType: 0
-  Nodes:
-  - Selected: 0
-    Position: {x: 1.1414456, y: -8.700839, z: -5.0853915}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -2.6716247, y: -8.555209, z: -5.134097}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -2.671479, y: -8.62009, z: 5.322575}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 0.8650403, y: -8.657779, z: 5.32283}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 1.4825718, y: -8.659274, z: 4.8920536}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  ClosedArea: 1
-  ShowArea: 1
-  ShowHandles: 1
-  MaskName: 
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 33554432
-  VegetationTypeList: []
-  ReductionTolerance: 0.2
 --- !u!1 &8373686408839034026
 GameObject:
   m_ObjectHideFlags: 0
@@ -38508,7 +37921,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4786788419458762425}
-  - component: {fileID: 510211303698247078}
   - component: {fileID: 7259618646712887388}
   m_Layer: 0
   m_Name: Afdak_baksteen
@@ -38533,80 +37945,6 @@ Transform:
   m_Father: {fileID: 8464038602411423223}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &510211303698247078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373686408839034026}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveGrass: 1
-  RemovePlants: 1
-  RemoveTrees: 1
-  RemoveObjects: 1
-  RemoveLargeObjects: 1
-  AdditionalGrassPerimiter: 0
-  AdditionalPlantPerimiter: 0
-  AdditionalTreePerimiter: 0
-  AdditionalObjectPerimiter: 0
-  AdditionalLargeObjectPerimiter: 0
-  AdditionalGrassPerimiterMax: 0
-  AdditionalPlantPerimiterMax: 0
-  AdditionalTreePerimiterMax: 0
-  AdditionalObjectPerimiterMax: 0
-  AdditionalLargeObjectPerimiterMax: 0
-  NoiseScaleGrass: 5
-  NoiseScalePlant: 5
-  NoiseScaleTree: 5
-  NoiseScaleObject: 5
-  NoiseScaleLargeObject: 5
-  Id: bddec362-5a55-45a5-8128-1020501f80ff
-  IncludeVegetationType: 0
-  Nodes:
-  - Selected: 0
-    Position: {x: 2.9773343, y: -9.155268, z: -5.166872}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -2.921571, y: -9.383814, z: -5.1654987}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -3.8990488, y: -9.390589, z: -0.09091234}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -2.9209957, y: -9.377008, z: 5.2962494}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 2.9782553, y: -9.0837345, z: 5.294964}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 4.026293, y: -9.079271, z: 0.033359528}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  ClosedArea: 1
-  ShowArea: 1
-  ShowHandles: 1
-  MaskName: 
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  VegetationTypeList: []
-  ReductionTolerance: 0.2
 --- !u!205 &7259618646712887388
 LODGroup:
   m_ObjectHideFlags: 0
@@ -39226,7 +38564,6 @@ GameObject:
   - component: {fileID: 8467924231412305036}
   - component: {fileID: 7813324211592332833}
   - component: {fileID: 1966484897559536442}
-  - component: {fileID: 8952761830905607546}
   m_Layer: 0
   m_Name: Spreeuwpot
   m_TagString: Untagged
@@ -39291,29 +38628,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0019203147, y: 0.0048248013, z: 0.0030818786}
   m_Center: {x: 0.0003398425, y: -0.001124894, z: 0.00024093903}
---- !u!114 &8952761830905607546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8471709645038746270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 233b01ee27ad59245b2a41c6705a3898, type: 2}
-  m_rootTransform: {fileID: 8467924231412305036}
-  m_lodGroup: {fileID: 7813324211592332833}
-  m_renderers:
-  - {fileID: 0}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 0
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 2658314446926603750}
-  m_folderPath: Assets/_Game_Project/Imposters/
-  m_cutMode: 0
 --- !u!1 &8481337061276540145
 GameObject:
   m_ObjectHideFlags: 0
@@ -40772,7 +40086,6 @@ GameObject:
   - component: {fileID: 8600606276508076095}
   - component: {fileID: 4202517677224296577}
   - component: {fileID: 6943981226119377522}
-  - component: {fileID: 3246085539053080024}
   m_Layer: 0
   m_Name: Shit (1)
   m_TagString: Untagged
@@ -40853,70 +40166,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.72, y: 1.63, z: 5.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3246085539053080024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8600606276517575679}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a7428b77679040a920c45a17b32d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RemoveGrass: 1
-  RemovePlants: 1
-  RemoveTrees: 1
-  RemoveObjects: 1
-  RemoveLargeObjects: 1
-  AdditionalGrassPerimiter: 0
-  AdditionalPlantPerimiter: 0
-  AdditionalTreePerimiter: 0
-  AdditionalObjectPerimiter: 0
-  AdditionalLargeObjectPerimiter: 0
-  AdditionalGrassPerimiterMax: 0
-  AdditionalPlantPerimiterMax: 0
-  AdditionalTreePerimiterMax: 0
-  AdditionalObjectPerimiterMax: 0
-  AdditionalLargeObjectPerimiterMax: 0
-  NoiseScaleGrass: 5
-  NoiseScalePlant: 5
-  NoiseScaleTree: 5
-  NoiseScaleObject: 5
-  NoiseScaleLargeObject: 5
-  Id: 4ed40339-605c-4d90-b3db-093d34db33c1
-  IncludeVegetationType: 0
-  Nodes:
-  - Selected: 0
-    Position: {x: 3.4926128, y: -8.801824, z: 2.510358}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: 3.5073485, y: -8.840657, z: -2.489402}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -3.4929285, y: -8.827184, z: -2.5101907}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  - Selected: 0
-    Position: {x: -3.5075822, y: -8.777417, z: 2.4894786}
-    OverrideWidth: 0
-    CustomWidth: 2
-    Active: 1
-  ClosedArea: 1
-  ShowArea: 1
-  ShowHandles: 1
-  MaskName: 
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 33554432
-  VegetationTypeList: []
-  ReductionTolerance: 0.2
 --- !u!1 &8617048013822265627
 GameObject:
   m_ObjectHideFlags: 0
@@ -42427,7 +41676,6 @@ GameObject:
   - component: {fileID: 5349236030937439113}
   - component: {fileID: 7359207306879320442}
   - component: {fileID: 7614050186035470505}
-  - component: {fileID: 5535188706699850962}
   m_Layer: 0
   m_Name: Draaihek_Deur
   m_TagString: Untagged
@@ -42514,114 +41762,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.028190915, y: 0.0028423967, z: 0.035218533}
   m_Center: {x: -0.013163587, y: -0.00008877605, z: 0.017609268}
---- !u!114 &5535188706699850962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9188609155519352782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731917776111cfd4e8e238be7a676f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closeTime: 2
-  openSound: {fileID: 8300000, guid: 9e9193a6d153f1148a5812b959d1730c, type: 3}
-  closeSound: {fileID: 8300000, guid: 8f7b9356055c59844b654290094bcdc1, type: 3}
-  InitialAngle: 0
-  RotationAngle: 90
-  RotationSide: 0
-  Speed: 3
-  TimesMoveable: 0
-  HingePosition: 0
-  DoorScale: 0
-  PivotPosition: 1
-  RotationPending: 0
-  VisualizeHinge: 0
-  HingeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!1001 &4636711926936514857
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8464038602411423223}
-    m_Modifications:
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 35.83376
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 39.499256
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.5694
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.1756
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636711925861457327, guid: d130ed45e024c314681b35a16a7afa32,
-        type: 3}
-      propertyPath: m_Name
-      value: Ground
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d130ed45e024c314681b35a16a7afa32, type: 3}
---- !u!4 &1075063938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4636711925861457323, guid: d130ed45e024c314681b35a16a7afa32,
-    type: 3}
-  m_PrefabInstance: {fileID: 4636711926936514857}
-  m_PrefabAsset: {fileID: 0}

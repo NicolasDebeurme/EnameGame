@@ -26,5 +26,5 @@ MonoBehaviour:
     - name: JarTaken
       speaker: Daniel
       sentences:
-      - This Jar will be usefull in the future
+      - This Jar will be usefull in the future.
       TimeStamp: 3

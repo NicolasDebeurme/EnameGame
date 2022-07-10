@@ -17,7 +17,7 @@ public class BenchAction : StepAction
         ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Bench";
 
 
-        if (gameStateSystem._playerRole == Roles.RandomMan)
+        if (gameStateSystem._playerRole == Roles.Policeman)
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";
         else
             ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to take the gun";
@@ -26,7 +26,6 @@ public class BenchAction : StepAction
 
     private void Update()
     {
-        AnchorsPrefab[0].transform.GetChild(0).transform.localPosition = new Vector3(Ajustement.instance.SliderX.value, Ajustement.instance.SliderY.value, Ajustement.instance.SliderZ.value);
 
         if (isGunTaken)
             return;
@@ -46,7 +45,7 @@ public class BenchAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
+                    if (pistol != null && GameStateSystem._playerRole == Roles.Policeman) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
                         pistol.OnRayHitAddItem();
@@ -71,7 +70,7 @@ public class BenchAction : StepAction
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
                     ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null && GameStateSystem._playerRole == Roles.RandomMan) // hit.transform.tag = " ..."
+                    if (pistol != null && GameStateSystem._playerRole == Roles.Policeman) // hit.transform.tag = " ..."
                     {
                         isGunTaken = true;
                         pistol.OnRayHitAddItem();
