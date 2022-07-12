@@ -24,7 +24,7 @@
   <p align="center">
     AR game made with Unity and LightShip technology
     <br />
-    <a href="https://video"><strong>Video Demonstration</strong></a>
+    <a href="https://www.youtube.com/watch?v=Ct7XOFrSv4I&ab_channel=VisualDimensionbvba"><strong>Video Demonstration</strong></a>
   </p>
 </div>
 <br />
