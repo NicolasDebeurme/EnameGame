@@ -126,7 +126,7 @@ public class HarbourAction : StepAction
             yield return new WaitForSeconds(3f);
             NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
 
-            DestroySelf();
+            Destroy(this);
         }
         else if(isBeforeChoice)
         {
@@ -146,7 +146,7 @@ public class HarbourAction : StepAction
                 NetworkingManager.BroadCastChoice(1, TypeOfChoice.HasShoot);
             }
 
-            DestroySelf();
+            Destroy(this);
         }
 
         yield break;
@@ -159,8 +159,10 @@ public class HarbourAction : StepAction
         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
+        base.OnDestroy();
+        
         StopAllCoroutines();
 
         Camera.main.GetComponent<ARDepthManager>().enabled = false;

@@ -31,11 +31,6 @@ public class UIManager : ViewManager<UIManager>
 			_views[i].Hide();
 		}
 	}
+	
 
-
-	#region private Methodes
-	#endregion
-
-	#region public static Methodes
-	#endregion
 }

@@ -58,6 +58,7 @@ public class WaySpotService : MonoBehaviour
             Debug.Log("No location Service");
     }
 
+    #region Events
     private void OnSessionRan(ARSessionRanArgs args)
     {
         iLocationService.Start(0.001f, 0.001f);
@@ -78,6 +79,8 @@ public class WaySpotService : MonoBehaviour
         _wayspotAnchorService.DestroyWayspotAnchors(anchors.Keys.ToArray());
         anchors.Clear();
     }
+    #endregion
+
     public void Update()
     {
         if (_actualSession.State == ARSessionState.Paused) return;
@@ -125,107 +128,9 @@ public class WaySpotService : MonoBehaviour
             
     }
 
-    //private void SaveLocalReference()
-    //{
-    //    IWayspotAnchor[] wayspotAnchors = wayspotAnchorService.GetAllWayspotAnchors();
-
-    //    WayspotAnchorsData storedAnchorsData = new WayspotAnchorsData();
-    //    storedAnchorsData.Payloads =wayspotAnchors.Select(a => a.Payload.Serialize()).ToArray();
-
-    //    string jsonData = JsonUtility.ToJson(storedAnchorsData);
-    //    PlayerPrefs.SetString(LocalSaveKey, jsonData);
-    //}
-
-    //public void LoadLocalReference()
-    //{
-    //    if(PlayerPrefs.HasKey(LocalSaveKey))
-    //    {
-    //        List<WayspotAnchorPayload> payloads = new List<WayspotAnchorPayload>();
-
-    //        string jsonData = PlayerPrefs.GetString(LocalSaveKey);
-    //        WayspotAnchorsData storedData = JsonUtility.FromJson<WayspotAnchorsData>(jsonData);
-
-    //        foreach(var wayspotAnchorPayload in storedData.Payloads)
-    //        {
-    //            var payload = WayspotAnchorPayload.Deserialize(wayspotAnchorPayload);
-    //            payloads.Add(payload);
-    //        }
-
-    //        if(payloads.Count > 0)
-    //        {
-    //            var wayspotAnchors = wayspotAnchorService.RestoreWayspotAnchors(payloads.ToArray());
-    //            OnWaySpotAchorAdded(wayspotAnchors);
-    //        }
-    //    }
-    //}
 
     public void DestroySelf()
     {
         Destroy(this);
     }
-
-    #region WaySpotAnchor Payloads
-    public GameObject[] LoadPayloads(string json, GameObject anchorPrefab)
-    {
-            var storedData = JsonUtility.FromJson<WayspotAnchorsData>(json);
-
-            var payload = WayspotAnchorPayload.Deserialize(storedData.Payloads[0]);
-
-            if (payload != null)
-            {
-                var wayspotAnchors = _wayspotAnchorService.RestoreWayspotAnchors(payload);
-
-                foreach (var wayspotAnchor in wayspotAnchors)
-                {
-                    if (anchors.ContainsKey(wayspotAnchor.ID)) continue;
-                    var id = wayspotAnchor.ID;
-                    var anchor = Instantiate(anchorPrefab);
-                    anchor.SetActive(false);
-                    anchor.name = $"Anchor {id}";
-                    anchors.Add(id, anchor);
-
-                    wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
-                }
-
-            }
-        if (anchors.Values.ToArray().Length > 0)
-            Debug.Log("WayspotAnchorRestoredSuccesfully");
-        else
-            Debug.Log("NoWayspotAnchorRestored");
-
-
-        return anchors.Values.ToArray();
-    }
-
-    //private void OnWaySpotAchorAdded(IWayspotAnchor[] wayspotAnchors)
-    //{
-    //    foreach (var wayspotAnchor in wayspotAnchors)
-    //    {
-    //        if (anchors.ContainsKey(wayspotAnchor.ID)) continue;
-    //        var id = wayspotAnchor.ID;
-    //        var anchor = Instantiate(prefab);
-    //        anchor.SetActive(false);
-    //        anchor.name = $"Anchor {id}";
-    //        anchors.Add(id, anchor);
-    //        wayspotAnchor.TrackingStateUpdated += OnUpdateAnchorPose;
-    //    }
-
-    //    if (InitialLocalizationFired)
-    //        SaveLocalReference();
-    //}
-    private void OnUpdateAnchorPose(WayspotAnchorResolvedArgs args)
-    {
-        var anchor = anchors[args.ID].transform;
-
-        anchor.SetPositionAndRotation(args.Position, args.Rotation);
-        anchor.gameObject.SetActive(true);
-    }
-
-    [Serializable]
-    private class WayspotAnchorsData
-    {
-        /// The payloads to save via JsonUtility
-        public string[] Payloads = Array.Empty<string>();
-    }
-    #endregion
 }

@@ -39,6 +39,7 @@ public abstract class StepAction : MonoBehaviour
 
     }
 
+    //Load the action data (ScriptableObject)
     protected ActionData LoadAction(string actionName) 
     {
         var loadedObject = Resources.Load<ActionData>(actionName+ "/ActionData");
@@ -54,6 +55,7 @@ public abstract class StepAction : MonoBehaviour
         GameStateSystem.GetState().NextState();
     }
 
+    //virtual method to be subscribed to when a dialogue end for exemple
     public virtual IEnumerator OnActionEnded()
     {
         DialogueManager._dialogueInstance.DialogueEnded -= OnActionEnded;
@@ -62,24 +64,25 @@ public abstract class StepAction : MonoBehaviour
 
         ArState._view.continueButton.gameObject.SetActive(true);
     }
-    public virtual void DestroySelf()
-    {
-        foreach(var gO in AnchorsPrefab)
-        {
-            Destroy(gO);
-        }
-        Destroy(this);
-    }
+   
+    
+    //Called from the MakeAChoice scene when the player click on a choice button and an action need to be make
     public virtual IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         Debug.Log("No decison result ..");
-        DestroySelf();
+        Destroy(this);
         yield break;
     }
 
-    public ActionData GetActionData()
+    internal void DestroySelf()
     {
-        return actionData;
+        Destroy(this);
     }
-
+    public virtual void OnDestroy()
+    {
+        foreach (var gO in AnchorsPrefab)
+        {
+            Destroy(gO);
+        }
+    }
 }

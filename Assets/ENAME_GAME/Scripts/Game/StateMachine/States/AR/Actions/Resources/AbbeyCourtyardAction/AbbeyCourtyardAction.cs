@@ -20,7 +20,7 @@ public class AbbeyCourtyardAction : StepAction
     public override IEnumerator ShowDecisionResult(int indexOfDecison)
     {
         NetworkingManager.BroadCastChoice(indexOfDecison, TypeOfChoice.HasDenounce);
-        DestroySelf();
+        Destroy(this);
         yield break;
     }
 
@@ -36,9 +36,10 @@ public class AbbeyCourtyardAction : StepAction
         yield return new WaitForSeconds(1f);
         NextState();
     }
-
-    private void OnDestroy()
+    
+    public override void OnDestroy()
     {
+        base.OnDestroy();
         StopAllCoroutines();
     }
 }

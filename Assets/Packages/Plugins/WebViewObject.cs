@@ -558,6 +558,7 @@ public class WebViewObject : MonoBehaviour
         //TODO: UNSUPPORTED
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_EDITOR_LINUX
         //TODO: UNSUPPORTED
+        return;
 #else
         float left = (Screen.width - scale.x) / 2.0f + center.x;
         float right = Screen.width - (left + scale.x);
@@ -569,9 +570,10 @@ public class WebViewObject : MonoBehaviour
 
     public void SetMargins(int left, int top, int right, int bottom, bool relative = false)
     {
+        return;
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_EDITOR_LINUX
         //TODO: UNSUPPORTED
-        return;
+
 #elif UNITY_WEBPLAYER || UNITY_WEBGL
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         if (webView == IntPtr.Zero)

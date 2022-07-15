@@ -23,7 +23,7 @@ public class Enums : MonoBehaviour
         Harbour,
         Saint_Anthony_Inn,
     }
-    public static Dictionary<Places, LatLng> Places_Coord = new Dictionary<Places, LatLng>()
+    public static Dictionary<Places, LatLng> Places_Coord = new()
     {
             { Places.Entrance, new LatLng(50.85489842073291, 3.6332635527581507) },
             { Places.Sitting_Bench, new LatLng(50.85482528474409, 3.6331359651977344) },

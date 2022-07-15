@@ -1,41 +1,41 @@
-using Niantic.ARDK.AR.WayspotAnchors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Enums;
 
-public class BenchAction : StepAction
+public class EntranceAction : StepAction
 {
-    private bool isGunTaken=false;
-    
-
+    private bool isJarTaken = false;
     public override void Initialize(GameStateSystem gameStateSystem)
     {
         base.Initialize(gameStateSystem,this);
 
-        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Bench";
+        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[0].text = "Entrance";
 
-
-        if (gameStateSystem._playerRole == Roles.Policeman)
-            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the gun and take it";
+        if (gameStateSystem._playerRole == Roles.Alchemist)
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Search for the jar and take it";
         else
-            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to take the gun";
+            ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Wait for the other player to take the jar";
     }
-    
 
     private void Update()
     {
+        if(GameStateSystem._playerRole == Roles.Alchemist && !isJarTaken)
+        {
+            MakeRaycast();
+        }
+    }
 
-        if (isGunTaken)
-            return;
-
+    private void MakeRaycast()
+    {
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.Log("Touch ");
             Debug.DrawRay(ray.origin, ray.direction * 20, Color.white, 1);
             if (Physics.Raycast(ray, out hit, 100))
             {
@@ -44,12 +44,12 @@ public class BenchAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null && GameStateSystem._playerRole == Roles.Policeman) // hit.transform.tag = " ..."
+                    if (hit.transform.TryGetComponent<ItemWorld>(out var jar)) // hit.transform.tag = " ..."
                     {
-                        isGunTaken = true;
-                        pistol.OnRayHitAddItem();
-                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
+                        jar.OnRayHitAddItem();
+                        isJarTaken = true;
+                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
+                        ArState.textPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "";
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                         AudioManager.Instance.Play("Collect");
                     }
@@ -69,12 +69,12 @@ public class BenchAction : StepAction
                 {
                     Debug.Log("Touch " + hit.transform.gameObject.name);
 
-                    ItemWorld pistol = hit.transform.GetComponent<ItemWorld>();
-                    if (pistol != null && GameStateSystem._playerRole == Roles.Policeman) // hit.transform.tag = " ..."
+                    ItemWorld jar = hit.transform.GetComponent<ItemWorld>();
+                    if (jar != null) // hit.transform.tag = " ..."
                     {
-                        isGunTaken = true;
-                        pistol.OnRayHitAddItem();
-                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["GunTaken"]);
+                        jar.OnRayHitAddItem();
+                        isJarTaken = true;
+                        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["JarTaken"]);
                         DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
                         AudioManager.Instance.Play("Collect");
                     }
@@ -82,10 +82,5 @@ public class BenchAction : StepAction
             }
         }
 #endif
-    }
-
-    private void OnDestroy()
-    {
-        
     }
 }

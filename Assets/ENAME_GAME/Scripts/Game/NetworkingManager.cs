@@ -39,6 +39,7 @@ public class NetworkingManager : MonoBehaviour
             Instance = this;
     }
 
+    ///Called to create the Networking session
     public void CreateAndRunSharedAR(InputField SessionIDField)
     {
         var _arNetworking = ARNetworkingFactory.Create(GameManager.Instance.runtimeEnv);
@@ -78,10 +79,9 @@ public class NetworkingManager : MonoBehaviour
         _networking.PeerDataReceived += OnPeerDataReceived;
 
         _networking.PersistentKeyValueUpdated += OnPersistentKeyValueUpdated;
-
-        GameManager.Instance.NetworkInitialized();
     }
 
+    ///Called to STOP the networking session - still issue on that on the live device
     public void StopSharedAR()
     {
         _gameInfo._arNetworking.Dispose();
@@ -91,19 +91,17 @@ public class NetworkingManager : MonoBehaviour
         players = null;
     }
 
-    #region Networking
+    #region NetworkingEvents
 
     private void OnSessionDeinitialized(ARSessionDeinitializedArgs args)
     {
         Debug.Log("stopped");
 
     }
-
     private void OnSessionRan(ARSessionRanArgs args)
     {
         Debug.Log("AR Session Ran");
     }
-
     private void OnNetworkedConnected(ConnectedArgs args)
     {
         Debug.LogFormat("Networking joined, peerID: {0}, isHost: {1}", args.Self, args.IsHost);
@@ -122,7 +120,6 @@ public class NetworkingManager : MonoBehaviour
             NetworkStateChanged?.Invoke(_gameInfo);
 
     }
-
     private void OnNetworkDisconnected(DisconnectedArgs args)
     {
 
@@ -158,9 +155,25 @@ public class NetworkingManager : MonoBehaviour
             StopSharedAR();
         }
     }
+    private void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
+    {
+        // Copy the value of the stored KV into local variables
+        byte[] value = args.CopyValue();
+        string key = args.Key;
+
+        // Log some information about the key-value
+        Debug.LogFormat
+        (
+          "Got a Persistet Key-Value. Key: {0}, Length: {1}",
+          key,
+          value.Length
+        );
+
+    }
 
     #endregion
 
+    //Networking Tags to send message
     // Tags: 0 -> NOTHING
     //       1 -> ChoiceInfo
     //       2 -> NextState
@@ -295,21 +308,4 @@ public class NetworkingManager : MonoBehaviour
 
     #endregion
 
-    //KeyValuePair
-    private void OnPersistentKeyValueUpdated(PersistentKeyValueUpdatedArgs args)
-    {
-        // Copy the value of the stored KV into local variables
-        byte[] value = args.CopyValue();
-        string key = args.Key;
-
-        // Log some information about the key-value
-        Debug.LogFormat
-        (
-          "Got a Persistet Key-Value. Key: {0}, Length: {1}",
-          key,
-          value.Length
-        );
-
-    }
-    //
 }

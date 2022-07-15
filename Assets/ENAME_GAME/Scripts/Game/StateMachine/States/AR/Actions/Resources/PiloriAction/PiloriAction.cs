@@ -31,8 +31,18 @@ public class PiloriAction : StepAction
 
          StartCoroutine(StartDialogue());
     }
-    private void OnDestroy()
+
+    private IEnumerator StartDialogue()
     {
+        yield return new WaitForSeconds(2f);
+        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
+        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        
         StopAllCoroutines();
         Camera.main.GetComponent<ARDepthManager>().enabled = false;
 
@@ -42,12 +52,4 @@ public class PiloriAction : StepAction
         }
 
     }
-
-    private IEnumerator StartDialogue()
-    {
-        yield return new WaitForSeconds(2f);
-        DialogueManager._dialogueInstance.EnqueueDialogue(actionData.dialogues["Baker"]);
-        DialogueManager._dialogueInstance.DialogueEnded += OnActionEnded;
-    }
-
 }

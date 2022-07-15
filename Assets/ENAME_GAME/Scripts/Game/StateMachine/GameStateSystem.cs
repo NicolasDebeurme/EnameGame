@@ -41,13 +41,14 @@ public class GameStateSystem : StateMachine
     private void Awake()
     {
         Instance = this;
+
+        //Initialize inventory system----
         inventory = new Inventory(UseItem);
         GameManager.Instance.uiInventory.SetInventory(inventory);
     }
 
     private void Start()
     {
-
         LoadTreesFromAssets();
 
         foreach(var tree in _availableTrees)
@@ -65,13 +66,13 @@ public class GameStateSystem : StateMachine
         SetState(new Lobby(this));
     }
 
-    //Tree Managment
+    //// Tree Managment
     private void LoadTreesFromAssets()
     {
         _availableTrees = null;
         _availableTrees = Resources.LoadAll<Serialized_Tree>("StoryTree");
     }
-
+    
     public static void SetNextActualNode(int indexOfChild)
     {
         Instance.ActualNode = Instance.ActualNode.children[indexOfChild];
@@ -79,7 +80,7 @@ public class GameStateSystem : StateMachine
         Instance._gameInfo._session.Pause();
         Instance.SetState(new GoToPlace(Instance));
     }
-    //
+    ////
 
     //Inventory
     private void UseItem(ItemWorld item)

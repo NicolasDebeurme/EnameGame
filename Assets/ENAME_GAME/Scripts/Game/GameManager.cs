@@ -46,8 +46,4 @@ public class GameManager : MonoBehaviour
     {
         NetworkingManager.BroadCastNextState();
     }
-    public void NetworkInitialized()
-    {
-    }
-
 }
